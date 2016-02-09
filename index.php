@@ -23,7 +23,7 @@
 	<body class="landing">
 		<!--
 			if(isset($_POST['senddata'])){
-				echo "<h3> IT WORKED! </h3>";
+				echo "<h4> IT WORKED! </h4>"; 
 			}
 		?> -->
 
