@@ -21,12 +21,36 @@
 	</head>
 	
 	<body class="landing">
-		<!--
-			if(isset($_POST['senddata'])){
-				echo "<h4> IT WORKED! </h4>"; 
-				echo "<h4> IT WORKED! </h4>"; 
+		
+		<!-- Checks to see if the user is logged in or not -->
+		<?php
+			session_start();
+
+			if(isset($_POST['senddata']))
+			{			
+				$_SESSION["username"] = $_POST['username'];
+				$_SESSION["password"] = $_POST['password'];
+				echo "your username is "       .$_SESSION["username"];
+				echo "<br />your password is " .$_SESSION["password"];
 			}
-		?> -->
+			else
+			{
+				
+			}
+			
+			if (isset($_GET['action']))
+			{
+				switch ($_GET['action'])
+				{
+					case "logout": 
+					// Remove all session variables
+					session_unset(); 
+
+					// Destroy the session 
+					session_destroy(); 
+				}
+			}
+		?>
 		
 		<?php 
 			// Includes the Header for the page
