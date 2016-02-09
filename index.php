@@ -59,7 +59,7 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<img src="images/elitelogo.png" alt=""/>
+					<img max-width="100px" src="images/elitelogo.png" alt=""/>
 					<p>On-line Testing Application</p>
 					<ul class="actions">
 						<li><a href="#one" class="button big scrolly">Login</a></li>
