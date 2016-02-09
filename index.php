@@ -51,7 +51,7 @@
 								</li>								
 							</ul>
 						</li>
-						<li><a href="https://www.google.com/drive/">Google Drive</a></li>
+						<li><a href="https://www.google.com/drive/">Goog Drive</a></li>
 					</ul>
 				</nav>
 			</header>
