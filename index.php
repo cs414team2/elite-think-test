@@ -24,6 +24,7 @@
 		<!--
 			if(isset($_POST['senddata'])){
 				echo "<h4> IT WORKED! </h4>"; 
+				echo "<h4> IT WORKED! </h4>"; 
 			}
 		?> -->
 
