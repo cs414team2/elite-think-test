@@ -22,25 +22,10 @@
 	</head>
 	<body>
 
-		<!-- Header -->
-			<header id="header" class="skel-layers-fixed">
-				<h1><a href="index.php">Elite Team</a></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="index.php">Home</a></li>
-						<li>
-							<a href="" class="icon fa-angle-down">Helpful Links</a>
-							<ul>
-								<li>
-									<a href="bob.php">Old Page</a></li>
-									<li><a href="file://csmain/Classes/CS_414/Team02/outline.php">Page Outline</a></li>
-								</li>							
-							</ul>
-						</li>
-						<li><a href="https://www.google.com/drive/">Google Drive</a></li>
-					</ul>
-				</nav>
-			</header>
+		<?php 
+			// Includes the Header for the page
+			require_once('header.php');
+		?>
 
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
@@ -116,18 +101,10 @@
 				</div>
 			</section>
 			
-		<!-- Footer -->
-			<footer id="footer">
-				<ul class="icons">
-					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-					<li><a href="#" class="icon fa-envelope"><span class="label">Envelope</span></a></li>
-				</ul>
-				<ul class="menu">
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">User Manual</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</footer>
+		<?php 
+			// Includes the Footer for the page
+			require_once('footer.php');
+		?>
 
 	</body>
 </html>
