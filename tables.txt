@@ -1,7 +1,0 @@
-CREATE TABLE `cs414_team2`.`administrator` (
-  `admin_id` INT NOT NULL,
-  `admin_password` VARCHAR(45) NOT NULL,
-  `admin_email` VARCHAR(45) NULL,
-  `admin_fname` VARCHAR(45) NOT NULL,
-  `admin_lname` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`admin_id`));
