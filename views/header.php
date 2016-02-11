@@ -1,5 +1,6 @@
 <!-- Header -->
 			<header id="header" class="alt skel-layers-fixed">
+			
 				
 				<?php
 					// Display's the user's name in the header
@@ -16,7 +17,7 @@
 				
 				<nav id="nav">
 					<ul>
-						<li><a href="index.php">Home</a></li>
+						<li><a href="../index.php">Home</a></li>
 						<li>
 							<a href="" class="icon fa-angle-down">Helpful Links</a>
 							<ul>
