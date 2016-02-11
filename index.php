@@ -5,10 +5,20 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Elite Testing application" />
 		<meta name="keywords" content="testing, login, student, teacher, administrator" />
-		<?php 
-			// Includes the Header for the page
-			require_once('views/styles.php');
-		?>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="views/css/skel.css" />
+			<link rel="stylesheet" href="views/css/style.css" />
+			<link rel="stylesheet" href="views/css/style-xlarge.css" />
+		</noscript>
+
 	</head>
 	
 	<body class="landing">
@@ -51,7 +61,7 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<img src="views/images/elitelogo.png" width="200" height="230" alt="elite logo"/>
+					<img src="images/elitelogo.png" width="200" height="230" alt="elite logo"/>
 					<p>On-line Testing Application</p>
 					<ul class="actions">
 						<li><a href="#one" class="button big scrolly">Login</a></li>
