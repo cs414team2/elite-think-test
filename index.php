@@ -21,7 +21,7 @@
 	</head>
 	
 	<body class="landing">
-		
+				
 		<!-- Checks to see if the user is logged in or not -->
 		<?php
 			session_start();
@@ -47,14 +47,14 @@
 					session_unset(); 
 
 					// Destroy the session 
-					session_destroy(); 
+					session_destroy();
 				}
 			}
 		?>
 		
 		<?php 
 			// Includes the Header for the page
-			require_once('header.php');
+			require_once('views/header.php');
 		?>
 
 		<!-- Banner -->
@@ -139,7 +139,7 @@
 			
 		<?php 
 			// Includes the Footer for the page
-			require_once('footer.php');
+			require_once('views/footer.php');
 		?>
 
 	</body>
