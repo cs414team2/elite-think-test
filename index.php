@@ -21,26 +21,46 @@
 	</head>
 	
 	<body class="landing">
-		<!--
-			if(isset($_POST['senddata'])){
-				echo "<h4> IT WORKED! </h4>"; 
-				echo "<h4> IT WORKED! </h4>"; 
+				
+		<!-- Checks to see if the user is logged in or not -->
+		<?php
+			session_start();
+
+			if(isset($_POST['senddata']))
+			{			
+				$_SESSION["username"] = $_POST['username'];
+				$_SESSION["password"] = $_POST['password'];
+				echo "your username is "       .$_SESSION["username"];
+				echo "<br />your password is " .$_SESSION["password"];
 			}
-		?> -->
+			else
+			{
+				
+			}
+			
+			if (isset($_GET['action']))
+			{
+				switch ($_GET['action'])
+				{
+					case "logout": 
+					// Remove all session variables
+					session_unset(); 
+
+					// Destroy the session 
+					session_destroy();
+				}
+			}
+		?>
 		
 		<?php 
 			// Includes the Header for the page
-			require_once('header.php');
+			require_once('views/header.php');
 		?>
 
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-<<<<<<< HEAD
-					<img max-width="100px" src="images/elitelogo.png" alt=""/>
-=======
 					<img src="images/elitelogo.png" width="200" height="230" alt="elite logo"/>
->>>>>>> test/master
 					<p>On-line Testing Application</p>
 					<ul class="actions">
 						<li><a href="#one" class="button big scrolly">Login</a></li>
@@ -119,7 +139,7 @@
 			
 		<?php 
 			// Includes the Footer for the page
-			require_once('footer.php');
+			require_once('views/footer.php');
 		?>
 
 	</body>

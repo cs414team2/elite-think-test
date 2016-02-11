@@ -1,6 +1,19 @@
 <!-- Header -->
 			<header id="header" class="alt skel-layers-fixed">
-				<h1><a href="index.php">Elite Team</a></h1>
+				
+				<?php
+					// Display's the user's name in the header
+					if (isset($_SESSION["username"]))
+					{
+						echo "<h1>Hello ".$_SESSION["username"]."</h1>";
+					}
+					else
+					{
+						echo '<h1><a href="index.php">Elite Team</a></h1>';
+					}
+						
+				?>
+				
 				<nav id="nav">
 					<ul>
 						<li><a href="index.php">Home</a></li>
@@ -21,7 +34,17 @@
 								</li>								
 							</ul>
 						</li>
-						<li><a href="https://www.google.com/drive/">Google Drive</a></li>
+						<li>
+							<a href="https://www.google.com/drive/">Google Drive</a>
+						</li>
+						<?php
+							// Display's the Logout option in the header if logged in
+							if (isset($_SESSION["username"]))
+							{
+								echo '<li><a href="index.php?action=logout">Logout</a></li>';
+							}
+								
+						?>
 					</ul>
 				</nav>
 			</header> 
