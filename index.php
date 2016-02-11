@@ -54,7 +54,7 @@
 		
 		<?php 
 			// Includes the Header for the page
-			require_once('views/header.php');
+			require_once('header.php');
 		?>
 
 		<!-- Banner -->
@@ -139,7 +139,7 @@
 			
 		<?php 
 			// Includes the Footer for the page
-			require_once('views/footer.php');
+			require_once('footer.php');
 		?>
 
 	</body>
