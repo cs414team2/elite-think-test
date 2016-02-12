@@ -9,24 +9,46 @@
 		private $user_id;
 		private $password;
 		
-		public function __construct() {
-			$access_level = UNAUTHENTICATED;
-		}
 		public function __construct($id, $pass) {
-			$user_id = $id;
-			$password = $password;
-			$access_level = UNAUTHENTICATED;
-		}
-		
-		public function authenticate_user() {
 			$db = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
+		
+			$statement = $db->prepare("SELECT authenticate_user(?, ?)"); 
+			$statement->bind_param("is", $id, $pass);
+			$statement->execute();
+			$statement->bind_result($authentication_level);
+			$statement->fetch();
 			
-			//temporary testing code
-			$access_level = 1;
+			$this->access_level = $authentication_level;
+			
+			if ($this->access_level > self::UNAUTHENTICATED)
+			{
+				$this->user_id = $id;
+				$this->password = $pass;
+			}
 		}
 		
 		public function get_user_id() {
-			return $user_id;
+			return $this->user_id;
+		}
+		
+		public function is_authenticated() {
+			return $this->access_level > self::UNAUTHENTICATED ? true : false;
+		}
+		
+		public function get_access_level() {
+			return $this->access_level;
+		}
+		
+		public function get_user_name() {
+			$db = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
+						
+			$statement = $db->prepare("SELECT get_fname(?)") or die($db->error); 
+			$statement->bind_param("i", $this->user_id);
+			$statement->execute();
+			$statement->bind_result($first_name);
+			$statement->fetch();
+
+			return $first_name;
 		}
 	}
 ?>
