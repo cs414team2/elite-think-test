@@ -4,9 +4,9 @@
 				
 				<?php
 					// Display's the user's name in the header
-					if (isset($_SESSION["username"]))
+					if (isset($_SESSION["credentials"]))
 					{
-						echo "<h1>Hello ".$_SESSION["username"]."</h1>";
+						echo "<h1>Hello ".$_SESSION["credentials"]->get_user_name()."</h1>";
 					}
 					else
 					{
@@ -40,7 +40,7 @@
 						</li>
 						<?php
 							// Display's the Logout option in the header if logged in
-							if (isset($_SESSION["username"]))
+							if (isset($_SESSION["credentials"]))
 							{
 								echo '<li><a href="../index.php?action=logout">Logout</a></li>';
 							}
