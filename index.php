@@ -20,7 +20,7 @@
 		</noscript>
 
 
-		<?php //require_once("model/Session.php"); ?>
+		<?php require_once("model/Session.php"); ?>
 
 	</head>
 	

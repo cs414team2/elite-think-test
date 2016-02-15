@@ -30,8 +30,8 @@
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>Administration Page</h2>
-					<p>This page has some cool things.</p>
+					<h2>Administration Home</h2>
+					<p>Manage any of the following</p>
 				</header>
 				<div class="container">
 						
