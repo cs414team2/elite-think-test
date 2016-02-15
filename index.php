@@ -14,10 +14,14 @@
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
 		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-xlarge.css" />
+			<link rel="stylesheet" href="views/css/skel.css" />
+			<link rel="stylesheet" href="views/css/style.css" />
+			<link rel="stylesheet" href="views/css/style-xlarge.css" />
 		</noscript>
+
+
+		<?php require_once("model/Session.php"); ?>
+
 	</head>
 	
 	<body class="landing">
@@ -25,36 +29,53 @@
 		<!-- Checks to see if the user is logged in or not -->
 		<?php
 			session_start();
-
-			if(isset($_POST['senddata']))
-			{			
-				$_SESSION["username"] = $_POST['username'];
-				$_SESSION["password"] = $_POST['password'];
-				echo "your username is "       .$_SESSION["username"];
-				echo "<br />your password is " .$_SESSION["password"];
-			}
-			else
-			{
-				
-			}
 			
 			if (isset($_GET['action']))
 			{
 				switch ($_GET['action'])
 				{
+					case "login":					
+						$session = new Session($_POST['username'], $_POST['password']);
+						
+						if ($session->is_authenticated())
+						{
+							$_SESSION["credentials"] = $session;
+						}
+						else
+						{
+							echo "<script type='text/javascript'>
+								$(document).ready(function(){
+									$('#logon_fail_message').show(600);
+								});
+							  </script>";
+						}
+						break;
+						
 					case "logout": 
-					// Remove all session variables
-					session_unset(); 
-
-					// Destroy the session 
-					session_destroy();
+						unset($_SESSION["credentials"]);
+						break;
 				}
 			}
+			
+			/*if (isset($_SESSION["credentials"]))
+			{
+				if ($_SESSION["credentials"]->is_authenticated())
+				{
+					switch($_SESSION["credentials"]->get_access_level())
+					{
+						case Session::ADMINISTRATOR:
+							echo '<script type="text/javascript">
+								window.location = "views/administrator/adminHome.php";
+								</script>';
+							break;
+					}
+				}
+			}*/
 		?>
 		
 		<?php 
 			// Includes the Header for the page
-			require_once('views/header.php');
+			require_once('header.php');
 		?>
 
 		<!-- Banner -->
@@ -69,16 +90,18 @@
 			</section>
 
 		
-			<section id="one" class="wrapper style1">
+			<section id="one" name="one" class="wrapper style1">
 				<div class="container">
 					<header class="major">
 						<h2>Enter Your Information</h2>
-						<form method="post" action="index.php">
+						<form method="post" action="index.php?action=login#one">
 							User name:<br>
 							<input type="text" name="username" style='text-align:center'><br><br>
 							Password:<br>
 							<input type="password" name="password" style='text-align:center'>
-							<br><br>
+							<br>
+							<p id="logon_fail_message" style="display:none; color: red;">Incorrect username or password.</p>
+							<br>
 							<input name="senddata" type="submit" value="Login"><br><br>
 						</form>
 					</header>
@@ -139,7 +162,7 @@
 			
 		<?php 
 			// Includes the Footer for the page
-			require_once('views/footer.php');
+			require_once('footer.php');
 		?>
 
 	</body>
