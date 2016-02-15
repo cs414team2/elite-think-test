@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Elite Outline</title>
+		<title>Administration Home</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Elite Testing application" />
 		<meta name="keywords" content="testing, login, student, teacher, administrator" />
@@ -36,12 +36,17 @@
 				<div class="container">
 						
 					<!-- Content -->
-						<section id="content">
+						<section style="text-align:center" id="content">
 							<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-							<h3>Heading for the below feature</h3>
-							<p>Put the different tables here.</p>
+							<h3>Administration Home</h3>
+							<p>Select what to edit</p>
 						</section>
-								
+						
+						<section style="text-align:center">
+						<a href="#" class="button big">Students</a><br />
+						<a href="#" class="button big">Teachers</a><br />
+						<a href="#" class="button big">Classes</a><br />	
+						</section>
 				</div>
 			</section>
 			
