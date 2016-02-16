@@ -18,7 +18,9 @@
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
-
+		<?php
+			require_once('Session.php');
+		?>
 	</head>
 	<body>
 
@@ -41,13 +43,14 @@
 										<table>
 											<thead>
 												<tr>
-													<th>First</th>
+													<th>ID</th>
+													<th>Name</th>
 													<th>Last</th>
 													<th>Email</th>
 												</tr>
 											</thead>
 											<tbody>
-
+												
 											</tbody>
 										</table>
 									</div>

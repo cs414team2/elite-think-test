@@ -32,8 +32,7 @@
 		}
 		
 		public function prepare_connection(){
-			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
-			
+			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");	
 		}
 		
 		public function is_authenticated() {
@@ -45,7 +44,7 @@
 		}
 		
 		public function get_user_name() {
-			$db = prepare_connection();
+			$db = $this->prepare_connection();
 						
 			$statement = $db->prepare("SELECT get_fname(?)") or die($db->error); 
 			$statement->bind_param("i", $this->user_id);
@@ -54,24 +53,6 @@
 			$statement->fetch();
 
 			return $first_name;
-		}
-		public function get_students() {
-			$db = prepare_connection();
-			
-			$students = $db->query("SELECT * FROM student");
-			
-			if($students->num_rows > 0){
-				while($student = $students->fetch_assoc()){
-					echo "<tr> <td>" . student["student_id"] . "</td>" .
-						  "<td>" . student["student_lname"] . "</td>" .
-						  "<td>" . student["student_fname"] . "</td>" .
-						  "<td>" . student["student_email"] . "</td>" .
-						  "<td>" . student["student_password"] . "</td> </tr>";
-				}
-			}
-			else{
-				echo "<tr> <td> No Students </td> </tr>"
-			}
 		}
 	}
 ?>
