@@ -43,7 +43,7 @@
 						</section>
 						
 						<section style="text-align:center">
-						<a href="#" class="button big">Students</a><br />
+						<a href="http://csweb/cs414/elitethink-test/Andrew/views/Administrator/adminStudentsManager.php" class="button big">Students</a><br />
 						<a href="#" class="button big">Teachers</a><br />
 						<a href="#" class="button big">Classes</a><br />	
 						</section>
