@@ -27,7 +27,7 @@
 									<a href="outline.php">Page Outline</a>
 								</li>
 								<li>
-									<a href="views/elements.html">Elements</a>
+									<a href="elements.html">Elements</a>
 								</li>
 								<li>
 									<a href="http://csmain/seproject/TimeMachine2/Student/Summary">Time Machine</a>
@@ -41,7 +41,7 @@
 							<a href="https://www.google.com/drive/">Google Drive</a>
 						</li>
 						<?php
-							// Display's the Logout option in the header if logged in
+							// Displays the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
 							{
 								echo '<li><a href="index.php?action=logout">Logout</a></li>';

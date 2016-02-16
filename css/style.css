@@ -2,9 +2,9 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:300,700");
 
 /*
-	Drift by Pixelarity
-	pixelarity.com @pixelarity
-	License: pixelarity.com/license
+	Dark Blue:  2B9DB2
+	Light Blue: 84C2CC
+	Purple:     C723CC - Testing only
 */
 
 /* Basic */
@@ -40,14 +40,14 @@
 		-o-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-		color: #e0555a;
+		color: #84C2CC;
 		text-decoration: none;
 		border-bottom: dotted 1px;
 	}
 
 		a:hover {
 			text-decoration: none;
-			color: #e0555a !important;
+			color: #000 !important;
 			border-bottom-color: transparent;
 		}
 
@@ -261,8 +261,8 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #e0555a;
-			box-shadow: 0 0 0 1px #e0555a;
+			border-color: #2B9DB2;
+			box-shadow: 0 0 0 1px #C723CC;
 		}
 
 	.select-wrapper {
@@ -373,8 +373,8 @@
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #e0555a;
-			box-shadow: 0 0 0 1px #e0555a;
+			border-color: #84C2CC;
+			box-shadow: 0 0 0 1px #C723CC;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -773,11 +773,11 @@
 		background-color: transparent;
 		border-radius: 0.5em;
 		border: solid 1px rgba(144, 144, 144, 0.25) !important;
-		color: #545454 !important;
+		color: #757575 !important;
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.8em;
-		font-weight: 700;
+		font-weight: 800;
 		height: 3.5em;
 		letter-spacing: 0.1em;
 		line-height: 3.5em;
@@ -849,7 +849,7 @@
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special {
-			background-color: #e0555a;
+			background-color: #84C2CC;
 			color: #ffffff !important;
 		}
 
@@ -902,7 +902,7 @@
 		.feature:before {
 			border-radius: 0.5em;
 			border: solid 1px rgba(144, 144, 144, 0.25);
-			color: #e0555a;
+			color: #2B9DB2;
 			display: inline-block;
 			font-size: 2.25em;
 			height: 2em;
@@ -998,7 +998,7 @@
 	}
 
 		.wrapper.style1 {
-			background: #f2f2f2;
+			background: #84C2CC;
 		}
 
 			.wrapper.style1 .box {
@@ -1011,7 +1011,7 @@
 		}
 
 		.wrapper.style3 {
-			background: #e0555a;
+			background: #84C2CC;
 			color: #d1f2f5;
 		}
 
@@ -1200,7 +1200,7 @@
 			}
 
 			.dropotron li.active > a, .dropotron li:hover > a {
-				background: #e0555a;
+				background: #84C2CC;
 				color: #ffffff !important;
 			}
 
