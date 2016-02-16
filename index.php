@@ -27,11 +27,6 @@
 	</head>
 	
 	<body class="landing">
-		
-		<?php 
-			// Includes the Header for the page
-			require_once('header.php');
-		?>
 				
 		<!-- Checks to see if the user is logged in or not -->
 		<?php
@@ -90,7 +85,12 @@
 				require_once('views/logon.php');
 			}
 		?>
-			
+		
+		<!-- Includes the Footer for the page -->
+		<?php 
+			require_once('header.php');
+		?>	
+		
 		<!-- Includes the Footer for the page -->
 		<?php 
 			require_once('footer.php');
