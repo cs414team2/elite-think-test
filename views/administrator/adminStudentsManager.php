@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Admin student manager</title>
+		<title>Admin Student Manager</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Elite Testing application" />
 		<meta name="keywords" content="testing, login, student, teacher, administrator" />
@@ -59,6 +59,8 @@
 										</table>
 									</div>
 						</section>
+						</div>
+						<div class="container">
 						
 						<section id="content" style="text-align:center" class="wrapper style1">
 							<h3 align="center">Add a student</h3>
