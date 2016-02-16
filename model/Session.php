@@ -32,8 +32,7 @@
 		}
 		
 		public function prepare_connection(){
-			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
-			
+			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");	
 		}
 		
 		public function is_authenticated() {
@@ -45,7 +44,7 @@
 		}
 		
 		public function get_user_name() {
-			$db = prepare_connection();
+			$db = $this->prepare_connection();
 						
 			$statement = $db->prepare("SELECT get_fname(?)") or die($db->error); 
 			$statement->bind_param("i", $this->user_id);
