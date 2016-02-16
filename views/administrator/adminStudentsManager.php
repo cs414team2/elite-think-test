@@ -3,6 +3,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		require_once('model/Table.php');
 		echo '<!-- Main -->
+			<script src="controllers/load_student.js"></script>
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Student Manager</h2>
@@ -13,28 +14,29 @@ if (isset($_SESSION['credentials'])) {
 						<section id="content" class="wrapper style1">
 							<h3>This is a list of students</h3>
 							<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>ID</th>
-													<th>Name</th>
-													<th>Last</th>
-													<th>Email</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Load all students -->
-												';
+								<table>
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Name</th>
+											<th>Last</th>
+											<th>Email</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- Load all students -->
+										';
 
 		$student_table = new Table();
 		$student_table->get_table("student");
 
-		echo '								</tbody>
-										</table>
-									</div>
+		echo '						</tbody>
+								</table>
+							</div>
 						</section>
-						</div>
-						<div class="container">
+					</div>
+					
+					<div class="container">
 						
 						<section id="content" style="text-align:center" class="wrapper style1">
 							<h3 align="center">Add a student</h3>
@@ -51,7 +53,7 @@ if (isset($_SESSION['credentials'])) {
 							  <button class="button big">Add student</button>
 							
 							</form>
-						</section>
+					</section>
 								
 				</div>
 			</section>';
