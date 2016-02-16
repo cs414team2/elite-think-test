@@ -39,6 +39,12 @@
 					case "admin_class_manager":
 						require_once('views/administrator/adminClassesManager.php');
 						break;
+					case "admin_student_manager":
+						require_once('views/administrator/adminStudentsManager.php');
+						break;
+					case "admin_teacher_manager":
+						require_once('views/administrator/adminTeachersManager.php');
+						break;
 					case "login":					
 						$session = new Session($_POST['username'], $_POST['password']);
 						
