@@ -30,10 +30,10 @@
 						require_once('views/administrator/adminHome.php');
 						break;
 					case Session::STUDENT:
-						require_once('views/administrator/studentHome.php');
+						require_once('views/student/studentHome.php');
 						break;
 					case Session::TEACHER:
-						require_once('views/administrator/teacherHome.php');
+						require_once('views/teacher/teacherHome.php');
 						break;
 				}
 			}
