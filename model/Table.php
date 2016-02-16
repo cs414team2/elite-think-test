@@ -12,10 +12,10 @@
 			$statement = $db->query("SELECT * FROM " . $table);
 			
 			if($statement->num_rows > 0){
-				while($student = $statement->fetch_row()){
-					echo "<tr " . "id='" . $student[0] . "'>";
-					foreach($student as $student_col) {
-					  echo "<td>" . $student_col . "</td>";
+				while($record = $statement->fetch_row()){
+					echo "<tr " . "id='" . $row[0] . "'>";
+					foreach($record as $record_col) {
+					  echo "<td>" . $record_col . "</td>";
 					}
 					echo "</tr>";
 				}
