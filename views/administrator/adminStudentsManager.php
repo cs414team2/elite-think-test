@@ -19,7 +19,7 @@
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
 		<?php
-			require_once('Session.php');
+			require_once('../../model/Table.php');
 		?>
 	</head>
 	<body>
@@ -50,7 +50,11 @@
 												</tr>
 											</thead>
 											<tbody>
-												
+												<!-- Load all students -->
+												<?php
+													$student_table = new Table();
+													$student_table->get_table("student");
+												?>
 											</tbody>
 										</table>
 									</div>
