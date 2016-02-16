@@ -1,7 +1,7 @@
 <?php
 	require_once('model/Table.php');
 ?>
-
+<script src="controllers/load_student.js"></script>
 <!-- Main -->
 <section id="main" class="wrapper style1">
 	<header class="major">
