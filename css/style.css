@@ -2,9 +2,10 @@
 @import url("http://fonts.googleapis.com/css?family=Lato:300,700");
 
 /*
-	Dark Blue:  2B9DB2
-	Light Blue: 84C2CC
-	Purple:     C723CC - Testing only
+	Dark Blue:          2B9DB2
+	Light Blue:         84C2CC
+	Purple:             C723CC - Testing only
+	Heading Dark Grey : 646464
 */
 
 /* Basic */
@@ -47,12 +48,12 @@
 
 		a:hover {
 			text-decoration: none;
-			color: #000 !important;
+			color: #2B9DB2 !important;
 			border-bottom-color: transparent;
 		}
 
 	strong, b {
-		color: #545454;
+		color: #646464;
 		font-weight: 700;
 	}
 
@@ -65,7 +66,7 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #545454;
+		color: #646464; /* This is the heading text color */
 		font-weight: 700;
 		line-height: 1em;
 		margin: 0 0 1em 0;
@@ -168,7 +169,7 @@
 	}
 
 /* Section/Article */
-
+	
 	section.special, article.special {
 		text-align: center;
 	}
@@ -218,7 +219,7 @@
 	}
 
 	label {
-		color: #545454;
+		color: #646464;
 		display: block;
 		font-size: 0.9em;
 		font-weight: 700;
@@ -713,7 +714,7 @@
 		}
 
 		table th {
-			color: #545454;
+			color: #646464;
 			font-size: 0.9em;
 			font-weight: 700;
 			padding: 0 0.75em 0.75em 0.75em;
@@ -795,7 +796,7 @@
 		input[type="button"]:hover,
 		.button:hover {
 			background-color: rgba(144, 144, 144, 0.075);
-			color: #545454 !important;
+			color: #646464 !important;
 		}
 
 		input[type="submit"]:active,
@@ -1052,9 +1053,9 @@
 	@keyframes reveal-header { 0% { top: -5em; } 100% { top: 0; } }
 
 	#header {
-		background-color: #fff;
+		background-color: #FFF;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-		color: inherit;
+		color: #646464;
 		cursor: default;
 		height: 3em;
 		left: 0;
@@ -1079,9 +1080,9 @@
 			-o-animation: none;
 			-ms-animation: none;
 			animation: none;
-			background-color: transparent;
+			background-color: FFF;
 			box-shadow: none;
-			color: #fff;
+			color: #646464;
 		}
 
 		#header h1 {
