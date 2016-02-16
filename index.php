@@ -36,6 +36,9 @@
 			{
 				switch ($_GET['action'])
 				{
+					case "admin_class_manager":
+						require_once('views/administrator/adminClassesManager.php');
+						break;
 					case "login":					
 						$session = new Session($_POST['username'], $_POST['password']);
 						

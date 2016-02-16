@@ -7,6 +7,6 @@
 		<ul class="menu">
 			<li><a href="#">FAQ</a></li>
 			<li><a href="#">User Manual</a></li>
-			<li><a href="views/aboutUs.php">About Us</a></li>
+			<li><a href="aboutUs.php">About Us</a></li>
 		</ul>
 	</footer>
