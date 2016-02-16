@@ -9,10 +9,10 @@
 		public function get_table($table) {
 			$db = $this->prepare_connection();
 			
-			$students = $db->query("SELECT * FROM " . $table);
+			$statement = $db->query("SELECT * FROM " . $table);
 			
-			if($students->num_rows > 0){
-				while($student = $students->fetch_assoc()){
+			if($statement->num_rows > 0){
+				while($student = $statement->fetch_assoc()){
 					echo "<tr>";
 					foreach($student as $student_col) {
 					  echo "<td>" . $student_col . "</td>";
