@@ -11,7 +11,7 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container">
 						
 					<!-- Content -->
-						<section id="content" class="wrapper style1">
+						<section id="content" class="wrapper style2">
 							<h3>This is a list of students</h3>
 							<div class="table-wrapper">
 								<table>
@@ -38,7 +38,7 @@ if (isset($_SESSION['credentials'])) {
 					
 					<div class="container">
 						
-						<section id="content" style="text-align:center" class="wrapper style1">
+						<section id="content" style="text-align:center" class="wrapper style2">
 							<h3 align="center">Add a student</h3>
 							<form>
 							  First name:<br>
