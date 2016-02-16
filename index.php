@@ -67,6 +67,7 @@
 							loadHomePage($_SESSION["credentials"]->get_access_level());
 						}
 						else {
+							require_once('views/logon.php');
 							echo "<script type='text/javascript'>
 								$(document).ready(function(){
 									$('#logon_fail_message').show(600);
