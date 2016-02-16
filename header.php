@@ -25,7 +25,10 @@
 								</li>
 								<li>
 									<a href="outline.php">Page Outline</a>
-								</li>	
+								</li>
+								<li>
+									<a href="views/elements.html">Elements</a>
+								</li>
 								<li>
 									<a href="http://csmain/seproject/TimeMachine2/Student/Summary">Time Machine</a>
 								</li>
