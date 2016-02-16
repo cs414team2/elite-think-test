@@ -21,7 +21,7 @@
 							<a href="" class="icon fa-angle-down">Helpful Links</a>
 							<ul>
 								<li>
-									<a href="outline.php">Page Outline</a>
+									<a href="http://www.color.adobe.com">Color Picker</a>
 								</li>
 								<li>
 									<a href="elements.html">Elements</a>
