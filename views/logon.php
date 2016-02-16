@@ -22,7 +22,7 @@
 				<br>
 				<p id="logon_fail_message" style="display:none; color: red;">Incorrect username or password.</p>
 				<br>
-				<input name="senddata" type="submit" value="Login"><br><br>
+				<input class="button special big" name="senddata" type="submit" value="Login"><br><br>
 			</form>
 		</header>
 	</div>
