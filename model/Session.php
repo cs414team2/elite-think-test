@@ -55,23 +55,5 @@
 
 			return $first_name;
 		}
-		public function get_students() {
-			$db = prepare_connection();
-			
-			$students = $db->query("SELECT * FROM student");
-			
-			if($students->num_rows > 0){
-				while($student = $students->fetch_assoc()){
-					echo "<tr> <td>" . student["student_id"] . "</td>" .
-						  "<td>" . student["student_lname"] . "</td>" .
-						  "<td>" . student["student_fname"] . "</td>" .
-						  "<td>" . student["student_email"] . "</td>" .
-						  "<td>" . student["student_password"] . "</td> </tr>";
-				}
-			}
-			else{
-				echo "<tr> <td> No Students </td> </tr>"
-			}
-		}
 	}
 ?>
