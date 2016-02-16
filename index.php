@@ -86,7 +86,7 @@
 			}
 		?>
 		
-		<!-- Includes the Footer for the page -->
+		<!-- Includes the Header for the page -->
 		<?php 
 			require_once('header.php');
 		?>	
