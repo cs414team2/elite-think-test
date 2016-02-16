@@ -1,5 +1,8 @@
 <!-- Header -->
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 			<header id="header" class="alt skel-layers-fixed">
+			
 				
 				<?php
 					// Display's the user's name in the header
@@ -9,14 +12,14 @@
 					}
 					else
 					{
-						echo '<h1><a href="index.php">Elite Team</a></h1>';
+						echo '<h1><a href="../index.php">Elite Team</a></h1>';
 					}
 						
 				?>
 				
 				<nav id="nav">
 					<ul>
-						<li><a href="index.php">Home</a></li>
+						<li><a href="../index.php">Home</a></li>
 						<li>
 							<a href="" class="icon fa-angle-down">Helpful Links</a>
 							<ul>
@@ -41,7 +44,7 @@
 							// Display's the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
 							{
-								echo '<li><a href="index.php?action=logout">Logout</a></li>';
+								echo '<li><a href="../index.php?action=logout">Logout</a></li>';
 							}
 								
 						?>
