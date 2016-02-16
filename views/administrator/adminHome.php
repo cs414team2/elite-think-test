@@ -8,9 +8,9 @@
 			
 		<!-- Content -->
 			<section style="text-align:center">
-				<a href="http://csweb/cs414/elitethink-test/Andrew/views/Administrator/adminStudentsManager.php" class="button big">Students</a><br />
-				<a href="#" class="button big">Teachers</a><br />
-				<a href="./?action=admin_class_manager" class="button big">Classes</a><br />	
+				<a href="./?action=admin_student_manager" class="button big">Students</a><br />
+				<a href="./?action=admin_teacher_manager" class="button big">Teachers</a><br />
+				<a href="./?action=admin_class_manager" class="button big">Classes</a><br />
 			</section>
 	</div>
 </section>
