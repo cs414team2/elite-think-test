@@ -21,9 +21,6 @@
 							<a href="" class="icon fa-angle-down">Helpful Links</a>
 							<ul>
 								<li>
-									<a href="bob.php">Old Page</a>
-								</li>
-								<li>
 									<a href="outline.php">Page Outline</a>
 								</li>
 								<li>
@@ -44,7 +41,7 @@
 							// Displays the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
 							{
-								echo '<li><a href="index.php?action=logout">Logout</a></li>';
+								echo '<li><a href="./?action=logout">Logout</a></li>';
 							}
 								
 						?>
