@@ -20,6 +20,7 @@
 		</noscript>
 		<?php
 			require_once('../../model/Table.php');
+			require_once('../../model/Table.php');
 		?>
 	</head>
 	<body>

@@ -36,17 +36,11 @@
 				<div class="container">
 						
 					<!-- Content -->
-						<section style="text-align:center" id="content">
-							<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-							<h3>Administration Home</h3>
-							<p>Select what to edit</p>
-						</section>
-						
-						<section style="text-align:center">
+					<section style="text-align:center">
 						<a href="http://csweb/cs414/elitethink-test/Andrew/views/Administrator/adminStudentsManager.php" class="button big">Students</a><br />
 						<a href="#" class="button big">Teachers</a><br />
 						<a href="#" class="button big">Classes</a><br />	
-						</section>
+					</section>
 				</div>
 			</section>
 			
