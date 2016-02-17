@@ -15,9 +15,9 @@ if (isset($_SESSION['credentials'])) {
 									<table>
 										<thead>
 											<tr>
-												<th>First</th>
-												<th>Last</th>
-												<th>Email</th>
+												<th>Course Number</th>
+												<th>Course Name</th>
+												
 											</tr>
 										</thead>
 										<tbody>
@@ -29,17 +29,31 @@ if (isset($_SESSION['credentials'])) {
 					</div>
 				<div class="container">
 					<section id="content" style="text-align:center" class="wrapper style2">
-						<h3 align="center">Add a Course</h3>
+						
+						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
+						<div id="slidingDiv_2">
 						<form>
 						  Course name:<br />
 						  <input type="text" name="courseName">
 						  Course Number:<br />
 						  <input type="text" name="courseNumber">
 						  
+										<div class="row uniform">
+											<div class="12u">
+												<div class="select-wrapper">
+													<select name="Teacher" id="Teacher">
+														<option value="">- Teacher -</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+						  
 						  <br />
 						  <button class="button special big">Add Course</button>
 						
 						</form>
+						</div>
 					</section>
 							
 			</div>

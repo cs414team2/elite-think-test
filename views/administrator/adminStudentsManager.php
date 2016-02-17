@@ -52,6 +52,7 @@ if (isset($_SESSION['credentials'])) {
 									  <input type="text" name="password">
 									  Email:<br>
 									  <input type="text" name="emailAddress">
+									 
 									  
 									  <br />
 									  <button class="button special big">Add student</button>
