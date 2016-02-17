@@ -1,6 +1,5 @@
 <?php
-	require_once('model/Table.php');
-?>
+require_once('model/Table.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
@@ -22,12 +21,10 @@ if (isset($_SESSION['credentials'])) {
 												<th>Email</th>
 											</tr>
 										</thead>
-										<tbody>
-											<?php
-												$student_table = new Table();
-												$student_table->get_table("class");
-											?>
-										</tbody>
+										<tbody>';
+											$student_table = new Table();
+											$student_table->get_table("class");
+									echo '</tbody>
 									</table>
 								</div>
 					</section>
