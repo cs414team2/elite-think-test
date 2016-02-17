@@ -4,6 +4,32 @@ if (isset($_SESSION['credentials'])) {
 		require_once('model/Table.php');
 		echo '<!-- Main -->
 			<script src="controllers/load_student.js"></script>
+			<script>
+				$(document).ready(function(){
+					$(#add_student).click(function() {
+						var password = $("#password").val();
+						var firstname = $("#firstname").val();
+						var lastname = $("#lastname").val();
+						var email = $("#emailAddress").val();
+					
+						$.ajax({
+							url: "ajax/add_student.php",
+							type: "POST",
+							data: { password: password,
+									firstname: firstname,
+									lastname: lastname,
+									email: email
+								  },
+							contentType: application/x-www-form-urlencoded
+						});
+						
+						$("#password").val(\'\');
+						$("#firstname").val(\'\');
+						$("#lastname").val(\'\');
+						$("#emailAddress").val(\'\');
+					})
+				});
+			</script>
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Student Manager</h2>
