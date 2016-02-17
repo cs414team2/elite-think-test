@@ -42,11 +42,11 @@ if (isset($_SESSION['credentials'])) {
 						    Course Number:<br />
 						    <input type="text" name="courseNumber"> <br />
 						  
-							<div class="row uniform">
-								<div class="12u">
+							<div class="row uniform" >
+								<div class="12u"; >
 									<div class="select-wrapper">
 										<select name="Teacher" id="Teacher">
-											<option selected="selected">- Select a Teacher -</option>';
+											<option selected="selected" >- Select a Teacher -</option>';
 											$admin = new Admin();
 											$admin->get_teachers();
 								  echo '</select>
