@@ -4,6 +4,18 @@ require_once('model/Admin.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
+			<script>
+				$(document).ready(function(){
+					$(".inputField").keypress(function(e){
+					  if(e.keyCode==13)
+					  $("#btn_add").click();
+					});
+				
+					$("#btn_add").click(function() {
+						// ADD STUFF HERE!
+					});
+				});
+			</script>
 			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Class Manager</h2>
@@ -37,15 +49,15 @@ if (isset($_SESSION['credentials'])) {
 						<div id="slidingDiv_2" style="display:none">
 							<form>
 								Course name:<br />
-								<input type="text" name="courseName">
+								<input type="text" name="courseName" class="inputField">
 								Course Number:<br />
-								<input type="text" name="courseNumber"> <br />
+								<input type="text" name="courseNumber" class="inputField"> <br />
 							  
 								<div class="row uniform">
 									<div class="12u">
 										<div class="select-wrapper">
-											<select name="Teacher" id="Teacher">
-												<option selected="selected">- Select a Teacher -</option>';
+											<select name="Teacher" id="Teacher" class="inputField">
+												<option selected="selected" value="0">- Select a Teacher -</option>';
 												$admin = new Admin();
 												$admin->get_teachers();
 									  echo '</select>
@@ -55,7 +67,7 @@ if (isset($_SESSION['credentials'])) {
 
 							  
 							  <br />
-							  <button class="button special big">Add Course</button>
+							  <button type="button" id="btn_add" class="button special big">Add Course</button>
 							
 							</form>
 						</div>
