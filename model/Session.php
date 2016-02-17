@@ -27,16 +27,9 @@
 			}
 		}
 		
+		//Getters and Setters
 		public function get_user_id() {
 			return $this->user_id;
-		}
-		
-		public function prepare_connection(){
-			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");	
-		}
-		
-		public function is_authenticated() {
-			return $this->access_level > self::UNAUTHENTICATED ? true : false;
 		}
 		
 		public function get_access_level() {
@@ -53,6 +46,24 @@
 			$statement->fetch();
 
 			return $first_name;
+		}
+		
+		public function is_authenticated() {
+			return $this->access_level > self::UNAUTHENTICATED ? true : false;
+		}
+		
+		public function is_admin() {
+			return $this->access_level == self::ADMINISTRATOR ? true : false;
+		}
+		public function is_teacher() {
+			return $this->access_level == self::TEACHER ? true : false;
+		}
+		public function is_student() {
+			return $this->access_level == self::STUDENT ? true : false;
+		}
+		
+		public function prepare_connection(){
+			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");	
 		}
 	}
 ?>

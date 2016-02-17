@@ -23,6 +23,21 @@
 
 
 		<?php require_once("model/Session.php"); ?>
+		<?php
+			function loadHomePage($access_level) {
+				switch($access_level){
+					case Session::ADMINISTRATOR:
+						require_once('views/administrator/adminHome.php');
+						break;
+					case Session::STUDENT:
+						require_once('views/student/studentHome.php');
+						break;
+					case Session::TEACHER:
+						require_once('views/teacher/teacherHome.php');
+						break;
+				}
+			}
+		?>
 
 	</head>
 	
@@ -32,10 +47,8 @@
 		<?php
 			session_start();
 			
-			if (isset($_GET['action']))
-			{
-				switch ($_GET['action'])
-				{
+			if (isset($_GET['action'])) {
+				switch ($_GET['action']) {
 					case "admin_class_manager":
 						require_once('views/administrator/adminClassesManager.php');
 						break;
@@ -45,15 +58,16 @@
 					case "admin_teacher_manager":
 						require_once('views/administrator/adminTeachersManager.php');
 						break;
+						
 					case "login":					
 						$session = new Session($_POST['username'], $_POST['password']);
 						
-						if ($session->is_authenticated())
-						{
+						if ($session->is_authenticated()) {
 							$_SESSION["credentials"] = $session;
+							loadHomePage($_SESSION["credentials"]->get_access_level());
 						}
-						else
-						{
+						else {
+							require_once('views/logon.php');
 							echo "<script type='text/javascript'>
 								$(document).ready(function(){
 									$('#logon_fail_message').show(600);
@@ -64,32 +78,21 @@
 						
 					case "logout": 
 						unset($_SESSION["credentials"]);
+						require_once('views/logon.php');
 						break;
 				}
 			}
-			
-			if (isset($_SESSION["credentials"]))
+			elseif (isset($_SESSION["credentials"]))
 			{
-				if ($_SESSION["credentials"]->is_authenticated())
-				{
-					switch($_SESSION["credentials"]->get_access_level())
-					{
-						case Session::ADMINISTRATOR:
-							require_once('views/administrator/adminHome.php');
-							/*echo '<script type="text/javascript">
-								window.location = "views/administrator/adminHome.php";
-								</script>';*/
-							break;
-					}
+				if ($_SESSION["credentials"]->is_authenticated()) {
+					loadHomePage($_SESSION["credentials"]->get_access_level());
 				}
-				else
-				{
+				else {
 					// <!-- Loads the Log On page --> 
 					require_once('views/logon.php');
 				}
 			}
-			else
-			{
+			else {
 				// <!-- Loads the Log On page --> 
 				require_once('views/logon.php');
 			}
