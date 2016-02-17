@@ -17,9 +17,11 @@
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Name</th>
-										<th>Last</th>
+										<th>Password</th>
 										<th>Email</th>
+										<th>First</th>
+										<th>Last</th>
+										
 									</tr>
 								</thead>
 								<tbody>
