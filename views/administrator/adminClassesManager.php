@@ -6,8 +6,13 @@ if (isset($_SESSION['credentials'])) {
 		echo'<!-- Main -->
 			<script>
 				$(document).ready(function(){
+					$(".inputField").keypress(function(e){
+					  if(e.keyCode==13)
+					  $("#btn_add").click();
+					});
+				
 					$("#btn_add").click(function() {
-						location.reload(true);
+						// ADD STUFF HERE!
 					});
 				});
 			</script>
@@ -52,7 +57,7 @@ if (isset($_SESSION['credentials'])) {
 									<div class="12u">
 										<div class="select-wrapper">
 											<select name="Teacher" id="Teacher" class="inputField">
-												<option selected="selected">- Select a Teacher -</option>';
+												<option selected="selected" value="0">- Select a Teacher -</option>';
 												$admin = new Admin();
 												$admin->get_teachers();
 									  echo '</select>
