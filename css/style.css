@@ -707,16 +707,16 @@
 			border-right: 0;
 		}
 		
-		tr:hover {
+		/*tr:hover {
 		background-color: rgba(99, 201, 160, 0.25);;
-		}
+		}*/
 
 			table tbody tr:nth-child(2n + 1) {
 				background-color: rgba(144, 144, 144, 0.075);
 			}
-			table tbody tr:hover {
+			/*table tbody tr:hover {
 				background-color: rgba(99, 201, 160, 0.25);
-			}
+			}*/
 
 		table td {
 			padding: 0.75em 0.75em;
@@ -756,9 +756,9 @@
 				border-top-width: 1px;
 			}
 			
-			table.alt tr:hover {
+			/*table.alt tr:hover {
 			background-color: rgba(99, 201, 160, 0.25);
-			}
+			}*/
 
 			table.alt thead {
 				border-bottom: 0;

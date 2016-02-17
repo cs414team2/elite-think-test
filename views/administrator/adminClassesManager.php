@@ -50,7 +50,6 @@ if (isset($_SESSION['credentials'])) {
 												$admin->get_teachers();
 									  echo '</select>
 										</div>
->>>>>>> test/master
 									</div>
 								</div>
 
