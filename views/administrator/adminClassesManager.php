@@ -34,30 +34,30 @@ if (isset($_SESSION['credentials'])) {
 					<section id="content" style="text-align:center" class="wrapper style2">
 						
 						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
-						<div id="slidingDiv_2">
-						<form>
-						    Course name:<br />
-						    <input type="text" name="courseName">
-						    Course Number:<br />
-						    <input type="text" name="courseNumber"> <br />
-						  
-							<div class="row uniform">
-								<div class="12u">
-									<div class="select-wrapper">
-										<select name="Teacher" id="Teacher">
-											<option selected="selected">- Select a Teacher -</option>';
-											$admin = new Admin();
-											$admin->get_teachers();
-								  echo '</select>
+						<div id="slidingDiv_2" style="display:none">
+							<form>
+								Course name:<br />
+								<input type="text" name="courseName">
+								Course Number:<br />
+								<input type="text" name="courseNumber"> <br />
+							  
+								<div class="row uniform">
+									<div class="12u">
+										<div class="select-wrapper">
+											<select name="Teacher" id="Teacher">
+												<option selected="selected">- Select a Teacher -</option>';
+												$admin = new Admin();
+												$admin->get_teachers();
+									  echo '</select>
+										</div>
 									</div>
 								</div>
-							</div>
 
-						  
-						  <br />
-						  <button class="button special big">Add Course</button>
-						
-						</form>
+							  
+							  <br />
+							  <button class="button special big">Add Course</button>
+							
+							</form>
 						</div>
 					</section>
 			</div>
