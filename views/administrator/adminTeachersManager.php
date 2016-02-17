@@ -30,16 +30,19 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container">
 					<section id="content" style="text-align:center" class="wrapper style2">
 						<h3 align="center">Add a Teacher</h3>
-						<form>
-						  Teacher name:<br>
-						  <input type="text" name="teacherName"><br>
-						  Course(s) Taught:<br>
-						  <input type="text" name="courseNumber">
-						  
-						  <br />
-						  <button class="button special big">Add Teacher</button>
-						
-						</form>
+						<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
+							<div id="slidingDiv_2" style="display:none"> 	
+								<form>
+								  Teacher name:<br>
+								  <input type="text" name="teacherName"><br>
+								  Course(s) Taught:<br>
+								  <input type="text" name="courseNumber">
+								  
+								  <br />
+								  <button class="button special big">Add Teacher</button>
+								
+								</form>
+							</div>
 					</section>
 							
 			</div>
