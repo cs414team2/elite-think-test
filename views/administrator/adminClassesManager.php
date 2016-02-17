@@ -1,3 +1,6 @@
+<?php
+	require_once('model/Table.php');
+?>
 <!-- Main -->
 <section id="main" class="wrapper style1">
 	<header class="major">
@@ -7,18 +10,21 @@
 			
 		<!-- Content -->
 			<section id="content" class="wrapper style1">
-				<h3>This is a list of students</h3>
+				<h3>This is a list of classes</h3>
 				<div class="table-wrapper">
 							<table>
 								<thead>
 									<tr>
-										<th>First</th>
-										<th>Last</th>
-										<th>Email</th>
+										<th>Class ID</th>
+										<th>Class Number</th>
+										<th>Class Name</th>
 									</tr>
 								</thead>
 								<tbody>
-
+									<?php
+										$student_table = new Table();
+										$student_table->get_table("class");
+									?>
 								</tbody>
 							</table>
 						</div>
