@@ -694,6 +694,7 @@
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: auto;
+		height: 300px;
 	}
 
 	table {
