@@ -104,7 +104,7 @@ if (isset($_SESSION['credentials'])) {
 							<h3 align="center">Add a student</h3>
 							
 							<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
-								<div class="add" id="slidingDiv_2" style="display:none"> 					
+								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
 									  First name:<br/>
 									  <input type="text" id="firstname" name="firstname">
