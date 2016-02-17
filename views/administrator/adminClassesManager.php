@@ -17,6 +17,7 @@ if (isset($_SESSION['credentials'])) {
 									<table>
 										<thead>
 											<tr>
+												<th>Course Id</th>
 												<th>Course Number</th>
 												<th>Course Name</th>
 												
@@ -31,8 +32,7 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 					</div>
 				<div class="container">
-					<section id="content" style="text-align:center" class="wrapper style2">
-						
+					<section id="content" style="text-align:center" class="wrapper style2">			
 						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
 						<div id="slidingDiv_2" style="display:none">
 							<form>
@@ -50,6 +50,7 @@ if (isset($_SESSION['credentials'])) {
 												$admin->get_teachers();
 									  echo '</select>
 										</div>
+>>>>>>> test/master
 									</div>
 								</div>
 
