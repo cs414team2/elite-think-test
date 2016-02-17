@@ -15,6 +15,27 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+		<script src="js/showHide.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+
+
+		   $('.show_hide').showHide({			 
+				speed: 1000,  // speed you want the toggle to happen	
+				easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
+				changeText: 1, // if you dont want the button text to change, set this to 0
+				showText: 'View',// the button text to show when a div is closed
+				hideText: 'Close' // the button text to show when a div is open
+							 
+			}); 
+
+
+		});
+		</script>
+		
+		
 		<noscript>
 			<link rel="stylesheet" href="views/css/skel.css" />
 			<link rel="stylesheet" href="views/css/style.css" />
@@ -30,10 +51,10 @@
 						require_once('views/administrator/adminHome.php');
 						break;
 					case Session::STUDENT:
-						require_once('views/administrator/studentHome.php');
+						require_once('views/student/studentHome.php');
 						break;
 					case Session::TEACHER:
-						require_once('views/administrator/teacherHome.php');
+						require_once('views/teacher/teacherHome.php');
 						break;
 				}
 			}
@@ -67,6 +88,7 @@
 							loadHomePage($_SESSION["credentials"]->get_access_level());
 						}
 						else {
+							require_once('views/logon.php');
 							echo "<script type='text/javascript'>
 								$(document).ready(function(){
 									$('#logon_fail_message').show(600);
