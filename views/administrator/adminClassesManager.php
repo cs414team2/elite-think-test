@@ -16,6 +16,7 @@ if (isset($_SESSION['credentials'])) {
 									<table>
 										<thead>
 											<tr>
+												<th>Course Id</th>
 												<th>Course Number</th>
 												<th>Course Name</th>
 												
