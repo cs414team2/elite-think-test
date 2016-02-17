@@ -4,6 +4,32 @@ if (isset($_SESSION['credentials'])) {
 		require_once('model/Table.php');
 		echo '<!-- Main -->
 			<script src="controllers/load_student.js"></script>
+			<script>
+				$(document).ready(function(){
+					$("#add_student").click(function() {
+						
+						var password = $("#password").val();
+						var firstname = $("#firstname").val();
+						var lastname = $("#lastname").val();
+						var email = $("#emailAddress").val();
+					
+						$.ajax({
+							url: "ajax/add_student.php",
+							type: "POST",
+							data: { password: password,
+									firstname: firstname,
+									lastname: lastname,
+									email: email
+								  }
+						});
+						
+						$("#password").val(\'\');
+						$("#firstname").val(\'\');
+						$("#lastname").val(\'\');
+						$("#emailAddress").val(\'\');
+					})
+				});
+			</script>
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Student Manager</h2>
@@ -44,20 +70,19 @@ if (isset($_SESSION['credentials'])) {
 							<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
 								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
-									  First name:<br>
-									  <input type="text" name="firstname">
-									  Last name:<br>
-									  <input type="text" name="lastname">
-									  Password:<br>
-									  <input type="text" name="password">
-									  Email:<br>
-									  <input type="text" name="emailAddress">
-									 
-									  
-									  <br />
-									  <button class="button special big">Add student</button>
-									
+									  First name:<br/>
+									  <input type="text" id="firstname" name="firstname">
+									  Last name:<br/>
+									  <input type="text" id="lastname" name="lastname">
+									  Password:<br/>
+									  <input type="text" id="password" name="password">
+									  Email:<br/>
+									  <input type="text" id="emailAddress" name="emailAddress">
 									</form>
+									 
+									<br />
+									<button id="add_student" name="add_student" class="button special big">Add student</button>
+									
 								</div>
 					</section>
 								
