@@ -1,9 +1,14 @@
-///////////////////////////////////////////////////
-// ShowHide plugin                               
-// Author: Ashley Ford - http://papermashup.com
-// Demo: Tutorial - http://papermashup.com/jquery-show-hide-plugin
-// Built: 19th August 2011                                     
-///////////////////////////////////////////////////
+$(document).ready(function(){
+		   $('.show_hide').showHide({			 
+				speed: 1000,  // speed you want the toggle to happen	
+				easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
+				changeText: 1, // if you dont want the button text to change, set this to 0
+				showText: 'Expand',// the button text to show when a div is closed
+				hideText: 'Collapse' // the button text to show when a div is open
+							 
+			}); 
+		});
+		
 
 (function ($) {
     $.fn.showHide = function (options) {
@@ -30,7 +35,7 @@
 		     $(toggleDiv).slideToggle(options.speed, options.easing, function() {
 		     // this only fires once the animation is completed
 			 if(options.changeText==1){
-		     $(toggleDiv).is(":visible") ? toggleClick.text(options.hideText) : toggleClick.text(options.showText);
+		     $(toggleDiv).is(":visible") ? toggleClick.html(options.hideText) : toggleClick.html(options.showText);
 			 }
               });
 		   

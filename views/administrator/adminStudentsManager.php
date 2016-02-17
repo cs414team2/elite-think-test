@@ -41,8 +41,8 @@ if (isset($_SESSION['credentials'])) {
 						<section id="content" style="text-align:center" class="wrapper style2">
 							<h3 align="center">Add a student</h3>
 							
-							<a href="#" class="show_hide" rel="#slidingDiv_2">View</a><br />
-								<div id="slidingDiv_2"> 					
+							<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
+								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
 									  First name:<br>
 									  <input type="text" name="firstname">
