@@ -6,7 +6,8 @@ if (isset($_SESSION['credentials'])) {
 			<script src="controllers/load_student.js"></script>
 			<script>
 				$(document).ready(function(){
-					$(#add_student).click(function() {
+					$("#add_student").click(function() {
+						
 						var password = $("#password").val();
 						var firstname = $("#firstname").val();
 						var lastname = $("#lastname").val();
@@ -19,8 +20,7 @@ if (isset($_SESSION['credentials'])) {
 									firstname: firstname,
 									lastname: lastname,
 									email: email
-								  },
-							contentType: application/x-www-form-urlencoded
+								  }
 						});
 						
 						$("#password").val(\'\');
@@ -70,20 +70,19 @@ if (isset($_SESSION['credentials'])) {
 							<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
 								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
-									  First name:<br>
-									  <input type="text" name="firstname">
-									  Last name:<br>
-									  <input type="text" name="lastname">
-									  Password:<br>
-									  <input type="text" name="password">
-									  Email:<br>
-									  <input type="text" name="emailAddress">
-									 
-									  
-									  <br />
-									  <button class="button special big">Add student</button>
-									
+									  First name:<br/>
+									  <input type="text" id="firstname" name="firstname">
+									  Last name:<br/>
+									  <input type="text" id="lastname" name="lastname">
+									  Password:<br/>
+									  <input type="text" id="password" name="password">
+									  Email:<br/>
+									  <input type="text" id="emailAddress" name="emailAddress">
 									</form>
+									 
+									<br />
+									<button id="add_student" name="add_student" class="button special big">Add student</button>
+									
 								</div>
 					</section>
 								
