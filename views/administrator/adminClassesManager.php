@@ -4,13 +4,13 @@ if (isset($_SESSION['credentials'])) {
 		echo'<!-- Main -->
 			<section id="main" class="wrapper style1">
 			<header class="major">
-				<h2>Student Manager</h2>
+				<h2>Class Manager</h2>
 			</header>
 			<div class="container">
 					
 				<!-- Content -->
-					<section id="content" class="wrapper style1">
-						<h3>This is a list of students</h3>
+					<section id="content" class="wrapper style2">
+						<h3>This is a list of Classes</h3>
 						<div class="table-wrapper">
 									<table>
 										<thead>
@@ -28,15 +28,16 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 					</div>
 				<div class="container">
-					<section id="content" style="text-align:center" class="wrapper style1">
+					<section id="content" style="text-align:center" class="wrapper style2">
 						<h3 align="center">Add a Course</h3>
 						<form>
-						  Course name:<br>
-						  <input type="text" name="courseName"><br>
-						  Course Number:<br>
+						  Course name:<br />
+						  <input type="text" name="courseName">
+						  Course Number:<br />
 						  <input type="text" name="courseNumber">
 						  
-						  <button class="button big">Add Course</button>
+						  <br />
+						  <button class="button special big">Add Course</button>
 						
 						</form>
 					</section>

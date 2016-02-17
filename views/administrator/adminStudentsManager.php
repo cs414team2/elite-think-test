@@ -27,8 +27,8 @@ if (isset($_SESSION['credentials'])) {
 										<!-- Load all students -->
 										';
 
-		$student_table = new Table();
-		$student_table->get_table("student");
+									$student_table = new Table();
+									$student_table->get_table("student");
 
 		echo '						</tbody>
 								</table>
@@ -40,19 +40,24 @@ if (isset($_SESSION['credentials'])) {
 						
 						<section id="content" style="text-align:center" class="wrapper style2">
 							<h3 align="center">Add a student</h3>
-							<form>
-							  First name:<br>
-							  <input type="text" name="firstname"><br>
-							  Last name:<br>
-							  <input type="text" name="lastname">
-							  Password:<br>
-							  <input type="text" name="password">
-							  Email:<br>
-							  <input type="text" name="emailAddress">
-							  
-							  <button class="button big">Add student</button>
 							
-							</form>
+							<a href="#" class="show_hide" rel="#slidingDiv_2">View</a><br />
+								<div id="slidingDiv_2"> 					
+									<form>
+									  First name:<br>
+									  <input type="text" name="firstname">
+									  Last name:<br>
+									  <input type="text" name="lastname">
+									  Password:<br>
+									  <input type="text" name="password">
+									  Email:<br>
+									  <input type="text" name="emailAddress">
+									  
+									  <br />
+									  <button class="button special big">Add student</button>
+									
+									</form>
+								</div>
 					</section>
 								
 				</div>
