@@ -69,7 +69,7 @@ if (isset($_SESSION['credentials'])) {
 												<th>Course Id</th>
 												<th>Course Number</th>
 												<th>Course Name</th>
-												
+												<th>Teacher Id</th>
 											</tr>
 										</thead>
 										<tbody>';
