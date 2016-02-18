@@ -4,6 +4,7 @@
 /*
 	Dark Blue:         2B9DB2
 	Light Blue:        84C2CC
+	Login Button Blue: 5B858C
 	Purple:            C723CC - Testing only
 	Heading Dark Grey: 646464
 	Table Hover:       rgba(99, 201, 160, 0.25);
@@ -866,7 +867,7 @@
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special {
-			background-color: #84C2CC;
+			background-color: #5B858C;
 			color: #ffffff !important;
 		}
 
