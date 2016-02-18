@@ -44,7 +44,8 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 					</div>
 				<div class="container">
-					<section id="content" style="text-align:center" class="wrapper style2">			
+					<section id="content" style="text-align:center" class="wrapper style2">	
+						<h3>Add a Class</h3>
 						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
 						<div id="slidingDiv_2" style="display:none">
 							<form>
@@ -67,7 +68,7 @@ if (isset($_SESSION['credentials'])) {
 
 							  
 							  <br />
-							  <button type="button" id="btn_add" class="button special big">Add Course</button>
+							  <button type="button" id="btn_add" class="button special big">Add Class</button>
 							
 							</form>
 						</div>
