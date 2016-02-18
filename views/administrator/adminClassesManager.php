@@ -15,21 +15,41 @@ if (isset($_SESSION['credentials'])) {
 						var course_name = $("#courseName").val();
 						var course_number = $("#courseNumber").val();
 						var teacher_id = $("#Teacher").val();
-												
-						$.ajax({
-							url: "ajax/add_class.php",
-							type: "POST",
-							data: { course_name: course_name,
-							        course_number: course_number,
-									teacher_id: teacher_id
-								  }
-						});
+						var validated = true;
 						
-						$("#courseName").val(\'\');
-						$("#courseNumber").val(\'\');
-						$("#Teacher").val(\'\');
+						if (jQuery.trim(course_name).length <= 0) {
+							$("#add_course_name_err").show();
+							validated = false;
+						}
+						if (jQuery.trim(course_number).length <= 0) {
+							$("#add_course_number_err").show();
+							validated = false;
+						}
 						
-						location.href = "./?action=admin_student_manager";
+						if (validated) {
+							$.ajax({
+								url: "ajax/add_class.php",
+								type: "POST",
+								data: { course_name: course_name,
+										course_number: course_number,
+										teacher_id: teacher_id
+									  }
+							});
+							
+							$("#courseName").val(\'\');
+							$("#courseNumber").val(\'\');
+							$("#Teacher").val(\'\');
+							
+							location.href = "./?action=admin_class_manager";
+						}
+						
+					});
+					
+					$("#courseName").keypress(function(){
+						$("#add_course_name_err").hide();
+					});
+					$("#courseNumber").keypress(function(){
+						$("#add_course_number_err").hide();
 					});
 				});
 			</script>
@@ -67,8 +87,14 @@ if (isset($_SESSION['credentials'])) {
 							<form>
 								Course name:<br />
 								<input type="text" id="courseName" name="courseName" class="inputField">
+								<p id="add_course_name_err" style="display:none; color: red;">
+									Course name cannot be blank.
+								</p>
 								Course Number:<br />
 								<input type="text" id="courseNumber" name="courseNumber" class="inputField">
+								<p id="add_course_number_err" style="display:none; color: red;">
+									Course number cannot be blank.
+								</p>
 								<br />
 							  
 								<div class="row uniform">

@@ -114,22 +114,22 @@ if (isset($_SESSION['credentials'])) {
 									  First name:<br/>
 									  <input type="text" id="firstname" name="firstname" class="inputField">
 									  <p id="add_first_err" style="display:none; color: red;">
-										First name cannot be empty.
+										First name cannot be blank.
 									  </p>
 									  Last name:<br/>
 									  <input type="text" id="lastname" name="lastname" class="inputField">
 									  <p id="add_last_err" style="display:none; color: red;">
-										Last name cannot be empty.
+										Last name cannot be blank.
 											</p>
 									  Password:<br/>
-									  <input type="text" id="password" name="password" class="inputField">
+									  <input type="password" id="password" name="password" class="inputField">
 									  <p id="add_password_err" style="display:none; color: red;">
-										Password cannot be empty.
+										Password cannot be blank.
 											</p>
 									  Email:<br/>
 									  <input type="text" id="emailAddress" name="emailAddress" class="inputField">
 									  <p id="add_email_err" style="display:none; color: red;">
-										Email cannot be empty.
+										Email cannot be blank.
 									  </p>
 									</form>
 									 
