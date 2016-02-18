@@ -4,8 +4,8 @@
 	if(isset($_REQUEST['password'], $_REQUEST['email'], $_REQUEST['firstname'], $_REQUEST['lastname'])) {
 		$password = trim($_REQUEST['password']);
 		$email = trim($_REQUEST['email']);
-		$first_name = trim($_REQUEST['firstname']);
-		$last_name = trim($_REQUEST['lastname']);
+		$first_name = ucwords(trim($_REQUEST['firstname']));
+		$last_name = ucwords(trim($_REQUEST['lastname']));
 		
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");		
 		
