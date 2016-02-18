@@ -13,7 +13,7 @@ if (isset($_SESSION['credentials'])) {
 			<div class="container">
 					
 				<!-- Content -->
-					<section id="content" class="wrapper style2">
+					<section id="content" >
 						<h3>This is a list of Classes</h3>
 						<div class="table-wrapper">
 									<table>
@@ -34,7 +34,8 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 					</div>
 				<div class="container">
-					<section id="content" style="text-align:center" class="wrapper style2">			
+					<section id="content" style="text-align:center">
+						<h3 align="center">Add a Course</h3>
 						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
 						<div id="slidingDiv_2" style="display:none">
 							<form>

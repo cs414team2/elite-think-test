@@ -65,6 +65,7 @@
 
 	p {
 		margin: 0 0 2em 0;
+		text-shadow: 0em 0em 0.4em white;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -73,6 +74,7 @@
 		line-height: 1em;
 		margin: 0 0 1em 0;
 		letter-spacing: -0.01em;
+		text-shadow: 0em 0em 0.4em white;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -180,6 +182,7 @@
 		color: #949494;
 		position: relative;
 		margin: 0 0 1.5em 0;
+		font-weight: 600;
 	}
 
 	header h2 + p {
@@ -694,7 +697,7 @@
 
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
-		overflow-x: auto;
+		overflow:auto;  
 		height: 300px;
 	}
 
@@ -730,7 +733,7 @@
 			font-size: 0.9em;
 			font-weight: 700;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			text-align: left; 
 		}
 
 		table thead {

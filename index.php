@@ -52,8 +52,8 @@
 		<?php
 			session_start();
 			
-			if (isset($_GET['action'])) {
-				switch ($_GET['action']) {
+			if (isset($_REQUEST['action'])) {
+				switch ($_REQUEST['action']) {
 					case "admin_class_manager":
 						require_once('views/administrator/adminClassesManager.php');
 						break;
@@ -62,6 +62,9 @@
 						break;
 					case "admin_teacher_manager":
 						require_once('views/administrator/adminTeachersManager.php');
+						break;
+					case "admin_edit_class":
+						require_once('views/administrator/adminEditClass.php');
 						break;
 						
 					case "login":					

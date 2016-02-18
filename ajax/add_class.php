@@ -14,8 +14,5 @@
 		$addStatement = $eliteConnection->prepare("CALL create_class(?, ?, ?)") or die($db->error);
 		$addStatement->bind_param("ssi", $course_number, $course_name, $teacher_id)or die($addStatement->error);
 		$addStatement->execute()or die($addStatement->error);
-		
-		echo $_REQUEST['course_number'];
-		echo $_REQUEST['course_name'];
 	}
 ?>
