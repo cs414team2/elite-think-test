@@ -6,7 +6,12 @@ if (isset($_SESSION['credentials'])) {
 			<script src="controllers/load_student.js"></script>
 			<script>
 				$(document).ready(function(){
-					$("#add_student").click(function() {
+					$(".inputField").keypress(function(e){
+					  if(e.keyCode==13)
+					  $("#btn_add").click();
+					});
+					
+					$("#btn_add").click(function() {
 						
 						var password = $("#password").val();
 						var firstname = $("#firstname").val();
@@ -107,29 +112,29 @@ if (isset($_SESSION['credentials'])) {
 								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
 									  First name:<br/>
-									  <input type="text" id="firstname" name="firstname">
+									  <input type="text" id="firstname" name="firstname" class="inputField">
 									  <p id="add_first_err" style="display:none; color: red;">
 										First name cannot be empty.
 									  </p>
 									  Last name:<br/>
-									  <input type="text" id="lastname" name="lastname">
+									  <input type="text" id="lastname" name="lastname" class="inputField">
 									  <p id="add_last_err" style="display:none; color: red;">
 										Last name cannot be empty.
 											</p>
 									  Password:<br/>
-									  <input type="text" id="password" name="password">
+									  <input type="text" id="password" name="password" class="inputField">
 									  <p id="add_password_err" style="display:none; color: red;">
 										Password cannot be empty.
 											</p>
 									  Email:<br/>
-									  <input type="text" id="emailAddress" name="emailAddress" >
+									  <input type="text" id="emailAddress" name="emailAddress" class="inputField">
 									  <p id="add_email_err" style="display:none; color: red;">
 										Email cannot be empty.
 									  </p>
 									</form>
 									 
 									<br />
-									<button id="add_student" name="add_student" class="button special big">Add student</button>
+									<button id="btn_add" name="add_student" class="button special big">Add student</button>
 									
 								</div>
 						</section>
