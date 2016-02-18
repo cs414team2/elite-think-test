@@ -15,14 +15,16 @@
 		<header class="major">
 			<h2>Enter Your Information</h2>
 			<form method="post" action="index.php?action=login#one">
-				User name:<br>
-				<input type="text" name="username" style='text-align:center'><br><br>
-				Password:<br>
-				<input type="password" name="password" style='text-align:center'>
-				<br>
+				<h4>User name:</h4>
+				<input type="text" name="username">
+				<br><h4>Password:</h4>
+				<input type="password" name="password">
+				<br />
+				<input class="button special big" name="senddata" type="submit" value="Login">
+				<br />
+				<br />
 				<p id="logon_fail_message" style="display:none; color: red;">Incorrect username or password.</p>
-				<br>
-				<input class="button special big" name="senddata" type="submit" value="Login"><br><br>
+				<br />
 			</form>
 		</header>
 	</div>
