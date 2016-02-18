@@ -14,13 +14,14 @@
 	<div class="container">
 		<header class="major">
 			<h2>Enter Your Information</h2>
-			<form method="post" action="index.php?action=login#one">
+			<form method="post" action="index.php#one">
 				<h4>User name:</h4>
 				<input type="text" name="username">
 				<br><h4>Password:</h4>
 				<input type="password" name="password">
 				<br />
 				<input class="button special big" name="senddata" type="submit" value="Login">
+				<input type="hidden" name="action" value="login" />
 				<br />
 				<br />
 				<p id="logon_fail_message" style="display:none; color: red;">Incorrect username or password.</p>
