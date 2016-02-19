@@ -4,6 +4,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
 			<script src="controllers/toggle_active.js"></script>
+			<script src="controllers/new_teacher_form.js"></script>
 			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Manager</h2>
@@ -43,7 +44,7 @@ if (isset($_SESSION['credentials'])) {
 								<form>
 								  <br />
 								  <h4>First name: </h4>
-								  <input type="text" id="first_name "name="first_name" class="input_field">
+								  <input type="text" id="first_name" "name="first_name" class="input_field">
 								  <p id="err_first_name" style="display:none; color: red;">
 									First name cannot be blank.
 								  </p>

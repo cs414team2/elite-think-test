@@ -45,9 +45,9 @@ $(document).ready(function(){
 			$("#password").val('');
 			$("#first_name").val('');
 			$("#last_name").val('');
-			$("#emailAddress").val('');
+			$("#email").val('');
 			
-			location.href = "./?action=admin_student_manager";
+			location.href = "./?action=admin_teacher_manager";
 		}
 	})
 	
