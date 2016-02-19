@@ -27,7 +27,6 @@
 			<link rel="stylesheet" href="views/css/style-xlarge.css" />
 		</noscript>
 
-
 		<?php require_once("model/Session.php"); ?>
 		<?php
 			function loadHomePage($access_level) {
