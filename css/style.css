@@ -231,7 +231,7 @@
 		margin: 0 0 1em 0;
 	}
 
-	input {
+	input, select {
 		max-width: 300px;
 		margin: 0 auto;
 	}

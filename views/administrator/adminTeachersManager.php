@@ -3,6 +3,7 @@ require_once('model/Table.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
+			<script src="controllers/toggle_active.js"></script>
 			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Manager</h2>
@@ -12,6 +13,8 @@ if (isset($_SESSION['credentials'])) {
 				<!-- Content -->
 					<section id="content">
 						<h3>This is a list of Teachers</h3>
+						<input type="checkbox" id="copy" name="copy">
+						<label for="copy">Show Inactive Teachers</label>
 						<div class="table-wrapper">
 									<table>
 										<thead>
@@ -31,10 +34,11 @@ if (isset($_SESSION['credentials'])) {
 								</div>
 					</section>
 					</div>
+					
 				<div class="container">
 					<section id="content" style="text-align:center">
 						<h3 align="center">Add a Teacher</h3>
-						<button class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
+						<button id="addButton" class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
 							<div id="slidingDiv_2" style="display:none"> 	
 								<form>
 								  <br />

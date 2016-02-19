@@ -1,5 +1,7 @@
 <?php
 	class Table {
+		const IS_ACTIVE = "is_active";
+		
 		private $table_name;
 		private $show_inactive;
 		
@@ -14,9 +16,10 @@
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
 					{
-						echo "<tr " . "id='" . $record[$table . "_id"] . "' class='". $table . "_record, " . $record["is_active"]."'>";
-						foreach($record as $record_col) {
-						  echo "<td>" . $record_col . "</td>";
+						echo "<tr " . "id='" . $record[$table . "_id"] . "' class='". $table . "_record, " . $record[self::IS_ACTIVE]."'>";
+						foreach($record as $col_name => $col_data) {
+						  if($col_name != self::IS_ACTIVE)
+							echo "<td>" . $col_data . "</td>";
 						}
 						echo "</tr>";
 					}
