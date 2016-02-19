@@ -1,0 +1,2 @@
+create hide option for classes
+create check button that allows hidden classes to be shown
