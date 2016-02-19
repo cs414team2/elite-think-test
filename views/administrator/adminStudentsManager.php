@@ -14,6 +14,17 @@ if (isset($_SESSION['credentials'])) {
 					<!-- Content -->
 						<section id="content">
 							<h3>This is a list of students</h3>
+							<input type="checkbox" id="copy" name="copy">
+							<label for="copy">Show Inactive Classes</label>
+							<script type="text/javascript"> 
+								$("#copy").change(function() {
+									if(this.checked) {
+										alert("Checked!");
+									}
+									else
+										alert("Unchecked!");
+								});
+							</script>
 							<div class="table-wrapper">
 								<table>
 									<thead>
