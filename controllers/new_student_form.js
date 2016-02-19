@@ -1,9 +1,11 @@
 $(document).ready(function(){
+	// Read the enter key press if user is in the add form and press the add button.
 	$(".inputField").keypress(function(e){
 	  if(e.keyCode==13)
 	  $("#btn_add").click();
 	});
 	
+	// Take a new student's name, password, and email address and add them to the database.
 	$("#btn_add").click(function() {
 		
 		var password = $("#password").val();
@@ -49,6 +51,7 @@ $(document).ready(function(){
 		}
 	})
 	
+	// Remove the error message for a field is a user types in it.
 	$("#password").keypress(function(){
 		$("#add_password_err").hide();
 	});

@@ -1,4 +1,7 @@
 <?php
+	// This ajax block takes in a course name, number, and id of a teacher and
+	// passes them to the cs414 database.
+
 	require_once('../model/CS414Connection.php');
 	
 	if(isset($_REQUEST['course_name'], $_REQUEST['course_number'], $_REQUEST['teacher_id'])) {
