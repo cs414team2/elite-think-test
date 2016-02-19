@@ -1,3 +1,14 @@
+<?php
+if(isset($_SESSION["logon_failed"])) {
+	if($_SESSION["logon_failed"] == true) {
+		echo "<script type='text/javascript'>
+			 $(document).ready(function(){
+				 $('#logon_fail_message').show(600);
+			 });
+			 </script>";
+	}
+}	
+?>
 <!-- Banner -->
 <section id="banner">
 	<div class="inner">
@@ -23,7 +34,7 @@ document.getElementById('loginButton').onclick = function() {
 	<div class="container">
 		<header class="major">
 			<h2>Enter Your Information</h2>
-			<form method="post" action="index.php#one">
+			<form method="post" action="redirect.php">
 				<h4>User name:</h4>
 				<input id="usernameEntry" type="text" name="username">
 				<br><h4>Password:</h4>

@@ -4,6 +4,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
 			<script src="controllers/toggle_active.js"></script>
+			<script src="controllers/new_teacher_form.js"></script>
 			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Manager</h2>
@@ -43,36 +44,36 @@ if (isset($_SESSION['credentials'])) {
 								<form>
 								  <br />
 								  <h4>First name: </h4>
-								  <input type="text" name="first_name">
+								  <input type="text" id="first_name" "name="first_name" class="input_field">
 								  <p id="err_first_name" style="display:none; color: red;">
 									First name cannot be blank.
 								  </p>
 								  
 								  <br />
 								  <h4>Last name: </h4>
-								  <input type="text" name="last_name">
+								  <input type="text" id="last_name" name="last_name" class="input_field">
 								  <p id="err_last_name" style="display:none; color: red;">
 									Last name cannot be blank.
 								  </p>
 								  
 								  <br />
 								  <h4>Password:</h4>
-								  <input type="text" name="password">
+								  <input type="text" id="password" name="password" class="input_field">
 								  <p id="err_password" style="display:none; color: red;">
 									Password cannot be blank.
 								  </p>
 								  
 								  <br />
 								  <h4>Email:</h4>
-								  <input type="text" name="email">
+								  <input type="text" id="email" name="email" class="input_field">
 								  <p id="err_email" style="display:none; color: red;">
 									Email cannot be blank.
 								  </p>
 								  
 								  <br />
-								  <button class="button special big">Add Teacher</button>
 								
 								</form>
+								<button id="btn_add" class="button special big">Add Teacher</button>
 							</div>
 					</section>
 							

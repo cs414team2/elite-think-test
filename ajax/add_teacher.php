@@ -12,8 +12,8 @@
 		
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");		
 		
-		$addStatement = $eliteConnection->prepare("CALL create_teacher(?, ?, ?, ?)") or die($db->error);
-		$addStatement->bind_param("ssss", $password, $email, $first_name, $last_name);
-		$addStatement->execute();
+		$addStatement = $eliteConnection->prepare("CALL create_teacher(?, ?, ?, ?)") or die($eliteConnection->error);
+		$addStatement->bind_param("ssss", $password, $email, $first_name, $last_name) or die($addStatement->error);
+		$addStatement->execute() or die($addStatement->error);
 	}
 ?>

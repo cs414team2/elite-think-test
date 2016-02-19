@@ -37,18 +37,9 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 					</div>
 				<div class="container">
-<<<<<<< HEAD
-					<section id="content" style="text-align:center" class="wrapper style2">	
-						<h3>Add a Class</h3>
-=======
 					<section id="content" style="text-align:center">
 						<h3 align="center">Add a Course</h3>
-<<<<<<< HEAD
->>>>>>> test/master
-						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
-=======
 						<a id="addButton" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
->>>>>>> test/master
 						<div id="slidingDiv_2" style="display:none">
 							<form>
 								<br />
