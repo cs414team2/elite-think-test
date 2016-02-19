@@ -2,6 +2,7 @@
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
+		
 		echo '
 		<section id="main" class="wrapper style1">
 			<header class="major">
@@ -14,11 +15,11 @@ if (isset($_SESSION['credentials'])) {
 					<section style="text-align:center">
 						<a class="show_hide" href="./?action=admin_class_manager" class="button big">Create a test</a>
 						<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
-						<a class="show_hide"  rel="#slidingDiv_2" >View Tests</a><br />
+						<a class="show_hide" rel="#slidingDiv_2" >View Tests</a><br />
 					</section>
 					
 					
-					<div id="slidingDiv_2" style="display:none"> 	
+					<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 	
 					
 					<section id="viewTest">
 					<div class="container">
@@ -114,7 +115,7 @@ if (isset($_SESSION['credentials'])) {
 					</div>
 					
 					
-					<div id="slidingDiv_1" style="display:none"> 
+					<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 					<section id="viewClasses">
 					<div class="container1">
 								<table class="alt">
