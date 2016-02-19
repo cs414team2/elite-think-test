@@ -4,35 +4,8 @@ require_once('model/Admin.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
-			<script>
-				$(document).ready(function(){
-					$(".inputField").keypress(function(e){
-					  if(e.keyCode==13)
-					  $("#btn_add").click();
-					});
-				
-					$("#btn_add").click(function() {
-						var course_name = $("#courseName").val();
-						var course_number = $("#courseNumber").val();
-						var teacher_id = $("#Teacher").val();
-												
-						$.ajax({
-							url: "ajax/add_class.php",
-							type: "POST",
-							data: { course_name: course_name,
-							        course_number: course_number,
-									teacher_id: teacher_id
-								  }
-						});
-						
-						$("#courseName").val(\'\');
-						$("#courseNumber").val(\'\');
-						$("#Teacher").val(\'\');
-						
-						location.href = "./?action=admin_student_manager";
-					});
-				});
-			</script>
+			<script src="controllers/load_classes.js"></script>
+			<script src-"controllers/new_class_form.js"></script>
 			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Class Manager</h2>
@@ -40,7 +13,7 @@ if (isset($_SESSION['credentials'])) {
 			<div class="container">
 					
 				<!-- Content -->
-					<section id="content" class="wrapper style2">
+					<section id="content" >
 						<h3>This is a list of Classes</h3>
 						<div class="table-wrapper">
 									<table>
@@ -49,7 +22,7 @@ if (isset($_SESSION['credentials'])) {
 												<th>Course Id</th>
 												<th>Course Number</th>
 												<th>Course Name</th>
-												
+												<th>Teacher Id</th>
 											</tr>
 										</thead>
 										<tbody>';
@@ -61,15 +34,26 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 					</div>
 				<div class="container">
+<<<<<<< HEAD
 					<section id="content" style="text-align:center" class="wrapper style2">	
 						<h3>Add a Class</h3>
+=======
+					<section id="content" style="text-align:center">
+						<h3 align="center">Add a Course</h3>
+>>>>>>> test/master
 						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
 						<div id="slidingDiv_2" style="display:none">
 							<form>
 								Course name:<br />
 								<input type="text" id="courseName" name="courseName" class="inputField">
+								<p id="add_course_name_err" style="display:none; color: red;">
+									Course name cannot be blank.
+								</p>
 								Course Number:<br />
 								<input type="text" id="courseNumber" name="courseNumber" class="inputField">
+								<p id="add_course_number_err" style="display:none; color: red;">
+									Course number cannot be blank.
+								</p>
 								<br />
 							  
 								<div class="row uniform">
@@ -94,5 +78,8 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 		</section>';
 	}
+}
+else {
+	header('Location: ./');
 }
 ?>

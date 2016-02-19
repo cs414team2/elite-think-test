@@ -4,72 +4,7 @@ if (isset($_SESSION['credentials'])) {
 		require_once('model/Table.php');
 		echo '<!-- Main -->
 			<script src="controllers/load_student.js"></script>
-			<script>
-				$(document).ready(function(){
-					$(".inputField").keypress(function(e){
-					  if(e.keyCode==13)
-					  $("#btn_add").click();
-					});
-					
-					$("#btn_add").click(function() {
-						
-						var password = $("#password").val();
-						var firstname = $("#firstname").val();
-						var lastname = $("#lastname").val();
-						var email = $("#emailAddress").val();
-						var validated = true;
-						
-						if (jQuery.trim(password).length <= 0) {
-							$("#add_password_err").show();
-							validated = false;
-						}
-						if (jQuery.trim(firstname).length <= 0) {
-							$("#add_first_err").show();
-							validated = false;
-						}
-						if (jQuery.trim(lastname).length <= 0) {
-							$("#add_last_err").show();
-							validated = false;
-						}
-						if (jQuery.trim(email).length <= 0) {
-							$("#add_email_err").show();
-							validated = false;
-						}
-					
-						if (validated)
-						{	$.ajax({
-								url: "ajax/add_student.php",
-								type: "POST",
-								data: { password: password,
-										firstname: firstname,
-										lastname: lastname,
-										email: email
-									  }
-							});
-						
-							$("#password").val(\'\');
-							$("#firstname").val(\'\');
-							$("#lastname").val(\'\');
-							$("#emailAddress").val(\'\');
-							
-							location.href = "./?action=admin_student_manager";
-						}
-					})
-					
-					$("#password").keypress(function(){
-						$("#add_password_err").hide();
-					});
-					$("#firstname").keypress(function(){
-						$("#add_first_err").hide();
-					});
-					$("#lastname").keypress(function(){
-						$("#add_last_err").hide();
-					});
-					$("#emailAddress").keypress(function(){
-						$("#add_email_err").hide();
-					});
-				});
-			</script>
+			<script src="controllers/new_student_form.js"></script>
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Student Manager</h2>
@@ -77,8 +12,19 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container">
 						
 					<!-- Content -->
-						<section id="content" class="wrapper style2">
+						<section id="content">
 							<h3>This is a list of students</h3>
+							<input type="checkbox" id="copy" name="copy">
+							<label for="copy">Show Inactive Classes</label>
+							<script type="text/javascript"> 
+								$("#copy").change(function() {
+									if(this.checked) {
+										alert("Checked!");
+									}
+									else
+										alert("Unchecked!");
+								});
+							</script>
 							<div class="table-wrapper">
 								<table>
 									<thead>
@@ -105,7 +51,7 @@ if (isset($_SESSION['credentials'])) {
 					
 					<div class="container">
 						
-						<section id="content" style="text-align:center" class="wrapper style2">
+						<section id="content" style="text-align:center">
 							<h3 align="center">Add a student</h3>
 							
 							<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
@@ -114,22 +60,22 @@ if (isset($_SESSION['credentials'])) {
 									  First name:<br/>
 									  <input type="text" id="firstname" name="firstname" class="inputField">
 									  <p id="add_first_err" style="display:none; color: red;">
-										First name cannot be empty.
+										First name cannot be blank.
 									  </p>
 									  Last name:<br/>
 									  <input type="text" id="lastname" name="lastname" class="inputField">
 									  <p id="add_last_err" style="display:none; color: red;">
-										Last name cannot be empty.
+										Last name cannot be blank.
 											</p>
 									  Password:<br/>
-									  <input type="text" id="password" name="password" class="inputField">
+									  <input type="password" id="password" name="password" class="inputField">
 									  <p id="add_password_err" style="display:none; color: red;">
-										Password cannot be empty.
+										Password cannot be blank.
 											</p>
 									  Email:<br/>
 									  <input type="text" id="emailAddress" name="emailAddress" class="inputField">
 									  <p id="add_email_err" style="display:none; color: red;">
-										Email cannot be empty.
+										Email cannot be blank.
 									  </p>
 									</form>
 									 
@@ -142,5 +88,8 @@ if (isset($_SESSION['credentials'])) {
 					</div>
 			</section>';
 	}
+}
+else {
+	header('Location: ./');
 }
 ?>

@@ -13,10 +13,11 @@
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_row()){
-					echo "<tr " . "id='" . $record[0] . "' class='student_record'>";
+					echo "<tr " . "id='" . $record[0] . "' class='". $table ."_record'>";
 					foreach($record as $record_col) {
 					  echo "<td>" . $record_col . "</td>";
 					}
+					echo "<td><a class='button big, btn_delete'>Delete</a><br /></td>";
 					echo "</tr>";
 				}
 			}

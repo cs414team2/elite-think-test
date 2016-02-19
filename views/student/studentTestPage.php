@@ -5,4 +5,7 @@ if (isset($_SESSION['credentials'])) {
 		echo ' ';
 	}
 }
+else {
+	header('Location: ./');
+}
 ?>
