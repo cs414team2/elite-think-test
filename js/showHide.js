@@ -16,8 +16,7 @@ $(document).ready(function(){
 		
 		
 (function ($) {
-    $.fn.showHide = function (options) {
-
+    $.fn.showHide = function (options) {		
 		//default vars for the plugin
         var defaults = {
             speed: 1000,
@@ -30,7 +29,8 @@ $(document).ready(function(){
         var options = $.extend(defaults, options);
 
         $(this).click(function () {	
-           
+			$('.toggleDiv').hide();
+		   
              $('.toggleDiv').slideUp(options.speed, options.easing);	
 			 // this var stores which button you've clicked
              var toggleClick = $(this);
