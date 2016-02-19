@@ -39,12 +39,14 @@ if (isset($_SESSION['credentials'])) {
 						<a href="#" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
 						<div id="slidingDiv_2" style="display:none">
 							<form>
-								Course name:<br />
+								<br />
+								<h4>Course name:</h4>
 								<input type="text" id="courseName" name="courseName" class="inputField">
 								<p id="add_course_name_err" style="display:none; color: red;">
 									Course name cannot be blank.
 								</p>
-								Course Number:<br />
+								<br />
+								<h4>Course Number:</h4>
 								<input type="text" id="courseNumber" name="courseNumber" class="inputField">
 								<p id="add_course_number_err" style="display:none; color: red;">
 									Course number cannot be blank.
@@ -73,5 +75,8 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 		</section>';
 	}
+}
+else {
+	header('Location: ./');
 }
 ?>
