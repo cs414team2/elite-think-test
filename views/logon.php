@@ -1,6 +1,7 @@
 <?php
 if(isset($_SESSION["logon_failed"])) {
 	if($_SESSION["logon_failed"] == true) {
+		$_SESSION["logon_failed"] = false;
 		echo "<script type='text/javascript'>
 			 $(document).ready(function(){
 				 $('#logon_fail_message').show(600);

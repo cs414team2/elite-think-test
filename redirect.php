@@ -10,15 +10,22 @@
 			if ($session->is_authenticated()) {
 				$_SESSION["credentials"] = $session;
 				$_SESSION["logon_failed"] = false;
+				
+				echo '<script type="text/javascript">
+						$(document).ready(function(){
+							window.location = "index.php";
+						});
+				      </script>';
 			}
 			else {
 				$_SESSION["logon_failed"] = true;
+				
+				echo '<script type="text/javascript">
+						$(document).ready(function(){
+							window.location = "index.php?#one";
+						});
+				      </script>';
 			}
-			echo '<script type="text/javascript">
-					$(document).ready(function(){
-						window.location = "index.php";
-					});
-				 </script>';
 		?>
 	</head>
 </html>
