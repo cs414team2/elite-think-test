@@ -19,6 +19,8 @@ if (isset($_SESSION['credentials'])) {
 									<table>
 										<thead>
 											<tr>
+												<th>ID</th>
+												<th>Password</th>
 												<th>First</th>
 												<th>Last</th>
 												<th>Email</th>
@@ -40,10 +42,33 @@ if (isset($_SESSION['credentials'])) {
 							<div id="slidingDiv_2" style="display:none"> 	
 								<form>
 								  <br />
-								  <h4>Teacher name: </h4>
-								  <input id="nameEntry" type="text" name="teacherName"><br>
-								  <h4>Course(s) Taught:</h4>
-								  <input type="text" name="courseNumber">
+								  <h4>First name: </h4>
+								  <input type="text" name="first_name">
+								  <p id="err_first_name" style="display:none; color: red;">
+									First name cannot be blank.
+								  </p>
+								  
+								  <br />
+								  <h4>Last name: </h4>
+								  <input type="text" name="last_name">
+								  <p id="err_last_name" style="display:none; color: red;">
+									Last name cannot be blank.
+								  </p>
+								  
+								  <br />
+								  <h4>Password:</h4>
+								  <input type="text" name="password">
+								  <p id="err_password" style="display:none; color: red;">
+									Password cannot be blank.
+								  </p>
+								  
+								  <br />
+								  <h4>Email:</h4>
+								  <input type="text" name="email">
+								  <p id="err_email" style="display:none; color: red;">
+									Email cannot be blank.
+								  </p>
+								  
 								  <br />
 								  <button class="button special big">Add Teacher</button>
 								
