@@ -5,7 +5,8 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
 			<script src="controllers/load_classes.js"></script>
-			<script src-"controllers/new_class_form.js"></script>
+			<script src="controllers/new_class_form.js"></script>
+			<script src="controllers/toggle_active.js"></script>
 			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Class Manager</h2>
@@ -15,6 +16,8 @@ if (isset($_SESSION['credentials'])) {
 				<!-- Content -->
 					<section id="content" >
 						<h3>This is a list of Classes</h3>
+						<input type="checkbox" id="copy" name="copy">
+						<label for="copy">Show Inactive Classes</label>
 						<div class="table-wrapper">
 									<table>
 										<thead>
@@ -26,8 +29,8 @@ if (isset($_SESSION['credentials'])) {
 											</tr>
 										</thead>
 										<tbody>';
-											$student_table = new Table();
-											$student_table->get_table("class");
+											$class_table = new Table();
+											$class_table->print_table("class");
 									echo '</tbody>
 									</table>
 								</div>

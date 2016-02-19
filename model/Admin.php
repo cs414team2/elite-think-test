@@ -19,7 +19,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td> No Classes </td> </tr>";
+				echo "<tr> <td> No Teachers </td> </tr>";
 			}
 		}
 	}
