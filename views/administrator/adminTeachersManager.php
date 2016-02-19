@@ -22,8 +22,8 @@ if (isset($_SESSION['credentials'])) {
 											</tr>
 										</thead>
 										<tbody>';
-											$teachers_table = new Table();
-											$teachers_table->get_table("teacher");
+											$teacher_table = new Table();
+											$teacher_table->print_table("teacher");
 								  echo '</tbody>
 									</table>
 								</div>
@@ -32,14 +32,14 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container">
 					<section id="content" style="text-align:center">
 						<h3 align="center">Add a Teacher</h3>
-						<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
+						<button class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
 							<div id="slidingDiv_2" style="display:none"> 	
 								<form>
-								  Teacher name:<br>
+								  <br />
+								  <h4>Teacher name: </h4>
 								  <input type="text" name="teacherName"><br>
-								  Course(s) Taught:<br>
+								  <h4>Course(s) Taught:</h4>
 								  <input type="text" name="courseNumber">
-								  
 								  <br />
 								  <button class="button special big">Add Teacher</button>
 								
