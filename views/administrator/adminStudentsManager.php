@@ -5,6 +5,7 @@ if (isset($_SESSION['credentials'])) {
 		echo '<!-- Main -->
 			<script src="controllers/load_student.js"></script>
 			<script src="controllers/new_student_form.js"></script>
+			<script src="controllers/toggle_active.js"></script>
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Student Manager</h2>
@@ -15,19 +16,7 @@ if (isset($_SESSION['credentials'])) {
 						<section id="content">
 							<h3>This is a list of students</h3>
 							<input type="checkbox" id="copy" name="copy">
-							<label for="copy">Show Inactive Classes</label>
-							<script type="text/javascript">
-								$(document).ready(function(){
-									$(".N").hide();
-									$("#copy").change(function() {
-										if(this.checked) {
-											$(".N").show();
-										}
-										else
-											$(".N").hide();
-									});
-								});
-							</script>
+							<label for="copy">Show Inactive Students</label>
 							<div class="table-wrapper">
 								<table>
 									<thead>
