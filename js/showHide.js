@@ -9,14 +9,6 @@ $(document).ready(function(){
 			});
 			$(".show_hide").addClass("button special big");
 		});
-		
-// Scroll when button is clicked
-$("button").click(function() {
-    $('html,body').animate({
-        scrollTop: $(".add").offset().top},
-        'slow');
-});
-		
 
 (function ($) {
     $.fn.showHide = function (options) {
