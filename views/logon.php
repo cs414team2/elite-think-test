@@ -1,11 +1,13 @@
 <?php
-if(isset($_SESSION["logon_failed"]))
-	if($_SESSION["logon_failed"] = true)
+if(isset($_SESSION["logon_failed"])) {
+	if($_SESSION["logon_failed"] == true) {
 		echo "<script type='text/javascript'>
 			 $(document).ready(function(){
 				 $('#logon_fail_message').show(600);
 			 });
-			 </script>";    
+			 </script>";
+	}
+}	
 ?>
 <!-- Banner -->
 <section id="banner">
