@@ -17,7 +17,6 @@
 		<script src="js/init.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 		<script src="js/showHide.js" type="text/javascript"></script>
-		<script src="js/focusButton.js" type="text/javascript"></script>
 
 		
 		
@@ -43,7 +42,7 @@
 				}
 			}
 		?>
-
+		
 	</head>
 	
 	<body class="landing">
@@ -67,23 +66,6 @@
 						require_once('views/administrator/adminEditClass.php');
 						break;
 						
-					case "login":					
-						$session = new Session($_POST['username'], $_POST['password']);
-						
-						if ($session->is_authenticated()) {
-							$_SESSION["credentials"] = $session;
-							loadHomePage($_SESSION["credentials"]->get_access_level());
-						}
-						else {
-							require_once('views/logon.php');
-							echo "<script type='text/javascript'>
-								$(document).ready(function(){
-									$('#logon_fail_message').show(600);
-								});
-							  </script>";
-						}
-						break;
-						
 					case "logout": 
 						unset($_SESSION["credentials"]);
 						require_once('views/logon.php');
@@ -101,7 +83,7 @@
 				}
 			}
 			else {
-				// <!-- Loads the Log On page --> 
+				// <!-- Loads the Log On page -->
 				require_once('views/logon.php');
 			}
 		?>
