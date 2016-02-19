@@ -143,4 +143,7 @@ if (isset($_SESSION['credentials'])) {
 			</section>';
 	}
 }
+else {
+	header('Location: ./');
+}
 ?>
