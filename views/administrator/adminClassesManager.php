@@ -26,8 +26,8 @@ if (isset($_SESSION['credentials'])) {
 											</tr>
 										</thead>
 										<tbody>';
-											$student_table = new Table();
-											$student_table->get_table("class");
+											$class_table = new Table();
+											$class_table->print_table("class");
 									echo '</tbody>
 									</table>
 								</div>

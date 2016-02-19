@@ -22,8 +22,8 @@ if (isset($_SESSION['credentials'])) {
 											</tr>
 										</thead>
 										<tbody>';
-											$teachers_table = new Table();
-											$teachers_table->get_table("teacher");
+											$teacher_table = new Table();
+											$teacher_table->print_table("teacher");
 								  echo '</tbody>
 									</table>
 								</div>

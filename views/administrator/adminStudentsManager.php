@@ -16,13 +16,16 @@ if (isset($_SESSION['credentials'])) {
 							<h3>This is a list of students</h3>
 							<input type="checkbox" id="copy" name="copy">
 							<label for="copy">Show Inactive Classes</label>
-							<script type="text/javascript"> 
-								$("#copy").change(function() {
-									if(this.checked) {
-										alert("Checked!");
-									}
-									else
-										alert("Unchecked!");
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$(".N").hide();
+									$("#copy").change(function() {
+										if(this.checked) {
+											$(".N").show();
+										}
+										else
+											$(".N").hide();
+									});
 								});
 							</script>
 							<div class="table-wrapper">
@@ -41,7 +44,7 @@ if (isset($_SESSION['credentials'])) {
 										';
 
 									$student_table = new Table();
-									$student_table->get_table("student");
+									$student_table->print_table("student");
 
 		echo '						</tbody>
 								</table>
