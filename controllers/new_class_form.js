@@ -33,6 +33,7 @@ $(document).ready(function(){
 			$("#courseNumber").val('');
 			$("#Teacher").val('');
 			
+			// If we ever want to dynamically load the table... $("#tbl_classes").load("ajax/get_table.php", "class");
 			location.href = "./?action=admin_class_manager";
 		}
 		
