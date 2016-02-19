@@ -1,4 +1,7 @@
 <?php
+	// This ajax block takes in a new student's name, password, and email address and
+	// passes them to the cs414 database.
+
 	require_once('../model/CS414Connection.php');
 	
 	if(isset($_REQUEST['password'], $_REQUEST['email'], $_REQUEST['firstname'], $_REQUEST['lastname'])) {
