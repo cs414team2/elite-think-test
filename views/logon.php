@@ -4,11 +4,20 @@
 		<img src="images/elitelogo.png" width="200" height="230" alt="elite logo"/>
 		<p>On-line Testing Application</p>
 		<ul class="actions">
-			<li><a href="#one" class="button big scrolly">Login</a></li>
+			<li><a id="loginButton" href="#one" class="button big scrolly">Login</a></li>
 		</ul>
 	</div>
 </section>
 
+<script>
+// JavaScript to delay button click focus on insert form
+document.getElementById('loginButton').onclick = function() {
+	
+	setTimeout(function() {
+		document.getElementById('usernameEntry').focus();
+	    }, 1000);
+};
+</script>
 
 <section id="one" name="one" class="wrapper style1">
 	<div class="container">
@@ -16,7 +25,7 @@
 			<h2>Enter Your Information</h2>
 			<form method="post" action="index.php#one">
 				<h4>User name:</h4>
-				<input type="text" name="username">
+				<input id="usernameEntry" type="text" name="username">
 				<br><h4>Password:</h4>
 				<input type="password" name="password">
 				<br />

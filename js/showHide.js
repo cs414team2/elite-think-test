@@ -10,6 +10,9 @@ $(document).ready(function(){
 			$(".show_hide").addClass("button special big");
 		});
 
+		
+		
+		
 (function ($) {
     $.fn.showHide = function (options) {
 

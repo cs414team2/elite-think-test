@@ -29,15 +29,16 @@ if (isset($_SESSION['credentials'])) {
 								</div>
 					</section>
 					</div>
+					
 				<div class="container">
 					<section id="content" style="text-align:center">
 						<h3 align="center">Add a Teacher</h3>
-						<button class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
+						<button id="addButton" class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
 							<div id="slidingDiv_2" style="display:none"> 	
 								<form>
 								  <br />
 								  <h4>Teacher name: </h4>
-								  <input type="text" name="teacherName"><br>
+								  <input id="nameEntry" type="text" name="teacherName"><br>
 								  <h4>Course(s) Taught:</h4>
 								  <input type="text" name="courseNumber">
 								  <br />
