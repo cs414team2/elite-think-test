@@ -1,0 +1,10 @@
+Test
+get_test_by_id()
+get_tests_by_student()
+get_tests_by_teacher()
+
+student_tests = new Tests("student");
+
+student_tests->print_tests(111111);
+
+change "Create Test" tab to Inactive tests , and make first row a "Create New Test +" with an id of "create"

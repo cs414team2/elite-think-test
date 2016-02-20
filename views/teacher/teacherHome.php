@@ -1,4 +1,6 @@
 <?php
+include('model/Tests.php');
+include('model/TableNames.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
@@ -31,33 +33,11 @@ if (isset($_SESSION['credentials'])) {
 													<th>Price</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
+											<tbody>';
+												$teacher_tests = Tests(TableNames::teacher);
+												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), "true");
+												
+								     echo  '</tbody>
 											<tfoot>
 												<tr>
 													<td colspan="2"></td>
