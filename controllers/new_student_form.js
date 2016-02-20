@@ -13,7 +13,14 @@ $(document).ready(function(){
 		var lastname = $("#lastname").val();
 		var email = $("#emailAddress").val();
 		var validated = true;
+		var email_expression = /^.+@.+\..+$/i;
 		
+		if (email_expression.test(email) == false)
+		{
+			validated = false;
+			$("#add_email_err").text("Invalid email format.");
+			$("#add_email_err").show();
+		}
 		if (jQuery.trim(password).length <= 0) {
 			$("#add_password_err").show();
 			validated = false;
@@ -27,7 +34,13 @@ $(document).ready(function(){
 			validated = false;
 		}
 		if (jQuery.trim(email).length <= 0) {
+			$("#add_email_err").text("Email cannot be blank.");
 			$("#add_email_err").show();
+			validated = false;
+		}
+		
+		if (email_expression.test(email) == false)
+		{
 			validated = false;
 		}
 	
