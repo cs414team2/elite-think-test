@@ -13,7 +13,7 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 					<section style="text-align:center">
-						<a class="show_hide" href="./?action=admin_class_manager" class="button big">Create a test</a>
+						<a class="button big" href="./?action=teacher_create_test">Create a test</a>
 						<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
 						<a class="show_hide" rel="#slidingDiv_2" >View Tests</a><br />
 					</section>
