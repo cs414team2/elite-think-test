@@ -22,9 +22,9 @@ if (isset($_SESSION['credentials'])) {
 											<tr>
 												<th>ID</th>
 												<th>Password</th>
+												<th>Email</th>
 												<th>First</th>
 												<th>Last</th>
-												<th>Email</th>
 											</tr>
 										</thead>
 										<tbody>';
@@ -44,28 +44,28 @@ if (isset($_SESSION['credentials'])) {
 								<form>
 								  <br />
 								  <h4>First name: </h4>
-								  <input type="text" id="first_name" "name="first_name" class="input_field">
+								  <input type="text" id="first_name" "name="first_name" class="input_field" maxlength="45">
 								  <p id="err_first_name" style="display:none; color: red;">
 									First name cannot be blank.
 								  </p>
 								  
 								  <br />
 								  <h4>Last name: </h4>
-								  <input type="text" id="last_name" name="last_name" class="input_field">
+								  <input type="text" id="last_name" name="last_name" class="input_field" maxlength="45">
 								  <p id="err_last_name" style="display:none; color: red;">
 									Last name cannot be blank.
 								  </p>
 								  
 								  <br />
 								  <h4>Password:</h4>
-								  <input type="text" id="password" name="password" class="input_field">
+								  <input type="text" id="password" name="password" class="input_field" maxlength="45">
 								  <p id="err_password" style="display:none; color: red;">
 									Password cannot be blank.
 								  </p>
 								  
 								  <br />
 								  <h4>Email:</h4>
-								  <input type="text" id="email" name="email" class="input_field">
+								  <input type="text" id="email" name="email" class="input_field" maxlength="45">
 								  <p id="err_email" style="display:none; color: red;">
 									Email cannot be blank.
 								  </p>

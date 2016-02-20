@@ -50,22 +50,22 @@ if (isset($_SESSION['credentials'])) {
 								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
 									  First name:<br/>
-									  <input type="text" id="firstname" name="firstname" class="inputField">
+									  <input type="text" id="firstname" name="firstname" class="inputField" maxlength="45">
 									  <p id="add_first_err" style="display:none; color: red;">
 										First name cannot be blank.
 									  </p>
 									  Last name:<br/>
-									  <input type="text" id="lastname" name="lastname" class="inputField">
+									  <input type="text" id="lastname" name="lastname" class="inputField" maxlength="45">
 									  <p id="add_last_err" style="display:none; color: red;">
 										Last name cannot be blank.
 											</p>
 									  Password:<br/>
-									  <input type="password" id="password" name="password" class="inputField">
+									  <input type="password" id="password" name="password" class="inputField" maxlength="45">
 									  <p id="add_password_err" style="display:none; color: red;">
 										Password cannot be blank.
 											</p>
 									  Email:<br/>
-									  <input type="text" id="emailAddress" name="emailAddress" class="inputField">
+									  <input type="text" id="emailAddress" name="emailAddress" class="inputField" maxlength="45">
 									  <p id="add_email_err" style="display:none; color: red;">
 										Email cannot be blank.
 									  </p>

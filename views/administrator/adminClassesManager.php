@@ -44,13 +44,13 @@ if (isset($_SESSION['credentials'])) {
 							<form>
 								<br />
 								<h4>Course name:</h4>
-								<input type="text" id="courseName" name="courseName" class="inputField">
+								<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45">
 								<p id="add_course_name_err" style="display:none; color: red;">
 									Course name cannot be blank.
 								</p>
 								<br />
 								<h4>Course Number:</h4>
-								<input type="text" id="courseNumber" name="courseNumber" class="inputField">
+								<input type="text" id="courseNumber" name="courseNumber" class="inputField" maxlength="9">
 								<p id="add_course_number_err" style="display:none; color: red;">
 									Course number cannot be blank.
 								</p>
