@@ -64,9 +64,12 @@
 						break;
 					case "admin_edit_class":
 						require_once('views/administrator/adminEditClass.php');
-						break;
+						break;					
 					case "teacher_create_test":
 						require_once('views/teacher/teacherCreateTest.php');
+						break;
+					case "teacher_grade_test":
+						require_once('views/teacher/teacherGradeTest.php');
 						break;
 					case "logout": 
 						unset($_SESSION["credentials"]);

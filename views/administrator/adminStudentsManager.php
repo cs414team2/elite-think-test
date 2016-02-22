@@ -65,7 +65,8 @@ if (isset($_SESSION['credentials'])) {
 										Password cannot be blank.
 											</p>
 									  Email:<br/>
-									  <input type="text" id="emailAddress" name="emailAddress" class="inputField" maxlength="45">
+									  <input id="emailAddress" name="emailAddress" class="inputField"
+										type="text" maxlength="45">
 									  <p id="add_email_err" style="display:none; color: red;">
 										Email cannot be blank.
 									  </p>
