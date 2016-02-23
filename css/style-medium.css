@@ -96,6 +96,10 @@
 /* Banner */
 
 	#banner {
+		padding: 6em 2em;
+	}
+	
+	#one {
 		padding: 12em 2em;
 	}
 

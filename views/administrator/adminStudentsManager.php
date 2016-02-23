@@ -44,27 +44,26 @@ if (isset($_SESSION['credentials'])) {
 					<div class="container">
 						
 						<section id="content" style="text-align:center">
-							<h3 align="center">Add a student</h3>
-							
 							<button class="show_hide" rel="#slidingDiv_2">Add a Student</button><br />
 								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
-									  First name:<br/>
+									<br/>
+									<b>First name:</b>
 									  <input type="text" id="firstname" name="firstname" class="inputField" maxlength="45">
 									  <p id="add_first_err" style="display:none; color: red;">
 										First name cannot be blank.
 									  </p>
-									  Last name:<br/>
+									  <b>Last name:</b>
 									  <input type="text" id="lastname" name="lastname" class="inputField" maxlength="45">
 									  <p id="add_last_err" style="display:none; color: red;">
 										Last name cannot be blank.
 											</p>
-									  Password:<br/>
+									  <b>Password:</b>
 									  <input type="password" id="password" name="password" class="inputField" maxlength="45">
 									  <p id="add_password_err" style="display:none; color: red;">
 										Password cannot be blank.
 											</p>
-									  Email:<br/>
+									  <b>Email:</b>
 									  <input id="emailAddress" name="emailAddress" class="inputField"
 										type="text" maxlength="45">
 									  <p id="add_email_err" style="display:none; color: red;">
