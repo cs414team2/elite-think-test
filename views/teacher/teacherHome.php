@@ -1,6 +1,5 @@
 <?php
 include('model/Tests.php');
-include('model/TableNames.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
@@ -34,8 +33,9 @@ if (isset($_SESSION['credentials'])) {
 												</tr>
 											</thead>
 											<tbody>';
-												$teacher_tests = Tests(TableNames::teacher);
-												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), "true");
+												$teacher_tests = new Tests("teacher", $_SESSION['credentials']->get_user_id());
+												$teacher_tests->print_tests(true);
+												echo '<tr><td>' . $_SESSION['credentials']->get_user_id() . '</td></tr>';
 												
 								     echo  '</tbody>
 											<tfoot>
