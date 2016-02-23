@@ -19,6 +19,8 @@
 		<script src="js/showHide.js" type="text/javascript"></script>
 		<script src="js/addMcQuestion.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	
 		
 		<noscript>

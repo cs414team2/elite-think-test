@@ -83,7 +83,7 @@ $(function() {
       addUser();
     });
  
-    $( "#create-user" ).button().on( "click", function() {
+    $( "#create-user" ).button().on( "click", function() { alert("NOPE!!")
       dialog.dialog( "open" );
     });
   });

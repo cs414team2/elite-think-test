@@ -6,8 +6,6 @@ if (isset($_SESSION['credentials'])) {
 		// PUT HTML HERE!
 		echo '
 		
-		<link href="css/jquery.formbuilder.css" media="screen" rel="stylesheet" />
-		
 		<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2> Test Creation</h2>
@@ -39,10 +37,11 @@ if (isset($_SESSION['credentials'])) {
 				<p>Time Limit on test: </p>
 					<input type="number" name="timeLimit">
 					
-				<button id="create-user">Create new user</button>
+				
 					
 			</div>
 
+			
 			
 			<div id="my-form-builder" class="content">
 				<div id="users-contain" class="ui-widget">
@@ -64,6 +63,7 @@ if (isset($_SESSION['credentials'])) {
 						</tbody>
 					</table>
 				</div>	
+				<button id="create-user">Create new user</button>
 			</div>
 			
 			<div id="dialog-form" title="Create new Question">
@@ -83,7 +83,7 @@ if (isset($_SESSION['credentials'])) {
 					</fieldset>
 				</form>
 			</div>
-							
+			
 			
 		</div>
 		
