@@ -17,13 +17,14 @@
 		<script src="js/init.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 		<script src="js/showHide.js" type="text/javascript"></script>
-
-		
+		<script src="js/jquery.formbuilder.js"></script>
+	
 		
 		<noscript>
 			<link rel="stylesheet" href="views/css/skel.css" />
 			<link rel="stylesheet" href="views/css/style.css" />
 			<link rel="stylesheet" href="views/css/style-xlarge.css" />
+			<link href="css/jquery.formbuilder.css" media="screen" rel="stylesheet" />
 		</noscript>
 
 		<?php require_once("model/Session.php"); ?>
