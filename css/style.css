@@ -276,6 +276,13 @@
 			border-color: #2B9DB2;
 			box-shadow: 0 0 0 1px #C723CC;
 		}
+		
+	#sidebar {
+
+    width: 250px;
+    background: #ffffff;
+    min-height: 100%;
+}
 
 	.select-wrapper {
 		text-decoration: none;
