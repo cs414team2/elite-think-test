@@ -29,7 +29,7 @@
 		
 		//Getters and Setters
 		public function get_user_id() {
-			return $this->user_id;
+			return (int)$this->user_id;
 		}
 		
 		public function get_access_level() {
