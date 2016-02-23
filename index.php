@@ -17,13 +17,15 @@
 		<script src="js/init.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 		<script src="js/showHide.js" type="text/javascript"></script>
-
-		
+		<script src="js/jquery.formbuilder.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	
 		
 		<noscript>
 			<link rel="stylesheet" href="views/css/skel.css" />
 			<link rel="stylesheet" href="views/css/style.css" />
 			<link rel="stylesheet" href="views/css/style-xlarge.css" />
+			<link href="css/jquery.formbuilder.css" media="screen" rel="stylesheet" />
 		</noscript>
 
 		<?php require_once("model/Session.php"); ?>
@@ -64,13 +66,15 @@
 						break;
 					case "admin_edit_class":
 						require_once('views/administrator/adminEditClass.php');
-						break;					
+						break;
+
 					case "teacher_create_test":
 						require_once('views/teacher/teacherCreateTest.php');
 						break;
 					case "teacher_grade_test":
 						require_once('views/teacher/teacherGradeTest.php');
 						break;
+
 					case "logout": 
 						unset($_SESSION["credentials"]);
 						require_once('views/logon.php');

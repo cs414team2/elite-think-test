@@ -14,6 +14,8 @@
 						
 				?>
 				
+				<img src="images/eliteicon.png" width="100" height="110" style="margin-top: 40px" alt="elite logo"/>
+				
 				<nav id="nav">
 					<ul>
 						<li><a href="index.php">Home</a></li>
@@ -25,6 +27,9 @@
 								</li>
 								<li>
 									<a href="elements.html">Elements</a>
+								</li>
+								<li>
+									<a href="http://jqueryui.com/">jQuery Demos</a>
 								</li>
 								<li>
 									<a href="http://csmain/seproject/TimeMachine2/Student/Summary">Time Machine</a>
