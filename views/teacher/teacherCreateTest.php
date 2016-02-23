@@ -14,7 +14,16 @@ if (isset($_SESSION['credentials'])) {
 		
 		<div class="testContainer">
 			<div id="sidebar">
+			<a href="http://www.jqueryscript.net/form/jQuery-Plugin-For-Online-Drag-Drop-Form-Builder.html" target="_blank">Form Builder Guide</a>
+			<br />
 			
+			<a href="https://www.easytestmaker.com/Test/165A50DC9CAF43C29332D4E05AB9EB2F#" target="_blank">Doubtful? GoTo</a>
+			<br />
+			
+			<a href="https://jqueryui.com/dialog/#default" target="_blank">JQuery Dialog Boxes</a>
+			<br />
+			
+			<a href="http://botsko.net/Demos/formbuilder/" target="_blank">This Forms Site</a>
 			</div>
 			
 			<div id="my-form-builder" class="content">
@@ -32,7 +41,7 @@ if (isset($_SESSION['credentials'])) {
 				});
 			</script>
 					<br>
-					<input type="submit" value="Submit">
+					<input type="submit" value="Submit (home for now)">
 				</form>
 				
 			</div>
