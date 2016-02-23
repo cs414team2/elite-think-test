@@ -15,11 +15,9 @@ if (isset($_SESSION['credentials'])) {
 				<a class="button big" draggable="true" >True/False</a> <br / >
 				<a class="button big" draggable="true" >Multiple Choice</a><br />
 			</div>
-			<form style="display: inline-block; max-width: 50%;">
-				First name: <input type="text" name="fname"><br>
-				Last name: <input type="text" name="lname"><br>
-				<input type="submit" value="Submit">
-			</form>
+
+
+
 			
 		</div>
 		
