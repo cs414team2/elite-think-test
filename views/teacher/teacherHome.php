@@ -1,6 +1,5 @@
 <?php
 include('model/Tests.php');
-include('model/TableNames.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
@@ -15,7 +14,7 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 					<section style="text-align:center">
-						<a class="show_hide" href="./?action=admin_class_manager" class="button big">Create a test</a>
+						<a class="button big" href="./?action=teacher_create_test">Create a test</a>
 						<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
 						<a class="show_hide" rel="#slidingDiv_2" >View Tests</a><br />
 					</section>
@@ -28,22 +27,16 @@ if (isset($_SESSION['credentials'])) {
 								<table class="alt" style="display: inline-block; max-width: 50%; float: left; ">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
+													<th>Test</th>
+													<th>Class</th>
+													<th>Due Date</th>
 												</tr>
 											</thead>
 											<tbody>';
-												$teacher_tests = Tests(TableNames::teacher);
-												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), "true");
+												$teacher_tests = new Tests("teacher");
+												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), true);
 												
 								     echo  '</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
 										</table>
 										<table class="alt" style="display: inline-block; max-width: 50%;">
 											<thead>
