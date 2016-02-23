@@ -11,9 +11,9 @@ if (isset($_SESSION['credentials'])) {
 		
 		<div class="container">
 			<div id="sidebar" style="display: inline-block; max-width: 50%; float: left; ">
-				<a class="button big">Essay</a><br />
-				<a class="button big" >True/False</a> <br / >
-				<a class="button big" >Multiple Choice</a><br />
+				<a class="button big" draggable="true">Essay</a><br />
+				<a class="button big" draggable="true" >True/False</a> <br / >
+				<a class="button big" draggable="true" >Multiple Choice</a><br />
 			</div>
 			<form style="display: inline-block; max-width: 50%;">
 				First name: <input type="text" name="fname"><br>
