@@ -27,23 +27,16 @@ if (isset($_SESSION['credentials'])) {
 								<table class="alt" style="display: inline-block; max-width: 50%; float: left; ">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
+													<th>Test</th>
+													<th>Class</th>
+													<th>Due Date</th>
 												</tr>
 											</thead>
 											<tbody>';
-												$teacher_tests = new Tests("teacher", $_SESSION['credentials']->get_user_id());
-												$teacher_tests->print_tests(true);
-												echo '<tr><td>' . $_SESSION['credentials']->get_user_id() . '</td></tr>';
+												$teacher_tests = new Tests("teacher");
+												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), true);
 												
 								     echo  '</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
 										</table>
 										<table class="alt" style="display: inline-block; max-width: 50%;">
 											<thead>
