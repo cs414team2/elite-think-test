@@ -17,11 +17,11 @@
 			// Decide whether to load active or inactive tables;
 			if($is_active)
 				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name 
-			                               FROM teacher_tests
+			                               FROM teacher_active_tests
 			                               WHERE teacher_id = ?") or die($db->error);
 			else
 				$statement = $db->prepare("SELECT test_id, test_number, date_active, class_name
-			                               FROM teacher_tests
+			                               FROM teacher_inactive_tests
 			                               WHERE teacher_id = ?") or die($db->error);
 			
 			// Set bind parameters and execute query
@@ -40,7 +40,11 @@
 				}
 			}
 			else{
-				echo "<tr> <td> Teacher ID is: " . $user_id . "</td> </tr>";
+				echo "<tr>";
+				echo "<td> N/A </td>";
+				echo "<td> N/A </td>";
+				echo "<td> N/A </td>";
+				echo "</tr>";
 			}
 		}
 	}
