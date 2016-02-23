@@ -42,6 +42,7 @@ if (isset($_SESSION['credentials'])) {
 				<button id="create-user">Create new user</button>
 					
 			</div>
+
 			
 			<div id="my-form-builder" class="content">
 				<div id="users-contain" class="ui-widget">
