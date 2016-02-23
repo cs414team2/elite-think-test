@@ -44,7 +44,20 @@ if (isset($_SESSION['credentials'])) {
 			
 			
 			<div id="my-form-builder" class="content">
-				
+				<form class="questions">
+					<h4>Multiple Choice</h4>
+					<label for="mcqEntry">Question Entry</label><br />
+					<input id="mcqEntry" type="text" name="mcqEntry" class="questionStyle"><br />
+					<label for="mcAnswer1">1)</label>
+					<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle"><br />
+					<label for="mcAnswer2">2)</label>
+					<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle"><br />
+					<label for="mcAnswer3">3)</label>
+					<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle"><br />
+					<label for="mcAnswer4">4)</label>
+					<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle"><br />
+					<button type="button">Submit Question</button>
+				</form>
 			</div>
 			
 			
