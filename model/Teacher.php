@@ -9,13 +9,14 @@
 			$statement = $db->prepare("SELECT class_id, class_number, class_name FROM class WHERE teacher_id = ?") or die($db->error);
 			$statement->bind_param("i", $teacher_id);
 			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($class_id, $class_number, $class_name);
 			
 			if($statement->num_rows > 0){
-				while($class = $statement->fetch_row()){
-					echo "<tr " . "id='" . $class[0] . "'>";
-					foreach($class as $class_col) {
-					  echo "<td>" . $class_col . "</td>";
-					}
+				while($statement->fetch()){
+					echo "<tr " . "id='" . $class_id . "'>";
+					echo "<td>" . $class_number . "</td>";
+					echo "<td>" . $class_name . "</td>";
 					echo "</tr>";
 				}
 			}

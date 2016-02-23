@@ -1,5 +1,6 @@
 <?php
 include('model/Tests.php');
+require_once('model/Teacher.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
@@ -46,33 +47,10 @@ if (isset($_SESSION['credentials'])) {
 													<th>Price</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
+											<tbody>';
+												$teacher_tests = new Tests("teacher");
+												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), false);
+									   echo'</tbody>
 											<tfoot>
 												<tr>
 													<td colspan="2"></td>
@@ -94,44 +72,14 @@ if (isset($_SESSION['credentials'])) {
 								<table class="alt">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
+													<th>Class #</th>
+													<th>Class Name</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
+											<tbody>';
+												$teacher = new Teacher();
+												$teacher->get_classes($_SESSION['credentials']->get_user_id());
+									   echo'</tbody>
 										</table>
 										
 					
