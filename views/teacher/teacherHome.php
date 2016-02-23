@@ -51,12 +51,6 @@ if (isset($_SESSION['credentials'])) {
 												$teacher_tests = new Tests("teacher");
 												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), false);
 									   echo'</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
 										</table>
 										
 					
