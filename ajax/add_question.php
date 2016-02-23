@@ -14,5 +14,9 @@
 		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?)") or die($eliteConnection->error);
 		$addStatement->bind_param("ssii", $question_text, $question_type, $test_id, $question_weight);
 		$addStatement->execute();
+		
+		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?)") or die($eliteConnection->error);
+		$addStatement->bind_param("ssisi", $question_id, $answer_content, $is_correct);
+		$addStatement->execute();
 	}
 ?>

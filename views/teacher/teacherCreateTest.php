@@ -29,7 +29,7 @@ if (isset($_SESSION['credentials'])) {
 					<select name="Teacher" id="Teacher">
 												<option selected="selected" value="null">- Select a Teacher -</option>';
 												$teacher = new Teacher();
-												$teacher->get_classes_dropdown();
+												$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
 									  echo '</select>
 
 				
