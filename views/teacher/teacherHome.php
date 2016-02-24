@@ -57,8 +57,7 @@ if (isset($_SESSION['credentials'])) {
 									$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), false);
 						   echo'</tbody>
 							</table>
-										
-					
+							<hr>			
 						</div>
 						</section>
 					</div>
@@ -80,14 +79,14 @@ if (isset($_SESSION['credentials'])) {
 											$teacher = new Teacher();
 											$teacher->get_classes($_SESSION['credentials']->get_user_id());
 								   echo'</tbody>
-								</table>
-											
+							</table>
+							<hr>				
 						
 						</div>
 						</section>
 					</div>
 					
-					<div id="slidingDiv_3" class="toggleDiv" style="display:none text-align: center;">
+					<div id="slidingDiv_3" class="toggleDiv" style="display:none">
 						<br />
 						<h4 style="text-align: center;">Select who this test is for...</h4>
 						<select name="Class" id="Class">
@@ -95,8 +94,9 @@ if (isset($_SESSION['credentials'])) {
 							$teacher = new Teacher();
 							$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
 						echo '</select>
-						
+						<br />
 						<a class="button big" 	href="./?action=teacher_create_test">Create this test</a>\
+						<hr>
 					</div>
 					
 					
