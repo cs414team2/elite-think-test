@@ -23,14 +23,6 @@ if (isset($_SESSION['credentials'])) {
 				<a href="https://jqueryui.com/dialog/#default" target="_blank">JQuery Dialog Boxes</a>
 				<br />
 				
-				<p>Class:</p>
-					<select name="Class" id="Class">
-												<option selected="selected" value="null">- Select a Class -</option>';
-												$teacher = new Teacher();
-												$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
-									  echo '</select>
-
-				
 				<p>Test Name:</p>
 					<input type="value" name="testName">
 				
