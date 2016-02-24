@@ -28,10 +28,9 @@ if (isset($_SESSION['credentials'])) {
 												<th>Teacher Id</th>
 											</tr>
 										</thead>
-										<tbody>';
-											$class_table = new Table();
-											$class_table->print_table("class");
-									echo '</tbody>
+										<tbody id="tbl_classes">
+											<tr><td colspan="4" style="text-align: center;">Classes Loading...</td></tr>
+										</tbody>
 									</table>
 								</div>
 					</section>
