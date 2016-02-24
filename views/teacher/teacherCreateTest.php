@@ -27,14 +27,8 @@ if (isset($_SESSION['credentials'])) {
 					<input type="value" name="testName">
 				
 				<p>Time Limit on test: </p>
-					<input type="number" name="timeLimit">
-					
-				
-					
+					<input type="number" name="timeLimit">	
 			</div>
-
-			
-			
 			<div id="my-form-builder" class="content">
 				<form class="questions">
 					<h4>Multiple Choice</h4>
