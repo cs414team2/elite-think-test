@@ -96,7 +96,7 @@ if (isset($_SESSION['credentials'])) {
 							$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
 						echo '</select>
 						
-						<a class="button big" 	href="./?action=teacher_create_test">Create this test</a>\
+						<button id="btn_create_test" class="button big">Create this test</button>
 					</div>
 					
 					

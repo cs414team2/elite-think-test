@@ -19,7 +19,7 @@
 						echo "<tr " . "id='" . $record[$table . "_id"] . "' class='". $table . "_record, " . $record[self::IS_ACTIVE]."'>";
 						foreach($record as $col_name => $col_data) {
 						  if($col_name != self::IS_ACTIVE)
-							echo "<td>" . $col_data . "</td>";
+							echo "<td class='clickable_row'>" . $col_data . "</td>";
 						}
 						echo "</tr>";
 					}
