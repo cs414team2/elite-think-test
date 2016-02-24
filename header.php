@@ -14,7 +14,7 @@
 						
 				?>
 				
-				<img src="images/eliteicon.png" width="100" height="110" style="margin-top: 40px" alt="elite logo"/>
+				<img src="images/eliteicon.png" width="100" height="110" style="margin-top: 42%" alt="elite logo"/>
 				
 				<nav id="nav">
 					<ul>

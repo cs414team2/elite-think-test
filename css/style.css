@@ -712,6 +712,10 @@
 		overflow:auto;  
 		height: 300px;
 	}
+	
+	.clickable_row {
+		cursor: pointer;
+	}
 
 	table {
 		margin: 0 0 2em 0;

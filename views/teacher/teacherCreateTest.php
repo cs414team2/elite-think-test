@@ -23,8 +23,6 @@ if (isset($_SESSION['credentials'])) {
 				<a href="https://jqueryui.com/dialog/#default" target="_blank">JQuery Dialog Boxes</a>
 				<br />
 				
-				<p>Test Name:</p>
-					<input type="value" name="testName">
 				
 				<p>Time Limit on test: </p>
 					<input type="number" name="timeLimit">	
