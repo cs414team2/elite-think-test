@@ -41,10 +41,10 @@ if (isset($_SESSION['credentials'])) {
 								<tbody id="tbl_active_tests">
 									<tr>
 										<td>
-											Loading Tests...';
-												//$teacher->print_tests($_SESSION['credentials']->get_user_id(), true);
-											
-						 echo  '</tbody>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							
 							<!-- View Tests > Right - Existing Tests -->
@@ -57,9 +57,13 @@ if (isset($_SESSION['credentials'])) {
 										<th>Price</th>
 									</tr>
 								</thead>
-								<tbody id="tbl_inactive_tests">';
-									//$teacher->print_tests($_SESSION['credentials']->get_user_id(), false);
-						   echo'</tbody>
+								<tbody id="tbl_inactive_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							<hr>			
 						</div>
@@ -79,10 +83,13 @@ if (isset($_SESSION['credentials'])) {
 												<th>Class Name</th>
 											</tr>
 										</thead>
-										<tbody id="tbl_classes">';
-											
-											//$teacher->print_classes($_SESSION['credentials']->get_user_id());
-								   echo'</tbody>
+										<tbody id="tbl_classes">
+											<tr>
+												<td>
+													Loading Classes...
+												</td>
+											</tr>
+										</tbody>
 							</table>
 							<hr>				
 						
@@ -94,10 +101,8 @@ if (isset($_SESSION['credentials'])) {
 						<br />
 						<h4 style="text-align: center;">Select who this test is for...</h4>
 						<select name="Class" id="ddl_classes">
-							<option selected="selected" value="null">- Select a Class -</option>';
-							
-							//$teacher->print_classes_dropdown($_SESSION['credentials']->get_user_id());
-						echo '</select>
+							<option selected="selected" value="null">- Select a Class -</option>
+						</select>
 						<br />
 						<section style="text-align: center;">
 							<button id="btn_create_test" class="button big">Create this test</button>

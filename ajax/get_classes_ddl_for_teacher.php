@@ -3,6 +3,6 @@
 	require_once("../model/Teacher.php");
 	if(isset($_REQUEST['user_id'])) {
 		$teacher = new Teacher();
-		$teacher->get_classes_dropdown($_REQUEST['user_id']);
+		$teacher->print_classes_dropdown($_REQUEST['user_id']);
 	}
 ?>
