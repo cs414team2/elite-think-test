@@ -28,14 +28,13 @@ if (isset($_SESSION['credentials'])) {
 											<th>Email</th>
 										</tr>
 									</thead>
-									<tbody >
-										<!-- Load all students -->
-										';
-
-									$student_table = new Table();
-									$student_table->print_table("student");
-
-		echo '						</tbody>
+									<tbody id="tbl_students">
+										<tr>
+											<td colspan="5" style="text-align: center;">
+												Students Loading...
+											</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 						</section>

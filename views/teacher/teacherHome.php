@@ -1,5 +1,4 @@
 <?php
-include('model/Tests.php');
 require_once('model/Teacher.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
@@ -37,8 +36,8 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</thead>
 								<tbody>';
-												$teacher_tests = new Tests("teacher");
-												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), true);
+												$teacher = new Teacher();
+												$teacher->print_tests($_SESSION['credentials']->get_user_id(), true);
 												
 						 echo  '</tbody>
 							</table>
