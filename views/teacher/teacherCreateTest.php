@@ -45,22 +45,22 @@ if (isset($_SESSION['credentials'])) {
 		    
 			<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 			<section id="MultipleChoice">
-				<div id="my-form-builder"  align="center">
+				<div id="my-form-builder"  align="left">
 					<h4>Multiple Choice</h4>
-					<input id="mcqEntry" type="text" placeholder="Enter a Multiple Choice Question" name="mcqEntry" class="questionStyle">
-					
+					<input id="mcqEntry" type="text" placeholder="Enter a Multiple Choice Question" name="mcqEntry" class="questionStyle"><br/>
+					<br/>
 					<label for="mcAnswer1"> Choice 1</label>
-					<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle">
+					<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle"><br/>
 					
 					<label for="mcAnswer2"> Choice 2</label>
-					<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle">
+					<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle"><br/>
 					
 					<label for="mcAnswer3"> Choice 3</label>
-					<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle">
+					<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle"><br/>
 					
 					
 					<label for="mcAnswer4"> Choice 4</label>
-					<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle">
+					<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle"><br/>
 					
 					
 					<button type="button">Submit Question</button>
@@ -71,7 +71,7 @@ if (isset($_SESSION['credentials'])) {
 			<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 
 			<section id="TorF">
 				
-				<div id="my-form-builder"  align="center">
+				<div id="my-form-builder"  align="left">
 					<h4>T/F Question</h4>
 					<form class="4u 12u(2)">
 						<input id="tfqEntry" type="text" placeholder="Enter a T/F Question" name="mfqEntry" class="questionStyle"><br />
@@ -100,7 +100,7 @@ if (isset($_SESSION['credentials'])) {
 			
 			<div id="slidingDiv_3" class="toggleDiv" style="display:none"> 
 			<section id="essayQuestion">
-				<div id="my-form-builder" align="center">
+				<div id="my-form-builder" align="left">
 					<h4>Essay Question</h4>
 					<input id="eqEntry" type="text" placeholder="Enter a Essay Question" name="mcqEntry" class="questionStyle"><br />
 
