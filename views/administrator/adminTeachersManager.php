@@ -43,37 +43,32 @@ if (isset($_SESSION['credentials'])) {
 							<div id="slidingDiv_2" style="display:none"> 	
 								<form>
 								  <br />
-								  <h4>First name: </h4>
-								  <input type="text" id="first_name" "name="first_name" class="input_field" maxlength="45">
+								  <b>First name: </b>
+								  <input type="text" id="first_name" "name="first_name" class="input_field" maxlength="45" placeholder="Joe">
 								  <p id="err_first_name" style="display:none; color: red;">
 									First name cannot be blank.
 								  </p>
 								  
-								  <br />
-								  <h4>Last name: </h4>
-								  <input type="text" id="last_name" name="last_name" class="input_field" maxlength="45">
+								  <b>Last name: </b>
+								  <input type="text" id="last_name" name="last_name" class="input_field" maxlength="45" placeholder="Smith">
 								  <p id="err_last_name" style="display:none; color: red;">
 									Last name cannot be blank.
 								  </p>
 								  
-								  <br />
-								  <h4>Password:</h4>
-								  <input type="text" id="password" name="password" class="input_field" maxlength="45">
+								  <b>Password:</b>
+								  <input type="text" id="password" name="password" class="input_field" maxlength="45" placeholder="Password">
 								  <p id="err_password" style="display:none; color: red;">
 									Password cannot be blank.
 								  </p>
 								  
-								  <br />
-								  <h4>Email:</h4>
-								  <input type="text" id="email" name="email" class="input_field" maxlength="45">
+								  <b>Email:</b>
+								  <input type="text" id="email" name="email" class="input_field" maxlength="45" placeholder="joe.smith@gmail.com">
 								  <p id="err_email" style="display:none; color: red;">
 									Email cannot be blank.
 								  </p>
-								  
-								  <br />
 								
 								</form>
-								<button id="btn_add" class="button special big">Add Teacher</button>
+								<button id="btn_add" class="button special big">Submit</button>
 							</div>
 					</section>
 							
