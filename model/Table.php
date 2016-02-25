@@ -21,7 +21,7 @@
 						  if($col_name != self::IS_ACTIVE)
 							echo "<td class='clickable_row'>" . $col_data . "</td>";
 						}
-						echo "</tr>";
+						echo "</tr>\r\n";
 					}
 				}
 			}
