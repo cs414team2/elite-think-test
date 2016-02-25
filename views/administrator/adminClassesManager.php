@@ -1,5 +1,4 @@
 <?php
-require_once('model/Table.php');
 require_once('model/Admin.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
@@ -29,7 +28,11 @@ if (isset($_SESSION['credentials'])) {
 											</tr>
 										</thead>
 										<tbody id="tbl_classes">
-											<tr><td colspan="4" style="text-align: center;">Classes Loading...</td></tr>
+											<tr>
+												<td colspan="4" style="text-align: center;">
+													Classes Loading...
+												</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>

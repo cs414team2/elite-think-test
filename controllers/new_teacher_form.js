@@ -1,4 +1,12 @@
+//***************Functions********************
+function loadTeachers() {
+	$("#tbl_teachers").load("ajax/get_table.php?table=teacher");
+}
+
+// ******************Events*******************
 $(document).ready(function(){
+	loadTeachers();
+	alert("started");
 	// Read the enter key press if user is in the add form and press the add button.
 	$(".input_field").keypress(function(e){
 	  if(e.keyCode==13)
@@ -49,13 +57,15 @@ $(document).ready(function(){
 						email: email
 					  }
 			});
+			
+			loadTeachers();
 		
 			$("#password").val('');
 			$("#first_name").val('');
 			$("#last_name").val('');
 			$("#email").val('');
 			
-			location.href = "./?action=admin_teacher_manager";
+			window.scroll(0,0);
 		}
 	})
 	
