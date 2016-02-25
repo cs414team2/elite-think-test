@@ -8,6 +8,7 @@
 	Purple:            C723CC - Testing only
 	Heading Dark Grey: 646464
 	Table Hover:       rgba(99, 201, 160, 0.25);
+	Gradient:          
 */
 
 /* Basic */
@@ -74,7 +75,7 @@
 		line-height: 1em;
 		margin: 0 0 1em 0;
 		letter-spacing: -0.01em;
-		text-shadow: 0em 0em 0.4em white;
+		text-shadow: 0em 0em 0.4em white; /* glow/shadow */
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -712,6 +713,10 @@
 		overflow:auto;  
 		height: 300px;
 	}
+	
+	.clickable_row {
+		cursor: pointer;
+	}
 
 	table {
 		margin: 0 0 2em 0;
@@ -1032,6 +1037,7 @@
 
 		.wrapper.style1 {
 			background: #84C2CC;
+			 /* background: linear-gradient(#F00, #000); */
 		}
 
 			.wrapper.style1 .box {
@@ -1416,10 +1422,14 @@
 	}
 	#my-form-builder {
 		border:1px solid #000;
-		height: 500px;
+		min-height: 500px;
 		margin:5px 0 5px 0;
 		padding-left: 180px;
 		padding-right: 40px;
 		padding-bottom: 40px;
 		background:#FFF;
+	}
+	.questionStyle {
+			padding: none;
+			margin: 0px;
 	}
