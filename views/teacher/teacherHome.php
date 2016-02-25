@@ -95,8 +95,10 @@ if (isset($_SESSION['credentials'])) {
 							$teacher = new Teacher();
 							$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
 						echo '</select>
-				
-						<button id="btn_create_test" class="button big">Create this test</button>
+						<br />
+						<section style="text-align: center;">
+							<button id="btn_create_test" class="button big">Create this test</button>
+						</section>
 					</div>
 					
 					

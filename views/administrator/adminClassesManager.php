@@ -42,14 +42,14 @@ if (isset($_SESSION['credentials'])) {
 						<div id="slidingDiv_2" style="display:none">
 							<form>
 								<br />
-								<h4>Course name:</h4>
-								<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45">
+								<b>Course name:</b>
+								<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45" placeholder="CS 364">
 								<p id="add_course_name_err" style="display:none; color: red;">
 									Course name cannot be blank.
 								</p>
 								<br />
-								<h4>Course Number:</h4>
-								<input type="text" id="courseNumber" name="courseNumber" class="inputField" maxlength="9">
+								<b>Course Number:</b>
+								<input type="text" id="courseNumber" name="courseNumber" class="inputField" maxlength="9" placeholder=".NET Programming">
 								<p id="add_course_number_err" style="display:none; color: red;">
 									Course number cannot be blank.
 								</p>
