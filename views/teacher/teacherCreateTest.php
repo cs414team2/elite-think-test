@@ -5,7 +5,6 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
 		echo '
-		
 		<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2> Test Creation</h2>

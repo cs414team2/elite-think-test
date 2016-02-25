@@ -6,6 +6,7 @@ if (isset($_SESSION['credentials'])) {
 		// PUT HTML HERE!
 		
 		echo '
+		<script src="controllers/create_test.js"></script>
 		<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Home </h2>
@@ -89,7 +90,7 @@ if (isset($_SESSION['credentials'])) {
 					<div id="slidingDiv_3" class="toggleDiv" style="display:none">
 						<br />
 						<h4 style="text-align: center;">Select who this test is for...</h4>
-						<select name="Class" id="Class">
+						<select name="Class" id="ddl_class">
 							<option selected="selected" value="null">- Select a Class -</option>';
 							$teacher = new Teacher();
 							$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
