@@ -1,4 +1,12 @@
+//***************Functions********************
+function loadStudents() {
+	$("#tbl_students").load("ajax/get_table.php?table=student");
+}
+
+// ******************Events*******************
 $(document).ready(function(){
+	loadStudents();
+	
 	// Read the enter key press if user is in the add form and press the add button.
 	$(".inputField").keypress(function(e){
 	  if(e.keyCode==13)
@@ -44,8 +52,8 @@ $(document).ready(function(){
 			validated = false;
 		}
 	
-		if (validated)
-		{	$.ajax({
+		if (validated){
+		$.ajax({
 				url: "ajax/add_student.php",
 				type: "POST",
 				data: { password: password,
@@ -54,13 +62,15 @@ $(document).ready(function(){
 						email: email
 					  }
 			});
+			
+			loadStudents();
 		
 			$("#password").val('');
 			$("#firstname").val('');
 			$("#lastname").val('');
 			$("#emailAddress").val('');
 			
-			location.href = "./?action=admin_student_manager";
+			window.scroll(0,0);
 		}
 	})
 	

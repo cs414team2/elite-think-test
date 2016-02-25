@@ -6,7 +6,7 @@ function loadTeachers() {
 // ******************Events*******************
 $(document).ready(function(){
 	loadTeachers();
-	alert("started");
+	
 	// Read the enter key press if user is in the add form and press the add button.
 	$(".input_field").keypress(function(e){
 	  if(e.keyCode==13)
