@@ -48,31 +48,30 @@ if (isset($_SESSION['credentials'])) {
 								<div id="slidingDiv_2" style="display:none"> 					
 									<form>
 									<br/>
-									<b>First name:</b>
-									  <input type="text" id="firstname" name="firstname" class="inputField" maxlength="45">
+									  <b>First name:</b>
+									  <input type="text" id="firstname" name="firstname" class="inputField" maxlength="45" placeholder="Joe">
 									  <p id="add_first_err" style="display:none; color: red;">
 										First name cannot be blank.
 									  </p>
 									  <b>Last name:</b>
-									  <input type="text" id="lastname" name="lastname" class="inputField" maxlength="45">
+									  <input type="text" id="lastname" name="lastname" class="inputField" maxlength="45" placeholder="Smith">
 									  <p id="add_last_err" style="display:none; color: red;">
 										Last name cannot be blank.
 											</p>
 									  <b>Password:</b>
-									  <input type="password" id="password" name="password" class="inputField" maxlength="45">
+									  <input type="password" id="password" name="password" class="inputField" maxlength="45" placeholder="Password">
 									  <p id="add_password_err" style="display:none; color: red;">
 										Password cannot be blank.
 											</p>
 									  <b>Email:</b>
 									  <input id="emailAddress" name="emailAddress" class="inputField"
-										type="text" maxlength="45">
+										type="text" maxlength="45" placeholder="joe.smith@gmail.com">
 									  <p id="add_email_err" style="display:none; color: red;">
 										Email cannot be blank.
 									  </p>
 									</form>
 									 
-									<br />
-									<button id="btn_add" name="add_student" class="button special big">Add student</button>
+									<button id="btn_add" name="add_student" class="button special big">Submit</button>
 									
 								</div>
 						</section>
