@@ -9,4 +9,5 @@ function loadTestsAndClasses() {
 //******************Events**********************
 $(document).ready(function() {
 	loadTestsAndClasses();
+	alert(user_id);
 })
