@@ -1,12 +1,14 @@
 <?php
-include('model/Tests.php');
 require_once('model/Teacher.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
-		// PUT HTML HERE!
-		
+		$teacher = new Teacher();
 		echo '
+			<script>
+			var user_id ='. $_SESSION['credentials']->get_user_id() .
+		'</script>
 		<script src="controllers/create_test.js"></script>
+		<script src="controllers/teacher_console.js"></script>
 		<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Home </h2>
@@ -37,8 +39,7 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</thead>
 								<tbody>';
-												$teacher_tests = new Tests("teacher");
-												$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), true);
+												$teacher->print_tests($_SESSION['credentials']->get_user_id(), true);
 												
 						 echo  '</tbody>
 							</table>
@@ -54,8 +55,7 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</thead>
 								<tbody>';
-									$teacher_tests = new Tests("teacher");
-									$teacher_tests->print_tests($_SESSION['credentials']->get_user_id(), false);
+									$teacher->print_tests($_SESSION['credentials']->get_user_id(), false);
 						   echo'</tbody>
 							</table>
 							<hr>			
@@ -77,8 +77,8 @@ if (isset($_SESSION['credentials'])) {
 											</tr>
 										</thead>
 										<tbody>';
-											$teacher = new Teacher();
-											$teacher->get_classes($_SESSION['credentials']->get_user_id());
+											
+											$teacher->print_classes($_SESSION['credentials']->get_user_id());
 								   echo'</tbody>
 							</table>
 							<hr>				
@@ -92,8 +92,8 @@ if (isset($_SESSION['credentials'])) {
 						<h4 style="text-align: center;">Select who this test is for...</h4>
 						<select name="Class" id="ddl_class">
 							<option selected="selected" value="null">- Select a Class -</option>';
-							$teacher = new Teacher();
-							$teacher->get_classes_dropdown($_SESSION['credentials']->get_user_id());
+							
+							$teacher->print_classes_dropdown($_SESSION['credentials']->get_user_id());
 						echo '</select>
 						<br />
 						<section style="text-align: center;">

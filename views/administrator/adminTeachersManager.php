@@ -1,5 +1,4 @@
 <?php
-require_once('model/Table.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
@@ -27,10 +26,13 @@ if (isset($_SESSION['credentials'])) {
 												<th>Last</th>
 											</tr>
 										</thead>
-										<tbody>';
-											$teacher_table = new Table();
-											$teacher_table->print_table("teacher");
-								  echo '</tbody>
+										<tbody id="tbl_teachers">
+											<tr>
+												<td colspan="5" style="text-align: center;">
+													Teachers Loading...
+												</td>
+											</tr>
+										</tbody>
 									</table>
 								</div>
 					</section>
