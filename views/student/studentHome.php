@@ -22,7 +22,8 @@ if (isset($_SESSION['credentials'])) {
 					<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 					<section id="viewClassesStudent">
 					<div class="container1">
-								<table class="alt">
+
+										<table class="alt">
 											<thead>
 												<tr>
 													<th>Name</th>
@@ -63,8 +64,7 @@ if (isset($_SESSION['credentials'])) {
 													<td>100.00</td>
 												</tr>
 											</tfoot>
-										</table>
-										
+										</table>										
 					
 					</div>
 					
@@ -74,7 +74,7 @@ if (isset($_SESSION['credentials'])) {
 					<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 	
 					
 					<section id="viewGradeStudent">
-					<div class="container">
+					<div class="container1">
 
 										<table class="alt">
 											<thead>
