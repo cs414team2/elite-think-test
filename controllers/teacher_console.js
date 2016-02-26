@@ -1,8 +1,7 @@
 //*****************Functions********************
 // open the test edit page for a specific test
 function openEditPage(test_id) {
-	//window.location = "./?action=teacher_edit_test&test_id=" + test_id;
-	window.location = "./?action=teacher_create_test";
+	window.location = "./?action=teacher_edit_test&test_id=" + test_id;
 }
 
 // Load all test and class lists
