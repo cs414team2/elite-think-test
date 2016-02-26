@@ -38,7 +38,7 @@ if (isset($_SESSION['credentials'])) {
 					<br />
 				</div>
 				
-				<div id="slidingDiv_0" class="toggleDiv" style="display:inline-block; min-width: 40%; float: left;"> 
+				<div id="slidingDiv_0" class="toggleDiv" style="display:inline-block; min-width: 30%; float: left;"> 
 					<section id="essayQuestion">
 						<div id="my-form-builder" align="left">
 							<h4>Use links to the left to add a question</h4>
@@ -47,11 +47,12 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 				</div>
 				
-				<div id="slidingDiv_1" class="toggleDiv" style="display:none; min-width: 40%; float: left;"> 
+				<div id="slidingDiv_1" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
 					<section id="MultipleChoice">
 						<div id="my-form-builder"  align="left">
 							<h4>Multiple Choice</h4>
-							<input id="mcqEntry" type="text" placeholder="Enter a Multiple Choice Question" name="mcqEntry" class="questionStyle"><br/>
+							<textarea id="mcqEntry" rows="2" placeholder="Enter a Multiple Choice Question"
+							name="mcqEntry" class="questionStyle"></textarea>
 							<br/>
 							<label for="mcAnswer1" class="questionLabel"> Choice 1</label>
 							<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle"><br/>
@@ -65,41 +66,42 @@ if (isset($_SESSION['credentials'])) {
 							
 							<label for="mcAnswer4" class="questionLabel"> Choice 4</label>
 							<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle"><br/>
-							
-							
+											
 							<button type="button">Submit Question</button>
-							<hr>
 						</div>
 					</section>
 				</div>
 				
-				<div id="slidingDiv_2" class="toggleDiv" style="display:none; min-width: 40%; float: left;"> 
+				<div id="slidingDiv_2" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
 					<section id="TorF">
 						
 						<div id="my-form-builder"  align="left" >
 							<h4>T/F Question</h4>
-							<form class="4u 12u(2)">
-								<input id="tfqEntry" type="text" placeholder="Enter a T/F Question" name="mfqEntry" class="questionStyle"><br />
+							<form>
+								<textarea id="tfqEntry" rows="2" placeholder="Enter a True/False Question" name="tfqEntry" class="questionStyle"></textarea>
+									<br />
 								
 								
-									<input type="radio" id="answerTrue" name="tfButton"  checked>
-									<label for="answerTrue" class="questionLabel">True</label>
-								
-								
-									<input type="radio" id="answerFalse" name="tfButton" >
-									<label for="answerFalse" class="questionLabel">False</label>
-									<br>
-									<button type="button">Submit Question</button>
-								
+								<input type="radio" id="answerTrue" name="tfButton"  checked>
+								<label for="answerTrue" class="questionLabel">True</label>
+							
+							
+								<input type="radio" id="answerFalse" name="tfButton" >
+								<label for="answerFalse" class="questionLabel">False</label>
+								<br>
+								<button type="button">Submit Question</button>
+							
 							</form>
 					</section>
 				</div>
 				
-				<div id="slidingDiv_3" class="toggleDiv" style="display:none; min-width: 40%; float: left;"> 
+				<div id="slidingDiv_3" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
 					<section id="essayQuestion">
 						<div id="my-form-builder" align="left">
 							<h4>Essay Question</h4>
-							<input id="eqEntry" type="text" placeholder="Enter a Essay Question" name="mcqEntry" class="questionStyle"><br />
+							<textarea id="eqEntry" rows="4" placeholder="Enter an Essay Question"
+							name="eqEntry" class="questionStyle"></textarea>
+							<br />
 
 							<button type="button">Submit Question</button>
 						</div>
@@ -108,8 +110,8 @@ if (isset($_SESSION['credentials'])) {
 				
 				<div style="float:right; inline-block; min-width: 60%;"> 
 					<section id="testView">
-						<div id="my-form-builder" align="left" style="padding-left: 200px;">
-							<h4>Test</h4>
+						<div id="my-form-builder" align="left">
+							<h4>Test Goes Here Yo!</h4>
 							<br />
 						</div>
 					</section>

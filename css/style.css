@@ -1414,7 +1414,7 @@
 .testContainer { position:relative; padding:0 0 0 55px; }		
 	#sidebar {
 		position:fixed;
-		padding-top:55px;
+		padding-top:80px;
 		top:0; bottom:0; left:0;
 		width:200px;
 		height: 500px;
@@ -1422,15 +1422,16 @@
 	}
 	#my-form-builder {
 		border:1px solid #000;
-		min-height: 500px;
-		margin:5px 0 5px 0;
-		padding-left: 180px;
+		border-radius: 20px;
+		min-height: 200px;
+		margin:48px 0 0 0px;
+		padding-left: 20px;
 		padding-right: 40px;
 		padding-bottom: 40px;
 		background:#FFF;
 	}
-	#slidingDiv_1, #slidingDiv_2, #slidingDiv_3 {
-	
+	#slidingDiv_0, #slidingDiv_1, #slidingDiv_2, #slidingDiv_3 {
+		margin-left: 145px;
 	}
 	
 	
