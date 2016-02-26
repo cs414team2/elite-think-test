@@ -4,10 +4,10 @@ const ESSAY_QUESTION_TYPE = 'ESSAY';
 
 //*******************Functions****************************
 function print_question(question_id) {
-	var question = '<p id="' + question_id + '">'
-		+ 'bob bob bob bob bob err ann!</p>';
+	/*var question = '<p id="' + question_id + '">'
+		+ 'bob bob bob bob bob err ann!</p>';                  Move this to the PHP side of the ajax call!
 	
-	$('#test_content').append(question);
+	$('#test_content').append(question);*/
 }
 
 function add_question(question_type) {
@@ -18,7 +18,7 @@ function add_question(question_type) {
 			test_id: test_id,
 			question_type: question_type
 		},
-		success: function (question_id) {
+		success: function (question) {
 			
 		}
 	});*/
