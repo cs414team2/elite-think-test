@@ -22,7 +22,8 @@ if (isset($_SESSION['credentials'])) {
 					<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 					<section id="viewClassesStudent">
 					<div class="container1">
-								<table class="alt">
+
+										<table class="alt">
 											<thead>
 												<tr>
 													<th>Course ID</th>
@@ -32,9 +33,7 @@ if (isset($_SESSION['credentials'])) {
 											<tbody>';
 												$student->print_classes($_SESSION['credentials']->get_user_id());
 									  echo '</tbody>
-										</table>
-										
-					
+										</table>								
 					</div>
 					
 					</section>
