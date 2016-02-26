@@ -15,7 +15,7 @@
 				while($record = $statement->fetch_row()){
 					echo "<option " . "value='" . $record[self::TEACHER_ID] . "'>";
 					echo $record[self::TEACHER_ID] . " &nbsp;&nbsp;" . $record[self::TEACHER_LNAME] . ", " . $record[self::TEACHER_FNAME];
-					echo "</option>";
+					echo "</option>\r\n";
 				}
 			}
 			else{
