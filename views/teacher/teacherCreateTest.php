@@ -22,27 +22,19 @@ if (isset($_SESSION['credentials'])) {
 			</header>
 		
 		<div class="testContainer">
-			<div id="sidebar">
-				<a href="http://www.jqueryscript.net/form/jQuery-Plugin-For-Online-Drag-Drop-Form-Builder.html" target="_blank">Form Builder Guide</a>
-				<br />
-				
-				<a href="https://www.easytestmaker.com/Test/165A50DC9CAF43C29332D4E05AB9EB2F#" target="_blank">Doubtful? GoTo</a>
-				<br />
-				
-				<a href="https://jqueryui.com/dialog/#default" target="_blank">JQuery Dialog Boxes</a>
-				<br />
+			<div id="sidebar" style="text-align:center">
 				
 				<section style="text-align:center">
-						<a class="show_hide" rel="#slidingDiv_1" >Multiple Choice</a>
-						<a class="show_hide" rel="#slidingDiv_2" >True or False</a>
-						<a class="show_hide" rel="#slidingDiv_3" >Essay</a><br />
+						<button class="show_hide button small fit" rel="#slidingDiv_1" >M/C</button>
+						<button class="show_hide button small fit" rel="#slidingDiv_2" >T/F</button>
+						<button class="show_hide button small fit" rel="#slidingDiv_3" >Essay</button><br />
 				</section>
 				
-				<p>Time Limit on test: </p>
-					<input type="number" name="timeLimit">	
+				<h4 style="color:white;">Time Limit on test: </h4>
+					<input type="number" name="timeLimit" style="text-align: center; align:center">	
 			</div>
 		    
-			<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
+			<div id="slidingDiv_1" class="toggleDiv" style="display:none; max-height:500px;" > 
 			<section id="MultipleChoice">
 				<div id="my-form-builder"  align="left">
 					<h4>Multiple Choice</h4>
@@ -63,6 +55,7 @@ if (isset($_SESSION['credentials'])) {
 					
 					
 					<button type="button">Submit Question</button>
+					<hr>
 				</div>
 			</section>
 			</div>
@@ -70,7 +63,7 @@ if (isset($_SESSION['credentials'])) {
 			<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 
 				<section id="TorF">
 					
-					<div id="my-form-builder"  align="left">
+					<div id="my-form-builder"  align="left" >
 						<h4>T/F Question</h4>
 						<form class="4u 12u(2)">
 							<input id="tfqEntry" type="text" placeholder="Enter a T/F Question" name="mfqEntry" class="questionStyle"><br />
