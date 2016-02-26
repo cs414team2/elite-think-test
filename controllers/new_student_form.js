@@ -1,6 +1,7 @@
 //***************Functions********************
 function loadStudents() {
 	$("#tbl_students").load("ajax/get_table.php?table=student");
+	load_student();
 }
 
 // ******************Events*******************
