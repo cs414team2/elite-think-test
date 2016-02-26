@@ -133,11 +133,32 @@ if (isset($_SESSION['credentials'])) {
 					<section id="testView">
 						<div id="my-form-builder" align="left">
 							<h4>Test Goes Here Yo!</h4>
-								<div id="test_content"></div>
+								
+								<div id="test_content">
+								
+									<div style="border:1px solid black; padding: 5px">									
+										<div><span>1)</span> &nbsp This is the M/C Question</div>
+										<div style="display: inline-block; max-width: 50%; float:left;"> This is a possible answer </div> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+										<div style="display: inline-block; max-width: 50%;">    This is a possible answer   </div>	<br/>
+										<div style="display: inline-block; max-width: 50%; float:left;">    This is a possible answer   </div>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+										<div style="display: inline-block; max-width: 50%;">    This is a possible answer  </div>											
+									</div>
+									<br/>	
+									<div style="border:1px solid black; padding: 5px">	
+										<div><span>2)</span> &nbsp This is the T/F Question</div>
+										<div> True </div>
+									</div>
+									<br/>
+                                 	<div style="border:1px solid black; padding: 5px">
+										<div><span>3)</span> &nbsp This is the Essay Question</div>
+									</div>			
+								
+								</div>
 							<br />
+							
 						</div>
 					</section>
-				</div>
+			</div>
 			</div>
 		</section>
 		
