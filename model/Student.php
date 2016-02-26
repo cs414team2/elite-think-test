@@ -1,5 +1,5 @@
 <?php
-	class Tests {
+	class Student {
 		public function prepare_connection(){
 			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 		}
@@ -50,20 +50,23 @@
 		}
 		public function print_tests($student_id) {
 			$db = $this->prepare_connection();
-			$statement = $db->prepare("SELECT class_id, class_number, class_name 
+			$statement = $db->prepare("SELECT test_id, test_number, class_number, class_name, date_due, time_limit
 			                           FROM student_tests 
 									   WHERE student_id = ? AND is_active='Y'") or die($db->error);
 			$statement->bind_param("i", $student_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($class_id, $class_number, $class_name);
+			$statement->bind_result($test_id, $test_number, $class_number, $class_name, $date_due, $time_limit);
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $class_id . "'>";
+					echo "<tr " . "id='" . $test_id . "'>";
+					echo "<td>Test " . $test_number . "</td>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
-					echo "</tr>\r\n";
+					echo "<td>" . $date_due . "</td>";
+					echo "<td>" . $time_limit . "</td>";
+					echo "</tr>";
 				}
 			}
 			else{

@@ -1,9 +1,9 @@
 <?php
-
+require_once('model/Student.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_student()) {
 		// PUT HTML HERE!
-		
+		$student = new Student();
 		echo '
 		<section id="main" class="wrapper style1">
 			<header class="major">
@@ -25,44 +25,13 @@ if (isset($_SESSION['credentials'])) {
 								<table class="alt">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
+													<th>Course ID</th>
+													<th>Course Name</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
+											<tbody>';
+												$student->print_classes($_SESSION['credentials']->get_user_id());
+									  echo '</tbody>
 										</table>
 										
 					
@@ -74,49 +43,21 @@ if (isset($_SESSION['credentials'])) {
 					<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 	
 					
 					<section id="viewGradeStudent">
-					<div class="container">
+					<div class="container1">
 
 										<table class="alt">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
+													<th>Test #</th>
+													<th>Class #</th>
+													<th>Class Name</th>
+													<th>Date Due</th>
+													<th>Time Limit</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Nothing</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Something</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
+											<tbody>';
+												$student->print_tests($_SESSION['credentials']->get_user_id());
+									echo   '</tbody>
 										</table>										
 					
 					</div>
