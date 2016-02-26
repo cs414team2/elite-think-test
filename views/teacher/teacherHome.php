@@ -7,7 +7,6 @@ if (isset($_SESSION['credentials'])) {
 			<script>
 			var user_id = '. $_SESSION['credentials']->get_user_id() .
 		'</script>
-		<script src="controllers/create_test.js"></script>
 		<script src="controllers/teacher_console.js"></script>
 		<section id="main" class="wrapper style1">
 			<header class="major">
