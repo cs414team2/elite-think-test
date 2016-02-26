@@ -33,11 +33,10 @@ if (isset($_SESSION['credentials'])) {
 				<br />
 				
 				<section style="text-align:center">
-						<a class="show_hide" id="sidebarButton" rel="#slidingDiv_1" >Multiple Choice</a>
-						<a class="show_hide" id="sidebarButton" rel="#slidingDiv_2" >True or False</a>
-						<a class="show_hide" id="sidebarButton" rel="#slidingDiv_3" >Essay</a><br />
+						<a class="show_hide" rel="#slidingDiv_1" >Multiple Choice</a>
+						<a class="show_hide" rel="#slidingDiv_2" >True or False</a>
+						<a class="show_hide" rel="#slidingDiv_3" >Essay</a><br />
 				</section>
-				
 				
 				<p>Time Limit on test: </p>
 					<input type="number" name="timeLimit">	
