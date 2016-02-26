@@ -19,7 +19,7 @@
 					echo "<tr " . "id='" . $class_id . "'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
-					echo "</tr>";
+					echo "</tr>\r\n";
 				}
 			}
 			else{
