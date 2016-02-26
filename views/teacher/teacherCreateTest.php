@@ -25,9 +25,9 @@ if (isset($_SESSION['credentials'])) {
 				<div id="sidebar" style="text-align:center">
 					
 					<section style="text-align:center">
-							<button class="show_hide button small fit" rel="#slidingDiv_1" >M/C</button>
-							<button class="show_hide button small fit" rel="#slidingDiv_2" >T/F</button>
-							<button class="show_hide button small fit" rel="#slidingDiv_3" >Essay</button><br />
+							<button class="show_hide button small fit" rel="#slidingQ_1" >M/C</button>
+							<button class="show_hide button small fit" rel="#slidingQ_2" >T/F</button>
+							<button class="show_hide button small fit" rel="#slidingQ_3" >Essay</button><br />
 					</section>
 					
 					<h4 style="color:white;">Time Limit on test: </h4>
@@ -38,7 +38,7 @@ if (isset($_SESSION['credentials'])) {
 					<br />
 				</div>
 				
-				<div id="slidingDiv_0" class="toggleDiv" style="display:inline-block; min-width: 30%; float: left;"> 
+				<div id="slidingQ_0" class="toggleDiv" style="display:inline-block; min-width: 30%; float: left;"> 
 					<section id="essayQuestion">
 						<div id="my-form-builder" align="left">
 							<h4>Use links to the left to add a question</h4>
@@ -47,7 +47,7 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 				</div>
 				
-				<div id="slidingDiv_1" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
+				<div id="slidingQ_1" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
 					<section id="MultipleChoice">
 						<div id="my-form-builder"  align="left">
 							<form>
@@ -80,7 +80,7 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 				</div>
 				
-				<div id="slidingDiv_2" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
+				<div id="slidingQ_2" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
 					<section id="TorF">
 						
 						<div id="my-form-builder"  align="left" >
@@ -106,7 +106,7 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 				</div>
 				
-				<div id="slidingDiv_3" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
+				<div id="slidingQ_3" class="toggleDiv" style="display:none; min-width: 30%; float: left;"> 
 					<section id="essayQuestion">
 						<div id="my-form-builder" align="left">
 							<form>

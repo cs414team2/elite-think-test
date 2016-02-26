@@ -1430,7 +1430,8 @@
 		padding-bottom: 40px;
 		background:#FFF;
 	}
-	#slidingDiv_0 .testContainer, #slidingDiv_1 .testContainer, #slidingDiv_2 .testContainer, #slidingDiv_3  .testContainer {
+	
+	#slidingQ_0, #slidingQ_1, #slidingQ_2, #slidingQ_3  {
 		margin-left: 145px;
 	}
 	
