@@ -33,9 +33,9 @@ if (isset($_SESSION['credentials'])) {
 				<br />
 				
 				<section style="text-align:center">
-						<a class="show_hide" rel="#slidingDiv_1" >Multiple Choice</a>
-						<a class="show_hide" rel="#slidingDiv_2" >True or False</a>
-						<a class="show_hide" rel="#slidingDiv_3" >Essay</a><br />
+						<a class="show_hide" id="sidebarButton" rel="#slidingDiv_1" >Multiple Choice</a>
+						<a class="show_hide" id="sidebarButton" rel="#slidingDiv_2" >True or False</a>
+						<a class="show_hide" id="sidebarButton" rel="#slidingDiv_3" >Essay</a><br />
 				</section>
 				
 				
@@ -49,17 +49,17 @@ if (isset($_SESSION['credentials'])) {
 					<h4>Multiple Choice</h4>
 					<input id="mcqEntry" type="text" placeholder="Enter a Multiple Choice Question" name="mcqEntry" class="questionStyle"><br/>
 					<br/>
-					<label for="mcAnswer1"> Choice 1</label>
+					<label for="mcAnswer1" class="questionLabel"> Choice 1</label>
 					<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle"><br/>
 					
-					<label for="mcAnswer2"> Choice 2</label>
+					<label for="mcAnswer2" class="questionLabel"> Choice 2</label>
 					<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle"><br/>
 					
-					<label for="mcAnswer3"> Choice 3</label>
+					<label for="mcAnswer3" class="questionLabel"> Choice 3</label>
 					<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle"><br/>
 					
 					
-					<label for="mcAnswer4"> Choice 4</label>
+					<label for="mcAnswer4" class="questionLabel"> Choice 4</label>
 					<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle"><br/>
 					
 					
@@ -69,32 +69,25 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 			
 			<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 
-			<section id="TorF">
-				
-				<div id="my-form-builder"  align="left">
-					<h4>T/F Question</h4>
-					<form class="4u 12u(2)">
-						<input id="tfqEntry" type="text" placeholder="Enter a T/F Question" name="mfqEntry" class="questionStyle"><br />
-						
-						
-							<input type="radio" id="answerTrue" name="tfButton"  checked>
-							<label for="answerTrue">True</label>
-						
-						
-							<input type="radio" id="answerFalse" name="tfButton" >
-							<label for="answerFalse">False</label>
-							<br>
-							<button type="button">Submit Question</button>
-						
-					</form>
-			</section>
-			</div>
-			
-
-			
-			
-			
-			
+				<section id="TorF">
+					
+					<div id="my-form-builder"  align="left">
+						<h4>T/F Question</h4>
+						<form class="4u 12u(2)">
+							<input id="tfqEntry" type="text" placeholder="Enter a T/F Question" name="mfqEntry" class="questionStyle"><br />
+							
+							
+								<input type="radio" id="answerTrue" name="tfButton"  checked>
+								<label for="answerTrue" class="questionLabel">True</label>
+							
+							
+								<input type="radio" id="answerFalse" name="tfButton" >
+								<label for="answerFalse" class="questionLabel">False</label>
+								<br>
+								<button type="button">Submit Question</button>
+							
+						</form>
+				</section>
 			</div>
 			
 			

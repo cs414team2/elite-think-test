@@ -229,9 +229,6 @@
 		display: block;
 		font-size: 1.0em;
 		font-weight: 900;
-		margin: 0 0 1em 0;
-		float: left;
-
 	}
 
 	input, select {
@@ -1439,8 +1436,15 @@
 		padding: 0 1em;
 		width: 100%;
 	}
+	label.questionLabel {
+		margin: 0 1em 0 0;
+		float: left;
+	}
 	.questionStyle {
 			padding: none;
 			margin: 0px;
 			
+	}
+	#sidebarButton{
+		color: red;
 	}
