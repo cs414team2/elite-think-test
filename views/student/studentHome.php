@@ -1,21 +1,129 @@
 <?php
+
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_student()) {
-		echo '<!-- Main -->
+		// PUT HTML HERE!
+		
+		echo '
 		<section id="main" class="wrapper style1">
 			<header class="major">
-				<h2>Student Home</h2>
-				<p>This page has some cool things.</p>
+				<h2>Student Home </h2>
+				<p>Manage any of the following</p>
 			</header>
 			<div class="container">
 					
 				<!-- Content -->
-					<section id="content">
-						<a href="#" class="image fit"><img src="../images/pic07.jpg" alt="" /></a>
-						<h3>Heading for the below feature</h3>
-						<p>Put the different tables here.</p>
+					<section style="text-align:center">
+						<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
+						<a class="show_hide" rel="#slidingDiv_2" >Take a Test</a><br />
 					</section>
-							
+					
+					
+					<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
+					<section id="viewClassesStudent">
+					<div class="container1">
+								<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Something</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Nothing</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Something</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Nothing</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Something</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+										
+					
+					</div>
+					
+					</section>
+					</div>
+					
+					<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 	
+					
+					<section id="viewGradeStudent">
+					<div class="container">
+
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Something</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Nothing</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Something</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Nothing</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Something</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>										
+					
+					</div>
+					
+					</section>
+					</div>					
+					
 			</div>
 		</section>';
 	}

@@ -27,7 +27,6 @@
 			<link rel="stylesheet" href="views/css/skel.css" />
 			<link rel="stylesheet" href="views/css/style.css" />
 			<link rel="stylesheet" href="views/css/style-xlarge.css" />
-			<link href="css/jquery.formbuilder.css" media="screen" rel="stylesheet" />
 		</noscript>
 
 		<?php require_once("model/Session.php"); ?>

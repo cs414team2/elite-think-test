@@ -229,9 +229,6 @@
 		display: block;
 		font-size: 1.0em;
 		font-weight: 900;
-		margin: 0 0 1em 0;
-		float: left;
-
 	}
 
 	input, select {
@@ -1398,7 +1395,7 @@
 
 	#footer {
 		color: #949494;
-		padding: 4em 0;
+		padding: 1em 0;
 		text-align: center;
 	}
 
@@ -1416,11 +1413,12 @@
 		
 .testContainer { position:relative; padding:0 0 0 55px; }		
 	#sidebar {
-		position:absolute;
+		position:fixed;
+		padding-top:55px;
 		top:0; bottom:0; left:0;
 		width:200px;
 		height: 500px;
-		background:#000;
+		background:#646464;
 	}
 	#my-form-builder {
 		border:1px solid #000;
@@ -1438,6 +1436,10 @@
 		outline: 0;
 		padding: 0 1em;
 		width: 100%;
+	}
+	label.questionLabel {
+		margin: 0 1em 0 0;
+		float: left;
 	}
 	.questionStyle {
 			padding: none;

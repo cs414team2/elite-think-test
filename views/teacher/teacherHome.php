@@ -5,7 +5,7 @@ if (isset($_SESSION['credentials'])) {
 		$teacher = new Teacher();
 		echo '
 			<script>
-			var user_id ='. $_SESSION['credentials']->get_user_id() .
+			var user_id = '. $_SESSION['credentials']->get_user_id() .
 		'</script>
 		<script src="controllers/create_test.js"></script>
 		<script src="controllers/teacher_console.js"></script>
@@ -38,10 +38,13 @@ if (isset($_SESSION['credentials'])) {
 										<th>Due Date</th>
 									</tr>
 								</thead>
-								<tbody>';
-												$teacher->print_tests($_SESSION['credentials']->get_user_id(), true);
-												
-						 echo  '</tbody>
+								<tbody id="tbl_active_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							
 							<!-- View Tests > Right - Existing Tests -->
@@ -54,9 +57,13 @@ if (isset($_SESSION['credentials'])) {
 										<th>Price</th>
 									</tr>
 								</thead>
-								<tbody>';
-									$teacher->print_tests($_SESSION['credentials']->get_user_id(), false);
-						   echo'</tbody>
+								<tbody id="tbl_inactive_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							<hr>			
 						</div>
@@ -76,10 +83,13 @@ if (isset($_SESSION['credentials'])) {
 												<th>Class Name</th>
 											</tr>
 										</thead>
-										<tbody>';
-											
-											$teacher->print_classes($_SESSION['credentials']->get_user_id());
-								   echo'</tbody>
+										<tbody id="tbl_classes">
+											<tr>
+												<td>
+													Loading Classes...
+												</td>
+											</tr>
+										</tbody>
 							</table>
 							<hr>				
 						
@@ -90,11 +100,9 @@ if (isset($_SESSION['credentials'])) {
 					<div id="slidingDiv_3" class="toggleDiv" style="display:none">
 						<br />
 						<h4 style="text-align: center;">Select who this test is for...</h4>
-						<select name="Class" id="ddl_class">
-							<option selected="selected" value="null">- Select a Class -</option>';
-							
-							$teacher->print_classes_dropdown($_SESSION['credentials']->get_user_id());
-						echo '</select>
+						<select name="Class" id="ddl_classes">
+							<option selected="selected" value="null">- Select a Class -</option>
+						</select>
 						<br />
 						<section style="text-align: center;">
 							<button id="btn_create_test" class="button big">Create this test</button>
