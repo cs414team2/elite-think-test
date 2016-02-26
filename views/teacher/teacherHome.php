@@ -2,7 +2,6 @@
 require_once('model/Teacher.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
-		$teacher = new Teacher();
 		echo '
 			<script>
 			var user_id = '. $_SESSION['credentials']->get_user_id() .
