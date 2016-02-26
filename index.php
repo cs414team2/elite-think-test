@@ -52,6 +52,8 @@
 				
 		<!-- Checks to see if the user is logged in or not -->
 		<?php
+			$load_footer = true;
+			
 			session_start();
 			
 			if (isset($_REQUEST['action'])) {
@@ -69,8 +71,13 @@
 						require_once('views/administrator/adminEditClass.php');
 						break;
 
+					case "teacher_edit_test":
+						require_once('views/teacher/teacherEditTest.php');
+						$load_footer = false;
+						break;
 					case "teacher_create_test":
 						require_once('views/teacher/teacherCreateTest.php');
+						$load_footer = false;
 						break;
 					case "teacher_grade_test":
 						require_once('views/teacher/teacherGradeTest.php');
@@ -105,7 +112,8 @@
 		
 		<!-- Includes the Footer for the page -->
 		<?php 
-			require_once('footer.php');
+			if($load_footer)
+				require_once('footer.php');
 		?>
 
 	</body>
