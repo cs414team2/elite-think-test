@@ -8,7 +8,9 @@ if (isset($_SESSION['credentials'])) {
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			function setRadio(obj) 
+			var test_id = 0;' // $_REQUEST['test_id']; .
+							// NEEED TO INCLUDE THIS CODE WHEN WE ACTUALLY USE THIS PAGE!
+			.'function setRadio(obj) 
 			{
 				if(obj.checked == true)
 					obj.checked = false;
@@ -16,6 +18,8 @@ if (isset($_SESSION['credentials'])) {
 					obj.checked = true
 			}
 			</script>
+			<script src="controllers/test_editor.js"></script>
+			
 			<header class="major">
 				<h2> Test Creation</h2>
 				<p>Create and Manage Tests</p>
@@ -34,7 +38,7 @@ if (isset($_SESSION['credentials'])) {
 					<input type="number" name="timeLimit" style="text-align: center; align:center">	
 					<br /><br /><br /><br /><br /><br /><br /><br />
 					
-					<button class="show_hide button small fit">Finalize</button>
+					<button id="btn_finalize_test" class="show_hide button small fit">Finalize</button>
 					<br />
 				</div>
 				
@@ -52,8 +56,8 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder"  align="left">
 							<form>
 								<h4>Multiple Choice</h4>
-								<textarea id="mcqEntry" rows="2" placeholder="Enter a Multiple Choice Question"
-								name="mcqEntry" class="questionStyle"></textarea>
+								<textarea id="txt_mcqEntry" rows="2" placeholder="Enter a Multiple Choice Question"
+									name="txt_mcqEntry" class="questionStyle"></textarea>
 								<br/>
 								<label for="mcAnswer1" class="questionLabel"> Choice 1</label>
 								<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle">
@@ -72,7 +76,7 @@ if (isset($_SESSION['credentials'])) {
 								<br/><br />
 										
 								<ul class="actions">
-									<li><input type="submit" value="Submit Question" /></li>
+									<li><input id="btn_add_mc" type="button" value="Submit Question" /></li>
 									<li><input type="reset" value="Reset" class="alt" /></li>
 								</ul>
 							</form>
@@ -86,20 +90,21 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder"  align="left" >
 							<h4>T/F Question</h4>
 							<form>
-								<textarea id="tfqEntry" rows="2" placeholder="Enter a True/False Question" name="tfqEntry" class="questionStyle"></textarea>
+								<textarea id="txt_tfqEntry" rows="2" placeholder="Enter a True/False Question"
+									name="txt_tfqEntry" class="questionStyle"></textarea>
 								<br />
 								
 								
-								<input type="radio" id="answerTrue" name="tfButton"  checked>
-								<label for="answerTrue" class="questionLabel">True</label>
+								<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
+								<label for="rb_answer_true" class="questionLabel">True</label>
 							
 							
-								<input type="radio" id="answerFalse" name="tfButton" >
-								<label for="answerFalse" class="questionLabel">False</label>
+								<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
+								<label for="rb_answer_false" class="questionLabel">False</label>
 								<br /><br />
 								
 								<ul class="actions">
-									<li><input type="submit" value="Submit Question" /></li>
+									<li><input id="btn_add_tf" type="button" value="Submit Question" /></li>
 									<li><input type="reset" value="Reset" class="alt" /></li>
 								</ul>
 							</form>
@@ -111,12 +116,12 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder" align="left">
 							<form>
 								<h4>Essay Question</h4>
-								<textarea id="eqEntry" rows="4" placeholder="Enter an Essay Question"
-								name="eqEntry" class="questionStyle"></textarea>
+								<textarea id="txt_eqEntry" rows="4" placeholder="Enter an Essay Question"
+								name="txt_eqEntry" class="questionStyle"></textarea>
 								<br /><br />
 
 								<ul class="actions">
-									<li><input type="submit" value="Submit Question" /></li>
+									<li><input id="btn_add_essay" type="button" value="Submit Question" /></li>
 									<li><input type="reset" value="Reset" class="alt" /></li>
 								</ul>
 							</form>
@@ -128,6 +133,7 @@ if (isset($_SESSION['credentials'])) {
 					<section id="testView">
 						<div id="my-form-builder" align="left">
 							<h4>Test Goes Here Yo!</h4>
+								<div id="test_content"></div>
 							<br />
 						</div>
 					</section>

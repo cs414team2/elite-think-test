@@ -66,7 +66,7 @@
 					echo "<td>" . $class_name . "</td>";
 					echo "<td>" . $date_due . "</td>";
 					echo "<td>" . $time_limit . "</td>";
-					echo "</tr>";
+					echo "</tr>\r\n";
 				}
 			}
 			else{

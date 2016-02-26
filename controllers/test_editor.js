@@ -1,16 +1,28 @@
-const MULTIPLE_CHOICE_QUESTION_TYPE = "MC";
-const TRUE_FALSE_QUESTION_TYPE = "TF";
-const ESSAY_QUESTION_TYPE = "ESSAY";
+const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
+const TRUE_FALSE_QUESTION_TYPE = 'TF';
+const ESSAY_QUESTION_TYPE = 'ESSAY';
 
 //*******************Functions****************************
+function print_question(question_id) {
+	var question = '<p id="' + question_id + '">'
+		+ 'bob bob bob bob bob err ann!</p>';
+	
+	$('#test_content').append(question);
+}
+
 function add_question(question_type) {
-	$.ajax({
+	
+	/*$.ajax({
 		url: 'ajax/add_question.php',
 		data: { 
 			test_id: test_id,
 			question_type: question_type
+		},
+		success: function (question_id) {
+			
 		}
-	});
+	});*/
+	print_question(0);
 }
 
 function edit_question(question_id, question_type, question_text,
@@ -34,18 +46,27 @@ function delete_question(question_id) {
 	});
 }
 
+function clear_question_fields(question_type) {
+	
+	switch (question_type) {
+		case ESSAY_QUESTION_TYPE:
+			$("txt_eqEntry").val('');
+			break;
+	}
+}
+
 //***********************Events************************
 $(document).ready(function(){
 	
-	$("#btn_add_mc").click(function(){
+	$('#btn_add_mc').click(function(){
 		add_question(MULTIPLE_CHOICE_QUESTION_TYPE);
 	});
 	
-	$("#btn_add_tf").click(function(){
+	$('#btn_add_tf').click(function(){
 		add_question(TRUE_FALSE_QUESTION_TYPE);
 	});
 	
-	$("#btn_add_essay").click(function(){
+	$('#btn_add_essay').click(function(){
 		add_question(ESSAY_QUESTION_TYPE);
 	});
 });
