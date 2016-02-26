@@ -1429,6 +1429,10 @@
 		padding-bottom: 40px;
 		background:#FFF;
 	}
+	#slidingDiv_1, #slidingDiv_2, #slidingDiv_3 {
+	
+	}
+	
 	
 	input[type="text"].questionStyle {
 		text-align: left;
