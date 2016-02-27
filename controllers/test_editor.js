@@ -3,13 +3,6 @@ const TRUE_FALSE_QUESTION_TYPE = 'TF';
 const ESSAY_QUESTION_TYPE = 'ESSAY';
 
 //*******************Functions****************************
-function print_question(question_id) {
-	/*var question = '<p id="' + question_id + '">'
-		+ 'bob bob bob bob bob err ann!</p>';                  Move this to the PHP side of the ajax call!
-	
-	$('#test_content').append(question);*/
-}
-
 function add_question(question_type) {
 	
 	/*$.ajax({
@@ -20,9 +13,15 @@ function add_question(question_type) {
 		},
 		success: function (question) {
 			
+			//$("#test_content").append(question);
+			
+			/*$("btn_delete").click(function(){
+				//delete_question($(this).parent().attr("id"));
+				//$(this).parent().remove();
+			});/*
 		}
 	});*/
-	print_question(0);
+
 }
 
 function edit_question(question_id, question_type, question_text,
@@ -50,8 +49,9 @@ function clear_question_fields(question_type) {
 	
 	switch (question_type) {
 		case ESSAY_QUESTION_TYPE:
-			$("txt_eqEntry").val('');
+			$("txt_eq_entry").val('');
 			break;
+		case 
 	}
 }
 

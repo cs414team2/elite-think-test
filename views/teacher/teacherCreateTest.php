@@ -56,8 +56,8 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder"  align="left">
 							<form>
 								<h4>Multiple Choice</h4>
-								<textarea id="txt_mcqEntry" rows="2" placeholder="Enter a Multiple Choice Question"
-									name="txt_mcqEntry" class="questionStyle"></textarea>
+								<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
+									name="txt_mcq_entry" class="questionStyle"></textarea>
 								<br/>
 								<label for="mcAnswer1" class="questionLabel"> Choice 1</label>
 								<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle">
@@ -90,8 +90,8 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder"  align="left" >
 							<h4>T/F Question</h4>
 							<form>
-								<textarea id="txt_tfqEntry" rows="2" placeholder="Enter a True/False Question"
-									name="txt_tfqEntry" class="questionStyle"></textarea>
+								<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
+									name="txt_tfq_entry" class="questionStyle"></textarea>
 								<br />
 								
 								
@@ -116,8 +116,8 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder" align="left">
 							<form>
 								<h4>Essay Question</h4>
-								<textarea id="txt_eqEntry" rows="4" placeholder="Enter an Essay Question"
-								name="txt_eqEntry" class="questionStyle"></textarea>
+								<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
+								name="txt_eq_entry" class="questionStyle"></textarea>
 								<br /><br />
 
 								<ul class="actions">
