@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+<!-- This page acts as a middle-man to process logon information and pass the
+     Session information to the index page.
+     The purpose for this page was to prevent the form from resubmitting when the back
+     arrow is hit after a fresh login -->
 <html>
 	<head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>

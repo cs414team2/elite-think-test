@@ -1,3 +1,5 @@
+// Allows for clickable student records
+// Redirects to information page for that student
 function load_student(){
 	$('.student_record, .Y').click(function(){
 		var student_id = $(this).attr('id');
