@@ -1,9 +1,12 @@
 <?php
+	// Contains methods for dealing with student data
 	class Student {
+		// Connect to the csweb database
 		public function prepare_connection(){
 			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 		}
 		
+		// Print classes for this student in an HTML table format
 		public function print_classes($student_id) {
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT class_number, class_name, is_active, class_id
@@ -27,6 +30,7 @@
 			}
 		}
 		
+		// Print classes for this student in an HTML dropdown list format
 		public function print_classes_dropdown($student_id) {
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT class_id, class_number, class_name 
@@ -48,6 +52,8 @@
 				echo "<option>" . $student_id. " </option>";
 			}
 		}
+		
+		// Print tests for this student in an HTML table format
 		public function print_tests($student_id) {
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT test_id, test_number, class_number, class_name, date_due, time_limit

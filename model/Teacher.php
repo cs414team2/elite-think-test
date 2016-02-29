@@ -1,9 +1,12 @@
 <?php
+	// Contains methods to print out different information that a teacher might need
 	class Teacher {
+		// Connects to the csweb database
 		public function prepare_connection(){
 			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 		}
 
+		// Prints out classes for this teacher in an HTML table format
 		public function print_classes($teacher_id) {
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT class_id, class_number, class_name 
@@ -26,8 +29,11 @@
 				echo "<tr> <td> No Classes </td> </tr>";
 			}
 		}
+		
+		// Prints out classes for this teacher in an HTML dropdown list format
 		public function print_classes_dropdown($teacher_id) {
 			$db = $this->prepare_connection();
+			
 			$statement = $db->prepare("SELECT class_id, class_number, class_name 
 			                           FROM class 
 									   WHERE teacher_id = ? AND is_active='Y'") or die($db->error);
@@ -47,6 +53,8 @@
 				echo "<option>" . $teacher_id. " </option>";
 			}
 		}
+		
+		// Prints out tests for a teacher in an HTML table format
 		public function print_tests($user_id, $is_active){
 			$db = $this->prepare_connection();
 			
