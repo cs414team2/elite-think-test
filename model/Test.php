@@ -2,6 +2,10 @@
 class Test{
 	const CORRECT   = 'Y';
 	const INCORRECT = 'N';
+	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
+	const TRUE_FALSE_QUESTION_TYPE = 'TF';
+	const ESSAY_QUESTION_TYPE = 'ESSAY';
+	
 	private $alphabet;
 	
 	public function __construct(){
@@ -18,11 +22,21 @@ class Test{
 		echo "\r\n    </div>";
 	}
 	
-	public function print_answer($is_correct, $count, $answer_content){
-		if($is_correct == self::CORRECT)
-			echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
-		else
-			echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+	public function print_answer($is_correct, $count, $answer_content, $question_type){
+		switch($question_type){
+			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
+				if($is_correct == self::CORRECT)
+					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+				else
+					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+				break;
+			case self::TRUE_FALSE_QUESTION_TYPE:
+				echo "\r\n<p style='color:#47CC7A'>&nbsp;".$answer_content."</p>";
+				break;
+			case self::ESSAY_QUESTION_TYPE:
+				echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
+				break;
+		}
 	}
 }
 ?>
