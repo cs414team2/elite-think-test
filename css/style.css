@@ -1463,6 +1463,9 @@
 			padding: none;
 			margin: 0px;	
 	}
+	.rightAlignInDiv{
+		float:right;
+	}
 	.answer_correct{
 		color: #0F0;
 	}
