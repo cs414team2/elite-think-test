@@ -32,7 +32,7 @@
 					while($answer_statement->fetch()){
 						// Make these work properly after pulling in answers as well.
 						//if ($question_type == TRUE_FALSE_QUESTION_TYPE) {
-							$test->print_answer($is_correct, $count, $answer_content);
+							$test->print_answer($is_correct, $count, $answer_content, $question_type);
 						//}
 						/*elseif ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
 							echo "\r\n
