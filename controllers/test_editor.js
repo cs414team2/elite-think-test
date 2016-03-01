@@ -1,22 +1,27 @@
 const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE = 'TF';
 const ESSAY_QUESTION_TYPE = 'ESSAY';
+const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
 
 //*******************Functions****************************
-function add_question(question_type) {
+function add_question(question_type, question_text) {
+
+	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	
-	/*$.ajax({
+	$.ajax({
 		url: 'ajax/add_question.php',
 		data: { 
 			test_id: test_id,
-			question_type: question_type
+			question_type: question_type,
+			question_text: question_text,
+			question_weight: question_weight
 		},
 		success: function (question) {
 			
-			//$("#test_content").append(question);
+			$("#test_content").append(question);
 			clear_question_fields(question_type);
 		}
-	});*/
+	});
 
 }
 
@@ -40,9 +45,9 @@ function delete_question(question) {
 		$.ajax({
 		url: 'ajax/delete_question.php',
 		data: { question_id: question_id }
-		success: function(data) {
+		//success: function(data) {
 			//???question.remove();
-		}
+		//}
 	});
 }
 
@@ -63,9 +68,9 @@ function clear_question_fields(question_type) {
 		case ESSAY_QUESTION_TYPE:
 			$("#txt_eq_entry").val('');
 			break;
-		//default:
-		//	$(".questionStyle").val('');
-		//	break;
+		default:
+			$(".questionStyle").val('');
+			break;
 	}
 }
 
@@ -73,14 +78,14 @@ function clear_question_fields(question_type) {
 $(document).ready(function(){
 	
 	$('#btn_add_mc').click(function(){
-		add_question(MULTIPLE_CHOICE_QUESTION_TYPE);
+		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
 	});
 	
 	$('#btn_add_tf').click(function(){
-		add_question(TRUE_FALSE_QUESTION_TYPE);
+		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
 	});
 	
 	$('#btn_add_essay').click(function(){
-		add_question(ESSAY_QUESTION_TYPE);
+		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
 	});
 });

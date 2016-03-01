@@ -8,7 +8,7 @@ if (isset($_SESSION['credentials'])) {
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			var test_id = 0;' // $_REQUEST['test_id']; .
+			var test_id = 123;' // $_REQUEST['test_id']; .
 							// NEEED TO INCLUDE THIS CODE WHEN WE ACTUALLY USE THIS PAGE!
 			.'function setRadio(obj) 
 			{
@@ -135,39 +135,6 @@ if (isset($_SESSION['credentials'])) {
 							<h4>Test Goes Here Yo!</h4>
 								
 								<div id="test_content">
-								
-									<div style="font-weight: bold; padding: 5px">									
-										<div><span>1)</span> &nbsp This is the M/C Question</div>
-										<div style="display: inline-block; max-width: 50%; float:left;"> This is a possible answer </div> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-										<div style="display: inline-block; max-width: 50%;">    This is a possible answer   </div>	<br/>
-										<div style="display: inline-block; max-width: 50%; float:left;">    This is a possible answer   </div>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-										<div style="display: inline-block; max-width: 50%;">    This is a possible answer
-										</div>								<div class="rightAlignInDiv"  style="display: inline-block; max-width: 50%;">
-											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Edit</button>
-											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
-										</div>			
-									</div>
-									
-									<br/><br/>
-									
-									<div style="font-weight: bold; padding: 5px">	
-										<div><span>2)</span> &nbsp This is the T/F Question</div>
-										<div> True </div>
-										<div class="rightAlignInDiv"  style="display: inline-block; max-width: 50%;">
-											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Edit</button>
-											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
-										</div>
-									</div>
-									
-									<br/><br/>
-									
-                                 	<div style="font-weight: bold; padding: 5px">
-										<div><span>3)</span> &nbsp This is the Essay Question</div>
-										<div class="rightAlignInDiv"  style="display: inline-block; max-width: 50%;">
-											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Edit</button>
-											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
-										</div>
-									</div>			
 								
 								</div>
 							<br />
