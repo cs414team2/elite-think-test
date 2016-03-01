@@ -1422,15 +1422,13 @@
 		position:fixed;
 		padding-top:80px;
 		top:0; bottom:0; left:0;
-		width:200px;
+		min-width: 25%;
 		height: 500px;
 		background:#646464;
 	}
 	#my-form-builder {
-		border:1px solid #000;
+		border:5px ridge #646464;
 		border-radius: 20px;
-		min-height: 200px;
-		margin:48px 0 0 0px;
 		padding-left: 20px;
 		padding-right: 40px;
 		padding-bottom: 40px;
@@ -1438,9 +1436,17 @@
 	}
 	
 	#slidingQ_0, #slidingQ_1, #slidingQ_2, #slidingQ_3  {
-		margin-left: 145px;
+		max-height: 350px;
+		overflow-y: scroll;
+	}
+	#slidingQ_1, #slidingQ_2, #slidingQ_3  {
+		display:none;
 	}
 	
+	.smallScreenTestDiv{
+		min-width: 100%;
+		padding-left: 25%;
+	}
 	
 	input[type="text"].questionStyle {
 		text-align: left;
@@ -1458,11 +1464,5 @@
 			margin: 0px;	
 	}
 	.rightAlignInDiv{
-		float: right;
-	}
-	.answer_correct{
-		color: #0F0;
-	}
-	.answer_incorrect{
-		color: #F00;
+		float:right;
 	}

@@ -27,7 +27,7 @@
 		$questionInfo = $addResult->fetch_assoc();
 		
 		// Store the answers in the database.
-		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
+		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
 			$addStatement = $eliteConnection->prepare("CALL add_answer(?,?,?)") or die($eliteConnection->error);
 			
 			foreach($_REQUEST['answers'] as $answer) {
@@ -45,12 +45,15 @@
 		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
 			$count = 0;
 			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'], $count, $answer['answer_text']);
+				$test->print_answer($answer['is_correct'], $count, $answer['answer_text'], $question_type);
 				$count++;
 			}										
 		}
 			
 		echo "\r\n</div>";
 
+	}
+	else {
+		throw new Exception("Not all question information provided.");
 	}
 ?>

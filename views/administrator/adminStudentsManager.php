@@ -77,8 +77,11 @@ if (isset($_SESSION['credentials'])) {
 					</div>
 			</section>';
 	}
+	else {
+		echo "<script>window.location = './404.php'; </script>";
+	}
 }
 else {
-	header('Location: ./');
+	echo "<script>window.location = './404.php'; </script>";
 }
 ?>
