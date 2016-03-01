@@ -1,4 +1,7 @@
 <?php
+	const CORRECT   = 'Y';
+	const INCORRECT = 'N';
+	
 	function prepare_connection(){
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
@@ -36,7 +39,10 @@
 					while($answer_statement->fetch()){
 						// Make these work properly after pulling in answers as well.
 						//if ($question_type == TRUE_FALSE_QUESTION_TYPE) {
-							echo "\r\n<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+							if($is_correct == CORRECT)
+								echo "\r\n<div class='answer_correct'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+							else
+								echo "\r\n<div class='answer_incorrect'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$alphabet[$count]. ")&nbsp;".$answer_content."</div>";
 						//}
 						/*elseif ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
 							echo "\r\n
