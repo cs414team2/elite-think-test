@@ -82,6 +82,16 @@
 					case "teacher_grade_test":
 						require_once('views/teacher/teacherGradeTest.php');
 						break;
+						
+					case "student_home":
+						require_once('views/student/studentHome.php');
+						break;	
+					case "student_class_console":
+						require_once('views/student/studentClassConsole.php');
+						break;	
+					case "student_test_page":
+						require_once('views/student/studentTestPage.php');
+						break;
 
 					case "logout": 
 						unset($_SESSION["credentials"]);
