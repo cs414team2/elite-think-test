@@ -1,7 +1,7 @@
 <?php
 require_once('model/Teacher.php');
 
-if (isset($_SESSION['credentials'])) {
+if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
 		echo '
@@ -60,19 +60,19 @@ if (isset($_SESSION['credentials'])) {
 									name="txt_mcq_entry" class="questionStyle"></textarea>
 								<br/>
 								<label for="mcAnswer1" class="questionLabel"> Choice 1</label>
-								<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle">
+								<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
 								<br/>
 								
 								<label for="mcAnswer2" class="questionLabel"> Choice 2</label>
-								<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle">
+								<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
 								<br/>
 								
 								<label for="mcAnswer3" class="questionLabel"> Choice 3</label>
-								<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle">
+								<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
 								<br/>
 								
 								<label for="mcAnswer4" class="questionLabel"> Choice 4</label>
-								<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle">
+								<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
 								<br/><br />
 										
 								<ul class="actions">

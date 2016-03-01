@@ -8,11 +8,11 @@ function add_question(question_type, question_text) {
 
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	
-	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
-		var answers = [{ content: "bob", is_correct : true},
-					   {content: "ted", is_correct : false},
-					   {content: "tom", is_correct : false},
-					   {content: "phil", is_correct : false}];
+	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {					   
+		var answers = [];
+		$(".mc_answer").each(function (index) {
+			answers[index] = {answer_text: $(this).val(), is_correct : false ? "Y" : "N"};
+		});
 	}
 	
 	$.ajax({
