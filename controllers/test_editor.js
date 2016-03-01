@@ -8,16 +8,23 @@ function add_question(question_type, question_text) {
 
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	
+	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
+		var answers = [{ content: "bob", is_correct : true},
+					   {content: "ted", is_correct : false},
+					   {content: "tom", is_correct : false},
+					   {content: "phil", is_correct : false}];
+	}
+	
 	$.ajax({
 		url: 'ajax/add_question.php',
 		data: { 
 			test_id: test_id,
 			question_type: question_type,
 			question_text: question_text,
-			question_weight: question_weight
+			question_weight: question_weight,
+			answers: answers
 		},
 		success: function (question) {
-			
 			$("#test_content").append(question);
 			number_questions();
 			clear_question_fields(question_type);
@@ -53,6 +60,7 @@ function delete_question(question) {
 	});
 }
 
+// Display the question numbers.
 function number_questions() {
 	$( ".question_number" ).each(function( index ) {
 		$(this).html(index + 1 + ")");

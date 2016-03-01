@@ -4,7 +4,7 @@
 	const TRUE_FALSE_QUESTION_TYPE = 'TF';
 	const ESSAY_QUESTION_TYPE = 'ESSAY';
 
-	if(isset($_REQUEST['test_id'], $_REQUEST['question_type'], $_REQUEST['question_text'], $_REQUEST['question_weight'])) {
+	if(isset($_REQUEST['test_id'], $_REQUEST['question_type'], $_REQUEST['question_text'], $_REQUEST['question_weight'], $_REQUEST['answers'])) {
 
 		$test_id         = $_REQUEST['test_id'];
 		$question_type   = $_REQUEST['question_type'];
@@ -22,7 +22,7 @@
 		$addResult = $eliteConnection->query("SELECT @question_id as question_id");
 		$questionInfo = $addResult->fetch_assoc();
 		
-		echo "\r\n<div id='".$questionInfo['question_id']."'style='font-weight: bold; padding: 5px'>";
+		echo "\r\n<div id='".$questionInfo['question_id']."'style='font-weight: bold; padding: 5px; border: 1px solid black;'>";
 		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
 		
 		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
@@ -43,5 +43,8 @@
 		}
 			
 		echo "\r\n</div>";
+		//foreach($_REQUEST['answers'] as $answer) {
+		//	echo "bob";//$answer['content'] . $answer['is_correct'];
+		//}
 	}
 ?>
