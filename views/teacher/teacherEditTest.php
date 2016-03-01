@@ -35,9 +35,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<button class="show_hide button small fit" rel="#slidingQ_1" >M/C</button>
 							
 							<button class="show_hide button small fit" rel="#slidingQ_2" >T/F</button>
-							
+
 							<button class="show_hide button small fit" rel="#slidingQ_3" >Essay</button>
-							
+
 							<div id="slidingQ_1" class="toggleDiv"> 
 								<section id="MultipleChoice">
 									<div id="my-form-builder"  align="left">
@@ -84,20 +84,20 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											
 											<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
 											<label for="rb_answer_true" class="questionLabel">True</label>
-										
-										
-											<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
-											<label for="rb_answer_false" class="questionLabel">False</label>
-											<br /><br />
-											
-											<ul class="actions">
-												<li><input id="btn_add_tf" type="button" value="Submit Question" /></li>
-												<li><input type="reset" value="Reset" class="alt" /></li>
-											</ul>
+																
+												<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
+												<label for="rb_answer_false" class="questionLabel">False</label>
+												<br /><br />
+												
+												<ul class="actions">
+													<li><input id="btn_add_tf" type="button" value="Submit Question" /></li>
+													<li><input type="reset" value="Reset" class="alt" /></li>
+												</ul>
 										</form>
+									</div>
 								</section>
 							</div>
-							
+										
 							<div id="slidingQ_3" class="toggleDiv"> 
 								<section id="essayQuestion">
 									<div id="my-form-builder" align="left">
@@ -115,8 +115,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 									</div>
 								</section>
 							</div>
-					</section>
-				</div>
+						</section>
+					</div>
 
 				<div class="smallScreenTestDiv" style="float:right;"> 
 					<section id="testView">
@@ -130,7 +130,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							
 						</div>
 					</section>
-			</div>
+				</div>
 			</div>
 		</section>
 		

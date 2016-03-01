@@ -7,12 +7,16 @@ const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to
 function add_question(question_type, question_text) {
 
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
+	var answers = [{answer_text: "", is_correct: "" }];
 	
-	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
-		var answers = [{ content: "bob", is_correct : true},
-					   {content: "ted", is_correct : false},
-					   {content: "tom", is_correct : false},
-					   {content: "phil", is_correct : false}];
+	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {					   
+		$(".mc_answer").each(function (index) {
+			answers[index] = {answer_text: $(this).val(), is_correct : false ? "Y" : "N"};
+		});
+	}
+	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
+		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "True" : "False",
+                      is_correct: "Y" }];
 	}
 	
 	$.ajax({
@@ -28,6 +32,7 @@ function add_question(question_type, question_text) {
 			$("#test_content").append(question);
 			number_questions();
 			clear_question_fields(question_type);
+			$('html, body').animate({scrollTop: $("#test_content").height() }, 1);
 		}
 	});
 
