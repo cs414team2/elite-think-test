@@ -8,7 +8,7 @@ if (isset($_SESSION['credentials'])) {
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			var test_id = ' . $_REQUEST['test_id']; . ';
+			var test_id = ' . $_REQUEST['test_id'] . ';
 			
 			function setRadio(obj) 
 			{

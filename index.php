@@ -72,11 +72,7 @@
 						break;
 
 					case "teacher_edit_test":
-						//require_once('views/teacher/teacherEditTest.php');
-						$load_footer = false;
-						break;
-					case "teacher_create_test":
-						require_once('views/teacher/teacherCreateTest.php');
+						require_once('views/teacher/teacherEditTest.php');
 						$load_footer = false;
 						break;
 					case "teacher_grade_test":
