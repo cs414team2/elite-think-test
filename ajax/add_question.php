@@ -17,6 +17,7 @@
 		$addResult = $eliteConnection->query("SELECT @question_id as question_id, @question_number as question_number");
 		$questionInfo = $addResult->fetch_assoc();
 		
-		echo "<div id='".$questionInfo['question_id']."'>".$questionInfo['question_number']."</div>";
+		echo "<div id='".$questionInfo['question_id']."'>".$questionInfo['question_number'];
+		echo "<button onclick='delete_question(this.parentElement)' ></button></div>"
 	}
 ?>
