@@ -19,7 +19,7 @@ class Test{
 	}
 	
 	public function print_answer($is_correct, $count, $answer_content){
-		if($is_correct == CORRECT)
+		if($is_correct == self::CORRECT)
 			echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
 		else
 			echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
