@@ -30,15 +30,15 @@
 			}
 		}
 		
-		public function get_students()
+		public function get_students(){
 			$db = $this->prepare_connection();
-			$statement = $db->query("SELECT student_id, student_lname, student_fname FROM student");
+			$statement = $db->query("SELECT student_id, student_lname, student_fname, is_active FROM student");
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
 					{
 						echo "<tr " . "id='" . $record["student_id"] . "' class='student_record, " . $record[self::IS_ACTIVE]."'>";
-						echo "<td><input type='checkbox'></td>" 	
+						echo "<td><input type='checkbox' name='editStudent' value='checked'> CHECKBOX </input> </td>";
 						foreach($record as $col_name => $col_data) {
 						  if($col_name != self::IS_ACTIVE)
 							echo "<td class='clickable_row'>" . $col_data . "</td>";
