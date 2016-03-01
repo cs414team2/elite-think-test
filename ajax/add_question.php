@@ -13,17 +13,22 @@
 		
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 
-		$eliteConnection->query("SET @question_id = 0, @question_number = 0")                                      or die($eliteConnection->error);
+		$eliteConnection->query("SET @question_id = 0")                                      or die($eliteConnection->error);
 				
-		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id, @question_number)") or die($eliteConnection->error);
+		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)") or die($eliteConnection->error);
 		$addStatement->bind_param("ssii", $question_text, $question_type, $test_id, $question_weight) 			   or die($addStatement->error);
 		$addStatement->execute()                                                                                   or die($addStatement->error);
 
-		$addResult = $eliteConnection->query("SELECT @question_id as question_id, @question_number as question_number");
+		$addResult = $eliteConnection->query("SELECT @question_id as question_id");
 		$questionInfo = $addResult->fetch_assoc();
 		
 		echo "\r\n<div id='".$questionInfo['question_id']."'style='font-weight: bold; padding: 5px'>";
-		echo "\r\n   <div><span>" . $questionInfo['question_number'] . ")</span> &nbsp;" . $question_text ."</div>";
+		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
+		
+		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
+		echo "\r\n	    <button style='border: 1px solid grey; padding: 0.5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Edit</button>";
+		echo "\r\n	    <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0.5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>";
+		echo "\r\n    </div>";
 		
 		// Make these work properly after pulling in answers as well.
 		if ($question_type == TRUE_FALSE_QUESTION_TYPE) {
@@ -37,10 +42,6 @@
 				      <div style='display: inline-block; max-width: 50%;'>    This is a possible answer </div>";														
 		}
 			
-		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-		echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Edit</button>";
-		echo "\r\n	    <button onclick='delete_question(this.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>";
-		echo "\r\n    </div>";
 		echo "\r\n</div>";
 	}
 ?>
