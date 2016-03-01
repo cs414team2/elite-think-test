@@ -14,11 +14,7 @@ function add_question(question_type) {
 		success: function (question) {
 			
 			//$("#test_content").append(question);
-			
-			/*$("btn_delete").click(function(){
-				//delete_question($(this).parent().attr("id"));
-				//$(this).parent().remove();
-			});/*
+			clear_question_fields(question_type);
 		}
 	});*/
 
@@ -38,20 +34,38 @@ function edit_question(question_id, question_type, question_text,
 	});
 }
 
-function delete_question(question_id) {
+function delete_question(question) {
+		var question_id = question.id;
+		
 		$.ajax({
 		url: 'ajax/delete_question.php',
 		data: { question_id: question_id }
+		success: function(data) {
+			//???question.remove();
+		}
 	});
 }
 
 function clear_question_fields(question_type) {
 	
 	switch (question_type) {
-		case ESSAY_QUESTION_TYPE:
-			$("txt_eq_entry").val('');
+		case MULTIPLE_CHOICE_QUESTION_TYPE:
+			$("#txt_mc_entry").val('');
+			$("#mcAnswer1").val('');
+			$("#mcAnswer2").val('');
+			$("#mcAnswer3").val('');
+			$("#mcAnswer4").val('');
 			break;
-		case 
+		case TRUE_FALSE_QUESTION_TYPE:
+			$("#txt_tf_entry").val('');
+			$("#rb_answer_true").prop('checked', true);
+			break;
+		case ESSAY_QUESTION_TYPE:
+			$("#txt_eq_entry").val('');
+			break;
+		//default:
+		//	$(".questionStyle").val('');
+		//	break;
 	}
 }
 
