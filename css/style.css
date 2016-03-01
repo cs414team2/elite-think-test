@@ -1449,6 +1449,8 @@
 	}
 	.questionStyle {
 			padding: none;
-			margin: 0px;
-			
+			margin: 0px;	
+	}
+	.rightAlignInDiv{
+		float: right;
 	}
