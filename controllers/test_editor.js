@@ -19,6 +19,7 @@ function add_question(question_type, question_text) {
 		success: function (question) {
 			
 			$("#test_content").append(question);
+			number_questions();
 			clear_question_fields(question_type);
 		}
 	});
@@ -44,10 +45,17 @@ function delete_question(question) {
 		
 		$.ajax({
 		url: 'ajax/delete_question.php',
-		data: { question_id: question_id }
-		//success: function(data) {
-			//???question.remove();
-		//}
+		data: { question_id: question_id },
+		success: function(data) {
+			question.remove();
+			number_questions();
+		}
+	});
+}
+
+function number_questions() {
+	$( ".question_number" ).each(function( index ) {
+		$(this).html(index + 1 + ")");
 	});
 }
 
@@ -55,14 +63,14 @@ function clear_question_fields(question_type) {
 	
 	switch (question_type) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
-			$("#txt_mc_entry").val('');
+			$("#txt_mcq_entry").val('');
 			$("#mcAnswer1").val('');
 			$("#mcAnswer2").val('');
 			$("#mcAnswer3").val('');
 			$("#mcAnswer4").val('');
 			break;
 		case TRUE_FALSE_QUESTION_TYPE:
-			$("#txt_tf_entry").val('');
+			$("#txt_tfq_entry").val('');
 			$("#rb_answer_true").prop('checked', true);
 			break;
 		case ESSAY_QUESTION_TYPE:
@@ -76,6 +84,7 @@ function clear_question_fields(question_type) {
 
 //***********************Events************************
 $(document).ready(function(){
+	number_questions();
 	
 	$('#btn_add_mc').click(function(){
 		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
