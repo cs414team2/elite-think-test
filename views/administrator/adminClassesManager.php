@@ -3,7 +3,6 @@ require_once('model/Admin.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
-			<script src="controllers/load_classes.js"></script>
 			<script src="controllers/new_class_form.js"></script>
 			<script src="controllers/toggle_active.js"></script>
 			<section id="main" class="wrapper style1">

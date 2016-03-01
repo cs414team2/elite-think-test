@@ -136,21 +136,37 @@ if (isset($_SESSION['credentials'])) {
 								
 								<div id="test_content">
 								
-									<div style="border:1px solid black; padding: 5px">									
+									<div style="font-weight: bold; padding: 5px">									
 										<div><span>1)</span> &nbsp This is the M/C Question</div>
 										<div style="display: inline-block; max-width: 50%; float:left;"> This is a possible answer </div> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 										<div style="display: inline-block; max-width: 50%;">    This is a possible answer   </div>	<br/>
 										<div style="display: inline-block; max-width: 50%; float:left;">    This is a possible answer   </div>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-										<div style="display: inline-block; max-width: 50%;">    This is a possible answer  </div>											
+										<div style="display: inline-block; max-width: 50%;">    This is a possible answer
+										</div>								<div class="rightAlignInDiv"  style="display: inline-block; max-width: 50%;">
+											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Edit</button>
+											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
+										</div>			
 									</div>
-									<br/>	
-									<div style="border:1px solid black; padding: 5px">	
+									
+									<br/><br/>
+									
+									<div style="font-weight: bold; padding: 5px">	
 										<div><span>2)</span> &nbsp This is the T/F Question</div>
 										<div> True </div>
+										<div class="rightAlignInDiv"  style="display: inline-block; max-width: 50%;">
+											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Edit</button>
+											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
+										</div>
 									</div>
-									<br/>
-                                 	<div style="border:1px solid black; padding: 5px">
+									
+									<br/><br/>
+									
+                                 	<div style="font-weight: bold; padding: 5px">
 										<div><span>3)</span> &nbsp This is the Essay Question</div>
+										<div class="rightAlignInDiv"  style="display: inline-block; max-width: 50%;">
+											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Edit</button>
+											<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
+										</div>
 									</div>			
 								
 								</div>

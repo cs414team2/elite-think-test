@@ -12,6 +12,7 @@ function loadStudents() {
 			window.location = 'index.php?action=admin_class_manager&id=' + student_id;
 		});
 		
+		$(".N").hide();
 	});
 }
 
