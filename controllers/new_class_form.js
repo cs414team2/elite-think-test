@@ -12,11 +12,13 @@ function loadClasses() {
 			var class_id = $(this).attr('id');
 			window.location = 'index.php?action=admin_class_manager&id=' + class_id;
 		});
+		
+		$(".N").hide();
 	});
 }
 
 // ******************Events*******************
-$(document).ready(function(){	
+$(document).ready(function(){
 	loadClasses();
 
 	// Read the enter key press if user is in the add form and press the add button.
