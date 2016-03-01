@@ -11,7 +11,7 @@
 		$question_text   = ucfirst(trim($_REQUEST['question_text']));
 		$question_weight = $_REQUEST['question_weight'];
 		
-		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
+		/*$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 
 		$eliteConnection->query("SET @question_id = 0")                                      or die($eliteConnection->error);
 				
@@ -42,9 +42,10 @@
 				      <div style='display: inline-block; max-width: 50%;'>    This is a possible answer </div>";														
 		}
 			
-		echo "\r\n</div>";
+		echo "\r\n</div>";*/
 		//foreach($_REQUEST['answers'] as $answer) {
 		//	echo "bob";//$answer['content'] . $answer['is_correct'];
 		//}
+		print($_server);
 	}
 ?>
