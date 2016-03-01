@@ -1,4 +1,5 @@
 <?php
+include('model/Admin.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo '
@@ -17,9 +18,10 @@ if (isset($_SESSION['credentials'])) {
 										<th>Student Name</th>	
 									</tr>
 								</thead>
-								<tbody>
-									
-								</tbody>
+								<tbody>';
+									$admin = new Admin();
+									$admin->get_students();
+						echo   '</tbody>
 							</table>
 							<button class="button special" >Save Changes</button>
 							
