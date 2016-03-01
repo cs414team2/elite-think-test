@@ -1,6 +1,8 @@
 //***************Functions********************
 function loadTeachers() {
-	$("#tbl_teachers").load("ajax/get_table.php?table=teacher");
+	$("#tbl_teachers").load("ajax/get_table.php?table=teacher", function(){
+		$(".N").hide();
+	});
 }
 
 // ******************Events*******************
