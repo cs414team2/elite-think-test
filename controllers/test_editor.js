@@ -55,7 +55,7 @@ function delete_question(question) {
 
 function number_questions() {
 	$( ".question_number" ).each(function( index ) {
-		$(this).html(index + 1);
+		$(this).html(index + 1 + ")");
 	});
 }
 
@@ -84,6 +84,7 @@ function clear_question_fields(question_type) {
 
 //***********************Events************************
 $(document).ready(function(){
+	number_questions();
 	
 	$('#btn_add_mc').click(function(){
 		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
