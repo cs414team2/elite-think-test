@@ -3,7 +3,7 @@
 
 /*
 	Dark Blue:         2B9DB2
-	Light Blue:        84C2CC
+	Light Blue:        84C2CC - Main color background
 	Login Button Blue: 5B858C
 	Purple:            C723CC - Testing only
 	Heading Dark Grey: 646464
@@ -66,16 +66,16 @@
 
 	p {
 		margin: 0 0 2em 0;
-		text-shadow: 0em 0em 0.4em white;
+		
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #646464; /* This is the heading text color */
+		color: #FFF; /* This is the heading text color */
 		font-weight: 700;
 		line-height: 1em;
 		margin: 0 0 1em 0;
 		letter-spacing: -0.01em;
-		text-shadow: 0em 0em 0.4em white; /* glow/shadow */
+		text-shadow: 0em 0em 0.4em black; /* glow/shadow */
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -96,6 +96,8 @@
 	h4 {
 		font-size: 1.1em;
 		line-height: 1.5em;
+		color: #646464;
+		text-shadow: none;
 	}
 
 	h5 {
@@ -180,7 +182,7 @@
 	}
 
 	header p {
-		color: #949494;
+		color: #FFF;
 		position: relative;
 		margin: 0 0 1.5em 0;
 		font-weight: 600;
@@ -190,12 +192,14 @@
 		font-size: 1.25em;
 		margin-top: -1em;
 		line-height: 1.75em;
+		text-shadow: 0em 0em 0.4em black;
 	}
 
 	header h3 + p {
 		font-size: 1.1em;
 		margin-top: -0.85em;
 		line-height: 1.5em;
+		text-shadow: 0em 0em 0.4em black;
 	}
 
 	header h4 + p,
@@ -204,6 +208,7 @@
 		font-size: 0.9em;
 		margin-top: -0.75em;
 		line-height: 1.5em;
+		text-shadow: 0em 0em 0.4em black;
 	}
 
 	header.major {
@@ -1035,8 +1040,9 @@
 	}
 
 		.wrapper.style1 {
-			background: #84C2CC;
-			 /* background: linear-gradient(#F00, #000); */
+			background-image: url("images/geometric.png"), url("../images/geometric.png");
+			/* background: #84C2CC; */
+			/* background: linear-gradient(#F00, #000); */
 		}
 
 			.wrapper.style1 .box {
@@ -1049,7 +1055,7 @@
 		}
 
 		.wrapper.style3 {
-			background: #84C2CC;
+			background-image: url("images/geometric.png"), url("../images/geometric.png");
 			color: #d1f2f5;
 		}
 
