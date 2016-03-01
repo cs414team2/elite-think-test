@@ -1,5 +1,7 @@
 <?php
 class Test{
+	const CORRECT   = 'Y';
+	const INCORRECT = 'N';
 	private $alphabet;
 	
 	public function __construct(){

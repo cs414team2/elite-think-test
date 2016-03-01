@@ -1,9 +1,6 @@
 <?php
 	include('model/Test.php');
 	
-	const CORRECT   = 'Y';
-	const INCORRECT = 'N';
-	
 	function prepare_connection(){
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
