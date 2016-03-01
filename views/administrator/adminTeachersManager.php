@@ -39,7 +39,7 @@ if (isset($_SESSION['credentials'])) {
 					</div>
 					
 				<div class="container">
-					<section id="content" style="text-align:center">
+					<section id="content" style="text-align:center; ">
 						<h3 align="center">Add a Teacher</h3>
 						<button id="addButton" class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
 							<div id="slidingDiv_2" style="display:none"> 	
