@@ -27,7 +27,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->
 							<br />
-							<table class="alt" style="display: inline-block; max-width: 50%; float: left; ">
+							<table class="alt" style="display: inline; max-width: 50%; float: left; ">
 							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
 								<thead>
 									<tr>
@@ -46,13 +46,13 @@ if (isset($_SESSION['credentials'])) {
 							</table>
 							
 							<!-- View Tests > Right - Existing Tests -->
-							<table class="alt" style="display: inline-block; max-width: 50%;">
+							<table class="alt" style="display: inline; max-width: 50%;">
 							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
 								<thead>
 									<tr>
-										<th>Name</th>
+										<th>Test</th>
 										<th>Description</th>
-										<th>Price</th>
+										<th>Grade</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_inactive_tests">
@@ -95,11 +95,11 @@ if (isset($_SESSION['credentials'])) {
 						</section>
 					</div>
 					
-					<div id="slidingDiv_3" class="toggleDiv" style="display:none">
+					<div id="slidingDiv_3" class="toggleDiv" style="display:none;">
 						<br />
-						<h4 style="text-align: center;">Select who this test is for...</h4>
-						<select name="Class" id="ddl_classes">
-							<option selected="selected" value="null">- Select a Class -</option>
+						<h4 style="text-align: center;">Please Select the Class...</h4>
+						<select name="Class" id="ddl_classes" style="text-align: center;">
+							<option selected="selected" value="null">- Classes -</option>
 						</select>
 						<br />
 						<section style="text-align: center;">

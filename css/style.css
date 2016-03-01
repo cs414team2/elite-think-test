@@ -1460,3 +1460,9 @@
 	.rightAlignInDiv{
 		float: right;
 	}
+	.answer_correct{
+		color: #0F0;
+	}
+	.answer_incorrect{
+		color: #F00;
+	}
