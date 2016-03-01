@@ -3,10 +3,10 @@
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
 	
-	if(isset $_REQUEST["test_id"]){
+	if(isset($_REQUEST["test_id"])){
 		$test_id = $_REQUEST["test_id"];
 		
-		$db = $this->prepare_connection();
+		$db = prepare_connection();
 		$statement = $db->prepare("SELECT question_id, question_text FROM question WHERE test_id = ?");
 		$statement->bind_param("i", $test_id);
 		$statement->execute();
