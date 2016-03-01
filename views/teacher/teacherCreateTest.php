@@ -134,9 +134,9 @@ if (isset($_SESSION['credentials'])) {
 						<div id="my-form-builder" align="left">
 							<h4>Test Goes Here Yo!</h4>
 								
-								<div id="test_content">
-								
-								</div>
+								<div id="test_content">';
+									require_once('controllers/load_questions.php');
+						echo   '</div>
 							<br />
 							
 						</div>
