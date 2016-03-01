@@ -1,6 +1,5 @@
 <?php
 	class Table {
-		// Allows for a clickable
 		const IS_ACTIVE = "is_active";
 		
 		private $table_name;
@@ -27,7 +26,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td> No Students </td> </tr>";
+				echo "<tr> <td> No " . $table_name . "s </td> </tr>";
 			}
 		}
 	}
