@@ -33,7 +33,7 @@
 			foreach($_REQUEST['answers'] as $answer) {
 				$question_id = $questionInfo['question_id'];
 				$answer_text = $answer['answer_text'];
-				$answer_is_correct = $answer['is_correct'] == "true" ? "Y" : "N";
+				$answer_is_correct = $answer['is_correct'];
 				
 				$addStatement->bind_param("iss", $question_id, $answer_text, $answer_is_correct) or die($addStatement->error);
 				$addStatement->execute()                                                         or die($addStatement->error);
