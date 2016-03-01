@@ -8,9 +8,9 @@ if (isset($_SESSION['credentials'])) {
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			var test_id = 123;' // $_REQUEST['test_id']; .
-							// NEEED TO INCLUDE THIS CODE WHEN WE ACTUALLY USE THIS PAGE!
-			.'function setRadio(obj) 
+			var test_id = ' . $_REQUEST['test_id']; . ';
+			
+			function setRadio(obj) 
 			{
 				if(obj.checked == true)
 					obj.checked = false;
