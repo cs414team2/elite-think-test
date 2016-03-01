@@ -36,9 +36,9 @@ document.getElementById('loginButton').onclick = function() {
 		<header class="major">
 			<h2>Enter Your Information</h2>
 			<form method="post" action="redirect.php">
-				<h4>User name:</h4>
+				<h3>User name:</h3>
 				<input id="usernameEntry" type="text" name="username">
-				<br><h4>Password:</h4>
+				<br><h3>Password:</h3>
 				<input type="password" name="password">
 				<br />
 				<input class="button special big" name="senddata" type="submit" value="Login">
@@ -58,37 +58,37 @@ document.getElementById('loginButton').onclick = function() {
 		<div class="row uniform">
 			<div class="4u 6u(2) 12u$(3)">
 				<section class="feature fa-briefcase">
-					<h3>Management Features</h3>
+					<h4>Management Features</h4>
 					<p>Create, manage, and update exams to your liking. You are in full control of your abilities.</p>
 				</section>
 			</div>
 			<div class="4u 6u$(2) 12u$(3)">
 				<section class="feature fa-code">
-					<h3>Strictly Online</h3>
+					<h4>Strictly Online</h4>
 					<p>No paperwork necessary. Log in, navigate to a test, and meet personal goals.</p>
 				</section>
 			</div>
 			<div class="4u$ 6u(2) 12u$(3)">
 				<section class="feature fa-save">
-					<h3>Save Your Work</h3>
+					<h4>Save Your Work</h4>
 					<p>Your account is accessible on most devices. Log in from around the world!</p>
 				</section>
 			</div>
 			<div class="4u 6u$(2) 12u$(3)">
 				<section class="feature fa-desktop">
-					<h3>On-line Instructions</h3>
+					<h4>On-line Instructions</h4>
 					<p>Simple online services keep the style as simple as possible.</p>
 				</section>
 			</div>
 			<div class="4u 6u(2) 12u$(3)">
 				<section class="feature fa-camera-retro">
-					<h3>Instant Updating</h3>
+					<h4>Instant Updating</h4>
 					<p>The Elite Team are constantly updating the website to meet the highest expectations for our users.</p>
 				</section>
 			</div>
 			<div class="4u$ 6u$(2) 12u$(3)">
 				<section class="feature fa-cog">
-					<h3>Constant Feedback</h3>
+					<h4>Constant Feedback</h4>
 					<p>See your scores and view your progress as you take an exam.</p>
 				</section>
 			</div>

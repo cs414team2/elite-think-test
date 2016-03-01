@@ -5,11 +5,11 @@
 					// Display's the user's name in the header
 					if (isset($_SESSION["credentials"]))
 					{
-						echo "<h1>Hello, ".$_SESSION["credentials"]->get_user_name()."</h1>";
+						echo "<h1 style='text-shadow: none;'>Hello, ".$_SESSION["credentials"]->get_user_name()."</h1>";
 					}
 					else
 					{
-						echo '<h1><a href="index.php">Elite Team</a></h1>';
+						echo '<h1 style="text-shadow: none;"><a href="index.php">Elite Team</a></h1>';
 					}
 						
 				?>
