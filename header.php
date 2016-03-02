@@ -13,8 +13,9 @@
 					}
 						
 				?>
-				
+				<!-- Makes the logo appear on bottom left of every screen. Issue on Test Making page
 				<img src="images/eliteicon.png" width="100" height="110" style="margin-top: 42%" alt="elite logo"/>
+				-->
 				
 				<nav id="nav">
 					<ul>

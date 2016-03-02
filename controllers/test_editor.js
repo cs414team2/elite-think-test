@@ -77,10 +77,9 @@ function clear_question_fields(question_type) {
 	switch (question_type) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			$("#txt_mcq_entry").val('');
-			$("#mcAnswer1").val('');
-			$("#mcAnswer2").val('');
-			$("#mcAnswer3").val('');
-			$("#mcAnswer4").val('');
+			$(".mc_answer").each(function(){
+				$(this).val('');
+			});
 			break;
 		case TRUE_FALSE_QUESTION_TYPE:
 			$("#txt_tfq_entry").val('');
