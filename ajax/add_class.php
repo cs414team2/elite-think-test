@@ -5,9 +5,10 @@
 	require_once('../model/CS414Connection.php');
 	
 	if(isset($_REQUEST['course_name'], $_REQUEST['course_number'], $_REQUEST['teacher_id'])) {
-		$course_name = ucwords(trim($_REQUEST['course_name']));
-		$course_number = strtoupper(trim($_REQUEST['course_number']));
-		$teacher_id = trim($_REQUEST['teacher_id']);
+		$course_name   = strip_tags(ucwords(trim($_REQUEST['course_name'])));
+		$course_number = strip_tags(strtoupper(trim($_REQUEST['course_number'])));
+		$teacher_id    = trim($_REQUEST['teacher_id']);
+		
 		if ($teacher_id == "null") {
 			$teacher_id = null;
 		}

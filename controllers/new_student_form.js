@@ -73,17 +73,18 @@ $(document).ready(function(){
 						firstname: firstname,
 						lastname: lastname,
 						email: email
-					  }
+					  },
+				success: function (){
+					loadStudents();
+				
+					$("#password").val('');
+					$("#firstname").val('');
+					$("#lastname").val('');
+					$("#emailAddress").val('');
+					
+					window.scroll(0,0);
+				}
 			});
-			
-			loadStudents();
-		
-			$("#password").val('');
-			$("#firstname").val('');
-			$("#lastname").val('');
-			$("#emailAddress").val('');
-			
-			window.scroll(0,0);
 		}
 	})
 	

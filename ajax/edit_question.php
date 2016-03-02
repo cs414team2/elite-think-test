@@ -3,7 +3,7 @@
 
 		$question_id     = $_REQUEST['question_id'];
 		$question_type   = $_REQUEST['question_type'];
-		$question_text   = $_REQUEST['question_text'];
+		$question_text   = htmlspecialchars(ucfirst(trim($_REQUEST['question_text'])));
 		$question_weight = $_REQUEST['question_weight'];
 		
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");

@@ -32,7 +32,7 @@
 			
 			foreach($_REQUEST['answers'] as $answer) {
 				$question_id = $questionInfo['question_id'];
-				$answer_text = $answer['answer_text'];
+				$answer_text = htmlspecialchars(trim($answer['answer_text']));
 				$answer_is_correct = $answer['is_correct'];
 				
 				$addStatement->bind_param("iss", $question_id, $answer_text, $answer_is_correct) or die($addStatement->error);
@@ -45,7 +45,7 @@
 		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
 			$count = 0;
 			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'], $count, $answer['answer_text'], $question_type);
+				$test->print_answer($answer['is_correct'], $count, htmlspecialchars(trim($answer['answer_text'])), $question_type);
 				$count++;
 			}										
 		}

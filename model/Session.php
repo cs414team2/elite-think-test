@@ -11,8 +11,9 @@
 		private $password;
 		
 		public function __construct($id, $pass) {
+			$pass = htmlspecialchars($pass);
 			$db = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
-		
+
 			// Runs database authentication function and returns access level
 			$statement = $db->prepare("SELECT authenticate_user(?, ?)"); 
 			$statement->bind_param("is", $id, $pass);
