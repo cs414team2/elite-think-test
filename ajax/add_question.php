@@ -12,7 +12,7 @@
 
 		$test_id         = $_REQUEST['test_id'];
 		$question_type   = $_REQUEST['question_type'];
-		$question_text   = ucfirst(trim($_REQUEST['question_text']));
+		$question_text   = htmlspecialchars(ucfirst(trim($_REQUEST['question_text'])), ENT_QUOTES);
 		$question_weight = $_REQUEST['question_weight'];
 		
 		// Create the connection string.

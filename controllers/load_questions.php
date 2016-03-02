@@ -1,5 +1,5 @@
 <?php
-	include('model/Test.php');
+	include_once('model/Test.php');
 	function prepare_connection(){
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
@@ -37,7 +37,7 @@
 						$count++;
 					}
 				}
-				echo "\r\n</div> </br>";
+				echo "\r\n</div>";
 			}
 		}
 	}

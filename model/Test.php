@@ -12,8 +12,12 @@ class Test{
 		$this->alphabet = range('a', 'z');
 	}
 	
+	private function prepare_connection(){
+		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
+	}
+	
 	public function print_question($question_id, $question_text){
-		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black'>";
+		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
 		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
 
 		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
@@ -26,14 +30,36 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10004;</div>";
 				else
-					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10006;</div>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n<p style='color:#47CC7A'>&nbsp;".$answer_content."</p>";
 				break;
 		}
+	}
+	
+	public function get_class_name($test_id){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT get_class_name_by_test(?)"); 
+		$statement->bind_param("i", $test_id);
+		$statement->execute();
+		$statement->bind_result($class_name);
+		$statement->fetch();
+		
+		echo $class_name;
+	}
+	
+	public function get_test_number($test_id){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT get_test_number(?)"); 
+		$statement->bind_param("i", $test_id);
+		$statement->execute();
+		$statement->bind_result($test_number);
+		$statement->fetch();
+		
+		echo "Test " . $test_number;
 	}
 	
 	public function print_essay_answer(){
