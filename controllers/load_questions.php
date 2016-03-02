@@ -37,7 +37,7 @@
 						$count++;
 					}
 				}
-				echo "\r\n</div> </br>";
+				echo "\r\n</div>";
 			}
 		}
 	}

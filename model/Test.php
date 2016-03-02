@@ -17,7 +17,7 @@ class Test{
 	}
 	
 	public function print_question($question_id, $question_text){
-		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black'>";
+		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
 		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
 
 		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
