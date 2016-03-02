@@ -26,9 +26,9 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10004;</div>";
 				else
-					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10006;</div>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n<p style='color:#47CC7A'>&nbsp;".$answer_content."</p>";
