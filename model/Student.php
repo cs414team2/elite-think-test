@@ -67,11 +67,14 @@
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
 					echo "<tr " . "id='" . $test_id . "'>";
-					echo "<td>Test " . $test_number . "</td>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
+					echo "<td>Test " . $test_number . "</td>";
 					echo "<td>" . $date_due . "</td>";
-					echo "<td>" . $time_limit . "</td>";
+					if($time_limit > 0)
+						echo "<td>" . $time_limit . " Minute(s)</td>";
+					else
+						echo "<td> No Limit</td>";
 					echo "</tr>\r\n";
 				}
 			}
