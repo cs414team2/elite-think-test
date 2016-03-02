@@ -1,9 +1,12 @@
 <?php
 require_once('model/Teacher.php');
+include_once('model/Test.php');
 
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
+		$test = new Test();
+		$test_id = $_REQUEST['test_id'];
 		echo '
 		<section id="main" class="wrapper style1">
 		
@@ -28,7 +31,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div id="sidebar" style="text-align:center">
 					
 					<section style="text-align:center">
-						<h3>!~!PUT CLASS HERE!~!</h3>
+						<h2>'; $test->get_class_name($test_id); echo '</h2>
 						<p style="color:white;">
 							<input type="number" name="timeLimit" style="text-align: center; width: 60px;" min="0">	
 							min(s) to take test
@@ -71,11 +74,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 											<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
 											<br/><br />
-													
-											<ul class="actions" >
-												<li><input id="btn_add_mc" type="button" class="button special"value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-											</ul>
+											
+											<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+											<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 										</form>
 									</div>
 								</section>
@@ -100,7 +101,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<br /><br />
 											
 											<ul class="actions">
-												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 0 .5em 0; height: 2em; line-height: 0em;"/></li>
+												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 											</ul>
 										</form>
@@ -130,8 +131,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 
 				<div class="smallScreenTestDiv" style="float:right;"> 
 					<section id="testView">
-						<div id="my-form-builder" text-align="center">
-							<h4>Questions...</h4>
+						<div id="my-form-builder" align="left">
+							<h4>'; $test->get_test_number($test_id); echo '</h4>
 								
 								<div id="test_content">';
 									require_once('controllers/load_questions.php');

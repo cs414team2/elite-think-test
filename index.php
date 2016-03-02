@@ -87,6 +87,7 @@
 						break;	
 					case "student_test_page":
 						require_once('views/student/studentTestPage.php');
+						$load_footer = false;
 						break;
 
 					case "logout": 
