@@ -49,36 +49,34 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 										<form>
 											<h4>Multiple Choice</h4>
 											<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
-											
 											name="txt_mcq_entry" class="questionStyle"></textarea>
+											
 											<label for="mcAnswer1" class="questionLabel"> A)</label>
-											<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
 											<input type="radio" id="rb_is_answer_a" name="rb_is_answer" >
 											<label for="rb_is_answer_a" class="questionLabel">Answer</label>
+											<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
 											<br/><br />
 											
 											<label for="mcAnswer2" class="questionLabel"> B)</label>
-											<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
 											<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
 											<label for="rb_is_answer_b" class="questionLabel">Answer</label>
+											<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
 											<br/><br />
 											
 											<label for="mcAnswer3" class="questionLabel"> C)</label>
-											<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
 											<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
 											<label for="rb_is_answer_c" class="questionLabel">Answer</label>
+											<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
 											<br/><br />
 											
 											<label for="mcAnswer4" class="questionLabel"> D)</label>
-											<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
 											<input type="radio" id="rb_is_answer_d" name="rb_is_answer" >
 											<label for="rb_is_answer_d" class="questionLabel">Answer</label>
+											<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
 											<br/><br />
-													
-											<ul class="actions" >
-												<li><input id="btn_add_mc" type="button" class="button special"value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-											</ul>
+											
+											<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+											<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 										</form>
 									</div>
 								</section>
@@ -103,7 +101,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<br /><br />
 											
 											<ul class="actions">
-												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 0 .5em 0; height: 2em; line-height: 0em;"/></li>
+												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 											</ul>
 										</form>
@@ -151,9 +149,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	
 		';
 	}
+	else {
+		echo "<script>window.location = './404.php'; </script>";
+	}
 }
 else {
-	header('Location: ./');
+	echo "<script>window.location = './404.php'; </script>";
 }
 ?>
 
