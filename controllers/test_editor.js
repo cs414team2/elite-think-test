@@ -13,6 +13,9 @@ function add_question(question_type, question_text) {
 		$(".mc_answer").each(function (index) {
 			answers[index] = {answer_text: $(this).val(), is_correct : false ? "Y" : "N"};
 		});
+		$("[name='rb_is_answer']").each(function(index){
+			answers[index].is_correct = $(this).prop("checked") ? "Y" : "F";
+		});
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
 		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "True" : "False",
