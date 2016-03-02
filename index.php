@@ -94,6 +94,9 @@
 						unset($_SESSION["credentials"]);
 						require_once('views/logon.php');
 						break;
+					default:
+						echo "<script>window.location = './404.php';</script>";
+						break;
 				}
 			}
 			elseif (isset($_SESSION["credentials"]))

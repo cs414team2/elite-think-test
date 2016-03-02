@@ -1,4 +1,15 @@
-<div class="sidebarStudent" style="text-align:center">
+
+		<section id="main" class="wrapper style1">
+		
+
+			<script src="controllers/test_editor.js"></script>
+			
+			<header class="major">
+				
+			</header>
+		
+			<div class="testContainer">
+				<div id="sidebar" style="text-align:center">
 					
 					<section style="text-align:center">
 						<h2>Time Limit on test: </h2>
@@ -15,7 +26,7 @@
 			
 					
 					
-</div>
+					</div>
 
 				<div class="studentTest" style="float:right;"> 
 					<section id="testView">
@@ -31,3 +42,18 @@
 						</div>
 					</section>
 				</div>
+			</div>
+		</section>
+		
+			
+	
+
+
+
+
+
+
+
+
+
+
