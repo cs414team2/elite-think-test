@@ -49,6 +49,9 @@
 				$count++;
 			}										
 		}
+		else {
+			$test->print_essay_answer();
+		}
 			
 		echo "\r\n</div>";
 
