@@ -12,6 +12,10 @@ class Test{
 		$this->alphabet = range('a', 'z');
 	}
 	
+	private function prepare_connection(){
+		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
+	}
+	
 	public function print_question($question_id, $question_text){
 		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black'>";
 		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
@@ -34,6 +38,28 @@ class Test{
 				echo "\r\n<p style='color:#47CC7A'>&nbsp;".$answer_content."</p>";
 				break;
 		}
+	}
+	
+	public function get_class_name($test_id){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT get_class_name_by_test(?)"); 
+		$statement->bind_param("i", $test_id);
+		$statement->execute();
+		$statement->bind_result($class_name);
+		$statement->fetch();
+		
+		echo $class_name;
+	}
+	
+	public function get_test_number($test_id){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT get_test_number(?)"); 
+		$statement->bind_param("i", $test_id);
+		$statement->execute();
+		$statement->bind_result($test_number);
+		$statement->fetch();
+		
+		echo "Test " . $test_number;
 	}
 	
 	public function print_essay_answer(){

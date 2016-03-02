@@ -1,9 +1,12 @@
 <?php
 require_once('model/Teacher.php');
+include_once('model/Test.php');
 
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		// PUT HTML HERE!
+		$test = new Test();
+		$test_id = $_REQUEST['test_id'];
 		echo '
 		<section id="main" class="wrapper style1">
 		
@@ -28,7 +31,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div id="sidebar" style="text-align:center">
 					
 					<section style="text-align:center">
-						<h3>!~!PUT CLASS HERE!~!</h3>
+						<h2>'; $test->get_class_name($test_id); echo '</h2>
 						<p style="color:white;">
 							<input type="number" name="timeLimit" style="text-align: center; width: 60px;" min="0">	
 							min(s) to take test
@@ -131,7 +134,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div class="smallScreenTestDiv" style="float:right;"> 
 					<section id="testView">
 						<div id="my-form-builder" align="left">
-							<h4>Test Goes Here Yo!</h4>
+							<h4>'; $test->get_test_number($test_id); echo '</h4>
 								
 								<div id="test_content">';
 									require_once('controllers/load_questions.php');
