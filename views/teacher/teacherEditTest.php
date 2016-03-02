@@ -71,11 +71,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 											<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
 											<br/><br />
-													
-											<ul class="actions" >
-												<li><input id="btn_add_mc" type="button" class="button special"value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-											</ul>
+											
+											<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+											<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 										</form>
 									</div>
 								</section>
@@ -100,7 +98,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<br /><br />
 											
 											<ul class="actions">
-												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 0 .5em 0; height: 2em; line-height: 0em;"/></li>
+												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 											</ul>
 										</form>

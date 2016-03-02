@@ -1466,8 +1466,6 @@
 	.rightAlignInDiv{
 		float:right;
 	}
-	.mini{
-		padding: 0 .5em;
-		height: 2em; 
-		line-height: 0em;
+	.studentTest{
+		background-image: url("../images/geometric.png");
 	}
