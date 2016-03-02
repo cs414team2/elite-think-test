@@ -1,12 +1,15 @@
 <?php
-	include_once('model/Test.php');
+	require_once('model/Test.php');
+	require_once('model/Session.php');
+	
 	function prepare_connection(){
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
 
-	if(isset($_REQUEST["test_id"])){
-		$test_id = $_REQUEST["test_id"];
-		$test = new Test();
+	if(isset($_REQUEST["test_id"], $_SESSION["credentials"])){
+		$test_id    = $_REQUEST["test_id"];
+		$teacher_id = $_SESSION["credentials"]->get_user_id();
+		$test       = new Test();
 		
 		$db = prepare_connection();
 		$question_statement = $db->prepare("SELECT question_id, question_text, question_type FROM question WHERE test_id = ?");
@@ -41,4 +44,5 @@
 			}
 		}
 	}
+	
 ?>

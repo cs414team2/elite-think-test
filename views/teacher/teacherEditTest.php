@@ -3,9 +3,9 @@ require_once('model/Teacher.php');
 include_once('model/Test.php');
 
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
-	if ($_SESSION['credentials']->is_teacher()) {
+	$test = new Test();
+	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'])) {
 		// PUT HTML HERE!
-		$test = new Test();
 		$test_id = $_REQUEST['test_id'];
 		echo '
 		<section id="main" class="wrapper style1">

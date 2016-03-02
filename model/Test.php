@@ -65,5 +65,16 @@ class Test{
 	public function print_essay_answer(){
 		echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
 	}
+	
+	public function verify_test_access($teacher_id, $test_id){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT verify_test_access(?, ?)"); 
+		$statement->bind_param("ii", $teacher_id, $test_id);
+		$statement->execute();
+		$statement->bind_result($access_status);
+		$statement->fetch();
+		
+		return $access_status;
+	}
 }
 ?>
