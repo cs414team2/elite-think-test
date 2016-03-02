@@ -288,7 +288,7 @@
     min-height: 100%;
 }
 .sidebarStudent{
-		position:absolute;
+		position:fixed;
 		padding-top:80px;
 		top:0; bottom:0; left:0;
 		min-width: 10%;
@@ -301,7 +301,7 @@
 
 	padding-top:80px;
 	height:600px;
-	min-width:80%;
+	min-width:78%;
 	top:0; bottom:0; left:0;
 }
 
@@ -1493,3 +1493,11 @@ span#countdown {
 	.studentTest{
 		background-image: url("../images/geometric.png");
 	}
+	
+	#bg {
+  position: fit; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+}
