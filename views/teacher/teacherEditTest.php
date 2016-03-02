@@ -28,15 +28,17 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div id="sidebar" style="text-align:center">
 					
 					<section style="text-align:center">
-						<h4 style="color:white;">Time Limit on test: </h4>
-						<input type="number" name="timeLimit" style="text-align: center; align:center">	
-						<br /><br /><br />
+						<h3>!~!PUT CLASS HERE!~!</h3>
+						<p style="color:white;">
+							<input type="number" name="timeLimit" style="text-align: center; width: 60px;" min="0">	
+							min(s) to take test
+						</p>
 						
-							<button class="show_hide button small fit" rel="#slidingQ_1" >M/C</button>
+							<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 							
-							<button class="show_hide button small fit" rel="#slidingQ_2" >T/F</button>
+							<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
 
-							<button class="show_hide button small fit" rel="#slidingQ_3" >Essay</button>
+							<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 
 							<div id="slidingQ_1" class="toggleDiv"> 
 								<section id="MultipleChoice">
@@ -44,27 +46,35 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 										<form>
 											<h4>Multiple Choice</h4>
 											<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
-												name="txt_mcq_entry" class="questionStyle"></textarea>
-											<br/>
-											<label for="mcAnswer1" class="questionLabel"> Choice 1</label>
+											
+											name="txt_mcq_entry" class="questionStyle"></textarea>
+											<label for="mcAnswer1" class="questionLabel"> A)</label>
 											<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
-											<br/>
+											<input type="radio" id="rb_is_answer_a" name="rb_is_answer" >
+											<label for="rb_is_answer_a" class="questionLabel">Answer</label>
+											<br/><br />
 											
-											<label for="mcAnswer2" class="questionLabel"> Choice 2</label>
+											<label for="mcAnswer2" class="questionLabel"> B)</label>
 											<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
-											<br/>
+											<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
+											<label for="rb_is_answer_b" class="questionLabel">Answer</label>
+											<br/><br />
 											
-											<label for="mcAnswer3" class="questionLabel"> Choice 3</label>
+											<label for="mcAnswer3" class="questionLabel"> C)</label>
 											<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
-											<br/>
+											<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
+											<label for="rb_is_answer_c" class="questionLabel">Answer</label>
+											<br/><br />
 											
-											<label for="mcAnswer4" class="questionLabel"> Choice 4</label>
+											<label for="mcAnswer4" class="questionLabel"> D)</label>
 											<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
+											<input type="radio" id="rb_is_answer_d" name="rb_is_answer" >
+											<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 											<br/><br />
 													
-											<ul class="actions">
-												<li><input id="btn_add_mc" type="button" value="Submit Question" /></li>
-												<li><input type="reset" value="Reset" class="alt" /></li>
+											<ul class="actions" >
+												<li><input id="btn_add_mc" type="button" class="button special"value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 											</ul>
 										</form>
 									</div>
@@ -85,14 +95,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
 											<label for="rb_answer_true" class="questionLabel">True</label>
 																
-												<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
-												<label for="rb_answer_false" class="questionLabel">False</label>
-												<br /><br />
-												
-												<ul class="actions">
-													<li><input id="btn_add_tf" type="button" value="Submit Question" /></li>
-													<li><input type="reset" value="Reset" class="alt" /></li>
-												</ul>
+											<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
+											<label for="rb_answer_false" class="questionLabel">False</label>
+											<br /><br />
+											
+											<ul class="actions">
+												<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 0 .5em 0; height: 2em; line-height: 0em;"/></li>
+												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+											</ul>
 										</form>
 									</div>
 								</section>
@@ -108,8 +118,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											<br /><br />
 
 											<ul class="actions">
-												<li><input id="btn_add_essay" type="button" value="Submit Question" /></li>
-												<li><input type="reset" value="Reset" class="alt" /></li>
+												<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+												<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 											</ul>
 										</form>
 									</div>

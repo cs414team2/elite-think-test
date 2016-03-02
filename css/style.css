@@ -226,12 +226,11 @@
 /* Form */
 
 	form {
-		margin: 0 0 2em 0;
+		margin: 0 0 0em 0;
 	}
 
 	label {
 		color: #646464;
-		display: block;
 		font-size: 1.0em;
 		font-weight: 900;
 	}
@@ -1436,8 +1435,8 @@
 	}
 	
 	#slidingQ_0, #slidingQ_1, #slidingQ_2, #slidingQ_3  {
-		max-height: 350px;
-		overflow-y: scroll;
+		max-height: 380px;
+		overflow-y: auto;
 	}
 	#slidingQ_1, #slidingQ_2, #slidingQ_3  {
 		display:none;
@@ -1465,4 +1464,9 @@
 	}
 	.rightAlignInDiv{
 		float:right;
+	}
+	.mini{
+		padding: 0 .5em;
+		height: 2em; 
+		line-height: 0em;
 	}
