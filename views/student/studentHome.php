@@ -47,9 +47,9 @@ if (isset($_SESSION['credentials'])) {
 										<table class="alt">
 											<thead>
 												<tr>
-													<th>Test #</th>
 													<th>Class #</th>
 													<th>Class Name</th>
+													<th>Test #</th>
 													<th>Date Due</th>
 													<th>Time Limit</th>
 												</tr>
