@@ -33,10 +33,11 @@ class Test{
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n<p style='color:#47CC7A'>&nbsp;".$answer_content."</p>";
 				break;
-			case self::ESSAY_QUESTION_TYPE:
-				echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
-				break;
 		}
+	}
+	
+	public function print_essay_answer(){
+		echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
 	}
 }
 ?>

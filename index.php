@@ -70,6 +70,9 @@
 					case "admin_edit_class":
 						require_once('views/administrator/adminEditClass.php');
 						break;
+					case "admin_student_info":
+						require_once('views/administrator/adminStudentInfo.php');
+						break;
 
 					case "teacher_edit_test":
 						require_once('views/teacher/teacherEditTest.php');
