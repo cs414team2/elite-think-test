@@ -36,7 +36,7 @@
 				
 				if($answer_statement->num_rows > 0){
 					while($answer_statement->fetch()){			
-						$test->print_answer($is_correct, $count, $answer_content, $question_type);
+						$test->print_answer($is_correct, $count, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
 						$count++;
 					}
 				}

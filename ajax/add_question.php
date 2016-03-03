@@ -5,6 +5,11 @@
 	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 	const TRUE_FALSE_QUESTION_TYPE = 'TF';
 	const ESSAY_QUESTION_TYPE = 'ESSAY';
+	// Make sure these constants match up with model/Session.php !
+	const UNAUTHENTICATED = 0;
+	const ADMINISTRATOR = 1;
+	const TEACHER = 2;
+	const STUDENT = 3;
 	
 	$test = new Test();
 
@@ -19,10 +24,10 @@
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 		
 		// Store the question in the database.
-		$eliteConnection->query("SET @question_id = 0")                                      or die($eliteConnection->error);	
-		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)") or die($eliteConnection->error);
-		$addStatement->bind_param("ssii", $question_text, $question_type, $test_id, $question_weight) 			   or die($addStatement->error);
-		$addStatement->execute()                                                                                   or die($addStatement->error);
+		$eliteConnection->query("SET @question_id = 0")                                               or die($eliteConnection->error);	
+		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)")      or die($eliteConnection->error);
+		$addStatement->bind_param("ssii", $question_text, $question_type, $test_id, $question_weight) or die($addStatement->error);
+		$addStatement->execute()                                                                      or die($addStatement->error);
 		$addResult = $eliteConnection->query("SELECT @question_id as question_id");
 		$questionInfo = $addResult->fetch_assoc();
 		
@@ -45,7 +50,7 @@
 		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
 			$count = 0;
 			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'], $count, htmlspecialchars(trim($answer['answer_text'])), $question_type);
+				$test->print_answer($answer['is_correct'], $count, htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
 				$count++;
 			}										
 		}
