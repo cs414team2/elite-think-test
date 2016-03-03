@@ -68,13 +68,26 @@ class Test{
 		echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
 	}
 	
-	public function verify_test_access($teacher_id, $test_id){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT verify_test_access(?, ?)"); 
-		$statement->bind_param("ii", $teacher_id, $test_id);
-		$statement->execute();
-		$statement->bind_result($access_status);
-		$statement->fetch();
+	public function verify_test_access($user_id, $test_id, $user_type){
+		switch($user_type){
+			case self::TEACHER:
+				$db = $this->prepare_connection();
+				$statement = $db->prepare("SELECT verify_teacher_test_access(?, ?)"); 
+				$statement->bind_param("ii", $user_id, $test_id);
+				$statement->execute();
+				$statement->bind_result($access_status);
+				$statement->fetch();
+				break;
+			
+			case self::STUDENT:
+				$db = $this->prepare_connection();
+				$statement = $db->prepare("SELECT verify_student_test_access(?, ?)");
+				$statement->bind_param("ii", $user_id, $test_id);
+				$statement->execute();
+				$statement->bind_result($access_status);
+				$statement->fetch();
+				break;
+		}
 		
 		return $access_status;
 	}
@@ -100,13 +113,13 @@ class Test{
 					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10006;</div>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
-				if($answer_content == "true"){
-					echo "\r\n<p style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."</p>";
-					echo "\r\n<p style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</p>";
+				if($answer_content == "True"){
+					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False&nbsp;&#10006;</div>";
 				}
-				else if($answer_content == "false"){
-					echo "\r\n<p style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</p>";
-					echo "\r\n<p style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."</p>";
+				else if($answer_content == "False"){
+					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."&nbsp;&#10004;</div>";
 				}
 				break;
 		}
