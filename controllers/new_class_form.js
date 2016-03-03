@@ -50,16 +50,19 @@ $(document).ready(function(){
 				data: { course_name: course_name,
 						course_number: course_number,
 						teacher_id: teacher_id
-					  }
+					  },
+				success : function(data) {
+					
+					loadClasses();
+					
+					$("#courseName").val('');
+					$("#courseNumber").val('');
+					$("#Teacher").val('');
+					
+					window.scroll(0,0);
+				}
 			});
 			
-			loadClasses();
-			
-			$("#courseName").val('');
-			$("#courseNumber").val('');
-			$("#Teacher").val('');
-			
-			window.scroll(0,0);
 		}
 		
 	});

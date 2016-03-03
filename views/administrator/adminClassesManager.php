@@ -45,13 +45,13 @@ if (isset($_SESSION['credentials'])) {
 							<form>
 								<br />
 								<b>Course name:</b>
-								<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45" placeholder="CS 364">
+								<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45" placeholder=".NET Programming">
 								<p id="add_course_name_err" style="display:none; color: red;">
 									Course name cannot be blank.
 								</p>
 								<br />
 								<b>Course Number:</b>
-								<input type="text" id="courseNumber" name="courseNumber" class="inputField" maxlength="9" placeholder=".NET Programming">
+								<input type="text" id="courseNumber" name="courseNumber" class="inputField" maxlength="9" placeholder="CS 364">
 								<p id="add_course_number_err" style="display:none; color: red;">
 									Course number cannot be blank.
 								</p>

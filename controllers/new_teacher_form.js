@@ -57,17 +57,20 @@ $(document).ready(function(){
 						first_name: first_name,
 						last_name: last_name,
 						email: email
-					  }
+					  },
+				success: function () {
+					
+					loadTeachers();
+				
+					$("#password").val('');
+					$("#first_name").val('');
+					$("#last_name").val('');
+					$("#email").val('');
+					
+					window.scroll(0,0);
+				}
 			});
 			
-			loadTeachers();
-		
-			$("#password").val('');
-			$("#first_name").val('');
-			$("#last_name").val('');
-			$("#email").val('');
-			
-			window.scroll(0,0);
 		}
 	})
 	

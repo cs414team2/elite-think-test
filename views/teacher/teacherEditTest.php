@@ -52,7 +52,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 											name="txt_mcq_entry" class="questionStyle"></textarea>
 											
 											<label for="mcAnswer1" class="questionLabel"> A)</label>
-											<input type="radio" id="rb_is_answer_a" name="rb_is_answer" >
+											<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
 											<label for="rb_is_answer_a" class="questionLabel">Answer</label>
 											<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
 											<br/><br />
