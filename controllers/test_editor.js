@@ -2,6 +2,7 @@ const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE = 'TF';
 const ESSAY_QUESTION_TYPE = 'ESSAY';
 const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
+const MAX_TEST_SIZE = 3;
 
 //*******************Functions****************************
 function add_question(question_type, question_text) {
@@ -71,7 +72,12 @@ function delete_question(question) {
 // Display the question numbers.
 function number_questions() {
 	$( ".question_number" ).each(function( index ) {
-		$(this).html(index + 1 + ")");
+		var formatted_number = "";
+		for (i = 0; i < (MAX_TEST_SIZE - (index + 1).toString().length); i++) {
+			formatted_number = formatted_number + "&nbsp;";
+		}
+		formatted_number = formatted_number + (index + 1 + ")");
+		$(this).html(formatted_number);
 	});
 }
 
