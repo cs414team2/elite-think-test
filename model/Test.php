@@ -1,10 +1,14 @@
 <?php
 class Test{
-	const CORRECT   = 'Y';
-	const INCORRECT = 'N';
+	const CORRECT                       = 'Y';
+	const INCORRECT                     = 'N';
 	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
-	const TRUE_FALSE_QUESTION_TYPE = 'TF';
-	const ESSAY_QUESTION_TYPE = 'ESSAY';
+	const TRUE_FALSE_QUESTION_TYPE      = 'TF';
+	const ESSAY_QUESTION_TYPE           = 'ESSAY';
+	const UNAUTHENTICATED               = 0;
+	const ADMINISTRATOR                 = 1;
+	const TEACHER                       = 2;
+	const STUDENT                       = 3;
 	
 	private $alphabet;
 	
@@ -26,18 +30,16 @@ class Test{
 		echo "\r\n    </div>";
 	}
 	
-	public function print_answer($is_correct, $count, $answer_content, $question_type){
-		switch($question_type){
-			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
-				if($is_correct == self::CORRECT)
-					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10004;</div>";
-				else
-					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10006;</div>";
+	public function print_answer($is_correct, $count, $answer_content, $question_type, $user_type){
+		switch($user_type){
+			case self::TEACHER:
+				$this->print_teacher_answer($is_correct, $count, $answer_content, $question_type);
 				break;
-			case self::TRUE_FALSE_QUESTION_TYPE:
-				echo "\r\n<p style='color:#47CC7A'>&nbsp;".$answer_content."</p>";
+			case self:STUDENT:
+				$this->print_student_answer($is_correct, $count, $answer_content, $question_type);
 				break;
 		}
+			
 	}
 	
 	public function get_class_name($test_id){
@@ -75,6 +77,39 @@ class Test{
 		$statement->fetch();
 		
 		return $access_status;
+	}
+	
+	public function print_student_answer($is_correct, $count, $answer_content, $question_type){
+		switch($question_type){
+			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
+				echo "\r\n<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+				break;
+			case self::TRUE_FALSE_QUESTION_TYPE:
+				echo "\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</p>";
+				echo "\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</p>";
+				break;
+		}
+	}
+	
+	public function print_teacher_answer($is_correct, $count, $answer_content, $question_type){
+		switch($question_type){
+			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
+				if($is_correct == self::CORRECT)
+					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10004;</div>";
+				else
+					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10006;</div>";
+				break;
+			case self::TRUE_FALSE_QUESTION_TYPE:
+				if($answer_content == "true"){
+					echo "\r\n<p style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."</p>";
+					echo "\r\n<p style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</p>";
+				}
+				else if($answer_content == "false"){
+					echo "\r\n<p style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</p>";
+					echo "\r\n<p style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."</p>";
+				}
+				break;
+		}
 	}
 }
 ?>

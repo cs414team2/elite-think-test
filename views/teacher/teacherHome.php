@@ -5,7 +5,7 @@ if (isset($_SESSION['credentials'])) {
 		echo '
 			<script>
 			var user_id = '. $_SESSION['credentials']->get_user_id() .
-		'</script>
+		';</script>
 		<script src="controllers/teacher_console.js"></script>
 		<section id="main" class="wrapper style1">
 			<header class="major">
