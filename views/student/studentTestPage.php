@@ -1,8 +1,6 @@
 
 		<section id="main" class="wrapper style1">
-		
-
-			<script src="controllers/test_editor.js"></script>
+	
 			
 			<header class="major">
 				
