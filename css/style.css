@@ -296,7 +296,9 @@
 		background:#646464;
 
 }
-
+#testView{
+	min-height: 700px;
+}
 .studentTest{
 
 	padding-top:80px;
@@ -1450,7 +1452,7 @@ span#countdown {
 		top:0; bottom:0; left:0;
 		min-width: 25%;
 		height: 500px;
-		background:#646464;
+		background-image: url("../images/texture.jpg");
 	}
 	#my-form-builder {
 		border:5px ridge #646464;
@@ -1497,6 +1499,7 @@ span#countdown {
 	/* Used for student Test taking page test section */
 	.studentTest{
 		min-width: 100%;
+		min-height: 500px;
 		padding-left: 25%;
 		background-image: url("../images/geometric.png");
 		background-repeat: repeat;

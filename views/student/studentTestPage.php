@@ -7,10 +7,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 		$test_id = $_REQUEST['test_id'];
 		echo '<section id="main" class="wrapper style1">
 				<script src="controllers/test_taker.js"></script>
-				
-				<header class="major">
-					
-				</header>
 			
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
@@ -24,13 +20,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								
 								<h4 style="color:white;">Put the progress here</h4>
 
-								<button class="show_hide button small fit">Complete Test</button>
-								
-						</section>
-				
-						
-						
-						</div>
+								<button class="show_hide button small fit">Complete Test</button>		
+						</section>	
+					</div>
 
 					<div class="studentTest" style="float:right;"> 
 						<section id="testView">
