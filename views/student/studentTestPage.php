@@ -6,7 +6,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
 		$test_id = $_REQUEST['test_id'];
 		echo '<section id="main" class="wrapper style1">
-				<script src="controllers/test_editor.js"></script>
+				<script src="controllers/test_taker.js"></script>
 				
 				<header class="major">
 					
