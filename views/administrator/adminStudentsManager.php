@@ -67,6 +67,7 @@ if (isset($_SESSION['credentials'])) {
 											Email cannot be blank.
 										</p>
 									</form>
+									<br />
 									<button id="btn_add" name="add_student" class="button special big">Submit</button>
 									
 								</div>

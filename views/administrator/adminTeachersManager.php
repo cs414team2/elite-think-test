@@ -68,6 +68,7 @@ if (isset($_SESSION['credentials'])) {
 								  </p>
 								
 								</form>
+								<br />
 								<button id="btn_add" class="button special big">Submit</button>
 							</div>
 					</section>
