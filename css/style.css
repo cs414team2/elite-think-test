@@ -756,15 +756,18 @@ span#countdown {
 			border-right: 0;
 		}
 		
+		.clickable_row:hover{
+			background-color: rgba(99, 201, 160, 0.25);
+		}
 		tr:hover {
-		background-color: rgba(99, 201, 160, 0.25);;
+		/*background-color: rgba(99, 201, 160, 0.25); Full table hover*/
 		}
 
 			table tbody tr:nth-child(2n + 1) {
 				background-color: rgba(144, 144, 144, 0.075);
 			}
 			table tbody tr:hover {
-				background-color: rgba(99, 201, 160, 0.25);
+				/*background-color: rgba(99, 201, 160, 0.25); Full table hover*/
 			}
 
 		table td {
@@ -807,7 +810,7 @@ span#countdown {
 			}
 			
 			table.alt tr:hover {
-			background-color: rgba(99, 201, 160, 0.25);
+			/*background-color: rgba(99, 201, 160, 0.25); Full table hover*/
 			}
 
 			table.alt thead {
