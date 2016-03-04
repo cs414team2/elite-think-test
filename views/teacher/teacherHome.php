@@ -27,7 +27,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->
 							<br />
-							<table class="alt" style="display: inline; max-width: 50%; float: left; ">
+							<table class="alt sortable" style="display: inline; max-width: 50%; float: left; ">
 							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
 								<thead>
 									<tr>
@@ -46,7 +46,7 @@ if (isset($_SESSION['credentials'])) {
 							</table>
 							
 							<!-- View Tests > Right - Existing Tests -->
-							<table class="alt" style="display: inline; max-width: 50%;">
+							<table class="alt sortable" style="display: inline; max-width: 50%;">
 							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
 								<thead>
 									<tr>
@@ -73,7 +73,7 @@ if (isset($_SESSION['credentials'])) {
 						<section id="viewClasses">
 						<div class="container1">
 							<br />	
-							<table class="alt">
+							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
 										<thead>
 											<tr>

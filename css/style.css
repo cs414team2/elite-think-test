@@ -1465,11 +1465,12 @@ span#countdown {
 	#slidingQ_1, #slidingQ_2, #slidingQ_3  {
 		display:none;
 	}
-	
+	/* Used for teacher test creation page test div */
 	.smallScreenTestDiv{
 		min-width: 100%;
 		padding-left: 25%;
 		background-image: url("../images/geometric.png");
+		background-repeat: repeat;
 	}
 	
 	input[type="text"].questionStyle {
@@ -1490,14 +1491,11 @@ span#countdown {
 	.rightAlignInDiv{
 		float:right;
 	}
+	/* Used for student Test taking page test section */
 	.studentTest{
+		min-width: 100%;
+		padding-left: 25%;
 		background-image: url("../images/geometric.png");
+		background-repeat: repeat;
 	}
 	
-	#bg {
-  position: fit; 
-  top: -50%; 
-  left: -50%; 
-  width: 200%; 
-  height: 200%;
-}
