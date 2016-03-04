@@ -9,36 +9,50 @@ function add_question(question_type, question_text) {
 
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	var answers = [{answer_text: "", is_correct: "" }];
+	var validated = true;
 	
 	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {					   
 		$(".mc_answer").each(function (index) {
-			answers[index] = {answer_text: $(this).val(), is_correct : false ? "Y" : "N"};
+			var answer = $(this).val();
+			
+			if (jQuery.trim(answer).length <= 0) {
+				validated = false;
+				$(this).attr("placeholder", "Question cannot be left blank.");
+				$(this).css("color", "red");
+			}
+			else {
+				answers[index] = {answer_text: answer, is_correct : false ? "Y" : "N"};
+			}
 		});
-		$("[name='rb_is_answer']").each(function(index){
-			answers[index].is_correct = $(this).prop("checked") ? "Y" : "F";
-		});
+		if (validated) {
+			$("[name='rb_is_answer']").each(function(index){
+				answers[index].is_correct = $(this).prop("checked") ? "Y" : "F";
+			});
+		}
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
 		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "True" : "False",
                       is_correct: "Y" }];
 	}
 	
-	$.ajax({
-		url: 'ajax/add_question.php',
-		data: { 
-			test_id: test_id,
-			question_type: question_type,
-			question_text: question_text,
-			question_weight: question_weight,
-			answers: answers
-		},
-		success: function (question) {
-			$("#test_content").append(question);
-			number_questions();
-			clear_question_fields(question_type);
-			$('html, body').animate({scrollTop: $("#test_content").height() }, 1);
-		}
-	});
+	if(validated){
+		$.ajax({
+			url: 'ajax/add_question.php',
+			data: { 
+				test_id: test_id,
+				question_type: question_type,
+				question_text: question_text,
+				question_weight: question_weight,
+				answers: answers
+			},
+			success: function (question) {
+				$("#test_content").append(question);
+				number_questions();
+				clear_question_fields(question_type);
+				$('html, body').animate({scrollTop: $("#test_content").height() }, 1);
+			}
+		});
+	}
 
 }
 

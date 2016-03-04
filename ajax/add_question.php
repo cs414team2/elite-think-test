@@ -1,5 +1,7 @@
 <?php
 	require_once("../model/Test.php");
+	require_once("../model/Session.php");
+	session_start();
 	
 	// Make sure these constants match up with controllers/test_editor.js !
 	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
@@ -46,7 +48,7 @@
 		}
 		
 		// Print the questions and answers.
-		$test->print_question($questionInfo['question_id'], $question_text);
+		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level());
 		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
 			foreach($_REQUEST['answers'] as $answer) {
 				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
