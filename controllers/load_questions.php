@@ -23,7 +23,7 @@
 				// Counts number of answers printed for the question
 				$count = 0;
 				
-				$test->print_question($question_id, $question_text);
+				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				
 				$answer_statement = $db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?");
 				$answer_statement->bind_param("i", $question_id);
