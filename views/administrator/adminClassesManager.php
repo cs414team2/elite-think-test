@@ -13,11 +13,11 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 					<section id="content" >
-						<h3>This is a list of Classes</h3>
+						<h4>This is a list of all Classes</h4>
 						<input type="checkbox" id="copy" name="copy">
 						<label for="copy">Show Inactive Classes</label>
 						<div class="table-wrapper">
-									<table>
+									<table class="sortable">
 										<thead>
 											<tr>
 												<th>Course Id</th>
@@ -39,11 +39,9 @@ if (isset($_SESSION['credentials'])) {
 					</div>
 				<div class="container">
 					<section id="content" style="text-align:center">
-						<h3 align="center">Add a Course</h3>
 						<a id="addButton" class="show_hide" rel="#slidingDiv_2">Add a Course</a><br />
 						<div id="slidingDiv_2" style="display:none">
 							<form>
-								<br />
 								<b>Course name:</b>
 								<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45" placeholder=".NET Programming">
 								<p id="add_course_name_err" style="display:none; color: red;">
@@ -69,8 +67,6 @@ if (isset($_SESSION['credentials'])) {
 									</div>
 								</div>
 
-							  
-							  <br />
 							  <button type="button" id="btn_add" class="button special big">Add Class</button>
 							
 							</form>
