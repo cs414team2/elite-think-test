@@ -23,7 +23,7 @@ if (isset($_SESSION['credentials'])) {
 					<section id="viewClassesStudent">
 						<div class="container1">
 
-									<table class="alt">
+									<table class="alt sortable">
 										<thead>
 											<tr>
 												<th>Course ID</th>
@@ -48,7 +48,7 @@ if (isset($_SESSION['credentials'])) {
 					<section id="viewGradeStudent">
 						<div class="container1">
 
-							<table class="alt">
+							<table class="alt sortable">
 								<thead>
 									<tr>
 										<th>Class #</th>

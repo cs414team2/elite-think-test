@@ -12,11 +12,11 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 					<section id="content">
-						<h3>This is a list of Teachers</h3>
+						<h4>This is a list of Teachers</h4>
 						<input type="checkbox" id="copy" name="copy">
 						<label for="copy">Show Inactive Teachers</label>
 						<div class="table-wrapper">
-									<table>
+									<table class="sortable">
 										<thead>
 											<tr>
 												<th>ID</th>
@@ -40,11 +40,9 @@ if (isset($_SESSION['credentials'])) {
 					
 				<div class="container">
 					<section id="content" style="text-align:center; ">
-						<h3 align="center">Add a Teacher</h3>
 						<button id="addButton" class="show_hide" rel="#slidingDiv_2">Add a Teacher</button><br />
 							<div id="slidingDiv_2" style="display:none"> 	
 								<form>
-								  <br />
 								  <b>First name: </b>
 								  <input type="text" id="first_name" "name="first_name" class="input_field" maxlength="45" placeholder="Joe">
 								  <p id="err_first_name" style="display:none; color: red;">
