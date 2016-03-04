@@ -51,8 +51,8 @@ if (isset($_SESSION['credentials'])) {
 								<thead>
 									<tr>
 										<th>Test</th>
-										<th>Description</th>
-										<th>Grade</th>
+										<th>Class</th>
+										<th>Active Date</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_inactive_tests">

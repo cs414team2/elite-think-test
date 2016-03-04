@@ -55,7 +55,7 @@
 			}										
 		}
 		else {
-			$test->print_essay_answer();
+			$test->print_essay_answer($_SESSION['credentials']->get_access_level());
 		}
 			
 		echo "\r\n</div>";
