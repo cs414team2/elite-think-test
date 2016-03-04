@@ -11,9 +11,9 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 					<section style="text-align:center">
-						<a href="./?action=admin_student_manager" class="button big">Students</a><br />
-						<a href="./?action=admin_teacher_manager" class="button big">Teachers</a><br />
-						<a href="./?action=admin_class_manager" class="button big">Classes</a><br />
+						<a href="./?action=admin_student_manager" class="button big special">Students</a>
+						<a href="./?action=admin_teacher_manager" class="button big special">Teachers</a>
+						<a href="./?action=admin_class_manager" class="button big special">Classes</a>
 					</section>
 			</div>
 		</section>';
