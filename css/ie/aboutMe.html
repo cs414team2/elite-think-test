@@ -1,0 +1,57 @@
+
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>Jereme's Bucket List</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="tagcloud.jquery.js"></script>
+
+	<script type="text/javascript">
+		var settings = {
+		//height of sphere container
+		height: 700,
+		//width of sphere container
+		width: 700,
+		//radius of sphere
+		radius: 150,
+		//rotation speed
+		speed: 1,
+		//sphere rotations slower
+		slower: 0.9,
+		//delay between update position
+		timer: 5,
+		//dependence of a font size on axis Z
+		fontMultiplier: 50,
+		//tag css stylies on mouse over
+		hoverStyle: {
+			border: 'none',
+			color: '#0b2e6f'
+		},
+		//tag css stylies on mouse out
+		mouseOutStyle: {
+			border: '',
+			color: ''
+		}
+		};
+
+		$(document).ready(function(){
+			$('#tagcloud').tagoSphere(settings);
+		});
+	</script>
+
+</head>
+<body style="text-align: center;">
+<h1>Jereme's Bucket List</h1>
+    <div id="tagcloud">
+        <ul>
+            <li>Build a sandman</li>
+            <li>Save a life</li>
+			<li>Stand on a glacier</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+

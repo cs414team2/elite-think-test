@@ -77,7 +77,7 @@
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
 								   Age: 22      <br />
-								   Fun Fact:    <br />
+								   Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a>   <br />
 								</p>
 							</section>
 						</td>
