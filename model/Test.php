@@ -21,14 +21,20 @@ class Test{
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
 	
-	public function print_question($question_id, $question_text){
-		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
-		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
+	public function print_question($question_id, $question_text, $access_level){
+		if($access_level == self::TEACHER){
+			echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
 
-		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-		echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Edit</button>";
-		echo "\r\n	    <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>";
-		echo "\r\n    </div>";
+			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
+			echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Edit</button>";
+			echo "\r\n	    <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>";
+			echo "\r\n    </div>";
+		}
+		else if($access_level == self::STUDENT){
+			echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
+		}
 	}
 	
 	public function print_answer($is_correct, $count, $answer_content, $question_type, $user_type){
@@ -69,7 +75,7 @@ class Test{
 		if($user_type == self::TEACHER)
 			echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
 		else
-			echo "</br></br><textarea id='txt_eq_entry' rows='4' name='txt_eq_entry text-align:left border-width: 3px;' class='questionStyle'></textarea>";
+			echo "<textarea id='txt_eq_entry' rows='4' name='txt_eq_entry' style='text-align:left; margin:5px;' class='questionStyle'></textarea>";
 	}
 	
 	public function verify_test_access($user_id, $test_id, $user_type){
