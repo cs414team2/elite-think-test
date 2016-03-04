@@ -66,7 +66,7 @@
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "'>";
+					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
 					echo "<td>Test " . $test_number . "</td>";

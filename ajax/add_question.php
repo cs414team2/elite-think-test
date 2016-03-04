@@ -48,10 +48,8 @@
 		// Print the questions and answers.
 		$test->print_question($questionInfo['question_id'], $question_text);
 		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
-			$count = 0;
 			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'], $count, htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
-				$count++;
+				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
 			}										
 		}
 		else {

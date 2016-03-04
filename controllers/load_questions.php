@@ -23,7 +23,7 @@
 				// Counts number of answers printed for the question
 				$count = 0;
 				
-				$test->print_question($question_id, $question_text);
+				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				
 				$answer_statement = $db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?");
 				$answer_statement->bind_param("i", $question_id);
@@ -32,13 +32,15 @@
 				$answer_statement->bind_result($answer_id, $answer_content, $is_correct);
 				
 				if($question_type == Test::ESSAY_QUESTION_TYPE)
-					$test->print_essay_answer();
+					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
 				
 				if($answer_statement->num_rows > 0){
-					while($answer_statement->fetch()){			
-						$test->print_answer($is_correct, $count, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
+					echo "<ol style='list-style-type:lower-alpha;'>";
+					while($answer_statement->fetch()){
+						$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
 						$count++;
 					}
+					echo "</ol>";
 				}
 				echo "\r\n</div>";
 			}

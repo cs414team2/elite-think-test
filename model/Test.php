@@ -6,6 +6,7 @@ class Test{
 	const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 	const ESSAY_QUESTION_TYPE           = 'ESSAY';
 	const UNAUTHENTICATED               = 0;
+	const AUTHENTICATED                 = 1;
 	const ADMINISTRATOR                 = 1;
 	const TEACHER                       = 2;
 	const STUDENT                       = 3;
@@ -20,23 +21,29 @@ class Test{
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
 	
-	public function print_question($question_id, $question_text){
-		echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
-		echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
+	public function print_question($question_id, $question_text, $access_level){
+		if($access_level == self::TEACHER){
+			echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
 
-		echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-		echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Edit</button>";
-		echo "\r\n	    <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>";
-		echo "\r\n    </div>";
+			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
+			echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Edit</button>";
+			echo "\r\n	    <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>";
+			echo "\r\n    </div>";
+		}
+		else if($access_level == self::STUDENT){
+			echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
+		}
 	}
 	
-	public function print_answer($is_correct, $count, $answer_content, $question_type, $user_type){
+	public function print_answer($is_correct, $answer_content, $question_type, $user_type){
 		switch($user_type){
 			case self::TEACHER:
-				$this->print_teacher_answer($is_correct, $count, $answer_content, $question_type);
+				$this->print_teacher_answer($is_correct, $answer_content, $question_type);
 				break;
-			case self:STUDENT:
-				$this->print_student_answer($is_correct, $count, $answer_content, $question_type);
+			case self::STUDENT:
+				$this->print_student_answer($is_correct, $answer_content, $question_type);
 				break;
 		}
 			
@@ -64,8 +71,11 @@ class Test{
 		echo "Test " . $test_number;
 	}
 	
-	public function print_essay_answer(){
-		echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
+	public function print_essay_answer($user_type){
+		if($user_type == self::TEACHER)
+			echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
+		else
+			echo "<textarea id='txt_eq_entry' rows='4' name='txt_eq_entry' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 	}
 	
 	public function verify_test_access($user_id, $test_id, $user_type){
@@ -88,29 +98,34 @@ class Test{
 				$statement->fetch();
 				break;
 		}
-		
-		return $access_status;
+		if($access_status == self::AUTHENTICATED)
+			return true;
+		else
+			return false;
 	}
 	
-	public function print_student_answer($is_correct, $count, $answer_content, $question_type){
+	public function print_student_answer($is_correct, $answer_content, $question_type){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
-				echo "\r\n<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."</div>";
+				echo "\r\n<li style='margin-left: 20px;'>".$answer_content."</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
-				echo "\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</p>";
-				echo "\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</p>";
+				echo "\r\n<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</div>";
+				echo "\r\n<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</div>";
+				break;
+			case self::ESSAY_QUESTION_TYPE:
+				$this->print_essay_answer(self::STUDENT);
 				break;
 		}
 	}
 	
-	public function print_teacher_answer($is_correct, $count, $answer_content, $question_type){
+	public function print_teacher_answer($is_correct, $answer_content, $question_type){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10004;</div>";
+					echo "\r\n<li style='color:#47CC7A; margin-left: 20px;'>".$answer_content."&nbsp;&#10004;</li>";
 				else
-					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$this->alphabet[$count]. ")&nbsp;".$answer_content."&nbsp;&#10006;</div>";
+					echo "\r\n<li style='color:#CC1C11; margin-left: 20px;'>".$answer_content."&nbsp;&#10006;</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "True"){
@@ -121,6 +136,9 @@ class Test{
 					echo "\r\n<div style='color:#CC1C11'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;&#10006;</div>";
 					echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."&nbsp;&#10004;</div>";
 				}
+				break;
+			case self::ESSAY_QUESTION_TYPE:
+				$this->print_essay_answer(self::TEACHER);
 				break;
 		}
 	}

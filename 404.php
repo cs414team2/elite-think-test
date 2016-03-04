@@ -29,7 +29,7 @@
 
 	<div id="root_img" style="width:100%; height:100%">
 		<div id="id_immagine" align="center" style="width: 100%; height: 100%;">
-			<img src="images/offlogo.png" alt="404 Bulb" style="width: 20%; height: 20%">
+			<img src="images/flicker.gif" alt="404 Bulb" style="width: 20%; height: 20%">
 			<h1>Well, this is awkward...</h1>
 			<h1><a href="index.php">Return Home</a></h1>
 		</div>
