@@ -3,7 +3,7 @@
 	
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 	$test = new Test();
-	if ($_SESSION['credentials']->is_teacher() && $test->verify_teacher_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
+	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
 		$test_id = $_REQUEST['test_id'];
 		echo '<section id="main" class="wrapper style1">
 				<script src="controllers/test_editor.js"></script>
@@ -37,10 +37,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 							<div id="my-form-builder" align="left">
 								<h4>Test Goes Here Yo!</h4>
 									
-									<div id="test_content">
-									
-									
-									</div>
+									<div id="test_content">';
+										require_once('controllers/load_questions.php');
+							echo   '</div>
 								<br />
 								
 							</div>
