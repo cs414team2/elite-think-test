@@ -36,8 +36,6 @@
 						
 					<!-- Content -->
 					<section id="content">
-						<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-							<h3>About Elite </h3>
 							<p>The Elite team is a Systems Design Team which develops high quality software. <br />
 							   Our newest release EliteThink is an online testing center developed with both <br />
 							   the student and the teacher in mind.</p>
