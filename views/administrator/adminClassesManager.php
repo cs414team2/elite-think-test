@@ -67,7 +67,7 @@ if (isset($_SESSION['credentials'])) {
 									</div>
 								</div>
 
-							  <button type="button" id="btn_add" class="button special big">Add Class</button>
+							  <button type="button" id="btn_add" class="button special big">Submit</button>
 							
 							</form>
 						</div>

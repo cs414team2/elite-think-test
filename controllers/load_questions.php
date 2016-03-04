@@ -20,9 +20,6 @@
 		
 		if($question_statement->num_rows > 0){
 			while($question_statement->fetch()){
-				// Counts number of answers printed for the question
-				$count = 0;
-				
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				
 				$answer_statement = $db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?");
@@ -32,13 +29,18 @@
 				$answer_statement->bind_result($answer_id, $answer_content, $is_correct);
 				
 				if($question_type == Test::ESSAY_QUESTION_TYPE)
-					$test->print_answer($is_correct, $count, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
+					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
 				
 				if($answer_statement->num_rows > 0){
-					while($answer_statement->fetch()){			
-						$test->print_answer($is_correct, $count, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
-						$count++;
+					if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
+						echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; font-family: Segoe UI Light;'>";
+					
+					while($answer_statement->fetch()){
+						$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
 					}
+					
+					if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
+						echo "</ol>";
 				}
 				echo "\r\n</div>";
 			}
