@@ -17,8 +17,7 @@ function add_question(question_type, question_text) {
 			
 			if (jQuery.trim(answer).length <= 0) {
 				validated = false;
-				$(this).attr("placeholder", "Question cannot be left blank.");
-				$(this).css("color", "red");
+				$(this).attr("placeholder", "Answer cannot be left blank.");
 			}
 			else {
 				answers[index] = {answer_text: answer, is_correct : false ? "Y" : "N"};
@@ -132,4 +131,5 @@ $(document).ready(function(){
 	$('#btn_add_essay').click(function(){
 		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
 	});
+	
 });
