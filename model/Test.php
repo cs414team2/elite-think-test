@@ -110,7 +110,7 @@ class Test{
 				echo "\r\n<li>".$answer_content."</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
-				echo "\r\n<div style='margin-left: 10px;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</div>";
+				echo "\r\n<div style='margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</div>";
 				echo "\r\n<div style='margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</div>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
