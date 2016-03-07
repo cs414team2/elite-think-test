@@ -118,7 +118,7 @@
 		<!-- Includes the Header for the page -->
 		<?php 
 			require_once('header.php');
-		?>	
+		?>
 		
 		<!-- Includes the Footer for the page -->
 		<?php 

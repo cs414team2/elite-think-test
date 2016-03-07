@@ -18,7 +18,7 @@
 		$question_statement->store_result();
 		$question_statement->bind_result($question_id, $question_text, $question_type);
 		
-		if($question_statement->num_rows > 0){
+		if($question_statement->num_rows > 0){  // This if statement is not needed because if num_rows is 0 then the while loop will simply not run *************!!
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				
