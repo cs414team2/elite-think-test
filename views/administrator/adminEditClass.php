@@ -8,25 +8,26 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 					<h2 id="courseName">Edit Class</h2>
 				</header>
 				<div class="container" style="text-align:center">
-						
+					<section id="content">	
 					<!-- Content -->
-						<section id="content">
-							<table class="alt">
+						<div class="table_wrapper">
+							<table class="sortable">
 								<thead>
 									<tr>
 										<th>ID</th>
 										<th>Student Name</th>	
 									</tr>
 								</thead>
-								<tbody>';
+								<tbody id="tbl_students">';
 									$admin = new Admin();
 									$admin->get_students($_REQUEST["id"]);
 						echo   '</tbody>
 							</table>
 							<button class="button special" >Save Changes</button>
-							
-						</section>
 						
+						
+						</div>
+					</section>		
 				    </div>
 
 
