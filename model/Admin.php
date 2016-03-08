@@ -39,7 +39,7 @@
 											  is_active,
 											  is_enrolled(student_id, ?) as enrolled
 									   FROM   student
-									   ORDER BY enrolled");
+									   ORDER BY enrolled DESC");
 			$statement->bind_param("i", $c_id);
 			$statement->execute();
 			$statement->store_result();
