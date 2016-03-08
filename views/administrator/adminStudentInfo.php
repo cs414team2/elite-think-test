@@ -35,7 +35,7 @@ if (isset($_SESSION['credentials'])) {
 										
 										</select>
 										<br/> <br/> 
-										<button class="big button special" style="float:right">Add Student</button>
+										<button class="big button special" style="float:right" onclick="confirm(Does this Work?)">Add Student</button>
 									</div>
 								</div>
 							</div>						

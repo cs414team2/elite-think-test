@@ -8,6 +8,36 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 			var class_id = ' . $_REQUEST["id"] . ';
 		</script>
 		<section id="main" class="wrapper style1">
+<<<<<<< HEAD
+				<header class="major">
+					<h2 id="courseName">Edit Class</h2>
+				</header>
+				<div class="container" style="text-align:center">
+					<section id="content">	
+					<!-- Content -->
+						<div class="table_wrapper">
+							<table class="sortable">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Student Name</th>	
+									</tr>
+								</thead>
+								<tbody id="tbl_students">';
+									$admin = new Admin();
+									$admin->get_students($_REQUEST["id"]);
+						echo   '</tbody>
+							</table>
+							<button class="button special" >Save Changes</button>
+						
+						
+						</div>
+					</section>		
+				    </div>
+
+
+		
+=======
 			<header class="major">
 				<h2 id="courseName">Edit Class</h2>
 			</header>
@@ -31,6 +61,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				</section>
 			</div>
 		</section>
+>>>>>>> test/master
 		';
 	}
 	else {

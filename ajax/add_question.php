@@ -46,21 +46,15 @@
 		// Print the questions and answers.
 		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level());
 		
-		if($question_type == Test::ESSAY_QUESTION_TYPE) {
-			$test->print_essay_answer($_SESSION['credentials']->get_access_level());
-		}
-		else {
-			if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
-					echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family: Segoe UI Light;'>";
+		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
+			echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family: Segoe UI Light;'>";
 				
-			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
-			}
-
-			if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
-				echo "</ol>";			
+		foreach($_REQUEST['answers'] as $answer) {
+			$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER, $question_id, $answer_id);
 		}
-			
+
+		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
+			echo "</ol>";
 		echo "\r\n</div>";
 
 	}
