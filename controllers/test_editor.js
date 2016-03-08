@@ -5,6 +5,17 @@ const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to
 const MAX_TEST_SIZE = 3;
 
 //*******************Functions****************************
+function load_questions() {
+	$.ajax({
+		url: "ajax/get_questions.php",
+		data: { test_id : test_id },
+		success: function (questions) {
+			$('#test_content').html(questions);
+			number_questions();
+		}
+	});
+}
+
 function add_question(question_type, question_text) {
 
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
@@ -118,7 +129,7 @@ function clear_question_fields(question_type) {
 
 //***********************Events************************
 $(document).ready(function(){
-	number_questions();
+	load_questions();
 	
 	$('#btn_add_mc').click(function(){
 		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
