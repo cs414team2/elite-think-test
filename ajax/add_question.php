@@ -49,15 +49,10 @@
 		
 		// Print the questions and answers.
 		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level());
-		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
-			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
-			}										
-		}
-		else {
-			$test->print_essay_answer($_SESSION['credentials']->get_access_level());
-		}
-			
+		foreach($_REQUEST['answers'] as $answer) {
+			$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER, $question_id);
+		}							
+		
 		echo "\r\n</div>";
 
 	}

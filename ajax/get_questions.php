@@ -27,15 +27,12 @@
 			$answer_statement->store_result();
 			$answer_statement->bind_result($answer_id, $answer_content, $is_correct);
 			
-			if($question_type == Test::ESSAY_QUESTION_TYPE)
-				$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
-			
 			if($answer_statement->num_rows > 0){
 				if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
 					echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; font-family: Segoe UI Light;'>";
 				
 				while($answer_statement->fetch()){
-					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level());
+					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id);
 				}
 				
 				if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
