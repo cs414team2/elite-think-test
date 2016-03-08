@@ -5,12 +5,12 @@ function loadClasses() {
 	$("#tbl_classes").load("ajax/get_table.php?table=class", function(){
 		$('.class_record, .Y').click(function(){
 			var class_id = $(this).attr('id');
-			window.location = 'index.php?action=admin_class_manager&id=' + class_id;
+			window.location = 'index.php?action=admin_edit_class&id=' + class_id;
 		});
 		
 		$('.class_record, .N').click(function(){
 			var class_id = $(this).attr('id');
-			window.location = 'index.php?action=admin_class_manager&id=' + class_id;
+			window.location = 'index.php?action=admin_edit_class&id=' + class_id;
 		});
 		
 		$(".N").hide();
