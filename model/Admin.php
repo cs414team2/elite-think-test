@@ -30,26 +30,36 @@
 			}
 		}
 		
-		public function get_students(){
+		public function get_students($c_id){
 			$db = $this->prepare_connection();
-			$statement = $db->query("SELECT student_id, student_lname, student_fname, is_active FROM student");
+			$statement = $db->prepare("SELECT student.student_id,
+											  student.student_lname,
+											  student.student_fname,
+											  student.is_active,
+											  enrollment.class_id
+									  FROM    enrollment RIGHT JOIN student 
+									  ON      student.student_id = enrollment.student_id
+									  WHERE   class_id = ? or class_id is null");
+			$statement->bind_param("i", $c_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($student_id, $student_lname, $student_fname, $is_active, $class_id);
 			
 			if($statement->num_rows > 0){
 				echo "<form method='post' action='#'>";
-				while($record = $statement->fetch_assoc()){
+				while($record = $statement->fetch()){
 					{
-						$student_id = $record["student_id"];
-						echo "<tr class='clickable_row'" . "id='" . $student_id . "' class='student_record, " . $record[self::IS_ACTIVE]."'>";
+						$class_id == $c_id ? $enrolled = "checked" : $enrolled = "";
+						echo "<tr class='clickable_row'" . "id='" . $student_id . "' class='student_record, " . $is_active."'>";
 						echo "<td>
-									<div class='6u 12u(2)'>
-										<input type='checkbox' id='student_".$student_id."' checked='true'>
-										<label for='student_".$student_id."'>Add</label>
-									</div>
-							</td>";
-						foreach($record as $col_name => $col_data) {
-						  if($col_name != self::IS_ACTIVE)
-							echo "<td>" . $col_data . "</td>";
-						}
+								<div class='6u 12u(2)'>
+									<input type='checkbox' id='student_".$student_id."' ". $enrolled .">
+									<label for='student_".$student_id."'>Add</label>
+								</div>
+							  </td>";
+						echo "<td>" . $student_id . "</td>";
+						echo "<td>" . $student_lname . "</td>";
+						echo "<td>" . $student_fname . "</td>";
 						echo "</tr>\r\n";
 					}
 					echo "</form>";

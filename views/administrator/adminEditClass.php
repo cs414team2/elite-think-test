@@ -1,6 +1,6 @@
 <?php
 include('model/Admin.php');
-if (isset($_SESSION['credentials'])) {
+if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo '
 		<section id="main" class="wrapper style1">
@@ -20,7 +20,7 @@ if (isset($_SESSION['credentials'])) {
 								</thead>
 								<tbody>';
 									$admin = new Admin();
-									$admin->get_students();
+									$admin->get_students($_REQUEST["id"]);
 						echo   '</tbody>
 							</table>
 							<button class="button special" >Save Changes</button>
