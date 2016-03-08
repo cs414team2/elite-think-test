@@ -35,16 +35,24 @@
 			$statement = $db->query("SELECT student_id, student_lname, student_fname, is_active FROM student");
 			
 			if($statement->num_rows > 0){
+				echo "<form method='post' action='#'>";
 				while($record = $statement->fetch_assoc()){
 					{
-						echo "<tr " . "id='" . $record["student_id"] . "' class='student_record, " . $record[self::IS_ACTIVE]."'>";
-						echo "<td><input type='checkbox' name='editStudent' value='checked'> CHECKBOX </input> </td>";
+						$student_id = $record["student_id"];
+						echo "<tr class='clickable_row'" . "id='" . $student_id . "' class='student_record, " . $record[self::IS_ACTIVE]."'>";
+						echo "<td>
+									<div class='6u 12u(2)'>
+										<input type='checkbox' id='student_".$student_id."' checked='true'>
+										<label for='student_".$student_id."'>Add</label>
+									</div>
+							</td>";
 						foreach($record as $col_name => $col_data) {
 						  if($col_name != self::IS_ACTIVE)
-							echo "<td class='clickable_row'>" . $col_data . "</td>";
+							echo "<td>" . $col_data . "</td>";
 						}
 						echo "</tr>\r\n";
 					}
+					echo "</form>";
 				}
 			}
 			else{
