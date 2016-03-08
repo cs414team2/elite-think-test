@@ -14,10 +14,10 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 			<div class="container" style="text-align:center">	
 				<!-- Content -->
 				<section id="content">
-					<div class="table_wrapper">
-						<table class="sortable">
-							<thead>
-								<tr>
+					<div class="table-wrapper">
+							<table class="sortable">
+								<thead>
+									<tr>
 									<th>ID</th>
 									<th>Student Name</th>
 								</tr>
