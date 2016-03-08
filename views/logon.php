@@ -10,34 +10,15 @@ if(isset($_SESSION["logon_failed"])) {
 	}
 }	
 ?>
-<!-- Banner -->
-<section id="banner">
-	<div class="inner">
-		<img src="images/elitelogo.png" width="200" height="230" alt="elite logo"/>
-		<p>On-line Testing Application</p>
-		<ul class="actions">
-			<li><a id="loginButton" href="#one" class="button big scrolly">Login</a></li>
-		</ul>
-	</div>
-</section>
-
-<script>
-// JavaScript to delay button click focus on insert form
-document.getElementById('loginButton').onclick = function() {
-	
-	setTimeout(function() {
-		document.getElementById('usernameEntry').focus();
-	    }, 1000);
-};
-</script>
 
 <section id="one" name="one" class="wrapper style1">
 	<div class="container">
 		<header class="major">
-			<h2>Enter Your Information</h2>
+			<img src="images/eliteicon.png" width="200" height="230" alt="elite logo"/>
+			<h2>Enter Your Login ID</h2>
 			<form method="post" action="redirect.php">
 				<h3>User name:</h3>
-				<input id="usernameEntry" type="text" name="username">
+				<input id="usernameEntry" type="text" name="username" autofocus>
 				<br><h3>Password:</h3>
 				<input type="password" name="password">
 				<br />
@@ -46,6 +27,8 @@ document.getElementById('loginButton').onclick = function() {
 				<br />
 				<br />
 				<p id="logon_fail_message" style="display:none; color: red;">Incorrect username or password.</p>
+				<br />
+				<br />
 				<br />
 			</form>
 		</header>
@@ -100,6 +83,16 @@ document.getElementById('loginButton').onclick = function() {
 <section id="cta" class="wrapper style3">
 	<h2>Are you ready to go?</h2>
 	<ul class="actions">
-		<li><a href="#one" class="button big">Get Started</a></li>
+		<li><a id="loginButton" href="#one" class="button big scrolly">Get Started</a></li>
 	</ul>
 </section>
+
+<script>
+// JavaScript to delay button click focus on insert form
+document.getElementById('loginButton').onclick = function() {
+	
+	setTimeout(function() {
+		document.getElementById('usernameEntry').focus();
+	    }, 1000);
+};
+</script>

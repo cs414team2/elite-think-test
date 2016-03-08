@@ -16,7 +16,7 @@
 	a:hover{
 		color: yellow;
 	}
-	h1, a {
+	h1, h2, a {
 		-webkit-transition: all .5s;
 		-moz-transition: all .5s;
 	    transition: all .5s;
@@ -31,6 +31,7 @@
 		<div id="id_immagine" align="center" style="width: 100%; height: 100%;">
 			<img src="images/flicker.gif" alt="404 Bulb" style="width: 20%; height: 20%">
 			<h1>Well, this is awkward...</h1>
+			<h2>You have a faulty bulb!</h2>
 			<h1><a href="index.php">Return Home</a></h1>
 		</div>
 	</div>
