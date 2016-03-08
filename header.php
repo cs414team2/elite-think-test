@@ -9,7 +9,7 @@
 					}
 					else
 					{
-						echo '<h1 style="text-shadow: none;"><a href="index.php">Elite Team</a></h1>';
+						echo '<h1 style="text-shadow: none;"><a href="index.php">EliteThink</a></h1>';
 					}
 						
 				?>
