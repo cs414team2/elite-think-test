@@ -3,10 +3,6 @@
 	require_once("../model/Session.php");
 	session_start();
 	
-	// Make sure these constants match up with controllers/test_editor.js !
-	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
-	const TRUE_FALSE_QUESTION_TYPE = 'TF';
-	const ESSAY_QUESTION_TYPE = 'ESSAY';
 	// Make sure these constants match up with model/Session.php !
 	const UNAUTHENTICATED = 0;
 	const ADMINISTRATOR = 1;
@@ -34,7 +30,7 @@
 		$questionInfo = $addResult->fetch_assoc();
 		
 		// Store the answers in the database.
-		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
+		if ($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == Test::TRUE_FALSE_QUESTION_TYPE) {
 			$addStatement = $eliteConnection->prepare("CALL add_answer(?,?,?)") or die($eliteConnection->error);
 			
 			foreach($_REQUEST['answers'] as $answer) {
@@ -49,13 +45,20 @@
 		
 		// Print the questions and answers.
 		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level());
-		if ($question_type == MULTIPLE_CHOICE_QUESTION_TYPE || $question_type == TRUE_FALSE_QUESTION_TYPE) {
-			foreach($_REQUEST['answers'] as $answer) {
-				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
-			}										
+		
+		if($question_type == Test::ESSAY_QUESTION_TYPE) {
+			$test->print_essay_answer($_SESSION['credentials']->get_access_level());
 		}
 		else {
-			$test->print_essay_answer($_SESSION['credentials']->get_access_level());
+			if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
+					echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family: Segoe UI Light;'>";
+				
+			foreach($_REQUEST['answers'] as $answer) {
+				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER);
+			}
+
+			if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
+				echo "</ol>";			
 		}
 			
 		echo "\r\n</div>";
