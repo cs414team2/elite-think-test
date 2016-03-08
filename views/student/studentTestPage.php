@@ -3,8 +3,8 @@
 	
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 	$test = new Test();
+	$test_id = $_REQUEST['test_id'];
 	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
-		
 		echo '<section id="main" class="wrapper style1">
 				<script src="controllers/test_taker.js"></script>
 				<script>
@@ -26,17 +26,15 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<button class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
-
-					<div class="studentTest" style="float:right;"> 
+					
+					<div class="studentTest" style="float:right;">
+						<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
 						<section id="testView">
 							<div id="my-form-builder" align="left">
-								<h4>Test Goes Here Yo!</h4>
-									
-									<div id="test_content">
-										Test Loading...
-									</div>
+								<div id="test_content">
+									Test Loading...
+								</div>
 								<br />
-								
 							</div>
 						</section>
 					</div>
