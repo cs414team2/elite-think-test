@@ -1,4 +1,6 @@
 <?php
+	include('../model/Admin.php');
+	
 	// Make sure these constants match up with controllers/class_editor.js
 	const STUDENT_NOT_ENROLLED = 0;
 	const STUDENT_IS_ENROLLED  = 1;
@@ -25,5 +27,8 @@
 			}
 			
 		}
+		
+		$admin = new Admin();
+		$admin->get_students($class_id);
 	}
 ?>
