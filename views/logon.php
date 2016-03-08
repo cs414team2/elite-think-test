@@ -15,7 +15,7 @@ if(isset($_SESSION["logon_failed"])) {
 	<div class="container">
 		<header class="major">
 			<img src="images/eliteicon.png" width="200" height="230" alt="elite logo"/>
-			<h2>Enter Your Login ID</h2>
+			<h2>EliteThink</h2>
 			<form method="post" action="redirect.php">
 				<h3>User name:</h3>
 				<input id="usernameEntry" type="text" name="username" autofocus>
