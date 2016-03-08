@@ -15,11 +15,13 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				<!-- Content -->
 				<section id="content">
 					<div class="table-wrapper">
-							<table class="sortable">
-								<thead>
-									<tr>
+						<table class="sortable">
+							<thead>
+								<tr>
+									<th>Enrolled</th>
 									<th>ID</th>
-									<th>Student Name</th>
+									<th>Last Name</th>
+									<th>First Name</th>
 								</tr>
 							</thead>
 							<tbody id="tbl_students">';
@@ -27,8 +29,8 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 								$admin->get_students($_REQUEST["id"]);
 					echo   '</tbody>
 						</table>
-						<button id="btn_update_enrollment" class="button special" >Save Changes</button>
 					</div>
+					<button id="btn_update_enrollment" class="button special" >Save Changes</button>
 				</section>
 			</div>
 		</section>';
