@@ -4,6 +4,16 @@ const ESSAY_QUESTION_TYPE = 'ESSAY';
 const MAX_TEST_SIZE = 3;
 
 //*******************Functions****************************
+function load_questions() {
+	$.ajax({
+		url: "ajax/get_questions.php",
+		data: { test_id : test_id },
+		success: function (questions) {
+			$('#test_content').html(questions);
+			number_questions();
+		}
+	});
+}
 
 // Display the question numbers.
 function number_questions() {
@@ -19,5 +29,5 @@ function number_questions() {
 
 //***********************Events************************
 $(document).ready(function(){
-	number_questions();
+	load_questions();
 });

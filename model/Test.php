@@ -37,13 +37,13 @@ class Test{
 		}
 	}
 	
-	public function print_answer($is_correct, $answer_content, $question_type, $user_type){
+	public function print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id){
 		switch($user_type){
 			case self::TEACHER:
 				$this->print_teacher_answer($is_correct, $answer_content, $question_type);
 				break;
 			case self::STUDENT:
-				$this->print_student_answer($is_correct, $answer_content, $question_type);
+				$this->print_student_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id);
 				break;
 		}
 			
@@ -104,10 +104,13 @@ class Test{
 			return false;
 	}
 	
-	public function print_student_answer($is_correct, $answer_content, $question_type){
+	public function print_student_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
-				echo "\r\n<li>".$answer_content."</li>";
+				echo "\r\n<li>
+							<input type='radio' id='". $answer_id ."' name='". $question_id ."'>
+							<label for='". $answer_id ."'>". $answer_content ."</label>
+						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n<div style='margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</div>";

@@ -133,10 +133,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<section id="testView">
 						<div id="my-form-builder" align="left">
 							<h4>'; $test->get_test_number($test_id); echo '</h4>
-								
-								<div id="test_content">';
-									require_once('controllers/load_questions.php');
-						echo   '</div>
+								<div id="test_content">
+									Test Loading...
+								</div>
 						</div>
 					</section>
 				</div>
