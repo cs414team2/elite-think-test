@@ -50,7 +50,8 @@
 			echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family: Segoe UI Light;'>";
 				
 		foreach($_REQUEST['answers'] as $answer) {
-			$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), $question_type, TEACHER, $question_id, $answer_id);
+			$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), 
+			                    $question_type, TEACHER, $question_id, null);
 		}
 
 		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
