@@ -1,6 +1,6 @@
 <?php
-	require_once('model/Test.php');
-	require_once('model/Session.php');
+	require_once('../model/Test.php');
+	require_once('../model/Session.php');
 	session_start();
 	
 	function prepare_connection(){
