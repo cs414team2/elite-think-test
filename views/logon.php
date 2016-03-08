@@ -100,6 +100,6 @@ document.getElementById('loginButton').onclick = function() {
 <section id="cta" class="wrapper style3">
 	<h2>Are you ready to go?</h2>
 	<ul class="actions">
-		<li><a href="#one" class="button big">Get Started</a></li>
+		<li><a id="loginButton" href="#one" class="button big scrolly">Get Started</a></li>
 	</ul>
 </section>
