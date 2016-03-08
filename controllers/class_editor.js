@@ -16,9 +16,6 @@ function update_enrollment() {
 		data : {
 			class_id : class_id,
 			student : student
-		},
-		success: function (data) {
-			$("#main").html(data);
 		}
 	});
 }

@@ -12,19 +12,17 @@
 		foreach($_REQUEST['student'] as $student) {
 			$student_id  = $student['id'];
 			$is_enrolled = $student['enrolled'];
+			$update_statement = $elite_connection->prepare("CALL enroll_student(?, ?)")          or die($elite_connection->error);
+			$remove_statement = $elite_connection->prepare("CALL drop_student_enrollment(?, ?)") or die($elite_connection->error);
 			
-			echo $student_id . " - " . $is_enrolled ."|\r\n";
-			
-			/*if ($is_enrolled == STUDENT_IS_ENROLLED) {
-				$update_statement = $elite_connection->prepare("CALL enroll_student(?, ?)") or die($elite_connection->error);
-				$update_statement->bind_param("ii", $student_id, $class_id)                 or die($update_statement->error);
-				$update_statement->execute()                                                or die($update_statement->error);
+			if ($is_enrolled == STUDENT_IS_ENROLLED) {
+				$update_statement->bind_param("ii", $student_id, $class_id) or die($update_statement->error);
+				$update_statement->execute()                                or die($update_statement->error);
 			}
 			else {
-				$remove_statement = $elite_connection->prepare("CALL drop_student_enrollment(?, ?)") or die($elite_connection->error);
-				$remove_statement->bind_param("ii", $student_id, $class_id)                          or die($remove_statement->error);
-				$remove_statement->execute()                                                         or die($remove_statement->error);
-			}*/
+				$remove_statement->bind_param("ii", $student_id, $class_id) or die($remove_statement->error);
+				$remove_statement->execute()                                or die($remove_statement->error);
+			}
 			
 		}
 	}

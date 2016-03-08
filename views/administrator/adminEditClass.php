@@ -19,7 +19,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Student Name</th>	
+									<th>Student Name</th>
 								</tr>
 							</thead>
 							<tbody id="tbl_students">';
