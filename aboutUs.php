@@ -90,7 +90,7 @@
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
 								   Age: 21      <br />
-								   Fun Fact:    <br />
+								   Fun Fact:    Has been hit by a car-twice.<br />
 								</p>
 							</section>
 						</td> 

@@ -10,6 +10,7 @@
 		}
 		
 		public function print_table($table) {
+			$this->table_name = $table;
 			$db = $this->prepare_connection();
 			$statement = $db->query("SELECT * FROM " . $table);
 			
@@ -26,7 +27,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td> No " . $table_name . "s </td> </tr>";
+				echo "<tr> <td colspan='4' style='text-align: center;' >There was not a " . $this->table_name . " found.</td></tr>";
 			}
 		}
 	}
