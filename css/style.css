@@ -1507,4 +1507,6 @@ span#countdown {
 		background-image: url("../images/geometric.png");
 		background-repeat: repeat;
 	}
-	
+	#datepicker{
+		background-color: white;
+	}
