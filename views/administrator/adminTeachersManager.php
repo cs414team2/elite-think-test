@@ -20,10 +20,10 @@ if (isset($_SESSION['credentials'])) {
 										<thead>
 											<tr>
 												<th>ID</th>
-												<th>Password</th>
-												<th>Email</th>
 												<th>First</th>
 												<th>Last</th>
+												<th>Email</th>
+												<th>Password</th>
 											</tr>
 										</thead>
 										<tbody id="tbl_teachers">
@@ -56,7 +56,7 @@ if (isset($_SESSION['credentials'])) {
 								  </p>
 								  
 								  <b>Password:</b>
-								  <input type="text" id="password" name="password" class="input_field" maxlength="45" placeholder="Password">
+								  <input type="password" id="password" name="password" class="input_field" maxlength="45" placeholder="Password">
 								  <p id="err_password" style="display:none; color: red;">
 									Password cannot be blank.
 								  </p>

@@ -17,24 +17,24 @@ if (isset($_SESSION['credentials'])) {
 						<input type="checkbox" id="copy" name="copy">
 						<label for="copy">Show Inactive Classes</label>
 						<div class="table-wrapper">
-									<table class="sortable">
-										<thead>
-											<tr>
-												<th>Course Id</th>
-												<th>Course Number</th>
-												<th>Course Name</th>
-												<th>Teacher Id</th>
-											</tr>
-										</thead>
-										<tbody id="tbl_classes">
-											<tr>
-												<td colspan="4" style="text-align: center;">
-													Classes Loading...
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+							<table class="sortable">
+								<thead>
+									<tr>
+										<th>Course Id</th>
+										<th>Course Number</th>
+										<th>Course Name</th>
+										<th>Teacher Id</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_classes">
+									<tr>
+										<td colspan="4" style="text-align: center;">
+											Classes Loading...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</section>
 					</div>
 				<div class="container">
