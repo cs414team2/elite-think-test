@@ -38,7 +38,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<input type="number" name="timeLimit" style="text-align: center; width: 60px;" min="0">	
 							min(s) to take test
 						</p>
-						<p style="color:white;">Date: <input type="text" style="color: black;" id="datepicker"></p>
+						<p style="color:white;">Date Due: <input type="text" style="color: black;" id="datepicker"></p>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
@@ -131,9 +131,22 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
 					<section id="testView">
 						<div id="my-form-builder" align="left">
-								<div id="test_content">
-									Test Loading...
-								</div>
+							<h4>Multiple Choice</h4>
+							<div id="test_content">
+								Test Loading...
+							</div>
+						</div>
+						<div id="my-form-builder" align="left">
+							<h4>True / False Choice</h4>
+							<div id="test_content">
+								Test Loading...
+							</div>
+						</div>
+						<div id="my-form-builder" align="left">
+							<h4>Essay</h4>
+							<div id="test_content">
+								Test Loading...
+							</div>
 						</div>
 					</section>
 				</div>
