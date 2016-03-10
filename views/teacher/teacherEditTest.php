@@ -38,7 +38,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<input type="number" name="timeLimit" style="text-align: center; width: 60px;" min="0">	
 							min(s) to take test
 						</p>
-						<p style="color:white;">Date: <input type="text" id="datepicker"></p>
+						<p style="color:white;">Date: <input type="text" style="color: black;" id="datepicker"></p>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
