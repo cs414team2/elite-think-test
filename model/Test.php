@@ -73,7 +73,7 @@ class Test{
 	
 	public function print_essay_answer($user_type){
 		if($user_type == self::TEACHER)
-			echo "\r\n<div style='color:#47CC7A; padding-left: 50px; font-family: Segoe UI Light;'>Essay Question</div>";
+			echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>Essay Question</div>";
 		else
 			echo "<textarea id='txt_eq_entry' rows='4' name='txt_eq_entry' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 	}
@@ -134,8 +134,8 @@ class Test{
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "True"){
-					echo "\r\n<div style='color:#47CC7A; margin-left: 5px; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10004;</div>";
-					echo "\r\n<div style='color:#CC1C11; margin-left: 5px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
 				}
 				else if($answer_content == "False"){
 					echo "\r\n<div style='color:#CC1C11; margin-left: 5px;'>True&nbsp;&#10006;</div>";
