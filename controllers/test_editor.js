@@ -23,27 +23,33 @@ function add_question(question_type, question_text) {
 	var validated = true;
 	
 	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {					   
-		$(".mc_answer").each(function (index) {
-			var answer = $(this).val();
-			
-			if (jQuery.trim(answer).length <= 0) {
-				validated = false;
-				$(this).attr("placeholder", "Answer cannot be left blank.");
-			}
-			else {
-				answers[index] = {answer_text: answer, is_correct : false ? "Y" : "N"};
-			}
-		});
-		if (validated) {
-			$("[name='rb_is_answer']").each(function(index){
-				answers[index].is_correct = $(this).prop("checked") ? "Y" : "F";
+		
+		if (jQuery.trim(question_text).length <= 0) {
+			validated = false;
+		}
+		else {
+			$(".mc_answer").each(function (index) {
+				var answer = $(this).val();
+				
+				if (jQuery.trim(answer).length <= 0) {
+					validated = false;
+					$(this).attr("placeholder", "Answer cannot be left blank.");
+				}
+				else {
+					answers[index] = {answer_text: answer, is_correct : false ? "Y" : "N"};
+				}
 			});
+			if (validated) {
+				$("[name='rb_is_answer']").each(function(index){
+					answers[index].is_correct = $(this).prop("checked") ? "Y" : "N";
+				});
+			}
 		}
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
 		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "True" : "False",
                       is_correct: "Y" }];
-	}
+	} 
 	
 	if(validated){
 		$.ajax({
@@ -106,12 +112,12 @@ function number_questions() {
 }
 
 function clear_question_fields(question_type) {
-	
 	switch (question_type) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			$("#txt_mcq_entry").val('');
 			$(".mc_answer").each(function(){
 				$(this).val('');
+				$(this).attr("placeholder", "");
 			});
 			break;
 		case TRUE_FALSE_QUESTION_TYPE:

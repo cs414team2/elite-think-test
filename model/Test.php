@@ -73,7 +73,7 @@ class Test{
 	
 	public function print_essay_answer($user_type){
 		if($user_type == self::TEACHER)
-			echo "\r\n<div style='color:#47CC7A'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Essay Question</div>";
+			echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>Essay Question</div>";
 		else
 			echo "<textarea id='txt_eq_entry' rows='4' name='txt_eq_entry' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 	}
@@ -113,8 +113,10 @@ class Test{
 						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
-				echo "\r\n<div style='margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True</div>";
-				echo "\r\n<div style='margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False</div>";
+				echo "\r\n<input type='radio' id='". $answer_id ."_true' name='". $question_id ."'>
+					  <label for='" . $answer_id . "_true' style='margin-left: 5px;'>True</label>";
+				echo "\r\n<input type='radio' id='". $answer_id ."_false' name='". $question_id ."'>
+					  <label for='" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
 				$this->print_essay_answer(self::STUDENT);
@@ -132,12 +134,12 @@ class Test{
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "True"){
-					echo "\r\n<div style='color:#47CC7A; margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."&nbsp;&#10004;</div>";
-					echo "\r\n<div style='color:#CC1C11; margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
 				}
 				else if($answer_content == "False"){
-					echo "\r\n<div style='color:#CC1C11; margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;&#10006;</div>";
-					echo "\r\n<div style='color:#47CC7A; margin-left: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$answer_content."&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#CC1C11; margin-left: 5px;'>True&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A; margin-left: 5px;'>".$answer_content."&nbsp;&#10004;</div>";
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:
