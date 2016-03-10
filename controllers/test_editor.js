@@ -106,12 +106,12 @@ function number_questions() {
 }
 
 function clear_question_fields(question_type) {
-	
 	switch (question_type) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			$("#txt_mcq_entry").val('');
 			$(".mc_answer").each(function(){
 				$(this).val('');
+				$(this).attr("placeholder", "");
 			});
 			break;
 		case TRUE_FALSE_QUESTION_TYPE:
