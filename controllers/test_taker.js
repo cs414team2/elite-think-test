@@ -27,7 +27,13 @@ function number_questions() {
 	});
 }
 
+// Check to see if a student has or has not started taking a test, or has finished taking a test.
+function check_status() {
+	
+}
+
 //***********************Events************************
 $(document).ready(function(){
+	check_status();
 	load_questions();
 });
