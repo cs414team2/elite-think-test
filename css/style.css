@@ -9,6 +9,7 @@
 	Heading Dark Grey: 646464
 	Table Hover:       rgba(99, 201, 160, 0.25);
 	Gradient:          
+	Geometric Image BG background-image: url("../images/geometric.png");
 */
 
 /* Basic */
@@ -1069,6 +1070,7 @@ span#countdown {
 
 		.wrapper.style1 {
 			background-image: url("../images/geometric.png");
+			background-attachment: fixed;
 			/* background: #84C2CC; */
 			/* background: linear-gradient(#F00, #000); */
 		}
@@ -1084,6 +1086,7 @@ span#countdown {
 
 		.wrapper.style3 {
 			background-image: url("../images/geometric.png");
+			background-attachment: fixed;
 			color: #d1f2f5;
 		}
 
@@ -1504,4 +1507,6 @@ span#countdown {
 		background-image: url("../images/geometric.png");
 		background-repeat: repeat;
 	}
-	
+	#datepicker{
+		background-color: white;
+	}

@@ -23,6 +23,7 @@
 
 		<?php 
 			// Includes the Header for the page
+			require_once('model/Session.php');
 			require_once('header.php');
 		?>
 
@@ -62,7 +63,7 @@
 								<p>Home Town: Washburn, MO <br />
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
-								   Age: 26      <br />
+								   Age: <?php echo floor((time() - strtotime("Apr 18, 1989 08:00:00 CST")) / (60 * 60 * 24 * 365)); ?> <br />
 								   Fun Fact:    <br />
 								</p>
 							</section>
@@ -89,7 +90,7 @@
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
 								   Age: 21      <br />
-								   Fun Fact:    <br />
+								   Fun Fact:    Has been hit by a car-twice.<br />
 								</p>
 							</section>
 						</td> 

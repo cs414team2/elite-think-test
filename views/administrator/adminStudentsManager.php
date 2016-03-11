@@ -21,10 +21,10 @@ if (isset($_SESSION['credentials'])) {
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Password</th>
-											<th>Name</th>
+											<th>First</th>
 											<th>Last</th>
 											<th>Email</th>
+											<th>Password</th>
 										</tr>
 									</thead>
 									<tbody id="tbl_students">

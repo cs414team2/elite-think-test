@@ -8,6 +8,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		// PUT HTML HERE!
 		$test_id = $_REQUEST['test_id'];
 		echo '
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
@@ -34,12 +36,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<div class="testContainer">
 				<div id="sidebar" style="text-align:center">
 					<section style="text-align:center">
-						<h2>'; $test->get_class_name($test_id); echo '</h2>
 						<p style="color:white;">
-							<input type="number" name="timeLimit" style="text-align: center; width: 60px;" min="0">	
+							<input type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">	
 							min(s) to take test
 						</p>
-						<p style="color:white;">Date: <input type="text" id="datepicker"></p>
+						<p style="color:white;">
+							Date Due: 
+							<input type="text" style="color: black;" id="datepicker">
+						</p>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
@@ -117,7 +121,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 										<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 										name="txt_eq_entry" class="questionStyle"></textarea>
 										<br /><br />
-
 										<ul class="actions">
 											<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 											<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
@@ -129,13 +132,26 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					</section>
 				</div>
 
-				<div class="smallScreenTestDiv" style="float:right;"> 
+				<div class="smallScreenTestDiv" style="float:right;">
+					<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
 					<section id="testView">
 						<div id="my-form-builder" align="left">
-							<h4>'; $test->get_test_number($test_id); echo '</h4>
-								<div id="test_content">
-									Test Loading...
-								</div>
+							<h4>Multiple Choice</h4>
+							<div id="test_content">
+								Test Loading...
+							</div>
+						</div>
+						<div id="my-form-builder" align="left">
+							<h4>True / False Choice</h4>
+							<div id="test_content">
+								Test Loading...
+							</div>
+						</div>
+						<div id="my-form-builder" align="left">
+							<h4>Essay</h4>
+							<div id="test_content">
+								Test Loading...
+							</div>
 						</div>
 					</section>
 				</div>
