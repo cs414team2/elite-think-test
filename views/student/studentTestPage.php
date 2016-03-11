@@ -10,20 +10,28 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				<script>
 					var test_id = ' . $_REQUEST['test_id'] . ';
 				</script>
-			
+		
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
 						
 						<section style="text-align:center">
 							<h2>Time Limit on test: </h2>
-							<h1> This is the timer</h1>
+							<h1>Countdown Clock</h1>
+								<div id="clockdiv">
+								  <div>
+									<div id="div_minutes">Minutes</div>
+								  </div>
+								  <div>
+									<div id="div_seconds">Seconds</div>
+								  </div>
+								</div>
 							<br /><br /><br />
 							
-								<button class="show_hide button small fit">Start Test</button>
+								<button id="btn_start" class="show_hide button small fit">Start Test</button>
 								
 								<h4 style="color:white;">Put the progress here</h4>
 
-								<button class="show_hide button small fit">Complete Test</button>		
+								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
 					
