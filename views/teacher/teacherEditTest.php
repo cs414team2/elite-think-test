@@ -49,7 +49,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						<div id="slidingQ_1" class="toggleDiv"> 
 							<section id="MultipleChoice">
-								<div id="my-form-builder"  align="left">
+								<div class="my-form-builder"  align="left">
 									<form>
 										<h4>Multiple Choice</h4>
 										<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
@@ -89,7 +89,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<div id="slidingQ_2" class="toggleDiv"> 
 							<section id="TorF">
 								
-								<div id="my-form-builder"  align="left" >
+								<div class="my-form-builder"  align="left" >
 									<h4>T/F Question</h4>
 									<form>
 										<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
@@ -115,7 +115,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 									
 						<div id="slidingQ_3" class="toggleDiv"> 
 							<section id="essayQuestion">
-								<div id="my-form-builder" align="left">
+								<div class="my-form-builder" align="left">
 									<form>
 										<h4>Essay Question</h4>
 										<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
@@ -135,21 +135,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div class="smallScreenTestDiv" style="float:right;">
 					<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
 					<section id="testView">
-						<div id="my-form-builder" align="left">
-							<h4>Multiple Choice</h4>
-							<div id="test_content">
-								Test Loading...
-							</div>
-						</div>
-						<div id="my-form-builder" align="left">
-							<h4>True / False Choice</h4>
-							<div id="test_content">
-								Test Loading...
-							</div>
-						</div>
-						<div id="my-form-builder" align="left">
-							<h4>Essay</h4>
-							<div id="test_content">
+						<div id="test_content" align="left">
+							<div class="my-form-builder">
 								Test Loading...
 							</div>
 						</div>
