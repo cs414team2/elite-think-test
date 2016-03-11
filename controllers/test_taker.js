@@ -2,8 +2,29 @@ const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE = 'TF';
 const ESSAY_QUESTION_TYPE = 'ESSAY';
 const MAX_TEST_SIZE = 3;
+const TEST_NOT_STARTED = 0;
+const TEST_STARTED = 1;
+const TEST_COMPLETED = 2;
 
 //*******************Functions****************************
+// Check to see if a student has or has not started taking a test, or has finished taking a test.
+function check_status() {
+	/*$.ajax({
+		url: "ajax/get_test_status.php",
+		data {
+			test_id: test_id,
+			student_id: student_id
+		},
+		success function(full_status){
+			switch(status){
+				case TEST_NOT_STARTED:*/
+					$("#btn_complete").attr("disabled", "disabled");
+	/*			break;
+			}
+		}
+	});*/
+}
+
 function load_questions() {
 	$.ajax({
 		url: "ajax/get_questions.php",
@@ -27,8 +48,11 @@ function number_questions() {
 	});
 }
 
-// Check to see if a student has or has not started taking a test, or has finished taking a test.
-function check_status() {
+function start_test() {
+	$("#btn_complete").removeAttr("disabled");
+}
+
+function complete_test() {
 	
 }
 
@@ -36,4 +60,12 @@ function check_status() {
 $(document).ready(function(){
 	check_status();
 	load_questions();
+	
+	$("#btn_start").click(function(){
+		start_test();
+	});
+	
+	$("#btn_complete").click(function(){
+		complete_test();
+	});
 });
