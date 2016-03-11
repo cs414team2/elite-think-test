@@ -13,21 +13,21 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			var test_id = ' . $_REQUEST['test_id'] . ';
-			
-			function setRadio(obj) 
-			{
-				if(obj.checked == true)
-					obj.checked = false;
-				else
-					obj.checked = true
-			}
+				var test_id = ' . $_REQUEST['test_id'] . ';
+				
+				function setRadio(obj) 
+				{
+					if(obj.checked == true)
+						obj.checked = false;
+					else
+						obj.checked = true
+				}
 			</script>
 			<script>
-			$(function() {
-				var $j = jQuery.noConflict();
-	        	$( "#datepicker" ).datepicker();
-			});
+				$(function() {
+					var $j = jQuery.noConflict();
+					$( "#datepicker" ).datepicker({ minDate: 0 });
+				});
 			</script>
 			<script src="controllers/test_editor.js"></script>
 			

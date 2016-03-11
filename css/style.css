@@ -1457,7 +1457,7 @@ span#countdown {
 		height: 500px;
 		background-image: url("../images/texture.jpg");
 	}
-	#my-form-builder {
+	.my-form-builder {
 		border:5px ridge #646464;
 		border-radius: 20px;
 		padding-left: 20px;
