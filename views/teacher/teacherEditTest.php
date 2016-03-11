@@ -89,7 +89,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<div id="slidingQ_2" class="toggleDiv"> 
 							<section id="TorF">
 								
-								<div id="my-form-builder"  align="left" >
+								<div class="my-form-builder"  align="left" >
 									<h4>T/F Question</h4>
 									<form>
 										<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
@@ -115,7 +115,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 									
 						<div id="slidingQ_3" class="toggleDiv"> 
 							<section id="essayQuestion">
-								<div id="my-form-builder" align="left">
+								<div class="my-form-builder" align="left">
 									<form>
 										<h4>Essay Question</h4>
 										<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
