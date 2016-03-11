@@ -27,8 +27,8 @@
 		
 		// Print the questions and answers.
 		if($question_statement->num_rows > 0){
-			echo "<h4> T/F Questions </h4>";
 			echo "<div id='my-form-builder' class='".Test::ESSAY_QUESTION_TYPE."'>";
+			echo "<h4> T/F Questions </h4>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				
@@ -56,8 +56,8 @@
 		$question_statement->bind_result($question_id, $question_text, $question_type);
 		
 		if($question_statement->num_rows > 0){
-			echo "<h4> Multiple Choice Questions </h4>";
 			echo "<div id='my-form-builder' class='".Test::ESSAY_QUESTION_TYPE."'>";
+			echo "<h4> Multiple Choice Questions </h4>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				
@@ -87,8 +87,8 @@
 		
 		// Print the questions and answers.
 		if($question_statement->num_rows > 0){
-			echo "<h4> Essay Questions </h4>";
 			echo "<div id='my-form-builder' class='".Test::ESSAY_QUESTION_TYPE."'>";
+			echo "<h4> Essay Questions </h4>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
 				$test->print_essay_answer($_SESSION["credentials"]->get_access_level());
