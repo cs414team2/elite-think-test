@@ -7,6 +7,8 @@ const TEST_STARTED     = '1';
 const TEST_COMPLETED   = '2';
 const TEST_TIMED_OUT   = '3';
 
+//var test_clock;
+
 //*******************Functions****************************
 
 // Check to see if a student has or has not started taking a test, or has finished taking a test.
@@ -24,18 +26,12 @@ function check_status() {
 					$("#btn_complete").attr("disabled", "disabled");
 					break;
 				case TEST_STARTED:
-					$("#btn_start").attr("disabled", "disabled");
-					$("#btn_complete").removeAttr("disabled");
 					start_test(false);
 					break;
 				case TEST_COMPLETED:
-					$("#btn_start").attr("disabled", "disabled");
-					$("#btn_complete").attr("disabled", "disabled");
 					complete_test();
 					break;
 				case TEST_TIMED_OUT:
-					$("#btn_start").attr("disabled", "disabled");
-					$("#btn_complete").removeAttr("disabled");
 					disable_test();
 					break;
 			}
@@ -67,24 +63,39 @@ function number_questions() {
 }
 
 function start_test(first_time) {
+	//var end_time = new Date();
+	
+	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_complete").removeAttr("disabled");
+	/*
 	if(first_time) {
 		//Do ajax to create instance of a taking of a test and begin the timer
 		// Maybe begin the timer after the ajax returns so we can be sure it exists in the database before creating the countdown.
 	}
 	else {
 		// get the timer based on what the current time value should be (check in the database).
+		end_time.setMinutes(end_time.getMinutes() + 50);
 	}
 	
+	test_clock = setInterval(countdown_time(end_time), 1000);*/
 	load_questions();
 }
 
 function complete_test() {
+	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_complete").attr("disabled", "disabled");
 	
 }
 
 function disable_test () {
-	
+	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_complete").removeAttr("disabled");
 }
+
+/*function countdown_time(end_time) {
+	$("#div_minutes").html(new Date());
+	$("#div_seconds").html(end_time);
+}*/
 
 //***********************Events************************
 $(document).ready(function(){
