@@ -5,18 +5,17 @@
 	
 	// Make sure these constants match up with model/Session.php !
 	const UNAUTHENTICATED = 0;
-	const ADMINISTRATOR = 1;
-	const TEACHER = 2;
-	const STUDENT = 3;
+	const ADMINISTRATOR   = 1;
+	const TEACHER 		  = 2;
+	const STUDENT         = 3;
 	
-	$test = new Test();
-
 	if(isset($_REQUEST['test_id'], $_REQUEST['question_type'], $_REQUEST['question_text'], $_REQUEST['question_weight'], $_REQUEST['answers'])) {
 
 		$test_id         = $_REQUEST['test_id'];
 		$question_type   = $_REQUEST['question_type'];
 		$question_text   = htmlspecialchars(ucfirst(trim($_REQUEST['question_text'])), ENT_QUOTES);
 		$question_weight = $_REQUEST['question_weight'];
+		$test = new Test($test_id);
 		
 		// Create the connection string.
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");

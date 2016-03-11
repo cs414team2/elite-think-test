@@ -15,7 +15,7 @@ function check_status() {
 		url: "ajax/get_test_status.php",
 		data: {
 			test_id: test_id,
-			student_id: student_id
+			student_id: 3        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! change this to a variable!!!!!!!!!!!!!!!!!!!!!!!!!!
 		},
 		success: function(status){
 			switch(status){

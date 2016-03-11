@@ -15,7 +15,7 @@
 
 	if(isset($_SESSION["credentials"], $_REQUEST["test_id"])){
 		$test_id    = $_REQUEST["test_id"];
-		$test       = new Test();
+		$test       = new Test($test_id);
 		
 		// Get the questions.
 		$db = prepare_connection();

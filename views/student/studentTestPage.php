@@ -2,13 +2,14 @@
 	include_once('model/Test.php');
 	
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
-	$test = new Test();
 	$test_id = $_REQUEST['test_id'];
-	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
+	$test    = new Test($test_id);
+	
+	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		echo '<section id="main" class="wrapper style1">
 				<script src="controllers/test_taker.js"></script>
 				<script>
-					var test_id = ' . $_REQUEST['test_id'] . ';
+					var test_id = ' . $test_id . ';
 				</script>
 		
 				<div class="testContainer">
@@ -36,7 +37,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					</div>
 					
 					<div class="studentTest" style="float:right;">
-						<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
+						<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
 						<section id="testView">
 							<div id="test_content" align="left">
 								<div class="my-form-builder">
@@ -49,6 +50,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				</div>
 			</section>';
 	}
+	else {
+		echo "<script>window.location = './404.php'; </script>";
+	}
+}
+else {
+	echo "<script>window.location = './404.php'; </script>";
 }
 ?>
 			

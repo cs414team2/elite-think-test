@@ -12,9 +12,11 @@ class Test{
 	const STUDENT                       = 3;
 	
 	private $alphabet;
+	private $test_id;
 	
-	public function __construct(){
+	public function __construct($test_id){
 		$this->alphabet = range('a', 'z');
+		$this->test_id = $test_id;
 	}
 	
 	private function prepare_connection(){
@@ -49,10 +51,10 @@ class Test{
 			
 	}
 	
-	public function get_class_name($test_id){
+	public function get_class_name(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT get_class_name_by_test(?)"); 
-		$statement->bind_param("i", $test_id);
+		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($class_name);
 		$statement->fetch();
@@ -60,10 +62,10 @@ class Test{
 		echo $class_name;
 	}
 	
-	public function get_test_number($test_id){
+	public function get_test_number(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT get_test_number(?)"); 
-		$statement->bind_param("i", $test_id);
+		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($test_number);
 		$statement->fetch();
@@ -78,12 +80,12 @@ class Test{
 			echo "<textarea id='txt_eq_entry' rows='4' name='txt_eq_entry' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 	}
 	
-	public function verify_test_access($user_id, $test_id, $user_type){
+	public function verify_test_access($user_id, $user_type){
 		switch($user_type){
 			case self::TEACHER:
 				$db = $this->prepare_connection();
 				$statement = $db->prepare("SELECT verify_teacher_test_access(?, ?)"); 
-				$statement->bind_param("ii", $user_id, $test_id);
+				$statement->bind_param("ii", $user_id, $this->test_id);
 				$statement->execute();
 				$statement->bind_result($access_status);
 				$statement->fetch();
@@ -92,7 +94,7 @@ class Test{
 			case self::STUDENT:
 				$db = $this->prepare_connection();
 				$statement = $db->prepare("SELECT verify_student_test_access(?, ?)");
-				$statement->bind_param("ii", $user_id, $test_id);
+				$statement->bind_param("ii", $user_id, $this->test_id);
 				$statement->execute();
 				$statement->bind_result($access_status);
 				$statement->fetch();

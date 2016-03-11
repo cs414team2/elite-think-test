@@ -9,17 +9,17 @@
 	const TEST_COMPLETED   = 2;
 	const TEST_TIMED_OUT   = 3;
 	
-	if (isset($_REQUEST['test_id'], $_REQUEST['student_id'])) {
+	/*if (isset($_REQUEST['test_id'], $_REQUEST['student_id'])) {
 		$test_id    = $_REQUEST['test_id'];
 		$student_id = $_REQUEST['student_id'];
-		$test = new Test();
+		$test = new Test($test_id);
 		
-		if ($test->has_started($student_id, $test_id)) {
-			if ($test->is_completed($student_id, $test_id)) {
+		if ($test->has_started($student_id)) {
+			if ($test->is_completed($student_id)) {
 				echo TEST_COMPLETED;
 			}
 			else {
-				if ($test->has_timed_out($student_id, $test_id)) {
+				if ($test->has_timed_out($student_id)) {
 					echo TEST_TIMED_OUT;
 				}
 				else {
@@ -29,5 +29,5 @@
 		}
 		else {
 			echo TEST_NOT_STARTED;
-		}
+		}*/ echo TEST_STARTED;
 ?>
