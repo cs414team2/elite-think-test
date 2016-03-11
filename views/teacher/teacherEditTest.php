@@ -130,23 +130,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div class="smallScreenTestDiv" style="float:right;">
 					<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
 					<section id="testView">
-						<div id="my-form-builder" align="left">
-							<h4>Multiple Choice</h4>
-							<div id="test_content">
-								Test Loading...
-							</div>
-						</div>
-						<div id="my-form-builder" align="left">
-							<h4>True / False Choice</h4>
-							<div id="test_content">
-								Test Loading...
-							</div>
-						</div>
-						<div id="my-form-builder" align="left">
-							<h4>Essay</h4>
-							<div id="test_content">
-								Test Loading...
-							</div>
+						<div id="test_content" align="left">
+							Test Loading...
 						</div>
 					</section>
 				</div>
