@@ -55,7 +55,9 @@
 							
 							foreach ($link as $url => $name) {
 								echo "\r\n<li>" .
-									 "\r\n    <a href='" . $url . "'>" . $name . "</a>" .
+									 "\r\n    <a href='" . $url . "'";
+								echo              preg_match("/http/", $url) == 1 ? " target='_blank'" : "";
+								echo          ">" . $name . "</a>" .
 									 "\r\n</li>";
 							}
 							
