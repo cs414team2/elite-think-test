@@ -14,7 +14,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				
 				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 				<script>
-					$(function() {
+					/*$(function() {
 						$( "#dialog" ).dialog({
 						autoOpen: false,
 						show: {
@@ -30,7 +30,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						$( "#btn_complete" ).click(function() {
 							$( "#dialog" ).dialog( "open" );
 						});
-					});
+					});*/
 				</script>
 				
 				<div class="testContainer">
