@@ -110,15 +110,15 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
-							<input type='radio' id='". $answer_id ."' name='". $question_id ."' value='". $answer_id ."'>
+							<input type='radio' id='". $answer_id ."' name='". $question_id ."' value='". $answer_id ."'/>
 							<label for='". $answer_id ."'>". $answer_content ."</label>
 						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n
-					  <input type='radio' id='". $answer_id ."_true' name='". $question_id ."' value='T'>" 
+					  <input type='radio' id='". $answer_id ."_true' name='". $question_id ."' value='T'/>" 
 				   . "<label for='" . $answer_id . "_true' style='margin-left: 5px;'>True</label>
-				      \r\n<input type='radio' id='". $answer_id ."_false' name='". $question_id ."' value='F'>"
+				      \r\n<input type='radio' id='". $answer_id ."_false' name='". $question_id ."' value='F'/>"
 				   . "<label for='" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:

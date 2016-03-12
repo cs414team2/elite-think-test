@@ -108,7 +108,7 @@ function complete_test() {
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
-		data: {test : test}
+		data: {test : test},
 		success: function (pledge) {
 			$('#test_content').html(pledge);
 		}
