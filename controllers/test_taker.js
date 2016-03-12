@@ -87,11 +87,28 @@ function start_test(first_time) {
 
 function complete_test() {
 	var test = [];
+	var essayOffset;
+	
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").attr("disabled", "disabled");
+	
+	$(".answer").each(function(index){
+		if ($(this).prop("checked")) {
+			test[index] = { question_id : $(this).attr('name'),
+			                answer : $(this).val()}
+		}
+	});
+	
+	essayOffset = test.length + 1;
+	
+	$(".studentEssayQuestion").each(function(index){
+		test[index + essayOffset] = { question_id : $(this).attr('name'),
+			                               answer : $(this).val()}
+	});
+	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
-		data: form,
+		data: {test : test}
 		success: function (pledge) {
 			$('#test_content').html(pledge);
 		}
