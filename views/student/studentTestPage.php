@@ -2,14 +2,16 @@
 	include_once('model/Test.php');
 	
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
-	$test = new Test();
 	$test_id = $_REQUEST['test_id'];
-	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
+	$test    = new Test($test_id);
+	
+	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		echo '<section id="main" class="wrapper style1">
 				<script src="controllers/test_taker.js"></script>
 				<script>
-					var test_id = ' . $_REQUEST['test_id'] . ';
+					var test_id = ' . $test_id . ';
 				</script>
+				
 				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 				<script>
 					$(function() {
@@ -25,30 +27,37 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						}
 						});
 				 
-						$( "#testCompleteButton" ).click(function() {
+						$( "#btn_complete" ).click(function() {
 							$( "#dialog" ).dialog( "open" );
 						});
 					});
 				</script>
-  
+				
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
 						
 						<section style="text-align:center">
 							<h2>Time Limit on test: </h2>
-							<h1> This is the timer</h1>
+							<h1>Countdown Clock</h1>
+								<div id="clockdiv">
+								  <div>
+									<div id="div_minutes">Minutes</div>
+								  </div>
+								  <div>
+									<div id="div_seconds">Seconds</div>
+								  </div>
+								</div>
 							<br /><br /><br />
 							
-								<button class="show_hide button small fit">Start Test</button>
+								<button id="btn_start" class="show_hide button small fit">Start Test</button>
 								
 								<h4 style="color:white;">Put the progress here</h4>
-
-								<button id="testCompleteButton" class="show_hide button small fit">Complete Test</button>		
+								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
 					
 					<div class="studentTest" style="float:right;">
-						<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
+						<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
 						<section id="testView">
 							<div id="test_content" align="left">
 								<div class="my-form-builder">
@@ -61,10 +70,16 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				</div>
 			</section>
 			
-			<div id="dialog" title="Basic dialog" style="background-color:white;">
+			<!--<div id="dialog" title="Basic dialog" style="background-color:white;">
 				<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the icon.</p>
-			</div>';
+			</div>-->';
 	}
+	else {
+		echo "<script>window.location = './404.php'; </script>";
+	}
+}
+else {
+	echo "<script>window.location = './404.php'; </script>";
 }
 ?>
 			

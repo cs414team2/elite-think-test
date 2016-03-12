@@ -3,25 +3,26 @@ require_once('model/Teacher.php');
 include_once('model/Test.php');
 
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
-	$test = new Test();
-	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
+	$test_id = $_REQUEST['test_id'];
+	$test = new Test($test_id);
+	
+	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		// PUT HTML HERE!
-		$test_id = $_REQUEST['test_id'];
 		echo '
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-				var test_id = ' . $_REQUEST['test_id'] . ';
-				
-				function setRadio(obj) 
-				{
-					if(obj.checked == true)
-						obj.checked = false;
-					else
-						obj.checked = true
-				}
+			var test_id = ' . $test_id . ';
+			
+			function setRadio(obj) 
+			{
+				if(obj.checked == true)
+					obj.checked = false;
+				else
+					obj.checked = true
+			}
 			</script>
 			<script>
 				$(function() {
@@ -133,7 +134,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</div>
 
 				<div class="smallScreenTestDiv" style="float:right;">
-					<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
+					<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
 					<section id="testView">
 						<div id="test_content" align="left">
 							<div class="my-form-builder">

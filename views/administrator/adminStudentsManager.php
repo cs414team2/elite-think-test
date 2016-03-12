@@ -13,7 +13,7 @@ if (isset($_SESSION['credentials'])) {
 						
 					<!-- Content -->
 						<section id="content">
-							<h4>This is a list of students</h4>
+							<h4>Click a student to make changes</h4>
 							<input type="checkbox" id="copy" name="copy">
 							<label for="copy">Show Inactive Students</label>
 							<div class="table-wrapper">

@@ -1507,3 +1507,26 @@ span#countdown {
 	#datepicker{
 		background-color: white;
 	}
+	
+	#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 5px;
+	border-radius: 3px;
+
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 10px;
+	border-radius: 3px;
+	display: inline-block;
+}
+

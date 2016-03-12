@@ -15,7 +15,7 @@
 
 	if(isset($_SESSION["credentials"], $_REQUEST["test_id"])){
 		$test_id    = $_REQUEST["test_id"];
-		$test       = new Test();
+		$test       = new Test($test_id);
 		
 		// Get the questions.
 		$db = prepare_connection();
@@ -91,7 +91,7 @@
 			echo "<h4> Essay Questions </h4>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
-				$test->print_essay_answer($_SESSION["credentials"]->get_access_level());
+				$test->print_essay_answer($question_id, $_SESSION["credentials"]->get_access_level());
 				echo "\r\n</div>";
 			}
 			echo "</div>";
