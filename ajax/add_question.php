@@ -50,7 +50,7 @@
 				
 		foreach($_REQUEST['answers'] as $answer) {
 			if($question_type == Test::ESSAY_QUESTION_TYPE)
-					$test->print_essay_answer(Test::TEACHER);
+					$test->print_essay_answer($questionInfo['question_id'], Test::TEACHER);
 			else
 				$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), 
 									$question_type, TEACHER, $question_id, null);

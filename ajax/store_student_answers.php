@@ -1,9 +1,6 @@
 <?php
-	foreach ($_REQUEST as $answer_id => $answer) {
-		echo $answer_id . " - " . $answer;
+	foreach ($_REQUEST['question'] as $question_id => $answer) {
+		echo $question_id . " - " . $answer;
 		
-		if ($answer_id == "checkifitreallyisavalidanswercontrol") {
-			//Store $answer in the database.
-		}
 	}
 ?>
