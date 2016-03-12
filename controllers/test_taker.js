@@ -92,14 +92,12 @@ function complete_test() {
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").attr("disabled", "disabled");
 	
-	$(".answer").each(function(index){
-		if ($(this).prop("checked")) {
+	$(".answer:checked").each(function(index){
 			test[index] = { question_id : $(this).attr('name'),
 			                answer : $(this).val()}
-		}
 	});
 	
-	essayOffset = test.length + 1;
+	essayOffset = test.length;
 	
 	$(".studentEssayQuestion").each(function(index){
 		test[index + essayOffset] = { question_id : $(this).attr('name'),
@@ -108,7 +106,7 @@ function complete_test() {
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
-		data: {test : test}
+		data: {test : test, offset : essayOffset},
 		success: function (pledge) {
 			$('#test_content').html(pledge);
 		}

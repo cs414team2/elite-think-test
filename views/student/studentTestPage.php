@@ -12,7 +12,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					var test_id = ' . $test_id . ';
 				</script>
 				
-				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+				<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
 				<script>
 					/*$(function() {
 						$( "#dialog" ).dialog({
