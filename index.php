@@ -122,8 +122,9 @@
 		
 		<!-- Includes the Footer for the page -->
 		<?php 
-			if($load_footer)
-				require_once('footer.php');
+			// Commented out because background issues with image
+			//if($load_footer)
+			//	require_once('footer.php');
 		?>
 
 	</body>
