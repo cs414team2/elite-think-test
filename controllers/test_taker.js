@@ -7,7 +7,8 @@ const TEST_STARTED     = '1';
 const TEST_COMPLETED   = '2';
 const TEST_TIMED_OUT   = '3';
 
-//var test_clock;
+var test_clock;
+var end_time;
 
 //*******************Functions****************************
 
@@ -63,28 +64,38 @@ function number_questions() {
 }
 
 function start_test(first_time) {
-	//var end_time = new Date();
+    end_time = new Date();
 	
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").removeAttr("disabled");
-	/*
+	
 	if(first_time) {
 		//Do ajax to create instance of a taking of a test and begin the timer
 		// Maybe begin the timer after the ajax returns so we can be sure it exists in the database before creating the countdown.
 	}
 	else {
 		// get the timer based on what the current time value should be (check in the database).
-		end_time.setMinutes(end_time.getMinutes() + 50);
+		end_time.setMinutes(end_time.getMinutes() + 1);
 	}
 	
-	test_clock = setInterval(countdown_time(end_time), 1000);*/
 	load_questions();
+	countdown_time();
+	test_clock = setInterval(countdown_time, 1000);
+	setTimeout(disable_timer, Date.parse(end_time) - Date.parse(new Date()));
+	
 }
 
 function complete_test() {
+	var test = [];
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").attr("disabled", "disabled");
-	
+	$.ajax({
+		url: "ajax/store_student_answers.php",
+		data: form,
+		success: function (pledge) {
+			$('#test_content').html(pledge);
+		}
+	})
 }
 
 function disable_test () {
@@ -92,10 +103,19 @@ function disable_test () {
 	$("#btn_complete").removeAttr("disabled");
 }
 
-/*function countdown_time(end_time) {
-	$("#div_minutes").html(new Date());
-	$("#div_seconds").html(end_time);
-}*/
+function countdown_time() {
+	var remaining_time = new Date(Date.parse(end_time) - Date.parse(new Date()));
+	
+	$("#div_minutes").html(remaining_time.getMinutes());
+	$("#div_seconds").html(remaining_time.getSeconds());
+}
+
+function disable_timer(){
+	clearInterval(test_clock);
+	
+	$("#div_minutes").html("--");
+	$("#div_seconds").html("--");	
+}
 
 //***********************Events************************
 $(document).ready(function(){

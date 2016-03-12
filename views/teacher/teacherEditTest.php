@@ -25,10 +25,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			}
 			</script>
 			<script>
-			$(function() {
-				var $j = jQuery.noConflict();
-	        	$( "#datepicker" ).datepicker();
-			});
+				$(function() {
+					var $j = jQuery.noConflict();
+					$( "#datepicker" ).datepicker({ minDate: 0 });
+				});
 			</script>
 			<script src="controllers/test_editor.js"></script>
 			

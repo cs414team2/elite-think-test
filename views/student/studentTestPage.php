@@ -11,7 +11,28 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				<script>
 					var test_id = ' . $test_id . ';
 				</script>
-		
+				
+				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+				<script>
+					$(function() {
+						$( "#dialog" ).dialog({
+						autoOpen: false,
+						show: {
+							effect: "blind",
+							duration: 1000
+						},
+						hide: {
+							effect: "explode",
+							duration: 1000
+						}
+						});
+				 
+						$( "#btn_complete" ).click(function() {
+							$( "#dialog" ).dialog( "open" );
+						});
+					});
+				</script>
+				
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
 						
@@ -31,7 +52,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<button id="btn_start" class="show_hide button small fit">Start Test</button>
 								
 								<h4 style="color:white;">Put the progress here</h4>
-
 								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
@@ -48,7 +68,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						</section>
 					</div>
 				</div>
-			</section>';
+			</section>
+			
+			<!--<div id="dialog" title="Basic dialog" style="background-color:white;">
+				<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the icon.</p>
+			</div>-->';
 	}
 	else {
 		echo "<script>window.location = './404.php'; </script>";
