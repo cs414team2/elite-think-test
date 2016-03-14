@@ -27,10 +27,15 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<script>
 				$(function() {
 					var $j = jQuery.noConflict();
+					var dateIsSet = '.$test->due_date_is_set($test_id).'
 					$( "#datepicker" ).datepicker();
-					$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
-					$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
-					$("#datepicker").datepicker("setDate", new Date().getDay+7);
+					if(dateIsSet){
+						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
+					}
+					else{
+						$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
+						$("#datepicker").datepicker("setDate", new Date().getDay+7);
+					}
 				});
 			</script>
 			<script>

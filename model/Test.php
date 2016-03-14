@@ -10,6 +10,7 @@ class Test{
 	const ADMINISTRATOR                 = 1;
 	const TEACHER                       = 2;
 	const STUDENT                       = 3;
+	const DATE_IS_SET                   = 1;
 	
 	private $alphabet;
 	private $test_id;
@@ -153,7 +154,9 @@ class Test{
 	
 	public function get_date_due($test_id){
 		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT date_due FROM test WHERE test_id = ?") or die($db->error);
+		$statement = $db->prepare("SELECT date_due 
+		                           FROM test 
+								   WHERE test_id = ?") or die($db->error);
 		$statement->bind_param("i", $test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -167,7 +170,9 @@ class Test{
 	
 	public function has_started($student_id, $test_id){
 		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT time_started FROM student_test WHERE test_id = ? and student_id = ?") or die($db->error);
+		$statement = $db->prepare("SELECT time_started 
+		                           FROM student_test 
+								   WHERE test_id = ? and student_id = ?") or die($db->error);
 		$statement->bind_param("ii", $test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
@@ -181,7 +186,9 @@ class Test{
 	
 	public function is_completed($student_id, $test_id){
 		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT is_completed FROM student_test WHERE test_id = ? and student_id = ? and is_completed = 'Y'") or die($db->error);
+		$statement = $db->prepare("SELECT is_completed 
+		                           FROM student_test 
+								   WHERE test_id = ? and student_id = ? and is_completed = 'Y'") or die($db->error);
 		$statement->bind_param("ii", $test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
@@ -194,6 +201,19 @@ class Test{
 	
 	public function has_timed_out(){
 		$stuff = 1;
+	}
+	
+	public function due_date_is_set($test_id){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT count(date_due) 
+		                           FROM test 
+		                           WHERE test_id = ? and date_due is not null") or die($db->error);
+		$statement->bind_param("i", $test_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($date_is_set);
+		
+		return ($date_is_set == self::DATE_IS_SET ? true : false);
 	}
 }
 ?>
