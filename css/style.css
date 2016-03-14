@@ -15,7 +15,9 @@
 /* Basic */
 
 	body {
-		background: #fff;
+		background-image: url("../images/geometric.png");
+		background-repeat: repeat;
+		background-attachment: fixed;
 	}
 
 		body.is-loading * {
@@ -1069,8 +1071,7 @@ span#countdown {
 	}
 
 		.wrapper.style1 {
-			background-image: url("../images/geometric.png");
-			background-attachment: fixed;
+			/* Comment this out to change login background div */
 			/* background: #84C2CC; */
 			/* background: linear-gradient(#F00, #000); */
 		}
@@ -1085,8 +1086,7 @@ span#countdown {
 		}
 
 		.wrapper.style3 {
-			background-image: url("../images/geometric.png");
-			background-attachment: fixed;
+			/* This is the bottom Are You Ready on Login page */
 			color: #d1f2f5;
 		}
 
@@ -1431,6 +1431,7 @@ span#countdown {
 /* Footer */
 
 	#footer {
+		background: #FFF;
 		color: #949494;
 		padding: 1em 0;
 		text-align: center;
@@ -1477,8 +1478,6 @@ span#countdown {
 	.smallScreenTestDiv{
 		min-width: 100%;
 		padding-left: 25%;
-		background-image: url("../images/geometric.png");
-		background-repeat: repeat;
 	}
 	
 	input[type="text"].questionStyle {
@@ -1504,9 +1503,30 @@ span#countdown {
 		min-width: 100%;
 		min-height: 500px;
 		padding-left: 25%;
-		background-image: url("../images/geometric.png");
-		background-repeat: repeat;
 	}
 	#datepicker{
 		background-color: white;
 	}
+	
+	#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 5px;
+	border-radius: 3px;
+
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 10px;
+	border-radius: 3px;
+	display: inline-block;
+}
+

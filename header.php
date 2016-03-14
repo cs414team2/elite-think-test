@@ -8,8 +8,7 @@
 						"http://color.adobe.com" => "Color Picker",
 						"elements.html" => "Elements",
 						"http://jqueryui.com/" => "jQuery Demos",
-						"http://csmain/seproject/TimeMachine2/Student/Summary" => "Time Machine",
-						"http://www.jslint.com/" => "JavaScript Validator"
+						"http://csmain/seproject/TimeMachine2/Student/Summary" => "Time Machine"
 					);
 					
 					// Display's the user's name in the header
@@ -47,6 +46,8 @@
 					<ul>
 						<li><a href="index.php">Home</a></li>
 						<?php
+						$link["aboutUs.php"] = "About Elite";
+						
 						if (sizeof($link) > 0) {
 							echo "
 							<li>
@@ -55,7 +56,9 @@
 							
 							foreach ($link as $url => $name) {
 								echo "\r\n<li>" .
-									 "\r\n    <a href='" . $url . "'>" . $name . "</a>" .
+									 "\r\n    <a href='" . $url . "'";
+								echo              preg_match("/http/", $url) == 1 ? " target='_blank'" : "";
+								echo          ">" . $name . "</a>" .
 									 "\r\n</li>";
 							}
 							

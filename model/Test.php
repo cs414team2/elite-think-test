@@ -12,9 +12,11 @@ class Test{
 	const STUDENT                       = 3;
 	
 	private $alphabet;
+	private $test_id;
 	
-	public function __construct(){
+	public function __construct($test_id){
 		$this->alphabet = range('a', 'z');
+		$this->test_id = $test_id;
 	}
 	
 	private function prepare_connection(){
@@ -40,7 +42,7 @@ class Test{
 	public function print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id){
 		switch($user_type){
 			case self::TEACHER:
-				$this->print_teacher_answer($is_correct, $answer_content, $question_type);
+				$this->print_teacher_answer($is_correct, $answer_content, $question_type, $question_id);
 				break;
 			case self::STUDENT:
 				$this->print_student_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id);
@@ -49,10 +51,10 @@ class Test{
 			
 	}
 	
-	public function get_class_name($test_id){
+	public function get_class_name(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT get_class_name_by_test(?)"); 
-		$statement->bind_param("i", $test_id);
+		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($class_name);
 		$statement->fetch();
@@ -60,10 +62,10 @@ class Test{
 		echo $class_name;
 	}
 	
-	public function get_test_number($test_id){
+	public function get_test_number(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT get_test_number(?)"); 
-		$statement->bind_param("i", $test_id);
+		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($test_number);
 		$statement->fetch();
@@ -71,19 +73,19 @@ class Test{
 		echo "Test " . $test_number;
 	}
 	
-	public function print_essay_answer($user_type){
+	public function print_essay_answer($question_id, $user_type){
 		if($user_type == self::TEACHER)
 			echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>Essay Question</div>";
 		else
-			echo "<textarea id='txt_eq_entry' rows='4' name='txt_eq_entry' style='text-align:left;' class='studentEssayQuestion'></textarea>";
+			echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . $question_id . "' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 	}
 	
-	public function verify_test_access($user_id, $test_id, $user_type){
+	public function verify_test_access($user_id, $user_type){
 		switch($user_type){
 			case self::TEACHER:
 				$db = $this->prepare_connection();
 				$statement = $db->prepare("SELECT verify_teacher_test_access(?, ?)"); 
-				$statement->bind_param("ii", $user_id, $test_id);
+				$statement->bind_param("ii", $user_id, $this->test_id);
 				$statement->execute();
 				$statement->bind_result($access_status);
 				$statement->fetch();
@@ -92,7 +94,7 @@ class Test{
 			case self::STUDENT:
 				$db = $this->prepare_connection();
 				$statement = $db->prepare("SELECT verify_student_test_access(?, ?)");
-				$statement->bind_param("ii", $user_id, $test_id);
+				$statement->bind_param("ii", $user_id, $this->test_id);
 				$statement->execute();
 				$statement->bind_result($access_status);
 				$statement->fetch();
@@ -108,23 +110,24 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
-							<input type='radio' id='". $answer_id ."' name='". $question_id ."'>
+							<input type='radio' id='". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer'>
 							<label for='". $answer_id ."'>". $answer_content ."</label>
 						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
-				echo "\r\n<input type='radio' id='". $answer_id ."_true' name='". $question_id ."'>
-					  <label for='" . $answer_id . "_true' style='margin-left: 5px;'>True</label>";
-				echo "\r\n<input type='radio' id='". $answer_id ."_false' name='". $question_id ."'>
-					  <label for='" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
+				echo "\r\n
+					  <input type='radio' id='". $answer_id ."_true' name='". $question_id ."' value='T' class='answer'>" 
+				   . "<label for='" . $answer_id . "_true' style='margin-left: 5px;'>True</label>
+				      \r\n<input type='radio' id='". $answer_id ."_false' name='". $question_id ."' value='F' class='answer'>"
+				   . "<label for='" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				$this->print_essay_answer(self::STUDENT);
+				$this->print_essay_answer($question_id, self::STUDENT);
 				break;
 		}
 	}
 	
-	public function print_teacher_answer($is_correct, $answer_content, $question_type){
+	public function print_teacher_answer($is_correct, $answer_content, $question_type, $question_id){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
@@ -143,7 +146,7 @@ class Test{
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				$this->print_essay_answer(self::TEACHER);
+				$this->print_essay_answer($question_id, self::TEACHER);
 				break;
 		}
 	}

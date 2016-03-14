@@ -3,18 +3,18 @@ require_once('model/Teacher.php');
 include_once('model/Test.php');
 
 if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
-	$test = new Test();
-	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_REQUEST['test_id'], $_SESSION['credentials']->get_access_level())) {
+	$test_id = $_REQUEST['test_id'];
+	$test = new Test($test_id);
+	
+	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		// PUT HTML HERE!
-		$test_id = $_REQUEST['test_id'];
 		echo '
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			var test_id = ' . $_REQUEST['test_id'] . ';
-		
+			var test_id = ' . $test_id . ';
 			function setRadio(obj) 
 			{
 				if(obj.checked == true)
@@ -23,14 +23,35 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					obj.checked = true
 			}
 			</script>
-			<script>
-			$(function() {
-				var $j = jQuery.noConflict();
-				$( "#datepicker" ).datepicker();
-	        	$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
-			});
-			</script>
 			<script src="controllers/test_editor.js"></script>
+			<script>
+				$(function() {
+					var $j = jQuery.noConflict();
+					$( "#datepicker" ).datepicker();
+					$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
+					$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
+					$("#datepicker").datepicker("setDate", new Date().getDay+7);
+				});
+			</script>
+			<script>
+					$(function() {
+						$( "#dialog" ).dialog({
+						autoOpen: false,
+						show: {
+							effect: "blind",
+							duration: 1000
+						},
+						hide: {
+							effect: "explode",
+							duration: 1000
+						}
+						});
+				 
+						$( "#dialogTestYo" ).click(function() {
+							$( "#dialog" ).dialog( "open" );
+						});
+					});
+				</script>
 			<header class="major">	
 			</header>
 			<div class="testContainer">
@@ -47,6 +68,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
+						<button id="dialogTestYo" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;">Dialog Test</button>
 						<div id="slidingQ_1" class="toggleDiv"> 
 							<section id="MultipleChoice">
 								<div class="my-form-builder"  align="left">
@@ -133,7 +155,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</div>
 
 				<div class="smallScreenTestDiv" style="float:right;">
-					<h2 style="padding:10px;">'; $test->get_class_name($test_id); echo ' - '; $test->get_test_number($test_id); echo '</h2>
+					<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
 					<section id="testView">
 						<div id="test_content" align="left">
 							<div class="my-form-builder">
@@ -145,7 +167,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-			
+		<div id="dialog" title="Basic dialog" style="background-color:white;">
+			<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the icon.</p>
+		</div>
 	
 		';
 	}
