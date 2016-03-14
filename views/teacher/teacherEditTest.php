@@ -33,25 +33,77 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</script>
 			<script src="controllers/test_editor.js"></script>
 			
+			<!-- Multiple Choice Question Dialog box and transition effect -->
 			<script>
-					$(function() {
-						$( "#dialog" ).dialog({
-						autoOpen: false,
-						show: {
-							effect: "blind",
-							duration: 1000
-						},
-						hide: {
-							effect: "explode",
-							duration: 1000
-						}
-						});
-				 
-						$( "#dialogTestYo" ).click(function() {
-							$( "#dialog" ).dialog( "open" );
-						});
+				$(function() {
+					$( "#mCDialog" ).dialog({
+					autoOpen: false,
+					show: {
+						effect: "blind",
+						duration: 1000
+					},
+					hide: {
+						effect: "explode",
+						duration: 1000
+					}
 					});
-				</script>
+			 
+					$( "#openMCDialog" ).click(function() {
+						$( "#mCDialog" ).dialog( "open" );
+					});
+					$( "#btn_add_mc" ).click(function() {
+						$( "#mCDialog" ).dialog( "close" );
+					});	
+				});
+			</script>
+			
+			<!-- True/False Question Dialog box and transition effect -->
+			<script>
+				$(function() {
+					$( "#tFDialog" ).dialog({
+					autoOpen: false,
+					show: {
+						effect: "blind",
+						duration: 1000
+					},
+					hide: {
+						effect: "explode",
+						duration: 1000
+					}
+					});
+			 
+					$( "#openTFDialog" ).click(function() {
+						$( "#tFDialog" ).dialog( "open" );
+					});
+					$( "#btn_add_tf" ).click(function() {
+						$( "#tFDialog" ).dialog( "close" );
+					});	
+				});
+			</script>
+			
+			<!-- Essay Question Dialog box and transition effect -->
+			<script>
+				$(function() {
+					$( "#essayDialog" ).dialog({
+					autoOpen: false,
+					show: {
+						effect: "blind",
+						duration: 1000
+					},
+					hide: {
+						effect: "explode",
+						duration: 1000
+					}
+					});
+			 
+					$( "#openEssayDialog" ).click(function() {
+						$( "#essayDialog" ).dialog( "open" );
+					});
+					$( "#btn_add_essay" ).click(function() {
+						$( "#essayDialog" ).dialog( "close" );
+					});	
+				});
+			</script>
 			
 			
 			<header class="major">	
@@ -67,92 +119,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
-						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
-						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
-						<button id="dialogTestYo" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;">Dialog Test</button>
-						<div id="slidingQ_1" class="toggleDiv"> 
-							<section id="MultipleChoice">
-								<div class="my-form-builder"  align="left">
-									<form>
-										<h4>Multiple Choice</h4>
-										<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
-										name="txt_mcq_entry" class="questionStyle"></textarea>
-										
-										<label for="mcAnswer1" class="questionLabel"> A)</label>
-										<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
-										<label for="rb_is_answer_a" class="questionLabel">Answer</label>
-										<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
-										<br/><br />
-										
-										<label for="mcAnswer2" class="questionLabel"> B)</label>
-										<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
-										<label for="rb_is_answer_b" class="questionLabel">Answer</label>
-										<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
-										<br/><br />
-										
-										<label for="mcAnswer3" class="questionLabel"> C)</label>
-										<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
-										<label for="rb_is_answer_c" class="questionLabel">Answer</label>
-										<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
-										<br/><br />
-										
-										<label for="mcAnswer4" class="questionLabel"> D)</label>
-										<input type="radio" id="rb_is_answer_d" name="rb_is_answer" >
-										<label for="rb_is_answer_d" class="questionLabel">Answer</label>
-										<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
-										<br/><br />
-										
-										<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
-										<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
-									</form>
-								</div>
-							</section>
-						</div>
+						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
+						<button id="openTFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
+						<button id="openEssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						
-						<div id="slidingQ_2" class="toggleDiv"> 
-							<section id="TorF">
-								
-								<div class="my-form-builder"  align="left" >
-									<h4>T/F Question</h4>
-									<form>
-										<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
-											name="txt_tfq_entry" class="questionStyle"></textarea>
-										<br />
-										
-										
-										<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
-										<label for="rb_answer_true" class="questionLabel">True</label>
-															
-										<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
-										<label for="rb_answer_false" class="questionLabel">False</label>
-										<br /><br />
-										
-										<ul class="actions">
-											<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-											<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-										</ul>
-									</form>
-								</div>
-							</section>
-						</div>
-									
-						<div id="slidingQ_3" class="toggleDiv"> 
-							<section id="essayQuestion">
-								<div class="my-form-builder" align="left">
-									<form>
-										<h4>Essay Question</h4>
-										<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
-										name="txt_eq_entry" class="questionStyle"></textarea>
-										<br /><br />
-										<ul class="actions">
-											<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-											<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-										</ul>
-									</form>
-								</div>
-							</section>
-						</div>
 					</section>
 				</div>
 
@@ -169,8 +139,74 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-		<div id="dialog" title="Basic dialog" style="background-color:white;">
-			<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the icon.</p>
+		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white;">
+			<form>
+				<h4>Multiple Choice</h4>
+				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
+				name="txt_mcq_entry" class="questionStyle"></textarea>
+				
+				<label for="mcAnswer1" class="questionLabel"> A)</label>
+				<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
+				<label for="rb_is_answer_a" class="questionLabel">Answer</label>
+				<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
+				<br/><br />
+				
+				<label for="mcAnswer2" class="questionLabel"> B)</label>
+				<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
+				<label for="rb_is_answer_b" class="questionLabel">Answer</label>
+				<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
+				<br/><br />
+				
+				<label for="mcAnswer3" class="questionLabel"> C)</label>
+				<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
+				<label for="rb_is_answer_c" class="questionLabel">Answer</label>
+				<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
+				<br/><br />
+				
+				<label for="mcAnswer4" class="questionLabel"> D)</label>
+				<input type="radio" id="rb_is_answer_d" name="rb_is_answer" >
+				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
+				<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
+				<br/><br />
+				
+				<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+				<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+			</form>
+		</div>
+		
+		<div id="tFDialog" title="True/False Question Entry" style="background-color:white;">
+			<form>
+				<h4>True/False Question</h4>
+				<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
+					name="txt_tfq_entry" class="questionStyle"></textarea>
+				<br />
+				
+				
+				<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
+				<label for="rb_answer_true" class="questionLabel">True</label>
+									
+				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
+				<label for="rb_answer_false" class="questionLabel">False</label>
+				<br /><br />
+				
+				<ul class="actions">
+					<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+				</ul>
+			</form>
+		</div>
+		
+		<div id="essayDialog" title="Essay Question Entry" style="background-color:white;">
+			<form>
+				<h4>Essay Question</h4>
+				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
+				name="txt_eq_entry" class="questionStyle"></textarea>
+				<br /><br />
+				<ul class="actions">
+					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+				</ul>
+			</form>
 		</div>
 	
 		';
