@@ -59,8 +59,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					<div class="studentTest" style="float:right;">
 						<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
 						<section id="testView">
-							<div id="test_content" align="left">
-								<div class="my-form-builder">
+							<div id="test_content">
+								<div class="my-form-builder" align="left">
 									Test Loading...
 								</div>
 								<br />

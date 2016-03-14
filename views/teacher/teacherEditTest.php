@@ -15,7 +15,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		
 		    <script language="javascript">
 			var test_id = ' . $test_id . ';
-			
 			function setRadio(obj) 
 			{
 				if(obj.checked == true)
@@ -27,13 +26,21 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<script>
 				$(function() {
 					var $j = jQuery.noConflict();
-					$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
-					$("#datepicker").datepicker("setDate", new Date().getDay+7);
+					var dateIsSet = '.$test->due_date_is_set($test_id).'
+					$( "#datepicker" ).datepicker();
+					if(dateIsSet == "true"){
+						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
+					}
+					else{
+						$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
+						$( "#datepicker" ).datepicker("setDate", new Date().getDay+7);
+					}
 				});
 			</script>
 			<script src="controllers/test_editor.js"></script>
 			
 			<!-- True/False Question Dialog box and transition effect -->
+
 			<script>
 				$(function() {
 					$( "#tFDialog" ).dialog({
@@ -53,8 +60,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					$( "#openTFDialog" ).click(function() {
 						$( "#tFDialog" ).dialog( "open" );
 					});
+
 					$( "#btn_add_tf" ).click(function() {
 						$( "#tFDialog" ).dialog( "close" );
+
 					});	
 				});
 			</script>
