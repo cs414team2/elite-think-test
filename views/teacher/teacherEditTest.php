@@ -33,35 +33,13 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</script>
 			<script src="controllers/test_editor.js"></script>
 			
-			<!-- Multiple Choice Question Dialog box and transition effect -->
-			<script>
-				$(function() {
-					$( "#mCDialog" ).dialog({
-					autoOpen: false,
-					show: {
-						effect: "blind",
-						duration: 1000
-					},
-					hide: {
-						effect: "explode",
-						duration: 1000
-					}
-					});
-			 
-					$( "#openMCDialog" ).click(function() {
-						$( "#mCDialog" ).dialog( "open" );
-					});
-					$( "#btn_add_mc" ).click(function() {
-						$( "#mCDialog" ).dialog( "close" );
-					});	
-				});
-			</script>
-			
 			<!-- True/False Question Dialog box and transition effect -->
 			<script>
 				$(function() {
 					$( "#tFDialog" ).dialog({
 					autoOpen: false,
+					modal: true,
+					width: 500,
 					show: {
 						effect: "blind",
 						duration: 1000
@@ -81,11 +59,39 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				});
 			</script>
 			
+			<!-- Multiple Choice Question Dialog box and transition effect -->
+			<script>
+				$(function() {
+					$( "#mCDialog" ).dialog({
+					autoOpen: false,
+					modal: true,
+					width: 600,
+					show: {
+						effect: "blind",
+						duration: 1000
+					},
+					hide: {
+						effect: "explode",
+						duration: 1000
+					}
+					});
+			 
+					$( "#openMCDialog" ).click(function() {
+						$( "#mCDialog" ).dialog( "open" );
+					});
+					$( "#btn_add_mc" ).click(function() {
+						$( "#mCDialog" ).dialog( "close" );
+					});	
+				});
+			</script>
+			
 			<!-- Essay Question Dialog box and transition effect -->
 			<script>
 				$(function() {
 					$( "#essayDialog" ).dialog({
 					autoOpen: false,
+					modal: true,
+					width: 500,
 					show: {
 						effect: "blind",
 						duration: 1000
@@ -105,7 +111,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				});
 			</script>
 			
-			
 			<header class="major">	
 			</header>
 			<div class="testContainer">
@@ -119,8 +124,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button id="openTFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
+						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button id="openEssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						
 					</section>
@@ -138,6 +143,28 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</div>
 			</div>
 		</section>
+		
+		<div id="tFDialog" title="True/False Question Entry" style="background-color:white;">
+			<form>
+				<h4>True/False Question</h4>
+				<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
+					name="txt_tfq_entry" class="questionStyle"></textarea>
+				<br />
+				
+				
+				<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
+				<label for="rb_answer_true" class="questionLabel">True</label>
+									
+				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
+				<label for="rb_answer_false" class="questionLabel">False</label>
+				<br /><br />
+				
+				<ul class="actions">
+					<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+				</ul>
+			</form>
+		</div>
 		
 		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white;">
 			<form>
@@ -171,28 +198,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				
 				<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 				<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
-			</form>
-		</div>
-		
-		<div id="tFDialog" title="True/False Question Entry" style="background-color:white;">
-			<form>
-				<h4>True/False Question</h4>
-				<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
-					name="txt_tfq_entry" class="questionStyle"></textarea>
-				<br />
-				
-				
-				<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
-				<label for="rb_answer_true" class="questionLabel">True</label>
-									
-				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
-				<label for="rb_answer_false" class="questionLabel">False</label>
-				<br /><br />
-				
-				<ul class="actions">
-					<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-				</ul>
 			</form>
 		</div>
 		
