@@ -62,10 +62,10 @@ function add_question(question_type, question_text) {
 				answers: answers
 			},
 			success: function (question) {
-				$("#test_content").append(question);
+				$("#" + question_type).append(question);
 				number_questions();
 				clear_question_fields(question_type);
-				$('html, body').animate({scrollTop: $("#test_content").height() }, 1);
+				$('html, body').animate({scrollTop: $("#" + question_type).height() }, 1);
 			}
 		});
 	}
