@@ -27,10 +27,32 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<script>
 				$(function() {
 					var $j = jQuery.noConflict();
-					$( "#datepicker" ).datepicker({ minDate: 0 });
+					$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
+					$("#datepicker").datepicker("setDate", new Date().getDay+7);
 				});
 			</script>
 			<script src="controllers/test_editor.js"></script>
+			
+			<script>
+					$(function() {
+						$( "#dialog" ).dialog({
+						autoOpen: false,
+						show: {
+							effect: "blind",
+							duration: 1000
+						},
+						hide: {
+							effect: "explode",
+							duration: 1000
+						}
+						});
+				 
+						$( "#dialogTestYo" ).click(function() {
+							$( "#dialog" ).dialog( "open" );
+						});
+					});
+				</script>
+			
 			
 			<header class="major">	
 			</header>
@@ -48,6 +70,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
 						<button class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
+						<button id="dialogTestYo" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;">Dialog Test</button>
 						<div id="slidingQ_1" class="toggleDiv"> 
 							<section id="MultipleChoice">
 								<div class="my-form-builder"  align="left">
@@ -146,7 +169,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-			
+		<div id="dialog" title="Basic dialog" style="background-color:white;">
+			<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the icon.</p>
+		</div>
 	
 		';
 	}
