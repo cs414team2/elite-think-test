@@ -63,9 +63,11 @@ function add_question(question_type, question_text) {
 			},
 			success: function (question) {
 				$("#" + question_type).append(question);
+				$("#" + question_type).show();
 				number_questions();
 				clear_question_fields(question_type);
-				$('html, body').animate({scrollTop: $("#" + question_type).height() }, 1);
+				// Commented out to avoid focus on adding question
+				// $('html, body').animate({scrollTop: $("#" + question_type).height() }, 1);
 			}
 		});
 	}
@@ -89,12 +91,16 @@ function edit_question(question_id, question_type, question_text,
 function delete_question(question) {
 		var question_id = question.id;
 		
+		var section_thingy = question.parentElement;
+		
 		$.ajax({
 		url: 'ajax/delete_question.php',
 		data: { question_id: question_id },
 		success: function(data) {
 			question.remove();
 			number_questions();
+			if ($(section_thingy).children().length > 0 )
+				$(section_thingy).hide();
 		}
 	});
 }
