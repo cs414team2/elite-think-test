@@ -31,7 +31,7 @@ function check_status() {
 					start_test(false);
 					break;
 				case TEST_COMPLETED:
-					complete_test();
+					
 					break;
 				case TEST_TIMED_OUT:
 					disable_test();
@@ -92,7 +92,7 @@ function start_test(first_time) {
 	}
 }
 
-function complete_test() {
+function submit_test() {
 	var test = [];
 	var question_count = 0;
 	
@@ -113,8 +113,8 @@ function complete_test() {
 		url: "ajax/store_student_answers.php",
 		data: { test : test,
 		       student_id : student_id },
-		success: function (pledge) {
-			$('#test_content').html(pledge);
+		success: function () {
+			// possibly do something here.
 		}
 	})
 }
@@ -152,8 +152,30 @@ $(document).ready(function(){
 		start_test(true);
 	});
 	
-	$("#btn_complete").click(function(){
-		complete_test();
-		disable_timer();
+	$( "#pledgeDialog" ).dialog({
+		autoOpen: false,
+		modal: true,
+		width: 500,
+		buttons: {
+			"Sign Pledge": function() {
+				submit_test();
+				disable_timer();
+			},
+			Cancel: function() {
+			  $( this ).dialog( "close" );
+			}
+		},
+		show: {
+			effect: "size",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		}
+	});
+				 
+	$( "#btn_complete" ).click(function() {
+		$( "#pledgeDialog" ).dialog( "open" );
 	});
 });

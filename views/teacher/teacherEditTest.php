@@ -10,12 +10,13 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		// PUT HTML HERE!
 		echo '
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="controllers/test_editor.js"></script>
 		
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
 			var test_id = ' . $test_id . ';
-			function setRadio(obj) 
+			function setRadio(obj)
 			{
 				if(obj.checked == true)
 					obj.checked = false;
@@ -25,11 +26,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</script>
 			<script>
 				$(function() {
-					var $j = jQuery.noConflict();
-					var dateIsSet = '.$test->due_date_is_set($test_id).'
+					//var $j = jQuery.noConflict();
+					var dateIsSet = '.$test->due_date_is_set().'
 					$( "#datepicker" ).datepicker();
-					if(dateIsSet == "true"){
-						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
+					if(dateIsSet == true){
+						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'"));
 					}
 					else{
 						$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
@@ -37,10 +38,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					}
 				});
 			</script>
-			<script src="controllers/test_editor.js"></script>
 			
 			<!-- True/False Question Dialog box and transition effect -->
-
 			<script>
 				$(function() {
 					$( "#tFDialog" ).dialog({

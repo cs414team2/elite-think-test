@@ -7,43 +7,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 	
 	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		echo '<section id="main" class="wrapper style1">
+				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 				<script src="controllers/test_taker.js"></script>
 				<script>
 					var test_id    = ' . $test_id . ';
 					var student_id = ' . $_SESSION['credentials']->get_user_id() . ';
 				</script>
-				
-				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-				<script>
-					$(function() {
-						$( "#pledgeDialog" ).dialog({
-						autoOpen: false,
-						modal: true,
-						width: 500,
-						buttons: {
-						"Sign Pledge": function() {
-						  complete_test();
-						},
-						Cancel: function() {
-						  $( this ).dialog( "close" );
-						}	
-						show: {
-							effect: "size",
-							duration: 500
-						},
-						hide: {
-							effect: "size",
-							duration: 500
-						}
-						});
-				 
-						$( "#btn_complete" ).click(function() 
-							$( "#pledgeDialog" ).dialog( "open" );
-						});
-
-					});
-				</script>
-				
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
 						
@@ -54,6 +23,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								  <div>
 									<div id="div_minutes">Minutes</div>
 								  </div>
+								  :
 								  <div>
 									<div id="div_seconds">Seconds</div>
 								  </div>
@@ -72,7 +42,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						<section id="testView">
 							<div id="test_content">
 								<div class="my-form-builder" align="left">
-									<div class="loader">Loading...</div>
+									<div class="loader" style="display: none;">Loading...</div>
 								</div>
 								<br />
 							</div>
@@ -83,7 +53,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 			
 			<div id="pledgeDialog" title="Pledge" style="background-color:white;">
 				<p>Dude</p>
-			</div>	
+			</div>
 			';
 	}
 	else {
