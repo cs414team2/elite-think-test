@@ -165,7 +165,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
-				name="txt_mcq_entry" class="questionStyle"></textarea>
+				name="txt_mcq_entry" class="questionStyle" ></textarea>
 				<br />
 				
 				<label for="mcAnswer1" class="questionLabel"> A)</label>
@@ -188,7 +188,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				
 				<label for="mcAnswer4" class="questionLabel"> D)</label>
 				<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
-				<input type="radio" id="rb_is_answer_d" name="rb_is_answer" >
+				<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
 				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 				<br/><br />
 				

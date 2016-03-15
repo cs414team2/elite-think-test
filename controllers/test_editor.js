@@ -99,7 +99,7 @@ function delete_question(question) {
 		success: function(data) {
 			question.remove();
 			number_questions();
-			if ($(section_thingy).children().length > 0 )
+			if ($(section_thingy).children().length == 0 )
 				$(section_thingy).hide();
 		}
 	});
