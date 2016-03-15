@@ -152,12 +152,12 @@ class Test{
 		}
 	}
 	
-	public function get_date_due($test_id){
+	public function get_date_due(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT date_due 
 		                           FROM test 
 								   WHERE test_id = ?") or die($db->error);
-		$statement->bind_param("i", $test_id);
+		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
 		$statement->bind_result($date_due);
@@ -219,12 +219,12 @@ class Test{
 		$statement = $db->prepare("SELECT count(date_due) 
 		                           FROM test 
 		                           WHERE test_id = ? and date_due is not null") or die($db->error);
-		$statement->bind_param("i", $test_id);
+		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
-		$statement->store_result();
 		$statement->bind_result($date_is_set);
+		$statement->fetch();
 		
-		return ($date_is_set >= self::DATE_IS_SET ? true : false);
+		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
 	}
 }
 ?>

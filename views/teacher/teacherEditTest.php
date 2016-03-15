@@ -26,10 +26,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<script>
 				$(function() {
 					var $j = jQuery.noConflict();
-					var dateIsSet = '.$test->due_date_is_set($test_id).'
+					var dateIsSet = '.$test->due_date_is_set().'
 					$( "#datepicker" ).datepicker();
-					if(dateIsSet == "true"){
-						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due($test_id).'"));
+					if(dateIsSet == true){
+						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'"));
 					}
 					else{
 						$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
