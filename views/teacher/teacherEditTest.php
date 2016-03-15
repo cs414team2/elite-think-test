@@ -145,12 +145,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<form>
 				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
-				<p id="err_empty_tf" style=" color: red;">
+				<p id="err_empty_tf" style="display: none; color: red;">
 					Please fill in a question...
 				</p>
 				<br />
 				
-				<input type="radio" id="rb_answer_true" name="rb_answer_tf" >
+				<input type="radio" id="rb_answer_true" name="rb_answer_tf" checked>
 				<label for="rb_answer_true" class="questionLabel">True</label>
 									
 				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
@@ -159,7 +159,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				
 				<ul class="actions">
 					<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 				</ul>
 			</form>
 		</div>
@@ -195,7 +195,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<br/><br />
 				
 				<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
-				<input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
 		</div>
 		
@@ -206,7 +206,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<br />
 				<ul class="actions">
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 				</ul>
 			</form>
 		</div>
