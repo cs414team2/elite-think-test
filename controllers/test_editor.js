@@ -148,7 +148,19 @@ $(document).ready(function(){
 	});
 	
 	$('#btn_add_tf').click(function(){
-		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
+		var tfTextbox = $("#txt_tfq_entry").val();
+		var validated = true;
+		
+		if (jQuery.trim(tfTextbox).length <= 0) {
+			$("#err_empty_tf").show();
+			validated = false;
+		}
+	
+		if (validated)
+		{
+			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
+		}	
+		
 	});
 	
 	$('#btn_add_essay').click(function(){
@@ -156,3 +168,8 @@ $(document).ready(function(){
 	});
 	
 });
+	
+	// Remove the error message for a field is a user types in it.
+	$("#txt_tfq_entry").keypress(function(){
+		$("#err_empty_tf").hide();
+	});
