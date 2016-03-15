@@ -26,7 +26,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</script>
 			<script>
 				$(function() {
-					var $j = jQuery.noConflict();
+					//var $j = jQuery.noConflict();
 					var dateIsSet = '.$test->due_date_is_set().'
 					$( "#datepicker" ).datepicker();
 					if(dateIsSet == true){
@@ -40,7 +40,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</script>
 			
 			<!-- True/False Question Dialog box and transition effect -->
-
 			<script>
 				$(function() {
 					$( "#tFDialog" ).dialog({
