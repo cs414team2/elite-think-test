@@ -36,6 +36,7 @@ function check_status() {
 					$("#btn_complete").attr("disabled", "disabled");
 					break;
 				case TEST_TIMED_OUT:
+					load_questions();
 					disable_test();
 					break;
 			}
@@ -165,7 +166,7 @@ function disable_timer(){
 	clearInterval(test_clock);
 	
 	$("#div_minutes").html("--");
-	$("#div_seconds").html("--");	
+	$("#div_seconds").html("--");
 }
 
 //***********************Events************************

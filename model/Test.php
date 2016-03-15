@@ -46,7 +46,7 @@ class Test{
 				$this->print_teacher_answer($is_correct, $answer_content, $question_type, $question_id);
 				break;
 			case self::STUDENT:
-				$this->print_student_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id);
+				$this->print_student_answer($answer_content, $question_type, $question_id, $answer_id);
 				break;
 		}
 			
@@ -107,7 +107,7 @@ class Test{
 			return false;
 	}
 	
-	public function print_student_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id){
+	public function print_student_answer($answer_content, $question_type, $question_id, $answer_id){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
