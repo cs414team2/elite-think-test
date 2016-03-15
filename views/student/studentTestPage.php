@@ -24,6 +24,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								  <div>
 									<div id="div_minutes">Minutes</div>
 								  </div>
+								  :
 								  <div>
 									<div id="div_seconds">Seconds</div>
 								  </div>
