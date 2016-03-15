@@ -29,5 +29,5 @@
 		}
 		else {
 			echo TEST_NOT_STARTED;
-		}*/ echo TEST_STARTED;
+		}*/ echo TEST_NOT_STARTED;
 ?>
