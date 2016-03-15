@@ -16,7 +16,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		
 		    <script language="javascript">
 			var test_id = ' . $test_id . ';
-			function setRadio(obj) 
+			function setRadio(obj)
 			{
 				if(obj.checked == true)
 					obj.checked = false;

@@ -13,7 +13,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					var test_id    = ' . $test_id . ';
 					var student_id = ' . $_SESSION['credentials']->get_user_id() . ';
 				</script>
-				
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
 						
@@ -24,6 +23,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								  <div>
 									<div id="div_minutes">Minutes</div>
 								  </div>
+								  :
 								  <div>
 									<div id="div_seconds">Seconds</div>
 								  </div>
@@ -42,7 +42,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						<section id="testView">
 							<div id="test_content">
 								<div class="my-form-builder" align="left">
-									<div class="loader">Loading...</div>
+									<div class="loader" style="display: none;">Loading...</div>
 								</div>
 								<br />
 							</div>
