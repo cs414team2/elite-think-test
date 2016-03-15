@@ -200,7 +200,18 @@ class Test{
 	}
 	
 	public function has_timed_out(){
-		$stuff = 1;
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT student_test_id 
+		                           FROM   student_test 
+								   WHERE  test_id = ? and student_id = ? and end_time < now()") or die($db->error);
+		$statement->bind_param("ii", $test_id, $student_id);
+		$statement->execute();
+		$statement->store_result();
+		
+		if($statement->num_rows > 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public function due_date_is_set(){
