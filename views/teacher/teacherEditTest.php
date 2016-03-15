@@ -134,7 +134,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<section id="testView">
 						<div id="test_content" align="left">
 							<div class="my-form-builder">
-								Test Loading...
+								<div class="loader">Loading...</div>
 							</div>
 						</div>
 					</section>

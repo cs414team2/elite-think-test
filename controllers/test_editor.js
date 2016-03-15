@@ -47,7 +47,7 @@ function add_question(question_type, question_text) {
 		}
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
-		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "True" : "False",
+		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "T" : "F",
                       is_correct: "Y" }];
 	} 
 	
