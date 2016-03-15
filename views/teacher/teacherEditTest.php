@@ -48,22 +48,17 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					modal: true,
 					width: 500,
 					show: {
-						effect: "blind",
-						duration: 1000
+						effect: "drop",
+						duration: 500
 					},
 					hide: {
-						effect: "explode",
-						duration: 1000
+						effect: "size",
+						duration: 500
 					}
 					});
 			 
 					$( "#openTFDialog" ).click(function() {
 						$( "#tFDialog" ).dialog( "open" );
-					});
-
-					$( "#btn_add_tf" ).click(function() {
-						$( "#tFDialog" ).dialog( "close" );
-
 					});	
 				});
 			</script>
@@ -76,21 +71,18 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					modal: true,
 					width: 600,
 					show: {
-						effect: "blind",
-						duration: 1000
+						effect: "drop",
+						duration: 500
 					},
 					hide: {
-						effect: "explode",
-						duration: 1000
+						effect: "size",
+						duration: 500
 					}
 					});
 			 
 					$( "#openMCDialog" ).click(function() {
 						$( "#mCDialog" ).dialog( "open" );
 					});
-					$( "#btn_add_mc" ).click(function() {
-						$( "#mCDialog" ).dialog( "close" );
-					});	
 				});
 			</script>
 			
@@ -102,21 +94,18 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					modal: true,
 					width: 500,
 					show: {
-						effect: "blind",
-						duration: 1000
+						effect: "drop",
+						duration: 500
 					},
 					hide: {
-						effect: "explode",
-						duration: 1000
+						effect: "size",
+						duration: 500
 					}
 					});
 			 
 					$( "#openEssayDialog" ).click(function() {
 						$( "#essayDialog" ).dialog( "open" );
 					});
-					$( "#btn_add_essay" ).click(function() {
-						$( "#essayDialog" ).dialog( "close" );
-					});	
 				});
 			</script>
 			
@@ -145,7 +134,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<section id="testView">
 						<div id="test_content" align="left">
 							<div class="my-form-builder">
-								Test Loading...
+								<div class="loader">Loading...</div>
 							</div>
 						</div>
 					</section>
@@ -153,15 +142,13 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-		<div id="tFDialog" title="True/False Question Entry" style="background-color:white;">
+		<div id="tFDialog" title="True/False Question Entry" style="background-color:white; text-align: center;">
 			<form>
-				<h4>True/False Question</h4>
-				<textarea id="txt_tfq_entry" rows="2" placeholder="Enter a True/False Question"
+				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
 				<br />
 				
-				
-				<input type="radio" id="rb_answer_true" name="rb_answer_tf"  checked>
+				<input type="radio" id="rb_answer_true" name="rb_answer_tf" >
 				<label for="rb_answer_true" class="questionLabel">True</label>
 									
 				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
@@ -175,34 +162,34 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white;">
+		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
 			<form>
-				<h4>Multiple Choice</h4>
 				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
-				name="txt_mcq_entry" class="questionStyle"></textarea>
+				name="txt_mcq_entry" class="questionStyle" ></textarea>
+				<br />
 				
 				<label for="mcAnswer1" class="questionLabel"> A)</label>
+				<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
 				<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
 				<label for="rb_is_answer_a" class="questionLabel">Answer</label>
-				<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
 				<br/><br />
 				
 				<label for="mcAnswer2" class="questionLabel"> B)</label>
+				<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
 				<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
 				<label for="rb_is_answer_b" class="questionLabel">Answer</label>
-				<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
 				<br/><br />
 				
 				<label for="mcAnswer3" class="questionLabel"> C)</label>
+				<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
 				<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
 				<label for="rb_is_answer_c" class="questionLabel">Answer</label>
-				<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
 				<br/><br />
 				
 				<label for="mcAnswer4" class="questionLabel"> D)</label>
-				<input type="radio" id="rb_is_answer_d" name="rb_is_answer" >
-				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 				<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
+				<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
+				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 				<br/><br />
 				
 				<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
@@ -210,12 +197,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="essayDialog" title="Essay Question Entry" style="background-color:white;">
+		<div id="essayDialog" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
-				<h4>Essay Question</h4>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
-				<br /><br />
+				<br />
 				<ul class="actions">
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 					<li><input type="reset" value="Reset" class="alt button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>

@@ -184,7 +184,7 @@ class Test{
 			return false;
 	}
 	
-	public function is_completed($student_id, $test_id){
+	public function is_completed($student_id){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT is_completed 
 		                           FROM student_test 
@@ -203,7 +203,7 @@ class Test{
 		$stuff = 1;
 	}
 	
-	public function due_date_is_set($test_id){
+	public function due_date_is_set(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT count(date_due) 
 		                           FROM test 
@@ -213,7 +213,7 @@ class Test{
 		$statement->store_result();
 		$statement->bind_result($date_is_set);
 		
-		return ($date_is_set == self::DATE_IS_SET ? true : false);
+		return ($date_is_set >= self::DATE_IS_SET ? true : false);
 	}
 }
 ?>

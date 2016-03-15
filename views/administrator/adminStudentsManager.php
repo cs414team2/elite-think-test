@@ -30,7 +30,7 @@ if (isset($_SESSION['credentials'])) {
 									<tbody id="tbl_students">
 										<tr>
 											<td colspan="5" style="text-align: center;">
-												Students Loading...
+												<div class="loader">Loading...</div>
 											</td>
 										</tr>
 									</tbody>

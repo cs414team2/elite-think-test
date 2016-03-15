@@ -11,7 +11,6 @@
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
-		
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/jquery.scrollgress.min.js"></script>
@@ -23,6 +22,7 @@
 		<script src="js/sorttable.js"></script>
 		<script src="js/showHide.js" type="text/javascript"></script>
 		
+		<link rel="stylesheet" href="css/spinner.css" />
 		<noscript>
 			<link rel="stylesheet" href="views/css/skel.css" />
 			<link rel="stylesheet" href="views/css/style.css" />

@@ -41,11 +41,12 @@
 				if($answer_statement->num_rows > 0)
 					while($answer_statement->fetch())
 						$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id);
-
 				echo "\r\n</div>";
 			}
-			echo "</div>";
 		}
+		else
+			echo "<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."' style='display:none;'>";
+		echo "</div>";
 		
 		// Get the questions.
 		$db = prepare_connection();
@@ -74,8 +75,10 @@
 				echo "</ol>";
 				echo "\r\n</div>";
 			}
-			echo "</div>";
 		}
+		else
+			echo "<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."' style='display:none;'>";
+		echo "</div>";
 		
 		// Get the questions.
 		$db = prepare_connection();
@@ -94,8 +97,10 @@
 				$test->print_essay_answer($question_id, $_SESSION["credentials"]->get_access_level());
 				echo "\r\n</div>";
 			}
-			echo "</div>";
 		}
+		else
+			echo "<div class='my-form-builder' id='".Test::ESSAY_QUESTION_TYPE."'style='display:none;'>";
+		echo "</div>";
 	}
 	
 ?>
