@@ -52,7 +52,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 			</section>
 			
 			<div id="pledgeDialog" title="Pledge" style="background-color:white;">
-				<p>Dude</p>
+				<p>I have completed this test without any outside help or online assistance. I understand that disciplinary actions may occur if I communicate answers to others.</p>
 			</div>
 			';
 	}
