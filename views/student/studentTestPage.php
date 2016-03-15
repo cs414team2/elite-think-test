@@ -18,14 +18,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						
 						<section style="text-align:center">
 							<h2>Time Limit on test: </h2>
-							<h1>Countdown Clock</h1>
+							<h1>Time Left</h1>
 								<div id="clockdiv">
 								  <div>
-									<div id="div_minutes">Minutes</div>
+									<div id="div_minutes">--</div>
 								  </div>
 								  :
 								  <div>
-									<div id="div_seconds">Seconds</div>
+									<div id="div_seconds">--</div>
 								  </div>
 								</div>
 							<br /><br /><br />
