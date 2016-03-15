@@ -37,7 +37,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 						}
 						});
 				 
-						$( "#btn2_complete" ).click(function() {
+						$( "#btn_complete" ).click(function() 
 							$( "#pledgeDialog" ).dialog( "open" );
 						});
 
@@ -63,7 +63,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<button id="btn_start" class="show_hide button small fit">Start Test</button>
 								
 								<h4 style="color:white;">Put the progress here</h4>
-								<button id="btn2_complete" class="show_hide button small fit">Complete Test</button>		
+								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
 					
