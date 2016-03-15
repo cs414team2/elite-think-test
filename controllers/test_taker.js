@@ -1,7 +1,7 @@
 const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 const ESSAY_QUESTION_TYPE           = 'ESSAY';
-const MAX_TEST_SIZE = 3;
+const MAX_TEST_SIZE = 3; // Maximum number of digits in the number of questions (example 999)
 const TEST_NOT_STARTED = '0';
 const TEST_STARTED     = '1';
 const TEST_COMPLETED   = '2';
@@ -17,8 +17,8 @@ function check_status() {
 	$.ajax({
 		url: "ajax/get_test_status.php",
 		data: {
-			test_id: test_id,
-			student_id: 3        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! change this to a variable!!!!!!!!!!!!!!!!!!!!!!!!!!
+			test_id : test_id,
+			student_id : student_id
 		},
 		success: function(status){
 			switch(status){
@@ -40,6 +40,7 @@ function check_status() {
 	});
 }
 
+// Display the test questions.
 function load_questions() {
 	$.ajax({
 		url: "ajax/get_questions.php",
@@ -47,6 +48,7 @@ function load_questions() {
 		success: function (questions) {
 			$('#test_content').html(questions);
 			number_questions();
+			start_timer();
 		}
 	});
 }
@@ -62,6 +64,7 @@ function number_questions() {
 		$(this).html(formatted_number);
 	});
 }
+
 
 function start_test(first_time) {
     end_time = new Date();
@@ -79,34 +82,29 @@ function start_test(first_time) {
 	}
 	
 	load_questions();
-	countdown_time();
-	test_clock = setInterval(countdown_time, 1000);
-	setTimeout(disable_timer, Date.parse(end_time) - Date.parse(new Date()));
-	
 }
 
 function complete_test() {
 	var test = [];
-	var essayOffset;
+	var question_count = 0;
 	
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").attr("disabled", "disabled");
 	
 	$(".answer:checked").each(function(index){
-			test[index] = { question_id : $(this).attr('name'),
-			                answer : $(this).val()}
+		test[question_count++] = { question_id : $(this).attr('name'),
+			                       answer_given : $(this).val()}
 	});
 	
-	essayOffset = test.length;
-	
 	$(".studentEssayQuestion").each(function(index){
-		test[index + essayOffset] = { question_id : $(this).attr('name'),
-			                               answer : $(this).val()}
+		test[question_count++] = { question_id : $(this).attr('name'),
+			                       answer_given : $(this).val()}
 	});
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
-		data: {test : test},
+		data: { test : test,
+		       student_id : student_id },
 		success: function (pledge) {
 			$('#test_content').html(pledge);
 		}
@@ -116,6 +114,12 @@ function complete_test() {
 function disable_test () {
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").removeAttr("disabled");
+}
+
+function start_timer() {
+	countdown_time();
+	test_clock = setInterval(countdown_time, 1000);
+	setTimeout(disable_timer, Date.parse(end_time) - Date.parse(new Date()));
 }
 
 function countdown_time() {
@@ -142,5 +146,6 @@ $(document).ready(function(){
 	
 	$("#btn_complete").click(function(){
 		complete_test();
+		disable_timer();
 	});
 });
