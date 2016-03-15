@@ -83,7 +83,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 			
 			<div id="pledgeDialog" title="Pledge" style="background-color:white;">
 				<p>Dude</p>
-			</div>			
+			</div>	
 			';
 	}
 	else {
