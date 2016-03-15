@@ -14,35 +14,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				</script>
 				
 				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-				<script>
-					$(function() {
-						$( "#pledgeDialog" ).dialog({
-						autoOpen: false,
-						modal: true,
-						width: 500,
-						buttons: {
-						"Sign Pledge": function() {
-						  complete_test();
-						},
-						Cancel: function() {
-						  $( this ).dialog( "close" );
-						}	
-						show: {
-							effect: "size",
-							duration: 500
-						},
-						hide: {
-							effect: "size",
-							duration: 500
-						}
-						});
-				 
-						$( "#btn2_complete" ).click(function() {
-							$( "#pledgeDialog" ).dialog( "open" );
-						});
-
-					});
-				</script>
 				
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
@@ -63,7 +34,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<button id="btn_start" class="show_hide button small fit">Start Test</button>
 								
 								<h4 style="color:white;">Put the progress here</h4>
-								<button id="btn2_complete" class="show_hide button small fit">Complete Test</button>		
+								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
 					
@@ -83,7 +54,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 			
 			<div id="pledgeDialog" title="Pledge" style="background-color:white;">
 				<p>Dude</p>
-			</div>	
+			</div>
 			';
 	}
 	else {

@@ -10,6 +10,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		// PUT HTML HERE!
 		echo '
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="controllers/test_editor.js"></script>
 		
 		<section id="main" class="wrapper style1">
 		
@@ -37,7 +38,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					}
 				});
 			</script>
-			<script src="controllers/test_editor.js"></script>
 			
 			<!-- True/False Question Dialog box and transition effect -->
 
