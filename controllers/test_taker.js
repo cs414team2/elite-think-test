@@ -1,14 +1,15 @@
 const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 const ESSAY_QUESTION_TYPE           = 'ESSAY';
-const MAX_TEST_SIZE = 3; // Maximum number of digits in the number of questions (example 999)
+const MAX_TEST_SIZE   = 3; // Maximum number of digits in the number of questions (example 999)
+const TEST_LOAD_DELAY = 3;
 const TEST_NOT_STARTED = '0';
 const TEST_STARTED     = '1';
 const TEST_COMPLETED   = '2';
 const TEST_TIMED_OUT   = '3';
 
 var test_clock;
-var end_time;
+var seconds_left;
 
 //*******************Functions****************************
 
@@ -67,21 +68,28 @@ function number_questions() {
 
 
 function start_test(first_time) {
-    end_time = new Date();
 	
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").removeAttr("disabled");
 	
 	if(first_time) {
-		//Do ajax to create instance of a taking of a test and begin the timer
-		// Maybe begin the timer after the ajax returns so we can be sure it exists in the database before creating the countdown.
+		$.ajax({
+			url: "ajax/start_test.php",
+			data: {
+				test_id : test_id,
+				student_id : student_id
+			},
+			success: function(data) {
+				seconds_left = parseInt(data) + TEST_LOAD_DELAY;
+				load_questions();
+			}
+		});
 	}
 	else {
 		// get the timer based on what the current time value should be (check in the database).
-		end_time.setMinutes(end_time.getMinutes() + 1);
+		//end_time.setMinutes(end_time.getMinutes() + 2);
+		load_questions();
 	}
-	
-	load_questions();
 }
 
 function complete_test() {
@@ -119,14 +127,14 @@ function disable_test () {
 function start_timer() {
 	countdown_time();
 	test_clock = setInterval(countdown_time, 1000);
-	setTimeout(disable_timer, Date.parse(end_time) - Date.parse(new Date()));
+	setTimeout(disable_timer, seconds_left * 1000);
 }
 
 function countdown_time() {
-	var remaining_time = new Date(Date.parse(end_time) - Date.parse(new Date()));
+	var minutes_left = Math.floor(seconds_left / 60);
 	
-	$("#div_minutes").html(remaining_time.getMinutes());
-	$("#div_seconds").html(remaining_time.getSeconds());
+	$("#div_minutes").html(minutes_left);
+	$("#div_seconds").html(seconds_left-- % 60);
 }
 
 function disable_timer(){
