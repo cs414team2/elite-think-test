@@ -9,28 +9,39 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 		echo '<section id="main" class="wrapper style1">
 				<script src="controllers/test_taker.js"></script>
 				<script>
-					var test_id = ' . $test_id . ';
+					var test_id    = ' . $test_id . ';
+					var student_id = ' . $_SESSION['credentials']->get_user_id() . ';
 				</script>
 				
-				<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 				<script>
-					/*$(function() {
-						$( "#dialog" ).dialog({
+					$(function() {
+						$( "#pledgeDialog" ).dialog({
 						autoOpen: false,
+						modal: true,
+						width: 500,
+						buttons: {
+						"Sign Pledge": function() {
+						  complete_test();
+						},
+						Cancel: function() {
+						  $( this ).dialog( "close" );
+						}	
 						show: {
-							effect: "blind",
-							duration: 1000
+							effect: "size",
+							duration: 500
 						},
 						hide: {
-							effect: "explode",
-							duration: 1000
+							effect: "size",
+							duration: 500
 						}
 						});
 				 
-						$( "#btn_complete" ).click(function() {
-							$( "#dialog" ).dialog( "open" );
+						$( "#btn2_complete" ).click(function() {
+							$( "#pledgeDialog" ).dialog( "open" );
 						});
-					});*/
+
+					});
 				</script>
 				
 				<div class="testContainer">
@@ -52,7 +63,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<button id="btn_start" class="show_hide button small fit">Start Test</button>
 								
 								<h4 style="color:white;">Put the progress here</h4>
-								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
+								<button id="btn2_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
 					
@@ -70,9 +81,13 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				</div>
 			</section>
 			
-			<!--<div id="dialog" title="Basic dialog" style="background-color:white;">
-				<p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the icon.</p>
-			</div>-->';
+			<div id="pledgeDialog" title="Pledge" style="background-color:white;">
+				<p>Dude</p>
+			</div>			
+			
+			
+			
+			';
 	}
 	else {
 		echo "<script>window.location = './404.php'; </script>";
