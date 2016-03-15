@@ -132,18 +132,18 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<li style='color:#47CC7A;'>".$answer_content."&nbsp;&#10004;</li>";
+					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10004;</li>";
 				else
-					echo "\r\n<li style='color:#CC1C11;'>".$answer_content."&nbsp;&#10006;</li>";
+					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10006;</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
-				if($answer_content == "True"){
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10004;</div>";
+				if($answer_content == "T"){
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>True&nbsp;&#10004;</div>";
 					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
 				}
-				else if($answer_content == "False"){
-					echo "\r\n<div style='color:#CC1C11; padding-left: 20px;'>True&nbsp;&#10006;</div>";
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px;'>".$answer_content."&nbsp;&#10004;</div>";
+				else if($answer_content == "F"){
+					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>True&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10004;</div>";
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:

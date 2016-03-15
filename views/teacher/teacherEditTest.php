@@ -145,6 +145,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<form>
 				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
+				<p id="err_empty_tf" style=" color: red;">
+					Please fill in a question...
+				</p>
 				<br />
 				
 				<input type="radio" id="rb_answer_true" name="rb_answer_tf" >
