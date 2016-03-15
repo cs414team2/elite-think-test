@@ -22,7 +22,6 @@ function check_status() {
 			student_id : student_id
 		},
 		success: function(status){
-			$("#btn_complete").html(status);
 			switch(status){
 				case TEST_NOT_STARTED:
 					$("#btn_start").removeAttr("disabled");
