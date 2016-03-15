@@ -5,7 +5,7 @@ const MAX_TEST_SIZE   = 3; // Maximum number of digits in the number of question
 const TEST_LOAD_DELAY = 3;
 const TEST_NOT_STARTED = '0';
 const TEST_STARTED     = '1';
-const TEST_COMPLETED   = '2';
+const TEST_SUBMITTED   = '2';
 const TEST_TIMED_OUT   = '3';
 
 var test_clock;
@@ -30,8 +30,9 @@ function check_status() {
 				case TEST_STARTED:
 					start_test(false);
 					break;
-				case TEST_COMPLETED:
-					
+				case TEST_SUBMITTED:
+					$("#btn_start").attr("disabled", "disabled");
+					$("#btn_complete").attr("disabled", "disabled");
 					break;
 				case TEST_TIMED_OUT:
 					disable_test();
@@ -71,6 +72,7 @@ function start_test(first_time) {
 	
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").removeAttr("disabled");
+	$(".loader").show();
 	
 	if(first_time) {
 		$.ajax({
@@ -80,24 +82,29 @@ function start_test(first_time) {
 				student_id : student_id
 			},
 			success: function(data) {
-				seconds_left = parseInt(data) + TEST_LOAD_DELAY;
+				seconds_left = parseInt(data);
 				load_questions();
 			}
 		});
 	}
 	else {
-		// get the timer based on what the current time value should be (check in the database).
-		//end_time.setMinutes(end_time.getMinutes() + 2);
-		load_questions();
+		$.ajax({
+			url: "ajax/get_remaining_test_time.php",
+			data: {
+				test_id : test_id,
+				student_id : student_id
+			},
+			success: function(data) {
+				seconds_left = parseInt(data);
+				load_questions();
+			}
+		});
 	}
 }
 
-function submit_test() {
+function submit_answers() {
 	var test = [];
 	var question_count = 0;
-	
-	$("#btn_start").attr("disabled", "disabled");
-	$("#btn_complete").attr("disabled", "disabled");
 	
 	$(".answer:checked").each(function(index){
 		test[question_count++] = { question_id : $(this).attr('name'),
@@ -112,29 +119,45 @@ function submit_test() {
 	$.ajax({
 		url: "ajax/store_student_answers.php",
 		data: { test : test,
-		       student_id : student_id },
-		success: function () {
-			// possibly do something here.
-		}
-	})
+		        student_id : student_id }
+	});
 }
 
 function disable_test () {
 	$("#btn_start").attr("disabled", "disabled");
 	$("#btn_complete").removeAttr("disabled");
+	$(".answer").prop('disabled', true);
+	$(".studentEssayQuestion").prop('disabled', true);
+	disable_timer();
+}
+
+function submit_pledge() {
+	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_complete").attr("disabled", "disabled");
+	$.ajax({
+		url : "ajax/submit_pledge.php",
+		data: {
+			test_id : test_id,
+			student_id : student_id
+		},
+		success : function(){
+			//                     Load the graded answers
+		}
+	});
 }
 
 function start_timer() {
 	countdown_time();
 	test_clock = setInterval(countdown_time, 1000);
-	setTimeout(disable_timer, seconds_left * 1000);
+	setTimeout(disable_test, seconds_left * 1000);
 }
 
 function countdown_time() {
 	var minutes_left = Math.floor(seconds_left / 60);
 	
-	$("#div_minutes").html(minutes_left);
-	$("#div_seconds").html(seconds_left-- % 60);
+	$("#div_minutes").html(minutes_left < 10 ? "0" + minutes_left : minutes_left);
+	$("#div_seconds").html((seconds_left % 60) < 10 ? "0" + (seconds_left % 60) : seconds_left % 60);
+	seconds_left--;
 }
 
 function disable_timer(){
@@ -150,6 +173,11 @@ $(document).ready(function(){
 	
 	$("#btn_start").click(function(){
 		start_test(true);
+	});		
+	
+	$( "#btn_complete" ).click(function() {
+		submit_answers();
+		$( "#pledgeDialog" ).dialog( "open" );
 	});
 	
 	$( "#pledgeDialog" ).dialog({
@@ -158,8 +186,9 @@ $(document).ready(function(){
 		width: 500,
 		buttons: {
 			"Sign Pledge": function() {
-				submit_test();
-				disable_timer();
+				disable_test();
+				submit_pledge();
+				$( this ).dialog( "close" );
 			},
 			Cancel: function() {
 			  $( this ).dialog( "close" );
@@ -173,9 +202,5 @@ $(document).ready(function(){
 			effect: "size",
 			duration: 500
 		}
-	});
-				 
-	$( "#btn_complete" ).click(function() {
-		$( "#pledgeDialog" ).dialog( "open" );
 	});
 });

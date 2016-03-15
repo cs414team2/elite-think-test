@@ -13,7 +13,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					var test_id    = ' . $test_id . ';
 					var student_id = ' . $_SESSION['credentials']->get_user_id() . ';
 				</script>
-				
 				<div class="testContainer">
 					<div id="sidebar" style="text-align:center">
 						

@@ -111,16 +111,16 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
-							<input type='radio' id='". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer'>
-							<label for='". $answer_id ."'>". $answer_content ."</label>
+							<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer'>
+							<label for='answer_". $answer_id ."'>". $answer_content ."</label>
 						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n
-					  <input type='radio' id='". $answer_id ."_true' name='". $question_id ."' value='True' class='answer'>" 
-				   . "<label for='" . $answer_id . "_true' style='margin-left: 5px;'>True</label>
-				      \r\n<input type='radio' id='". $answer_id ."_false' name='". $question_id ."' value='False' class='answer'>"
-				   . "<label for='" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
+					  <input type='radio' id='answer_". $answer_id ."_true' name='". $question_id ."' value='True' class='answer'>" 
+				   . "<label for='answer_" . $answer_id . "_true' style='margin-left: 5px;'>True</label>
+				      \r\n<input type='radio' id='answer_". $answer_id ."_false' name='". $question_id ."' value='False' class='answer'>"
+				   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
 				$this->print_essay_answer($question_id, self::STUDENT);
@@ -168,12 +168,12 @@ class Test{
 		return date('j F Y', strtotime($date_due));
 	}
 	
-	public function has_started($student_id, $test_id){
+	public function has_started($student_id){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT time_started 
 		                           FROM student_test 
-								   WHERE test_id = ? and student_id = ?") or die($db->error);
-		$statement->bind_param("ii", $test_id, $student_id);
+								   WHERE test_id = ? and student_id = ? and time_started is not null") or die($db->error);
+		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
 		$statement->bind_result($time_started);
@@ -189,7 +189,7 @@ class Test{
 		$statement = $db->prepare("SELECT is_completed 
 		                           FROM student_test 
 								   WHERE test_id = ? and student_id = ? and is_completed = 'Y'") or die($db->error);
-		$statement->bind_param("ii", $test_id, $student_id);
+		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
 		
@@ -226,5 +226,7 @@ class Test{
 		
 		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
 	}
+	
+	
 }
 ?>
