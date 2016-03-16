@@ -3,7 +3,7 @@
 
 <style>
 	body {
-			background-image:url(images/404background.jpg);
+			background-image:url("images/geometric.png");
 			background-attachment: fixed;
 			background-size: cover;
 			padding-top: 20px;
