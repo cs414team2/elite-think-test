@@ -142,11 +142,8 @@ function clear_question_fields(question_type) {
 //***********************Events************************
 $(document).ready(function(){
 	load_questions();
-	
-	$('#btn_add_mc').click(function(){
-		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
-	});
-	
+		
+	// Code to execute on Adding a TF Question
 	$('#btn_add_tf').click(function(){
 		var tfTextbox = $("#txt_tfq_entry").val();
 		var validated = true;
@@ -160,16 +157,55 @@ $(document).ready(function(){
 		{
 			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
 		}	
+	});
+	
+	// Code to execute on Adding a Multiple Choice Question
+	$('#btn_add_mc').click(function(){
+		var mcTextbox = $("#txt_mcq_entry").val();
+		var validated = true;
 		
+		if (jQuery.trim(mcTextbox).length <= 0) {
+			$("#err_empty_mc").show();
+			validated = false;
+		}
+	
+		if (validated)
+		{
+			add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
+		}
 	});
 	
+	// Code to execute on Adding an Essay Question
 	$('#btn_add_essay').click(function(){
-		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
+		var eqTextbox = $("#txt_eq_entry").val();
+		var validated = true;
+		
+		if (jQuery.trim(eqTextbox).length <= 0) {
+			$("#err_empty_eq").show();
+			validated = false;
+		}
+	
+		if (validated)
+		{	
+			add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
+		}
 	});
 	
-});
-	
-	// Remove the error message for a field is a user types in it.
+	// Remove the error message for a field as a user types in it
 	$("#txt_tfq_entry").keypress(function(){
 		$("#err_empty_tf").hide();
 	});
+	$("#txt_mcq_entry").keypress(function(){
+		$("#err_empty_mc").hide();
+	});
+	$("#txt_eq_entry").keypress(function(){
+		$("#err_empty_eq").hide();
+	});
+	
+	// Code to Reset all error messages on button reset
+	$('.reset').click(function(){
+		$("#err_empty_tf").hide();
+		$("#err_empty_mc").hide();
+		$("#err_empty_eq").hide();
+	});
+});

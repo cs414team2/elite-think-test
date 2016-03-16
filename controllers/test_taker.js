@@ -72,8 +72,9 @@ function number_questions() {
 function start_test(first_time) {
 	
 	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_start").hide();
 	$("#btn_complete").removeAttr("disabled");
-	$(".loader").show();
+	$("#test_content").show();
 	
 	if(first_time) {
 		$.ajax({

@@ -17,6 +17,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					<div id="sidebar" style="text-align:center">
 						
 						<section style="text-align:center">
+							<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
+							<br /><br />
 							<h2>Time Limit on test: </h2>
 							<h1>Time Left</h1>
 								<div id="clockdiv">
@@ -30,22 +32,26 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								</div>
 							<br /><br /><br />
 							
-								<button id="btn_start" class="show_hide button small fit">Start Test</button>
+								
 								
 								<h4 style="color:white;">Put the progress here</h4>
+								
 								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
 						</section>	
 					</div>
-					
+									
 					<div class="studentTest" style="float:right;">
 						<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
 						<section id="testView">
-							<div id="test_content">
+							<div id="test_content" style="display: none;">
 								<div class="my-form-builder" align="left">
-									<div class="loader" style="display: none;">Loading...</div>
+									<div class="loader">Loading...</div>
 								</div>
 								<br />
 							</div>
+							<div style="text-align:center">
+								<button id="btn_start" class="show_hide button big  " style="height:200px;  width:400px; background-color:gray;">Start Test</button>
+					        </div>
 						</section>
 					</div>
 				</div>
