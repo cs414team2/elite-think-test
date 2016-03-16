@@ -204,7 +204,7 @@ class Test{
 		$statement = $db->prepare("SELECT student_test_id 
 		                           FROM   student_test 
 								   WHERE  test_id = ? and student_id = ? and end_time < now()") or die($db->error);
-		$statement->bind_param("ii", $this->test_id, $student_id);
+		$statement->bind_param("ii", $this->test_i	d, $student_id);
 		$statement->execute();
 		$statement->store_result();
 		
