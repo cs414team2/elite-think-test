@@ -139,9 +139,29 @@ function clear_question_fields(question_type) {
 	}
 }
 
+function update_time_info() {
+	var date_due    = $("#datepicker").datepicker( "getDate" );
+	var date_active = $("#activeDatepicker").datepicker( "getDate" );
+	var time_limit  = $("#txt_time_limit").val();
+	
+	$.ajax({
+		url : "ajax/update_test_time_info.php",
+		data : {
+			test_id : test_id,
+		    date_due : date_due.getTime() / 1000,
+			date_active : date_active.getTime() / 1000,
+			time_limit : time_limit
+		}
+	});
+}
+
 //***********************Events************************
 $(document).ready(function(){
 	load_questions();
+	
+	$("#txt_time_limit").blur(function (){
+		update_time_info();
+	});
 		
 	// Code to execute on Adding a TF Question
 	$('#btn_add_tf').click(function(){

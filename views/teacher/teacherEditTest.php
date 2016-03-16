@@ -27,10 +27,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			
 			<script>
 				$(function() {
-					var dateIsSet = '.$test->due_date_is_set().' <!-- ANDREW!!!  PUT THE NEW CODE HERE, I DID NOT CHANGE ANYTHING FROM ABOVE -->
-					$( "#activeDatepicker" ).datepicker();
+					var dateIsSet = '.$test->active_date_is_set().'
+					$( "#activeDatepicker" ).datepicker({
+						onSelect: update_time_info
+					});
 					if(dateIsSet == true){
-						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'")); <!-- ANDREW!!!  PUT THE NEW CODE HERE -->
+						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_active().'"));
 					}
 					else{
 						// Defaults to be active the next day
@@ -43,7 +45,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<script>
 				$(function() {
 					var dateIsSet = '.$test->due_date_is_set().'
-					$( "#datepicker" ).datepicker();
+					$( "#datepicker" ).datepicker({
+						onSelect: update_time_info
+					});
 					if(dateIsSet == true){
 						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'"));
 					}
@@ -131,9 +135,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<section style="text-align:center">
 						<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
 						<br /><br />
+						<h5>Time Limit:</h5>
 						<p style="color:white;">
-							<input type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">	
-							min(s) to take test
+							<input id="txt_time_limit" type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">	
+							minutes
 						</p>
 						<p style="color:white;">
 							Active Date: 
@@ -143,8 +148,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button id="openTFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
-						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
+						<button id="openTFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
+						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="openEssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						
 					</section>
