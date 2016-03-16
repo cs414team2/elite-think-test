@@ -142,11 +142,8 @@ function clear_question_fields(question_type) {
 //***********************Events************************
 $(document).ready(function(){
 	load_questions();
-	
-	$('#btn_add_mc').click(function(){
-		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
-	});
-	
+		
+	// Code to execute on Adding a TF Question
 	$('#btn_add_tf').click(function(){
 		var tfTextbox = $("#txt_tfq_entry").val();
 		var validated = true;
@@ -160,16 +157,26 @@ $(document).ready(function(){
 		{
 			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
 		}	
-		
 	});
 	
+	// Code to Reset all error messages
+	$('.reset').click(function(){
+		$("#err_empty_tf").hide();
+	});
+	
+	// Code to execute on Adding a Multiple Choice Question
+	$('#btn_add_mc').click(function(){
+		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
+	});
+	
+	// Code to execute on Adding an Essay Question
 	$('#btn_add_essay').click(function(){
 		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
 	});
-	
-});
 	
 	// Remove the error message for a field is a user types in it.
 	$("#txt_tfq_entry").keypress(function(){
 		$("#err_empty_tf").hide();
 	});
+	
+});

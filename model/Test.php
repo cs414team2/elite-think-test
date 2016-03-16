@@ -155,8 +155,8 @@ class Test{
 	public function get_date_due(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT date_due 
-		                           FROM test 
-								   WHERE test_id = ?") or die($db->error);
+		                           FROM   test 
+								   WHERE  test_id = ?") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -171,8 +171,8 @@ class Test{
 	public function has_started($student_id){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT time_started 
-		                           FROM student_test 
-								   WHERE test_id = ? and student_id = ? and time_started is not null") or die($db->error);
+		                           FROM   student_test 
+								   WHERE  test_id = ? and student_id = ? and time_started is not null") or die($db->error);
 		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
@@ -217,8 +217,8 @@ class Test{
 	public function due_date_is_set(){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT count(date_due) 
-		                           FROM test 
-		                           WHERE test_id = ? and date_due is not null") or die($db->error);
+		                           FROM   test 
+		                           WHERE  test_id = ? and date_due is not null") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($date_is_set);
