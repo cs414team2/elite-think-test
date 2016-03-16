@@ -159,6 +159,12 @@ function update_time_info() {
 $(document).ready(function(){
 	load_questions();
 	
+	$("#txt_time_limit").on('input', function () {
+		if ($(this).val().length > 4) {
+			$(this).val($(this).val().slice(0,4));
+		}
+    });
+	
 	$("#txt_time_limit").blur(function (){
 		update_time_info();
 	});
