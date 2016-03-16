@@ -24,15 +24,31 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					obj.checked = true
 			}
 			</script>
+			
 			<script>
 				$(function() {
-					//var $j = jQuery.noConflict();
+					var dateIsSet = '.$test->due_date_is_set().' <!-- ANDREW!!!  PUT THE NEW CODE HERE, I DID NOT CHANGE ANYTHING FROM ABOVE -->
+					$( "#activeDatepicker" ).datepicker();
+					if(dateIsSet == true){
+						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'")); <!-- ANDREW!!!  PUT THE NEW CODE HERE -->
+					}
+					else{
+						// Defaults to be active the next day
+						$( "#activeDatepicker" ).datepicker({ minDate: 0, defaultDate: +1 });
+						$( "#activeDatepicker" ).datepicker("setDate", new Date().getDay+1);
+					}
+				});
+			</script>
+			
+			<script>
+				$(function() {
 					var dateIsSet = '.$test->due_date_is_set().'
 					$( "#datepicker" ).datepicker();
 					if(dateIsSet == true){
 						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'"));
 					}
 					else{
+						// Defaults to being due 7 days after date making
 						$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
 						$( "#datepicker" ).datepicker("setDate", new Date().getDay+7);
 					}
@@ -108,14 +124,20 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				});
 			</script>
 			
-			<header class="major">	
+			<header class="major">
 			</header>
 			<div class="testContainer">
 				<div id="sidebar" style="text-align:center">
 					<section style="text-align:center">
+						<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
+						<br /><br />
 						<p style="color:white;">
 							<input type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">	
 							min(s) to take test
+						</p>
+						<p style="color:white;">
+							Active Date: 
+							<input type="text" style="color: black;" id="activeDatepicker">
 						</p>
 						<p style="color:white;">
 							Date Due: 
@@ -193,7 +215,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
 				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 				<br/><br />
-				
+				<p id="err_empty_mc" style="display: none; color: red;">
+					Please fill in all fields...
+				</p>
 				<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
@@ -204,6 +228,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
 				<br />
+				<p id="err_empty_eq" style="display: none; color: red;">
+					Please fill in all fields...
+				</p>
 				<ul class="actions">
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 					<li><input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>

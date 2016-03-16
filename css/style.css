@@ -1449,7 +1449,15 @@ span#countdown {
 			font-size: 0.8em;
 		}
 		
-.testContainer { position:relative; padding:0 0 0 55px; }		
+	#testpageIconImage {
+		-webkit-filter: drop-shadow(1.5px 1.5px 1.5px #FFF);
+		filter: drop-shadow(1.5px 1.5px 1.5px #FFF);
+	}
+		
+	.testContainer { 
+		position:relative; padding:0 0 0 55px; 
+	}
+	
 	#sidebar {
 		position:fixed;
 		padding-top:80px;
