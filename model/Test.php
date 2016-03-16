@@ -168,6 +168,22 @@ class Test{
 		return date('j F Y', strtotime($date_due));
 	}
 	
+	public function get_date_active(){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT date_active 
+		                           FROM   test 
+								   WHERE  test_id = ?") or die($db->error);
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($date_active);
+		
+		if($statement->num_rows > 0)
+			$statement->fetch();
+		
+		return date('j F Y', strtotime($date_active));
+	}
+	
 	public function has_started($student_id){
 		$db = $this->prepare_connection();
 		$statement = $db->prepare("SELECT time_started 
@@ -204,7 +220,7 @@ class Test{
 		$statement = $db->prepare("SELECT student_test_id 
 		                           FROM   student_test 
 								   WHERE  test_id = ? and student_id = ? and end_time < now()") or die($db->error);
-		$statement->bind_param("ii", $this->test_i	d, $student_id);
+		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
 		
@@ -227,6 +243,17 @@ class Test{
 		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
 	}
 	
-	
+	public function active_date_is_set(){
+		$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT count(date_active) 
+		                           FROM   test 
+		                           WHERE  test_id = ? and date_active is not null") or die($db->error);
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->bind_result($date_is_set);
+		$statement->fetch();
+		
+		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
+	}
 }
 ?>
