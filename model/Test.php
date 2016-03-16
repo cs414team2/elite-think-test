@@ -117,9 +117,9 @@ class Test{
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n
-					  <input type='radio' id='answer_". $answer_id ."_true' name='". $question_id ."' value='True' class='answer'>" 
+					  <input type='radio' id='answer_". $answer_id ."_true' name='". $question_id ."' value='T' class='answer'>" 
 				   . "<label for='answer_" . $answer_id . "_true' style='margin-left: 5px;'>True</label>
-				      \r\n<input type='radio' id='answer_". $answer_id ."_false' name='". $question_id ."' value='False' class='answer'>"
+				      \r\n<input type='radio' id='answer_". $answer_id ."_false' name='". $question_id ."' value='F' class='answer'>"
 				   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
