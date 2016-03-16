@@ -17,6 +17,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					<div id="sidebar" style="text-align:center">
 						
 						<section style="text-align:center">
+							<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
+							<br /><br />
 							<h2>Time Limit on test: </h2>
 							<h1>Time Left</h1>
 								<div id="clockdiv">
