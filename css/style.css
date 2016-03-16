@@ -4,6 +4,7 @@
 /*
 	Dark Blue:         2B9DB2
 	Light Blue:        84C2CC - Main color background
+	Cyan               0AF    - Button Hold Down
 	Login Button Blue: 5B858C
 	Purple:            C723CC - Testing only
 	Heading Dark Grey: 646464
@@ -954,7 +955,7 @@ span#countdown {
 			input[type="reset"].special:active,
 			input[type="button"].special:active,
 			.button.special:active {
-				background-color: #DC3F45;
+				background-color: #0AF;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
