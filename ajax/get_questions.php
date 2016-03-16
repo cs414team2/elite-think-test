@@ -30,7 +30,7 @@
 			echo "<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."'>";
 			echo "<h4> T/F Questions </h4>";
 			while($question_statement->fetch()){
-				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
+				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
 				
 				$answer_statement = $db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?");
 				$answer_statement->bind_param("i", $question_id);
@@ -60,7 +60,7 @@
 			echo "<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."'>";
 			echo "<h4> Multiple Choice Questions </h4>";
 			while($question_statement->fetch()){
-				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
+				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
 				
 				$answer_statement = $db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?");
 				$answer_statement->bind_param("i", $question_id);
@@ -93,7 +93,7 @@
 			echo "<div class='my-form-builder' id='".Test::ESSAY_QUESTION_TYPE."'>";
 			echo "<h4> Essay Questions </h4>";
 			while($question_statement->fetch()){
-				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level());
+				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
 				$test->print_essay_answer($question_id, $_SESSION["credentials"]->get_access_level());
 				echo "\r\n</div>";
 			}

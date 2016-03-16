@@ -74,6 +74,13 @@ function add_question(question_type, question_text) {
 
 }
 
+// Open a form to edit a question                                          ********* will setup a dialog thingy here***********
+function open_question_editor(question) {
+	var question_id = question.id;
+	var question_type = question.getAttribute('data-question-type');
+	alert("You can click edit now, yay! this is the question: " + question_id + question_type);
+}
+
 function edit_question(question_id, question_type, question_text,
 					   question_weight, answers) {
 	$.ajax({
@@ -157,6 +164,20 @@ function update_time_info() {
 
 //***********************Events************************
 $(document).ready(function(){
+	var default_dialog = {
+		autoOpen: false,
+		modal: true,
+		width: 500,
+		show: {
+			effect: "drop",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		}
+	};
+	
 	load_questions();
 	
 	$("#txt_time_limit").on('input', function () {
@@ -234,4 +255,35 @@ $(document).ready(function(){
 		$("#err_empty_mc").hide();
 		$("#err_empty_eq").hide();
 	});
+	
+	$( "#openTFDialog" ).click(function() {
+		$( "#tFDialog" ).dialog( "open" );
+	});	
+	$( "#openMCDialog" ).click(function() {
+		$( "#mCDialog" ).dialog( "open" );
+	});
+	$( "#openEssayDialog" ).click(function() {
+		$( "#essayDialog" ).dialog( "open" );
+	});
+	
+	// Set the add True/False Question Dialog box and transition effect
+	$( "#tFDialog" ).dialog(default_dialog);
+
+	// Set the add Multiple Choice Question Dialog box and transition effect
+	$( "#mCDialog" ).dialog({
+		autoOpen: false,
+		modal: true,
+		width: 600,
+		show: {
+			effect: "drop",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		}
+	});
+	
+	// Set the add Essay Question Dialog box and transition effect
+	$( "#essayDialog" ).dialog(default_dialog);	
 });
