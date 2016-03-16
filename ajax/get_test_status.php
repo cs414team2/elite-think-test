@@ -9,7 +9,7 @@
 	const TEST_SUBMITTED   = 2;
 	const TEST_TIMED_OUT   = 3;
 	
-	if (isset($_REQUEST['test_id'], $_REQUEST['student_id'])) {
+/*	if (isset($_REQUEST['test_id'], $_REQUEST['student_id'])) {
 		$test_id    = $_REQUEST['test_id'];
 		$student_id = $_REQUEST['student_id'];
 		$test = new Test($test_id);
@@ -30,5 +30,6 @@
 		else {
 			echo TEST_NOT_STARTED;
 		}
-	}
+	}*/
+	echo TEST_NOT_STARTED;
 ?>
