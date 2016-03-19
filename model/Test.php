@@ -108,10 +108,24 @@ class Test{
 	}
 	
 	public function print_student_answer($answer_content, $question_type, $question_id, $answer_id){
+		
+		/*$db = $this->prepare_connection();
+		$statement = $db->prepare("SELECT answer_given
+                                     FROM student_answer
+									WHERE student_id = 3
+									  AND question_id = ?") or die($db->error);
+		$statement->bind_param("i", $question_id) 	or die($statement->error);				THIS WAS TOO SLOW!
+		$statement->bind_result($answer) 			or die($statement->error);
+		$statement->execute()						or die($statement->error);
+		$statement->fetch() 						or die($statement->error);	 	Code for refilling already answered questions 
+		". ($answer == $answer_id ? "checked" : " ") . "                            move this to MC
+		 ". ($answer == 'T' ? "checked" : " ") . "									 move this to True
+		  ". ($answer == 'F' ? "checked" : " ") . "									 move this to false
+		*/
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
-							<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer'>
+							<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' >
 							<label for='answer_". $answer_id ."'>". $answer_content ."</label>
 						  </li>";
 				break;

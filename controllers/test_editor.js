@@ -18,8 +18,8 @@ function load_questions() {
 
 function add_question(question_type, question_text) {
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
-	var answers = [{answer_text: "", is_correct: "" }];
-	var validated = true;
+	var answers         = [{answer_text: "", is_correct: "" }];
+	var validated       = true;
 		
 	if (jQuery.trim(question_text).length <= 0) {
 		$("#err_empty_tf").show();
@@ -112,9 +112,12 @@ function open_question_editor(question) {
 		}
 	});
 	
-	//$("#dlg_essay").dialog("open");
+	/*$("#dlg_essay").dialog("open");
+	$("#btn_add_essay").unbind("click");
+	$("#btn_add_essay").click(function() {
+		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
+	});*/
 	
-	//$("#btn_add_essay").unbind("click");
 	$("#btn_edit").click(function() {
 		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
 	});
@@ -126,7 +129,7 @@ function edit_question(question_id, question_type, question_text,
 		url: 'ajax/edit_question.php',
 		data: {
 			question_id: question_id,
-			question_type: question_type,
+			question_type: question_type,                     //Question type might not need to be sent.
 			question_text: question_text,
 			question_weight: question_weight,
 			answers: answers
