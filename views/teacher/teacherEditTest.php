@@ -79,9 +79,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button id="openTFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
-						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
-						<button id="openEssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
+						<button id="btn_open_TFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
+						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
+						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						
 					</section>
 				</div>
@@ -99,7 +99,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-		<div id="tFDialog" title="True/False Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_tf" title="True/False Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
@@ -122,7 +122,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_mc" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
 					name="txt_mcq_entry" class="questionStyle" ></textarea>
@@ -159,7 +159,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="essayDialog" title="Essay Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
