@@ -13,14 +13,20 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 					<h2 id="courseName">Edit Class</h2>
 				</header>
 				<div class="container" style="text-align:center">
-					<section id="content">	
+					<section id="content">
 					<!-- Content -->
+						<select name="ddl_teachers" id="ddl_teachers" margin-bottom: 8px;>';
+								$admin = new Admin();
+								$admin->get_teacher_ddl($_REQUEST["id"]);
+				   echo '</select>
+					
 						<div class="table_wrapper">
 							<table class="sortable table_wrapper">
 								<thead>
 									<tr>
+										<th></th>
 										<th>ID</th>
-										<th>Student Name</th>	
+										<th colspan="2">Student Name</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_students">';
@@ -28,7 +34,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 									$admin->get_students($_REQUEST["id"]);
 						echo   '</tbody>
 							</table>
-							<button class="button special" >Save Changes</button>
+							<button id="btn_update_enrollment" class="button special" >Save Changes</button>
 						</div>
 					</section>		
 				    </div>

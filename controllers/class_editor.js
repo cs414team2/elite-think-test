@@ -2,6 +2,7 @@ const STUDENT_NOT_ENROLLED = 0;
 const STUDENT_IS_ENROLLED = 1;
 
 //***************Functions********************
+// Enroll checked students in the class and unenroll the unchecked students.
 function update_enrollment() {
 	var student = [];
 	
@@ -25,11 +26,24 @@ function update_enrollment() {
 	});
 }
 
+// Set the rows so that clicking the row checks the corresponding box.
 function update_row_click_events() {
 	$(".clickable_row").each(function(){
 		$(this).click(function(){
 			$(this).find("input").prop("checked", $(this).find("input").prop("checked") ? false : true);
 		});
+	});
+}
+
+function update_teacher() {
+	var teacher_id = $('#ddl_teachers').val();
+
+	$.ajax({
+		url: "ajax/assign_teacher.php",
+		data : {
+			class_id : class_id,
+			teacher_id : teacher_id
+		}
 	});
 }
 
@@ -40,5 +54,6 @@ $(document).ready(function(){
 	
 	$("#btn_update_enrollment").click(function(){
 		update_enrollment();
+		update_teacher();
 	});
 });
