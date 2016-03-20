@@ -36,7 +36,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								
 								<h4 style="color:white;">Put the progress here</h4>
 								
-								<button id="btn_complete" class="show_hide button small fit">Complete Test</button>		
+								<button id="btn_complete" class="show_hide button small fit" disabled>Complete Test</button>		
 						</section>	
 					</div>
 									
@@ -50,7 +50,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<br />
 							</div>
 							<div style="text-align:center">
-								<button id="btn_start" class="show_hide button big  " style="height:200px;  width:400px; background-color:gray;">Start Test</button>
+								<button id="btn_start" class="show_hide button big  " style="height:200px;  width:400px; background-color:gray;" disabled>Start Test</button>
 					        </div>
 						</section>
 					</div>
