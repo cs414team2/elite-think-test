@@ -18,7 +18,6 @@ function load_questions() {
 					number_questions();
 				}
 			});
-			$(".question_list").disableSelection();
 		}
 	});
 }
@@ -75,7 +74,7 @@ function add_question(question_type, question_text) {
 				answers: answers
 			},
 			success: function (question) {
-				$("#" + question_type).append(question);
+				$("#" + question_type).find("ul").append(question);
 				$("#" + question_type).show();
 				number_questions();
 				clear_question_fields(question_type);
