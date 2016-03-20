@@ -11,7 +11,14 @@ function load_questions() {
 		data: { test_id : test_id },
 		success: function (questions) {
 			$('#test_content').html(questions);
+			
 			number_questions();
+			$(".question_list").sortable({
+				update: function( event, ui ) {
+					number_questions();
+				}
+			});
+			$(".question_list").disableSelection();
 		}
 	});
 }

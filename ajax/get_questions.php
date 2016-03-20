@@ -27,8 +27,9 @@
 		
 		// Print the questions and answers.
 		if($question_statement->num_rows > 0){
-			echo "<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."'>";
-			echo "<h4> T/F Questions </h4>";
+			echo "\r\n<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> T/F Questions </h4>";
+			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
 				
@@ -41,12 +42,15 @@
 				if($answer_statement->num_rows > 0)
 					while($answer_statement->fetch())
 						$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id);
-				echo "\r\n</div>";
+				echo "\r\n</li>";
 			}
 		}
-		else
-			echo "<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."' style='display:none;'>";
-		echo "</div>";
+		else{
+			echo "\r\n<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."' style='display:none;'>";
+			echo "\r\n  <h4> T/F Questions </h4>";
+			echo "\r\n	<ul class='question_list'>";
+		}
+		echo "\r\n   </ul>\r\n</div>";
 		
 		// Get the questions.
 		$db = prepare_connection();
@@ -57,8 +61,9 @@
 		$question_statement->bind_result($question_id, $question_text, $question_type);
 		
 		if($question_statement->num_rows > 0){
-			echo "<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."'>";
-			echo "<h4> Multiple Choice Questions </h4>";
+			echo "\r\n<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> Multiple Choice Questions </h4>";
+			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
 				
@@ -73,12 +78,15 @@
 					while($answer_statement->fetch())
 						$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id);
 				echo "</ol>";
-				echo "\r\n</div>";
+				echo "\r\n</li>";
 			}
 		}
-		else
-			echo "<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."' style='display:none;'>";
-		echo "</div>";
+		else {
+			echo "\r\n  <div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."' style='display:none;'>";
+			echo "\r\n  <h4> Multiple Choice Questions </h4>";
+			echo "\r\n  <ul class='question_list'>";
+		}
+		echo "\r\n   </ul>\r\n</div>";
 		
 		// Get the questions.
 		$db = prepare_connection();
@@ -90,17 +98,21 @@
 		
 		// Print the questions and answers.
 		if($question_statement->num_rows > 0){
-			echo "<div class='my-form-builder' id='".Test::ESSAY_QUESTION_TYPE."'>";
-			echo "<h4> Essay Questions </h4>";
+			echo "\r\n<div class='my-form-builder' id='".Test::ESSAY_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> Essay Questions </h4>";
+			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
 				$test->print_essay_answer($question_id, $_SESSION["credentials"]->get_access_level());
-				echo "\r\n</div>";
+				echo "\r\n</li>";
 			}
 		}
-		else
-			echo "<div class='my-form-builder' id='".Test::ESSAY_QUESTION_TYPE."'style='display:none;'>";
-		echo "</div>";
+		else {
+			echo "<div class='my-form-builder' id='".Test::ESSAY_QUESTION_TYPE."' style='display:none;'>";
+			echo "\r\n  <h4> Essay Questions </h4>";
+			echo "\r\n  <ul class='question_list'>";
+		}
+		echo "\r\n   </ul>\r\n</div>";
 	}
 	
 ?>

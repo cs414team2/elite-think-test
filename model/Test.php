@@ -26,7 +26,7 @@ class Test{
 	
 	public function print_question($question_id, $question_text, $access_level, $question_type){
 		if($access_level == self::TEACHER){
-			echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "'>";
+			echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "'>";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . $question_text ."</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
@@ -35,7 +35,7 @@ class Test{
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
-			echo "\r\n<div id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n<li id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
 		}
 	}

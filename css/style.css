@@ -738,6 +738,13 @@ span#countdown {
 	dl {
 		margin: 0 0 2em 0;
 	}
+	
+	
+	.question_list {
+		list-style-type: none;
+		margin-bottom: 0;
+		padding-left: 0;
+	}
 
 /* Table */
 
