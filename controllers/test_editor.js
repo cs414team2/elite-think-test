@@ -95,6 +95,7 @@ function open_question_editor(question) {
 	
 	alert("You can click edit now, yay! this is the question: " + question_id + question_type);
 		
+	/* custom with a bunch of code method
 	$("<div id='dlg_edit_essay' title='Essay Question Entry' style='background-color:white; text-align: center;'>" +
 			"<form>" + 
 				"<textarea id='txt_eq_edit' rows='4' placeholder='Enter an Essay Question'" +
@@ -118,15 +119,34 @@ function open_question_editor(question) {
 		}
 	});
 	
-	/*$("#dlg_essay").dialog("open");
+	/* replace button event on original method
+	$("#dlg_essay").dialog("open");
 	$("#btn_add_essay").unbind("click");
 	$("#btn_add_essay").click(function() {
 		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
 	});*/
 	
-	$("#btn_edit").click(function() {
+	/*$("#btn_edit").click(function() {
 		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
+	});*/
+	
+	/* clone method
+	$dialogy = $("#dlg_essay").clone();
+	$dialogy.find("input[type=button]").click(function(){
+		alert($dialogy.html());
 	});
+	$dialogy.dialog({
+		modal: true,
+		width: 500,
+		show: {
+			effect: "size",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		}
+	});*/
 }
 
 function edit_question(question_id, question_type, question_text,
