@@ -118,9 +118,9 @@ class Test{
 		$statement->bind_result($answer) 			or die($statement->error);
 		$statement->execute()						or die($statement->error);
 		$statement->fetch() 						or die($statement->error);	 	Code for refilling already answered questions 
-		". ($answer == $answer_id ? "checked" : " ") . "                            move this to MC
-		 ". ($answer == 'T' ? "checked" : " ") . "									 move this to True
-		  ". ($answer == 'F' ? "checked" : " ") . "									 move this to false
+		". ($answer == $answer_id ? "checked" : " ") . "                            move this down to MC
+		 ". ($answer == 'T' ? "checked" : " ") . "									 move this down to True
+		  ". ($answer == 'F' ? "checked" : " ") . "									 move this down to false
 		*/
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
