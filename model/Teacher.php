@@ -76,10 +76,12 @@
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' ";
+					echo "<tr " . "id='" . $test_id . "' class='clickable_row ";
 					if (!$is_active)
-						echo "class='editable_test clickable_row'";
-					echo "><td>Test " . $test_number . "</td>";
+						echo "editable_test";
+					else
+						echo "gradeable_test";
+					echo "'><td>Test " . $test_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
 					echo "<td>" . $date_due . "</td>";
 					echo "</tr>\r\n";
