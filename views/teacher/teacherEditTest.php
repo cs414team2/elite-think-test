@@ -27,10 +27,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			
 			<script>
 				$(function() {
-					var dateIsSet = '.$test->due_date_is_set().' <!-- ANDREW!!!  PUT THE NEW CODE HERE, I DID NOT CHANGE ANYTHING FROM ABOVE -->
-					$( "#activeDatepicker" ).datepicker();
+					var dateIsSet = '.$test->active_date_is_set().'
+					$( "#activeDatepicker" ).datepicker({
+						onSelect: update_time_info
+					});
 					if(dateIsSet == true){
-						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'")); <!-- ANDREW!!!  PUT THE NEW CODE HERE -->
+						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_active().'"));
 					}
 					else{
 						// Defaults to be active the next day
@@ -43,7 +45,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<script>
 				$(function() {
 					var dateIsSet = '.$test->due_date_is_set().'
-					$( "#datepicker" ).datepicker();
+					$( "#datepicker" ).datepicker({
+						onSelect: update_time_info
+					});
 					if(dateIsSet == true){
 						$( "#datepicker" ).datepicker("setDate",new Date("'.$test->get_date_due().'"));
 					}
@@ -55,75 +59,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				});
 			</script>
 			
-			<!-- True/False Question Dialog box and transition effect -->
-			<script>
-				$(function() {
-					$( "#tFDialog" ).dialog({
-					autoOpen: false,
-					modal: true,
-					width: 500,
-					show: {
-						effect: "drop",
-						duration: 500
-					},
-					hide: {
-						effect: "size",
-						duration: 500
-					}
-					});
-			 
-					$( "#openTFDialog" ).click(function() {
-						$( "#tFDialog" ).dialog( "open" );
-					});	
-				});
-			</script>
-			
-			<!-- Multiple Choice Question Dialog box and transition effect -->
-			<script>
-				$(function() {
-					$( "#mCDialog" ).dialog({
-					autoOpen: false,
-					modal: true,
-					width: 600,
-					show: {
-						effect: "drop",
-						duration: 500
-					},
-					hide: {
-						effect: "size",
-						duration: 500
-					}
-					});
-			 
-					$( "#openMCDialog" ).click(function() {
-						$( "#mCDialog" ).dialog( "open" );
-					});
-				});
-			</script>
-			
-			<!-- Essay Question Dialog box and transition effect -->
-			<script>
-				$(function() {
-					$( "#essayDialog" ).dialog({
-					autoOpen: false,
-					modal: true,
-					width: 500,
-					show: {
-						effect: "drop",
-						duration: 500
-					},
-					hide: {
-						effect: "size",
-						duration: 500
-					}
-					});
-			 
-					$( "#openEssayDialog" ).click(function() {
-						$( "#essayDialog" ).dialog( "open" );
-					});
-				});
-			</script>
-			
 			<header class="major">
 			</header>
 			<div class="testContainer">
@@ -131,9 +66,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<section style="text-align:center">
 						<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
 						<br /><br />
+						<h5>Time Limit:</h5>
 						<p style="color:white;">
-							<input type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">	
-							min(s) to take test
+							<input id="txt_time_limit" type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">
+							minutes
 						</p>
 						<p style="color:white;">
 							Active Date: 
@@ -143,9 +79,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button id="openTFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >T/F</button>
-						<button id="openMCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >M/C</button>
-						<button id="openEssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
+						<button id="btn_open_TFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
+						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
+						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						
 					</section>
 				</div>
@@ -163,7 +99,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-		<div id="tFDialog" title="True/False Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_tf" title="True/False Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
@@ -186,10 +122,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="mCDialog" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_mc" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
-				name="txt_mcq_entry" class="questionStyle" ></textarea>
+					name="txt_mcq_entry" class="questionStyle" ></textarea>
 				<br />
 				
 				<label for="mcAnswer1" class="questionLabel"> A)</label>
@@ -223,7 +159,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="essayDialog" title="Essay Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>

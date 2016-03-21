@@ -11,16 +11,28 @@ function load_questions() {
 		data: { test_id : test_id },
 		success: function (questions) {
 			$('#test_content').html(questions);
+			
 			number_questions();
+			$(".question_list").sortable({
+				update: function( event, ui ) {
+					number_questions();
+				}
+			});
 		}
 	});
 }
 
 function add_question(question_type, question_text) {
-
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
-	var answers = [{answer_text: "", is_correct: "" }];
-	var validated = true;
+	var answers         = [{answer_text: "", is_correct: "" }];
+	var validated       = true;
+		
+	if (jQuery.trim(question_text).length <= 0) {
+		$("#err_empty_tf").show();
+		$("#err_empty_mc").show();
+		$("#err_empty_eq").show();
+		validated = false;
+	}
 	
 	if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {					   
 		
@@ -48,7 +60,7 @@ function add_question(question_type, question_text) {
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
 		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "T" : "F",
-                      is_correct: "Y" }];
+                     is_correct: "Y" }];
 	} 
 	
 	if(validated){
@@ -62,7 +74,7 @@ function add_question(question_type, question_text) {
 				answers: answers
 			},
 			success: function (question) {
-				$("#" + question_type).append(question);
+				$("#" + question_type).find("ul").append(question);
 				$("#" + question_type).show();
 				number_questions();
 				clear_question_fields(question_type);
@@ -74,18 +86,82 @@ function add_question(question_type, question_text) {
 
 }
 
+// Open a form to edit a question                                          ********* will setup a dialog thingy here***********
+function open_question_editor(question) {
+	var question_id   = question.id;
+	var question_type = question.getAttribute('data-question-type');
+	var question_text = $(question).find('.question_text').html();
+	var answers = [];
+	
+	alert("You can click edit now, yay! this is the question: " + question_id + question_type);
+		
+	/* custom with a bunch of code method
+	$("<div id='dlg_edit_essay' title='Essay Question Entry' style='background-color:white; text-align: center;'>" +
+			"<form>" + 
+				"<textarea id='txt_eq_edit' rows='4' placeholder='Enter an Essay Question'" +
+				"	name='txt_eq_edit' class='questionStyle'>" + question_text + "</textarea>" +
+				"<br />" +
+				"<ul class='actions'>" +
+				"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
+				"	<li><input type='reset' value='Reset' class='alt button special reset' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
+				"</ul>" +
+			"</form>" +
+		"</div>").dialog({
+		modal: true,
+		width: 500,
+		show: {
+			effect: "size",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		}
+	});
+	
+	/* replace button event on original method
+	$("#dlg_essay").dialog("open");
+	$("#btn_add_essay").unbind("click");
+	$("#btn_add_essay").click(function() {
+		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
+	});*/
+	
+	/*$("#btn_edit").click(function() {
+		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
+	});*/
+	
+	/* clone method
+	$dialogy = $("#dlg_essay").clone();
+	$dialogy.find("input[type=button]").click(function(){
+		alert($dialogy.html());
+	});
+	$dialogy.dialog({
+		modal: true,
+		width: 500,
+		show: {
+			effect: "size",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		}
+	});*/
+}
+
 function edit_question(question_id, question_type, question_text,
 					   question_weight, answers) {
-	$.ajax({
+	/*$.ajax({
 		url: 'ajax/edit_question.php',
 		data: {
 			question_id: question_id,
-			question_type: question_type,
+			question_type: question_type,                     //Question type might not need to be sent.
 			question_text: question_text,
 			question_weight: question_weight,
 			answers: answers
 		}
-	});
+	});*/
+	alert("edit question");
 }
 
 function delete_question(question) {
@@ -117,6 +193,12 @@ function number_questions() {
 	});
 }
 
+function clear_error_messages() {
+	$("#err_empty_tf").hide();
+	$("#err_empty_mc").hide();
+	$("#err_empty_eq").hide();
+}
+
 function clear_question_fields(question_type) {
 	switch (question_type) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
@@ -139,58 +221,76 @@ function clear_question_fields(question_type) {
 	}
 }
 
+// Change the time limit for a test.
+function update_time_info() {
+	var date_due    = $("#datepicker").datepicker( "getDate" );
+	var date_active = $("#activeDatepicker").datepicker( "getDate" );
+	var time_limit  = $("#txt_time_limit").val();
+	
+	$.ajax({
+		url : "ajax/update_test_time_info.php",
+		data : {
+			test_id : test_id,
+		    date_due : date_due.getTime() / 1000,
+			date_active : date_active.getTime() / 1000,
+			time_limit : time_limit
+		}
+	});
+}
+
 //***********************Events************************
 $(document).ready(function(){
+	var default_dialog = {
+		autoOpen: false,
+		modal: true,
+		width: 500,
+		show: {
+			effect: "drop",
+			duration: 500
+		},
+		hide: {
+			effect: "size",
+			duration: 500
+		},
+		close: function() {
+			clear_error_messages();
+		}
+	};
+	
 	load_questions();
+	
+	// Set the Dialog boxes and transition effects
+	$( "#dlg_tf" ).dialog(default_dialog);
+	$( "#dlg_mc" ).dialog(default_dialog);
+	$( "#dlg_mc" ).dialog( "option", "width", 600 );
+	$( "#dlg_essay" ).dialog(default_dialog);	
+	
+	$("#txt_time_limit").on('input', function () {
+		if ($(this).val().length > 4) {
+			$(this).val($(this).val().slice(0,4));
+		}
+    });
+	
+	// Change the time limit for a test.
+	$("#txt_time_limit").blur(function (){
+		update_time_info();
+	});
 		
 	// Code to execute on Adding a TF Question
-	$('#btn_add_tf').click(function(){
-		var tfTextbox = $("#txt_tfq_entry").val();
-		var validated = true;
-		
-		if (jQuery.trim(tfTextbox).length <= 0) {
-			$("#err_empty_tf").show();
-			validated = false;
-		}
-	
-		if (validated)
-		{
-			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
-		}	
+	$('#btn_add_tf').click(function() {
+		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tf_entry").val());
 	});
 	
 	// Code to execute on Adding a Multiple Choice Question
-	$('#btn_add_mc').click(function(){
-		var mcTextbox = $("#txt_mcq_entry").val();
-		var validated = true;
-		
-		if (jQuery.trim(mcTextbox).length <= 0) {
-			$("#err_empty_mc").show();
-			validated = false;
-		}
-	
-		if (validated)
-		{
-			add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
-		}
+	$('#btn_add_mc').click(function() {
+		add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
 	});
 	
 	// Code to execute on Adding an Essay Question
-	$('#btn_add_essay').click(function(){
-		var eqTextbox = $("#txt_eq_entry").val();
-		var validated = true;
-		
-		if (jQuery.trim(eqTextbox).length <= 0) {
-			$("#err_empty_eq").show();
-			validated = false;
-		}
-	
-		if (validated)
-		{	
-			add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
-		}
+	$('#btn_add_essay').click(function() {
+		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
 	});
-	
+
 	// Remove the error message for a field as a user types in it
 	$("#txt_tfq_entry").keypress(function(){
 		$("#err_empty_tf").hide();
@@ -203,9 +303,21 @@ $(document).ready(function(){
 	});
 	
 	// Code to Reset all error messages on button reset
-	$('.reset').click(function(){
-		$("#err_empty_tf").hide();
-		$("#err_empty_mc").hide();
-		$("#err_empty_eq").hide();
+	$('.reset').click(clear_error_messages);
+	
+	// Open a dialog box if a user clicks the open button.
+	$( "#btn_open_TFDialog" ).click(function() {
+		$( "#dlg_tf" ).dialog( "open" );
+	});	
+	$( "#btn_open_MCDialog" ).click(function() {
+		$( "#dlg_mc" ).dialog( "open" );
 	});
+	$( "#btn_open_EssayDialog" ).click(function() {
+		$("#btn_add_essay").unbind("click");
+		$("#btn_add_essay").click(function() {
+			add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
+		});
+		$( "#dlg_essay" ).dialog( "open" );
+	});
+	
 });

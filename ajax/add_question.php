@@ -43,7 +43,7 @@
 		}
 		
 		// Print the questions and answers.
-		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level());
+		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level(), $question_type);
 		
 		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
 			echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family: Segoe UI Light;'>";
@@ -58,7 +58,7 @@
 
 		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
 			echo "</ol>";
-		echo "\r\n</div>";
+		echo "\r\n</li>";
 
 	}
 	else {

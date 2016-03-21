@@ -31,7 +31,7 @@ $(document).ready(function(){
 	$("#btn_add").click(function() {
 		var course_name = $("#courseName").val();
 		var course_number = $("#courseNumber").val();
-		var teacher_id = $("#Teacher").val();
+		var teacher_id = $("#ddl_teachers").val();
 		var validated = true;
 		
 		if (jQuery.trim(course_name).length <= 0) {
@@ -57,7 +57,7 @@ $(document).ready(function(){
 					
 					$("#courseName").val('');
 					$("#courseNumber").val('');
-					$("#Teacher").val('');
+					$("#ddl_teachers").val('');
 					
 					window.scroll(0,0);
 				}
