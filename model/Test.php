@@ -1,7 +1,7 @@
 <?php
 class Test{
-	const CORRECT                       = 'Y';
-	const INCORRECT                     = 'N';
+	const CORRECT                       = 'Y';     // Signifies that a question is correct
+	const INCORRECT                     = 'N';     // Signifies that a qusetion is correct
 	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 	const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 	const ESSAY_QUESTION_TYPE           = 'ESSAY';

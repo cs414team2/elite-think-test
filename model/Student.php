@@ -58,7 +58,7 @@
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT test_id, test_number, class_number, class_name, date_due, time_limit
 			                           FROM student_tests 
-									   WHERE student_id = ? AND is_active='Y'") or die($db->error);
+									   WHERE student_id = ? AND is_active='Y' and date_due > now()") or die($db->error);
 			$statement->bind_param("i", $student_id);
 			$statement->execute();
 			$statement->store_result();
