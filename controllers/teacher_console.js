@@ -12,6 +12,9 @@ function load_tests_and_classes() {
 		$('.editable_test').click(function(){
 			open_edit_page($(this).attr('id'));
 		});
+		$('.gradeable_test').click(function(){
+			window.location = "./?action=teacher_grade_test&test_id=" + $(this).attr('id');
+		});
 	});
 	$.get("ajax/get_classes_ddl_for_teacher.php?user_id=" + user_id, function(list){
 		$("#ddl_classes").append(list);
