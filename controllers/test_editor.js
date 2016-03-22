@@ -99,8 +99,8 @@ function open_question_editor(question) {
 	
 	switch(question_type){
 		case ESSAY_QUESTION_TYPE:
-			
-			/*$("#dlg_essay").data("question_id", question_id);
+			/*alert($("#dlg_essay").data("question_id"));
+			$("#dlg_essay").data("question_id", question_id);
 			$("#txt_eq_entry").html(question_text);
 			
 			$("#dlg_essay").dialog("open");
@@ -110,8 +110,7 @@ function open_question_editor(question) {
 				
 				
 				edit_question(question_id, question_type, question_text);
-			});*/
-			break;
+			});*/;			break;
 	}
 
 }
@@ -121,10 +120,10 @@ function edit_question(question_id, question_type) {
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	var validated       = true;
 	
-	if (jQuery.trim(question_text).length <= 0) {
+	/*if (jQuery.trim(question_text).length <= 0) {
 		$("#err_empty_question").show();
 		validated = false;
-	}
+	}/*
 	
 	/*$.ajax({
 		url: 'ajax/edit_question.php',
@@ -253,7 +252,7 @@ $(document).ready(function(){
 		
 	// Code to execute on Adding a TF Question
 	$('#btn_add_tf').click(function() {
-		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tf_entry").val());
+		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
 	});
 	
 	// Code to execute on Adding a Multiple Choice Question
@@ -282,9 +281,17 @@ $(document).ready(function(){
 	
 	// Open a dialog box if a user clicks the open button.
 	$( "#btn_open_TFDialog" ).click(function() {
+		$("#btn_add_tf").unbind("click");
+		$("#btn_add_tf").click(function() {
+			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
+		});
 		$( "#dlg_tf" ).dialog( "open" );
 	});	
 	$( "#btn_open_MCDialog" ).click(function() {
+		$("#btn_add_mc").unbind("click");
+		$("#btn_add_mc").click(function() {
+			add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mc_entry").val());
+		});
 		$( "#dlg_mc" ).dialog( "open" );
 	});
 	$( "#btn_open_EssayDialog" ).click(function() {
