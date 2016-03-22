@@ -231,9 +231,9 @@ class Test{
 	
 	public function has_timed_out($student_id){
 		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT student_test_id 
-		                           FROM   student_test 
-								   WHERE  test_id = ? and student_id = ? and end_time < now()") or die($db->error);
+		$statement = $db->prepare("SELECT DISTINCT student_test_id 
+		                           FROM  student_test 
+								   WHERE test_id = ? and student_id = ? and end_time < now()") or die($db->error);
 		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
