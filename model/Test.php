@@ -43,7 +43,7 @@ class Test{
 	public function print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id){
 		switch($user_type){
 			case self::TEACHER:
-				$this->print_teacher_answer($is_correct, $answer_content, $question_type, $question_id);
+				$this->print_teacher_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id);
 				break;
 			case self::STUDENT:
 				$this->print_student_answer($answer_content, $question_type, $question_id, $answer_id);
@@ -72,13 +72,6 @@ class Test{
 		$statement->fetch();
 		
 		echo "Test " . $test_number;
-	}
-	
-	public function print_essay_answer($question_id, $user_type){
-		if($user_type == self::TEACHER)
-			echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>Essay Question</div>";
-		else
-			echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . $question_id . "' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 	}
 	
 	public function verify_test_access($user_id, $user_type){
@@ -137,31 +130,31 @@ class Test{
 				   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				$this->print_essay_answer($question_id, self::STUDENT);
+				echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . $question_id . "' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 				break;
 		}
 	}
 	
-	public function print_teacher_answer($is_correct, $answer_content, $question_type, $question_id){
+	public function print_teacher_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10004;</li>";
+					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10004;</li>";
 				else
-					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;'>".$answer_content."&nbsp;&#10006;</li>";
+					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light; class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10006;</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "T"){
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>True&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>True&nbsp;&#10004;</div>";
 					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
 				}
 				else if($answer_content == "F"){
 					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>True&nbsp;&#10006;</div>";
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>False&nbsp;&#10004;</div>";
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				$this->print_essay_answer($question_id, self::TEACHER);
+				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>". ($answer_content == null ? "--" : $answer_content)."</div>";
 				break;
 		}
 	}
