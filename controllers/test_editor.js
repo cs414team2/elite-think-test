@@ -97,71 +97,23 @@ function open_question_editor(question) {
 	var question_text = $(question).find('.question_text').html();
 	var answers = [];
 	
-	/*replace button event on original method
-	$("#dlg_essay").dialog("open");
-	$("#btn_add_essay").unbind("click");
-	$("#btn_add_essay").click(function() {
-		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
-	});
-	
-	/*custom with a bunch of code method*/
-	/*switch(question_type){
-		case TRUE_FALSE_QUESTION_TYPE:
-			break;
-		case MULTIPLE_CHOICE_QUESTION_TYPE:
-			break;
+	switch(question_type){
 		case ESSAY_QUESTION_TYPE:
-			answers[0] = $(question).find('.answer').html();
-			if (answers[0] == "--" || answers[0] == undefined)
-				answers[0] = "";
-			$("<div id='dlg_edit_essay' title='Edit Essay Question' style='background-color:white; text-align: center;'>" +
-					"<form>" + 
-						"<textarea id='txt_edit_question' rows='4' placeholder='Enter an Essay Question'" +
-						"	name='txt_edit_question' class='questionStyle'>" + question_text + "</textarea>" +
-						"<textarea id='txt_edit_essay_answer' rows='4' placeholder='Enter an Essay Question'" +
-						"	name='txt_edit_essay_answer' class='questionStyle'>" + (answers[0] == "--" ? "" : answers[0]) + "</textarea>" +
-						"<br />" +
-						"<p id='err_empty_question' style='display: none; color: red;'>"  +
-							"the question cannot be empty" +
-						"</p>" +
-						"<ul class='actions'>" +
-						"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;' " +
-								"onclick='edit_question(" + question_id + ", " + question_type + ")')/></li>" +
-						"	<li><input type='reset' value='Reset' class='alt button special reset' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
-						"</ul>" +
-					"</form>" +
-				"</div>").dialog({
-				modal: true,
-				width: 500,
-				show: {
-					effect: "size",
-					duration: 500
-				},
-				hide: {
-					effect: "size",
-					duration: 500
-				}
-			});
+			
+			/*$("#dlg_essay").data("question_id", question_id);
+			$("#txt_eq_entry").html(question_text);
+			
+			$("#dlg_essay").dialog("open");
+			$("#btn_add_essay").unbind("click");
+			$("#btn_add_essay").click(function() {
+				
+				
+				
+				edit_question(question_id, question_type, question_text);
+			});*/
 			break;
-	}*/
-	
-	/* clone method
-	$dialogy = $("#dlg_essay").clone();
-	$dialogy.find("input[type=button]").click(function(){
-		alert($dialogy.html());
-	});
-	$dialogy.dialog({
-		modal: true,
-		width: 500,
-		show: {
-			effect: "size",
-			duration: 500
-		},
-		hide: {
-			effect: "size",
-			duration: 500
-		}
-	});*/
+	}
+
 }
 
 function edit_question(question_id, question_type) {
