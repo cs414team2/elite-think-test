@@ -57,6 +57,8 @@
 		
 		// Print tests for this student in an HTML table format
 		public function print_tests($student_id) {
+			$tests_available = true;
+			
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT DISTINCT test_id, test_number, class_number, class_name, date_due, time_limit
 			                           FROM student_tests 
@@ -94,6 +96,8 @@
 							else if($test_status == self::TEST_EXPIRED)
 								echo "<td tyle='font-weight:bold;'>Expired: Please Sign Pledge</td>";
 						}
+						else
+							$tests_available = false;
 					}
 					else{
 						echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
@@ -109,9 +113,11 @@
 					}
 				}
 			}
-			else{
-				echo "<tr> <td colspan='5' style='text-align:center;'> No Tests Available </td> </tr>";
-			}
+			else
+				echo "<tr> <td colspan='6' style='text-align:center;'> No Tests Available </td> </tr>";
+			
+			if(!$tests_available)
+				echo "<tr> <td colspan='6' style='text-align:center;'> No Tests Available </td> </tr>";
 		}
 	}
 ?>
