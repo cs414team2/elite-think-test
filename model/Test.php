@@ -27,7 +27,7 @@ class Test{
 	public function print_question($question_id, $question_text, $access_level, $question_type){
 		if($access_level == self::TEACHER){
 			echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "'>";
-			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . $question_text ."</span></div>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
 			echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_question_editor(this.parentElement.parentElement)'>Edit</button>";
@@ -36,7 +36,7 @@ class Test{
 		}
 		else if($access_level == self::STUDENT){
 			echo "\r\n<li id='".$question_id."'style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
-			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . $question_text ."</div>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . htmlspecialchars($question_text) ."</div>";
 		}
 	}
 	
@@ -119,7 +119,7 @@ class Test{
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
 							<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' >
-							<label for='answer_". $answer_id ."'>". $answer_content ."</label>
+							<label for='answer_". $answer_id ."'>". htmlspecialchars($answer_content) ."</label>
 						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
@@ -130,7 +130,7 @@ class Test{
 				   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . $question_id . "' style='text-align:left;' class='studentEssayQuestion'></textarea>";
+				echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion'></textarea>";
 				break;
 		}
 	}
@@ -139,9 +139,9 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10004;</li>";
+					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".htmlspecialchars($answer_content)."&nbsp;&#10004;</li>";
 				else
-					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10006;</li>";
+					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".htmlspecialchars($answer_content)."&nbsp;&#10006;</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "T"){
@@ -154,7 +154,7 @@ class Test{
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>". ($answer_content == null ? "--" : $answer_content)."</div>";
+				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>". htmlspecialchars(($answer_content == null ? "--" : $answer_content))."</div>";
 				break;
 		}
 	}

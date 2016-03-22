@@ -162,7 +162,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;" data-question-id="0">
+		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
