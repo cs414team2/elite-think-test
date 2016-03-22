@@ -141,7 +141,7 @@ class Test{
 				if($is_correct == self::CORRECT)
 					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10004;</li>";
 				else
-					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light; class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10006;</li>";
+					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".$answer_content."&nbsp;&#10006;</li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "T"){
