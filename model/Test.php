@@ -54,13 +54,13 @@ class Test{
 	
 	public function get_class_name(){
 		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT get_class_name_by_test(?)"); 
-		$statement->bind_param("i", $this->test_id);
-		$statement->execute();
-		$statement->bind_result($class_name);
-		$statement->fetch();
+		$statement = $db->prepare("SELECT get_class_name_by_test(?)")  or die($db->error); 
+		$statement->bind_param("i", $this->test_id) 				or die($statement->error);
+		$statement->execute() 									or die($statement->error);
+		$statement->bind_result($class_name) 				or die($statement->error);
+		$statement->fetch() 							or die($statement->error);
 		
-		echo $class_name;
+		return $class_name;
 	}
 	
 	public function get_test_number(){
@@ -71,7 +71,7 @@ class Test{
 		$statement->bind_result($test_number);
 		$statement->fetch();
 		
-		echo "Test " . $test_number;
+		return $test_number;
 	}
 	
 	public function verify_test_access($user_id, $user_type){
