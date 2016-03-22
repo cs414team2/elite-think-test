@@ -60,13 +60,13 @@
 			$tests_available = 0;
 			
 			$db = $this->prepare_connection();
-			$statement = $db->prepare("SELECT DISTINCT test_id, test_number, class_number, class_name, date_due, time_limit
+			$statement = $db->prepare("SELECT DISTINCT test_id, test_number, class_number, class_name, date_due, time_limit, question_count
 			                           FROM student_tests 
 									   WHERE student_id = ? AND date_active < now()") or die($db->error);
 			$statement->bind_param("i", $student_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($test_id, $test_number, $class_number, $class_name, $date_due, $time_limit);
+			$statement->bind_result($test_id, $test_number, $class_number, $class_name, $date_due, $time_limit, $question_count);
 			
 			while($statement->fetch()){
 				$expired_statement = $db->prepare("SELECT get_test_status(student_id, test_id), end_time, pledge_signed
@@ -95,6 +95,7 @@
 						}
 						else if($test_status == self::TEST_EXPIRED)
 							echo "<td style='font-weight:bold;'>Expired: Please Sign Pledge</td>";
+						echo "<td>" . $question_count . "</td>";
 					}
 				}
 				else{
