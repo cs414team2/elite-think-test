@@ -3,10 +3,11 @@ require_once('model/Admin.php');
 require_once('model/student.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
+		$student = new student();
 		echo'
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2 id="courseName">First Name Last Name (ID number) </h2>
+					<h2 id="courseName">'; $student->get_student_info($_REQUEST["id"]); echo '</h2>
 					
 					
 				</header>
@@ -24,7 +25,6 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</thead>
 								<tbody>';
-								 $student = new student();
 								 $student->print_classes($_REQUEST["id"]);
 								echo '</tbody>
 							</table>											

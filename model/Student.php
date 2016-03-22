@@ -62,7 +62,7 @@
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT DISTINCT test_id, test_number, class_number, class_name, date_due, time_limit
 			                           FROM student_tests 
-									   WHERE student_id = ? AND is_active='Y'") or die($db->error);
+									   WHERE student_id = ? AND date_active < now()") or die($db->error);
 			$statement->bind_param("i", $student_id);
 			$statement->execute();
 			$statement->store_result();
@@ -94,7 +94,7 @@
 							echo "<td style='font-weight:bold;'> Expires: " . date('n/j/y', strtotime($end_time)) . " at ". date('g:i:s a', strtotime($end_time)) ."</td>";
 						}
 						else if($test_status == self::TEST_EXPIRED)
-							echo "<td tyle='font-weight:bold;'>Expired: Please Sign Pledge</td>";
+							echo "<td style='font-weight:bold;'>Expired: Please Sign Pledge</td>";
 					}
 				}
 				else{
@@ -114,6 +114,20 @@
 			
 			if($tests_available == 0)
 				echo "<tr> <td colspan='6' style='text-align:center;'> No Tests Available </td> </tr>";
+		}
+		
+		public function get_student_info($student_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT student_fname, student_lname
+			                           FROM   student
+									   WHERE  student_id = ?") or die($db->error);
+			$statement->bind_param("i", $student_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($student_fname, $student_lname);
+			$statement->fetch();
+			
+			echo $student_lname . ", " . $student_fname . " (" . $student_id . ")";
 		}
 	}
 ?>
