@@ -1,7 +1,10 @@
 <?php
-if (isset($_SESSION['credentials'])) {
+require_once('model/Test.php');
+
+if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
-		// PUT HTML HERE!
+		$test = new Test($_REQUEST['test_id']);
+		
 		echo ' 
 			<div class="testContainer">
 				<div id="sidebar" style="text-align:center">
@@ -18,7 +21,7 @@ if (isset($_SESSION['credentials'])) {
 				</div>		
 		
 				<div class="studentTest" style="float:right;">
-					<h2 style="padding:10px;">Test 2 NU 405 Nursing Seminar</h2>
+					<h2 style="padding:10px;">Test '. $test->get_test_number() . ' - ' . $test->get_class_name() . '</h2>
 					<section id="gradeView">
 						<div id="grade_content" style="display: none;">
 							<div class="my-form-builder" align="left">
@@ -28,12 +31,6 @@ if (isset($_SESSION['credentials'])) {
 						</div>
 					</section>
 				</div>		
-		
-		
-		
-		
-		
-		
 		';
 	}
 	else {
