@@ -13,7 +13,7 @@
 
 		$test_id         = $_REQUEST['test_id'];
 		$question_type   = $_REQUEST['question_type'];
-		$question_text   = htmlspecialchars(ucfirst(trim($_REQUEST['question_text'])), ENT_QUOTES);
+		$question_text   = ucfirst(trim($_REQUEST['question_text']));
 		$question_weight = $_REQUEST['question_weight'];
 		$test = new Test($test_id);
 		
@@ -34,7 +34,7 @@
 		
 		foreach($_REQUEST['answers'] as $answer) {
 			$question_id = $questionInfo['question_id'];
-			$answer_text = htmlspecialchars(trim($answer['answer_text']));
+			$answer_text = trim($answer['answer_text']);
 			$answer_is_correct = $answer['is_correct'];
 			
 			$addStatement->bind_param("iss", $question_id, $answer_text, $answer_is_correct) or die($addStatement->error);
@@ -50,7 +50,7 @@
 				
 		foreach($_REQUEST['answers'] as $answer) {
 			$answer_info = $addResult->fetch_assoc();
-			$test->print_answer($answer['is_correct'],  htmlspecialchars(trim($answer['answer_text'])), 
+			$test->print_answer($answer['is_correct'], trim($answer['answer_text']), 
 								$question_type, TEACHER, $question_id, $answer_info['answer_id']);
 		}
 
