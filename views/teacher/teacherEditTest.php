@@ -162,13 +162,15 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;" data-question-id="0">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
+				<textarea id="txt_essay_answer" rows="4" placeholder="Enter an answer"
+				name="txt_essay_answer" class="questionStyle"></textarea>
 				<br />
 				<p id="err_empty_eq" style="display: none; color: red;">
-					Please fill in all fields...
+					Please fill in a question...
 				</p>
 				<ul class="actions">
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
