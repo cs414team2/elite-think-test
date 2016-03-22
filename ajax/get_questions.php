@@ -92,7 +92,14 @@
 			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type);
-				$test->print_essay_answer($question_id, $_SESSION["credentials"]->get_access_level());
+				
+				$answer_statement->bind_param("i", $question_id);
+				$answer_statement->execute();
+				$answer_statement->store_result();
+				$answer_statement->bind_result($answer_id, $answer_content, $is_correct);
+				
+				while($answer_statement->fetch())
+					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id);
 				echo "\r\n</li>";
 			}
 		}

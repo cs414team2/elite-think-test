@@ -1,5 +1,6 @@
 <?php
 require_once('model/Admin.php');
+require_once('model/student.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'
@@ -22,8 +23,10 @@ if (isset($_SESSION['credentials'])) {
 										
 									</tr>
 								</thead>
-								<tbody>
-								</tbody>
+								<tbody>';
+								 $student = new student();
+								 $student->print_classes($_REQUEST["id"]);
+								echo '</tbody>
 							</table>											
 							
 							<div class="row uniform" style="display: inline; max-width: 50%; ">

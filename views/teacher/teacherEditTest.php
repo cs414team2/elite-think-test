@@ -82,6 +82,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_TFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
+						<br />
+						<button id="submitTest "class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" >Submit Test</button>
+						
 						
 					</section>
 				</div>
@@ -163,9 +166,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
+				<textarea id="txt_essay_answer" rows="4" placeholder="Enter an answer"
+				name="txt_essay_answer" class="questionStyle"></textarea>
 				<br />
 				<p id="err_empty_eq" style="display: none; color: red;">
-					Please fill in all fields...
+					Please fill in a question...
 				</p>
 				<ul class="actions">
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>

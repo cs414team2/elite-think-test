@@ -24,7 +24,7 @@ function load_questions() {
 
 function add_question(question_type, question_text) {
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
-	var answers         = [{answer_text: "", is_correct: "" }];
+	var answers         = [];
 	var validated       = true;
 		
 	if (jQuery.trim(question_text).length <= 0) {
@@ -61,7 +61,11 @@ function add_question(question_type, question_text) {
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
 		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "T" : "F",
                      is_correct: "Y" }];
-	} 
+	}
+	else if (question_type == ESSAY_QUESTION_TYPE) {
+		answers = [{answer_text : $("#txt_essay_answer").val(),
+		            is_correct : "Y"}]
+	}
 	
 	if(validated){
 		$.ajax({
@@ -93,25 +97,36 @@ function open_question_editor(question) {
 	var question_text = $(question).find('.question_text').html();
 	var answers = [];
 	
-	alert("You can click edit now, yay! this is the question: " + question_id + question_type);
-		
+	/*replace button event on original method
+	$("#dlg_essay").dialog("open");
+	$("#btn_add_essay").unbind("click");
+	$("#btn_add_essay").click(function() {
+		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
+	});
+	
 	/*custom with a bunch of code method*/
-	switch(question_type){
+	/*switch(question_type){
 		case TRUE_FALSE_QUESTION_TYPE:
 			break;
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			break;
 		case ESSAY_QUESTION_TYPE:
+			answers[0] = $(question).find('.answer').html();
+			if (answers[0] == "--" || answers[0] == undefined)
+				answers[0] = "";
 			$("<div id='dlg_edit_essay' title='Edit Essay Question' style='background-color:white; text-align: center;'>" +
 					"<form>" + 
 						"<textarea id='txt_edit_question' rows='4' placeholder='Enter an Essay Question'" +
 						"	name='txt_edit_question' class='questionStyle'>" + question_text + "</textarea>" +
+						"<textarea id='txt_edit_essay_answer' rows='4' placeholder='Enter an Essay Question'" +
+						"	name='txt_edit_essay_answer' class='questionStyle'>" + (answers[0] == "--" ? "" : answers[0]) + "</textarea>" +
 						"<br />" +
 						"<p id='err_empty_question' style='display: none; color: red;'>"  +
 							"the question cannot be empty" +
 						"</p>" +
 						"<ul class='actions'>" +
-						"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
+						"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;' " +
+								"onclick='edit_question(" + question_id + ", " + question_type + ")')/></li>" +
 						"	<li><input type='reset' value='Reset' class='alt button special reset' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
 						"</ul>" +
 					"</form>" +
@@ -128,18 +143,7 @@ function open_question_editor(question) {
 				}
 			});
 			break;
-	}
-	
-	$("#btn_edit").click(function() {
-		edit_question(question_id, question_type, answers);
-	});
-	
-	/*replace button event on original method
-	$("#dlg_essay").dialog("open");
-	$("#btn_add_essay").unbind("click");
-	$("#btn_add_essay").click(function() {
-		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
-	});
+	}*/
 	
 	/* clone method
 	$dialogy = $("#dlg_essay").clone();
@@ -160,10 +164,15 @@ function open_question_editor(question) {
 	});*/
 }
 
-function edit_question(question_id, question_type, answers) {
-	var question_text   = 	$("#txt_edit_question");
+function edit_question(question_id, question_type) {
+	var question_text   = $("#txt_edit_question").val();
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	var validated       = true;
+	
+	if (jQuery.trim(question_text).length <= 0) {
+		$("#err_empty_question").show();
+		validated = false;
+	}
 	
 	/*$.ajax({
 		url: 'ajax/edit_question.php',
