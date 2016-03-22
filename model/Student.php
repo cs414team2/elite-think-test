@@ -68,33 +68,45 @@
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
-					echo "<td>" . $class_number . "</td>";
-					echo "<td>" . $class_name . "</td>";
-					echo "<td>Test " . $test_number . "</td>";
-					echo "<td>" . $date_due . "</td>";
-					if($time_limit > 0)
-						echo "<td>" . $time_limit . " Minute(s)</td>";
-					else
-						echo "<td> No Limit</td>";
-					
-					$expired_statement = $db->prepare("SELECT get_test_status(student_id, test_id), end_time
+					$expired_statement = $db->prepare("SELECT get_test_status(student_id, test_id), end_time, pledge_signed
 					                                   FROM   student_test
 													   WHERE  student_id = ? AND test_id = ?") or die($db->error);
 					$expired_statement->bind_param("ii", $student_id, $test_id);
 					$expired_statement->execute();
 					$expired_statement->store_result();
-					$expired_statement->bind_result($test_status, $end_time);
-					
+					$expired_statement->bind_result($test_status, $end_time, $pledge_signed);
 					if($expired_statement->num_rows > 0){
 						$expired_statement->fetch();
-						if($test_status == self::TEST_ACTIVE)
-							echo "<td>" . $end_time . "</td>";
-						else if($test_status == self::TEST_EXPIRED)
-							echo "<td>Expired</td>";
+						if($pledge_signed != 'Y'){
+							echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
+							echo "<td>" . $class_number . "</td>";
+							echo "<td>" . $class_name . "</td>";
+							echo "<td>Test " . $test_number . "</td>";
+							echo "<td>" . date('n/j/y', strtotime($date_due)) . "</td>";
+							if($time_limit > 0)
+								echo "<td>" . $time_limit . " Minute(s)</td>";
+							else
+								echo "<td> No Limit</td>";
+							
+							if($test_status == self::TEST_ACTIVE){
+								echo "<td style='font-weight:bold;'> Expires: " . date('n/j/y', strtotime($end_time)) . " at ". date('g:i:s a', strtotime($end_time)) ."</td>";
+							}
+							else if($test_status == self::TEST_EXPIRED)
+								echo "<td tyle='font-weight:bold;'>Expired: Please Sign Pledge</td>";
+						}
 					}
-					else
-						echo "<td>Not Started</td>";
+					else{
+						echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
+							echo "<td>" . $class_number . "</td>";
+							echo "<td>" . $class_name . "</td>";
+							echo "<td>Test " . $test_number . "</td>";
+							echo "<td>" . $date_due . "</td>";
+							if($time_limit > 0)
+								echo "<td>" . $time_limit . " Minute(s)</td>";
+							else
+								echo "<td> No Limit</td>";
+							echo"<td style='font-weight:bold;'> Not Started </td>";
+					}
 				}
 			}
 			else{
