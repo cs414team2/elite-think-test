@@ -96,10 +96,12 @@ function open_question_editor(question) {
 	var question_type = question.getAttribute('data-question-type');
 	var question_text = $(question).find('.question_text').html();
 	var answers = [];
+	var answer_check_list = [ 'a', 'b', 'c', 'd'];
 	
 	$(question).find(".answer").each(function(index){
 		answers[index] = { id : $(this).data("answer-id"),
-		                   value : $(this).html() };
+		                   value : $(this).html(),
+						   is_correct : $(this).data("is-correct")};
 	});
 	
 	$("#dlg_" + question_type.toLowerCase()).data("question-id", question_id);
@@ -115,6 +117,15 @@ function open_question_editor(question) {
 			});
 			break;
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
+			$("#txt_mcq_entry").val(html_special_chars_decode(question_text));
+			
+			$(".mc_answer").each(function(index){
+				$(this).data("answer-id", answers[index].id)
+				$(this).val(answers[index].value);
+				if (answers[index].is_correct == "Y")
+					$("#rb_is_answer_" + answer_check_list[index]).prop( "checked", true );
+			});
+		
 			$("#btn_add_mc").unbind("click");
 			$("#btn_add_mc").click(function() {
 				edit_question($("#dlg_essay").data("question-id"), MULTIPLE_CHOICE_QUESTION_TYPE);
@@ -344,6 +355,13 @@ $(document).ready(function(){
 	
 	// Open a dialog box if a user clicks the open button.
 	$( "#btn_open_TFDialog" ).click(function() {
+		$("#dlg_tf").data("question-id", 0);
+		
+		
+		$("#dlg_tf").dialog('option', 'show', {
+			effect: "drop",
+			duration: 500
+		});
 		$("#btn_add_tf").unbind("click");
 		$("#btn_add_tf").click(function() {
 			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
@@ -351,6 +369,14 @@ $(document).ready(function(){
 		$( "#dlg_tf" ).dialog( "open" );
 	});	
 	$( "#btn_open_MCDialog" ).click(function() {
+		$("#dlg_mc").data("question-id", 0);
+		$(".mc_answer").each(function(){
+			$(this).data("answer-id", 0);
+		});
+		$("#dlg_mc").dialog('option', 'show', {
+			effect: "drop",
+			duration: 500
+		});
 		$("#btn_add_mc").unbind("click");
 		$("#btn_add_mc").click(function() {
 			add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
