@@ -157,6 +157,10 @@ function start_timer() {
 function countdown_time() {
 	var minutes_left = Math.floor(seconds_left / 60);
 	
+	if ((seconds_left % 5) == 0) {
+		submit_answers();
+	}
+	
 	$("#div_minutes").html(minutes_left < 10 ? "0" + minutes_left : minutes_left);
 	$("#div_seconds").html((seconds_left % 60) < 10 ? "0" + (seconds_left % 60) : seconds_left % 60);
 	seconds_left--;

@@ -3,11 +3,6 @@
 	require_once('../model/Session.php');
 	session_start();
 	
-	const TRUE_FALSE_INDEX   = 0;
-	const MC_INDEX           = 1;
-	const ESSAY_INDEX        = 2;
-	const MAX_QUESTION_TYPES = 3;
-	
 	// Create the connection string.
 	function prepare_connection(){
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");

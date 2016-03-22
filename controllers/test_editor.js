@@ -1,6 +1,6 @@
 const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
-const TRUE_FALSE_QUESTION_TYPE = 'TF';
-const ESSAY_QUESTION_TYPE = 'ESSAY';
+const TRUE_FALSE_QUESTION_TYPE      = 'TF';
+const ESSAY_QUESTION_TYPE           = 'ESSAY';
 const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
 const MAX_TEST_SIZE = 3;
 
@@ -95,40 +95,51 @@ function open_question_editor(question) {
 	
 	alert("You can click edit now, yay! this is the question: " + question_id + question_type);
 		
-	/* custom with a bunch of code method
-	$("<div id='dlg_edit_essay' title='Essay Question Entry' style='background-color:white; text-align: center;'>" +
-			"<form>" + 
-				"<textarea id='txt_eq_edit' rows='4' placeholder='Enter an Essay Question'" +
-				"	name='txt_eq_edit' class='questionStyle'>" + question_text + "</textarea>" +
-				"<br />" +
-				"<ul class='actions'>" +
-				"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
-				"	<li><input type='reset' value='Reset' class='alt button special reset' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
-				"</ul>" +
-			"</form>" +
-		"</div>").dialog({
-		modal: true,
-		width: 500,
-		show: {
-			effect: "size",
-			duration: 500
-		},
-		hide: {
-			effect: "size",
-			duration: 500
-		}
+	/*custom with a bunch of code method*/
+	switch(question_type){
+		case TRUE_FALSE_QUESTION_TYPE:
+			break;
+		case MULTIPLE_CHOICE_QUESTION_TYPE:
+			break;
+		case ESSAY_QUESTION_TYPE:
+			$("<div id='dlg_edit_essay' title='Edit Essay Question' style='background-color:white; text-align: center;'>" +
+					"<form>" + 
+						"<textarea id='txt_edit_question' rows='4' placeholder='Enter an Essay Question'" +
+						"	name='txt_edit_question' class='questionStyle'>" + question_text + "</textarea>" +
+						"<br />" +
+						"<p id='err_empty_question' style='display: none; color: red;'>"  +
+							"the question cannot be empty" +
+						"</p>" +
+						"<ul class='actions'>" +
+						"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
+						"	<li><input type='reset' value='Reset' class='alt button special reset' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
+						"</ul>" +
+					"</form>" +
+				"</div>").dialog({
+				modal: true,
+				width: 500,
+				show: {
+					effect: "size",
+					duration: 500
+				},
+				hide: {
+					effect: "size",
+					duration: 500
+				}
+			});
+			break;
+	}
+	
+	$("#btn_edit").click(function() {
+		edit_question(question_id, question_type, answers);
 	});
 	
-	/* replace button event on original method
+	/*replace button event on original method
 	$("#dlg_essay").dialog("open");
 	$("#btn_add_essay").unbind("click");
 	$("#btn_add_essay").click(function() {
 		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
-	});*/
-	
-	/*$("#btn_edit").click(function() {
-		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
-	});*/
+	});
 	
 	/* clone method
 	$dialogy = $("#dlg_essay").clone();
@@ -149,15 +160,18 @@ function open_question_editor(question) {
 	});*/
 }
 
-function edit_question(question_id, question_type, question_text,
-					   question_weight, answers) {
+function edit_question(question_id, question_type, answers) {
+	var question_text   = 	$("#txt_edit_question");
+	var question_weight = DEFAULT_QUESTION_WEIGHT;
+	var validated       = true;
+	
 	/*$.ajax({
 		url: 'ajax/edit_question.php',
 		data: {
 			question_id: question_id,
-			question_type: question_type,                     //Question type might not need to be sent.
+			question_type: question_type,
 			question_text: question_text,
-			question_weight: question_weight,
+			question_weight: question_weight
 			answers: answers
 		}
 	});*/

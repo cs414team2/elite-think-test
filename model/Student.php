@@ -1,6 +1,8 @@
 <?php
 	// Contains methods for dealing with student data
 	class Student {
+		const TEST_ACTIVE      = 1;
+		const TEST_EXPIRED     = 2;
 		// Connect to the csweb database
 		public function prepare_connection(){
 			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
@@ -56,9 +58,9 @@
 		// Print tests for this student in an HTML table format
 		public function print_tests($student_id) {
 			$db = $this->prepare_connection();
-			$statement = $db->prepare("SELECT test_id, test_number, class_number, class_name, date_due, time_limit
+			$statement = $db->prepare("SELECT DISTINCT test_id, test_number, class_number, class_name, date_due, time_limit
 			                           FROM student_tests 
-									   WHERE student_id = ? AND is_active='Y' and date_due > now()") or die($db->error);
+									   WHERE student_id = ? AND is_active='Y'") or die($db->error);
 			$statement->bind_param("i", $student_id);
 			$statement->execute();
 			$statement->store_result();
@@ -75,11 +77,28 @@
 						echo "<td>" . $time_limit . " Minute(s)</td>";
 					else
 						echo "<td> No Limit</td>";
-					echo "</tr>\r\n";
+					
+					$expired_statement = $db->prepare("SELECT get_test_status(student_id, test_id), end_time
+					                                   FROM   student_test
+													   WHERE  student_id = ? AND test_id = ?") or die($db->error);
+					$expired_statement->bind_param("ii", $student_id, $test_id);
+					$expired_statement->execute();
+					$expired_statement->store_result();
+					$expired_statement->bind_result($test_status, $end_time);
+					
+					if($expired_statement->num_rows > 0){
+						$expired_statement->fetch();
+						if($test_status == self::TEST_ACTIVE)
+							echo "<td>" . $end_time . "</td>";
+						else if($test_status == self::TEST_EXPIRED)
+							echo "<td>Expired</td>";
+					}
+					else
+						echo "<td>Not Started</td>";
 				}
 			}
 			else{
-				echo "<tr> <td colspan='2'> No Classes </td> </tr>";
+				echo "<tr> <td colspan='5' style='text-align:center;'> No Tests Available </td> </tr>";
 			}
 		}
 	}
