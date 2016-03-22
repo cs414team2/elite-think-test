@@ -749,9 +749,9 @@ span#countdown {
 /* Table */
 
 	.table-wrapper {
-		-webkit-overflow-scrolling: touch;
-		overflow:auto;  
-		height: 300px;
+		-webkit-overflow-scrolling: touch;	
+		height: 500px;
+		overflow:auto;
 	}
 	
 	.clickable_row {
@@ -768,6 +768,7 @@ span#countdown {
 			border-left: 0;
 			border-right: 0;
 		}
+
 		
 		.clickable_row:hover{
 			background-color: rgba(99, 201, 160, 0.25);
