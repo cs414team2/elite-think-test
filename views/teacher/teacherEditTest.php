@@ -79,7 +79,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button id="btn_open_TFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
+						<button id="btn_open_TFDialog"class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						<br />
