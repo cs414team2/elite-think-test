@@ -21,54 +21,6 @@ if (isset($_SESSION['credentials'])) {
 						<a class="show_hide" rel="#slidingDiv_3" >Create Test</a><br />
 					</section>
 					
-					
-					<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 	
-						<section id="viewTest">
-						<div class="container">
-							<!-- View Tests > Left - New Tests -->
-							<br />
-							<table class="alt sortable" style="display: inline; max-width: 50%; float: left; ">
-							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
-								<thead>
-									<tr>
-										<th>Test</th>
-										<th>Class</th>
-										<th>Due Date</th>
-									</tr>
-								</thead>
-								<tbody id="tbl_active_tests">
-									<tr>
-										<td>
-											Loading Tests...
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							
-							<!-- View Tests > Right - Existing Tests -->
-							<table class="alt sortable" style="display: inline; max-width: 50%;">
-							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
-								<thead>
-									<tr>
-										<th>Test</th>
-										<th>Class</th>
-										<th>Active Date</th>
-									</tr>
-								</thead>
-								<tbody id="tbl_inactive_tests">
-									<tr>
-										<td>
-											Loading Tests...
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<hr>			
-						</div>
-						</section>
-					</div>
-					
-					
 					<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 						<section id="viewClasses">
 						<div class="container1">
@@ -91,6 +43,52 @@ if (isset($_SESSION['credentials'])) {
 							</table>
 							<hr>				
 						
+						</div>
+						</section>
+					</div>
+					
+					<div id="slidingDiv_2" class="toggleDiv" style="display:none; "> 	
+						<section id="viewTest">
+						<div class="container">
+							<!-- View Tests > Left - New Tests -->
+							<br />
+							<table class="alt sortable" style="display: inline; max-width: 50%; ">
+							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
+								<thead>
+									<tr>
+										<th>Test</th>
+										<th>Class</th>
+										<th>Due Date</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_active_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<!-- View Tests > Right - Existing Tests -->
+							<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
+							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
+								<thead>
+									<tr>
+										<th>Test</th>
+										<th>Class</th>
+										<th>Active Date</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_inactive_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<hr>			
 						</div>
 						</section>
 					</div>
