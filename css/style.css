@@ -1568,6 +1568,7 @@ span#countdown {
 	height: 2em; 
 	line-height: 0em; 
 	height:40px;
+	padding-bottom:0em;
 }
 .gradeTestDiv{
 	border-style:solid; 
