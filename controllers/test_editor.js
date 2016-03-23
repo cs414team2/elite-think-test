@@ -4,7 +4,9 @@ const ESSAY_QUESTION_TYPE           = 'ESSAY';
 const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
 const MAX_TEST_SIZE = 3;
 
-//*******************Functions****************************
+//****************************************************************
+//*                        Functions                             *
+//****************************************************************
 function load_questions() {
 	$.ajax({
 		url: "ajax/get_questions.php",
@@ -366,7 +368,9 @@ function html_special_chars_decode(str) {
 	return str;
 }
 
-//***********************Events************************
+//****************************************************************
+//*                          Events                              *
+//****************************************************************
 $(document).ready(function(){
 	var default_dialog = {
 		autoOpen: false,
