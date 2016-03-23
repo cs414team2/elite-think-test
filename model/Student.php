@@ -99,6 +99,7 @@
 					}
 				}
 				else{
+					$tests_available++;
 					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
@@ -109,7 +110,7 @@
 					else
 						echo "<td> No Limit</td>";
 					echo"<td style='font-weight:bold;'> Not Started </td>";
-					$tests_available++;
+					echo "<td style='text-align:center;'>" . $question_count . "</td>";
 				}
 			}
 			

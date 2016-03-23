@@ -40,13 +40,13 @@ class Test{
 		}
 	}
 	
-	public function print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id){
+	public function print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given){
 		switch($user_type){
 			case self::TEACHER:
 				$this->print_teacher_answer($is_correct, $answer_content, $question_type, $question_id, $answer_id);
 				break;
 			case self::STUDENT:
-				$this->print_student_answer($answer_content, $question_type, $question_id, $answer_id);
+				$this->print_student_answer($answer_content, $question_type, $question_id, $answer_id, $answer_given);
 				break;
 		}
 			
@@ -54,13 +54,13 @@ class Test{
 	
 	public function get_class_name(){
 		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT get_class_name_by_test(?)"); 
-		$statement->bind_param("i", $this->test_id);
-		$statement->execute();
-		$statement->bind_result($class_name);
-		$statement->fetch();
+		$statement = $db->prepare("SELECT get_class_name_by_test(?)")  or die($db->error); 
+		$statement->bind_param("i", $this->test_id) 				or die($statement->error);
+		$statement->execute() 									or die($statement->error);
+		$statement->bind_result($class_name) 				or die($statement->error);
+		$statement->fetch() 							or die($statement->error);
 		
-		echo $class_name;
+		return $class_name;
 	}
 	
 	public function get_test_number(){
@@ -71,7 +71,7 @@ class Test{
 		$statement->bind_result($test_number);
 		$statement->fetch();
 		
-		echo "Test " . $test_number;
+		return $test_number;
 	}
 	
 	public function verify_test_access($user_id, $user_type){
@@ -100,37 +100,23 @@ class Test{
 			return false;
 	}
 	
-	public function print_student_answer($answer_content, $question_type, $question_id, $answer_id){
-		
-		/*$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT answer_given
-                                     FROM student_answer
-									WHERE student_id = 3
-									  AND question_id = ?") or die($db->error);
-		$statement->bind_param("i", $question_id) 	or die($statement->error);				THIS WAS TOO SLOW!
-		$statement->bind_result($answer) 			or die($statement->error);
-		$statement->execute()						or die($statement->error);
-		$statement->fetch() 						or die($statement->error);	 	Code for refilling already answered questions 
-		". ($answer == $answer_id ? "checked" : " ") . "                            move this down to MC
-		 ". ($answer == 'T' ? "checked" : " ") . "									 move this down to True
-		  ". ($answer == 'F' ? "checked" : " ") . "									 move this down to false
-		*/
+	public function print_student_answer($answer_content, $question_type, $question_id, $answer_id, $answer_given){
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				echo "\r\n<li>
-							<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' >
+							<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' ". ($answer_given == $answer_id ? "checked" : " ") . ">
 							<label for='answer_". $answer_id ."'>". htmlspecialchars($answer_content) ."</label>
 						  </li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				echo "\r\n
-					  <input type='radio' id='answer_". $answer_id ."_true' name='". $question_id ."' value='T' class='answer'>" 
+					  <input type='radio' id='answer_". $answer_id ."_true' name='". $question_id ."' value='T' class='answer' ". ($answer_given == 'T' ? "checked" : " ") . ">" 
 				   . "<label for='answer_" . $answer_id . "_true' style='margin-left: 5px;'>True</label>
-				      \r\n<input type='radio' id='answer_". $answer_id ."_false' name='". $question_id ."' value='F' class='answer'>"
+				      \r\n<input type='radio' id='answer_". $answer_id ."_false' name='". $question_id ."' value='F' class='answer' ". ($answer_given == 'F' ? "checked" : " ") . ">"
 				   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;'>False</label>";
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion'></textarea>";
+				echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion'>". $answer_given ."</textarea>";
 				break;
 		}
 	}

@@ -57,6 +57,7 @@ if (isset($_SESSION['credentials'])) {
 										<th>Date Due</th>
 										<th>Time Limit</th>
 										<th>Test Status</th>
+										<th># of Questions</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_tests">

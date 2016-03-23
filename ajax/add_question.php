@@ -51,7 +51,7 @@
 		foreach($_REQUEST['answers'] as $answer) {
 			$answer_info = $addResult->fetch_assoc();
 			$test->print_answer($answer['is_correct'], trim($answer['answer_text']), 
-								$question_type, TEACHER, $question_id, $answer_info['answer_id']);
+								$question_type, TEACHER, $question_id, $answer_info['answer_id'], null);
 		}
 
 		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
