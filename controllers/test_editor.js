@@ -423,6 +423,12 @@ $(document).ready(function(){
 	$('#btn_add_essay').click(function() {
 		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
 	});
+	
+	// Set the active date on a test to today.
+	$('#btn_submit').click(function(){
+		$( "#activeDatepicker" ).datepicker("setDate", new Date());
+		update_time_info();
+	});
 
 	// Remove the error message for a field as a user types in it
 	$("#txt_tfq_entry").keypress(function(){
