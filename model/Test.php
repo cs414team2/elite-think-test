@@ -252,7 +252,7 @@ class Test{
 		if($statement->num_rows > 0){
 			while($statement->fetch()){
 				echo'<div class="gradeTestDiv">
-						<h1>'. $student_lname .', '. $student_fname .'<button class="alt button special reset gradeTestButton" >Grade</button><h1>
+						<h1>'. $student_lname .', '. $student_fname .'<button class="alt button special reset gradeTestButton" data-student-id="'.$student_id.'">Grade</button><h1>
 					 </div>';
 			}
 		}
