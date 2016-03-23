@@ -131,12 +131,12 @@ class Test{
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "T"){
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>True&nbsp;&#10004;</div>";
-					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer true_answer' data-answer-id='".$answer_id."' data-is-correct='Y'>True&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;' class='false_answer' >False&nbsp;&#10006;</div>";
 				}
 				else if($answer_content == "F"){
-					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>True&nbsp;&#10006;</div>";
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>False&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;' class='true_answer'>True&nbsp;&#10006;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer false_answer' data-answer-id='".$answer_id."' data-is-correct='Y'>False&nbsp;&#10004;</div>";
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:

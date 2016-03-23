@@ -111,9 +111,19 @@ function open_question_editor(question) {
 	});
 	switch(question_type){
 		case TRUE_FALSE_QUESTION_TYPE:
+			$("#txt_tfq_entry").val(html_special_chars_decode(question_text));
+			
+			$("#dlg_tf").data("answer-id", answers[0].id);
+			if (answers[0].content.substr(0, 1) == "T") {
+				$("#rb_answer_true").prop( "checked", true );
+			}
+			else {
+				$("#rb_answer_false").prop( "checked", true );
+			}
+		
 			$("#btn_add_tf").unbind("click");
 			$("#btn_add_tf").click(function() {
-				edit_question($("#dlg_essay").data("question-id"), TRUE_FALSE_QUESTION_TYPE);
+				edit_question($("#dlg_tf").data("question-id"), TRUE_FALSE_QUESTION_TYPE);
 			});
 			break;
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
@@ -156,6 +166,12 @@ function edit_question(question_id, question_type) {
 	var answers         = [];
 
 	switch(question_type) {
+		case TRUE_FALSE_QUESTION_TYPE:
+			question_text = $("#txt_tfq_entry").val();
+			answers[0] = {answer_id : $("#dlg_tf").data("answer-id"),
+			              answer_text : $("#rb_answer_true").prop("checked") ? "T" : "F",
+						  is_correct : "Y"}
+			break;
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			question_text = $("#txt_mcq_entry").val();
 			$(".mc_answer").each(function (index) {
@@ -210,25 +226,51 @@ function edit_question(question_id, question_type) {
 			},
 			success : function(){
 				$("#" + question_id).find(".question_text").html(html_special_chars(question_text));
-				$("#" + question_id).find(".answer").each(function(index){
-					if (answers[index].answer_text == "")
-						answers[index].answer_text = "(no description)";
-					
-					$(this).html(answers[index].answer_text);
-					
-					if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
-						if (answers[index].is_correct == "Y") {
-							$(this).data("is-correct", "Y");
-							$(this).parent().css('color', '#47CC7A');
-							$(this).parent().find('.symbol').html('&nbsp;&#10004;');
-						}
-						else {
-							$(this).data("is-correct", "N");
-							$(this).parent().css('color', '#CC1C11');
-							$(this).parent().find('.symbol').html('&nbsp;&#10006;');
-						}
+				if (question_type == TRUE_FALSE_QUESTION_TYPE){
+					if (answers[0].answer_text == "T") {
+						$("#" + question_id).find(".true_answer").data("answer-id", answers[0].answer_id);
+						$("#" + question_id).find(".true_answer").css("color" , "#47CC7A");
+						$("#" + question_id).find(".true_answer").removeClass("answer").addClass("answer");
+						$("#" + question_id).find(".true_answer").html("True &#10004;");
+						
+						$("#" + question_id).find(".false_answer").removeData("answer-id");
+						$("#" + question_id).find(".false_answer").css("color" , "#CC1C11");
+						$("#" + question_id).find(".false_answer").removeClass("answer");
+						$("#" + question_id).find(".false_answer").html("False &#10006;");
 					}
-				});
+					else {
+						$("#" + question_id).find(".false_answer").data("answer-id", answers[0].answer_id);
+						$("#" + question_id).find(".false_answer").css("color" , "#47CC7A");
+						$("#" + question_id).find(".false_answer").removeClass("answer").addClass("answer");
+						$("#" + question_id).find(".false_answer").html("False &#10004;");
+						
+						$("#" + question_id).find(".true_answer").removeData("answer-id");
+						$("#" + question_id).find(".true_answer").css("color" , "#CC1C11");
+						$("#" + question_id).find(".true_answer").removeClass("answer");
+						$("#" + question_id).find(".true_answer").html("True &#10006;");
+					}
+				}
+				else {
+					$("#" + question_id).find(".answer").each(function(index){
+						if (answers[index].answer_text == "")
+							answers[index].answer_text = "(no description)";
+						
+						$(this).html(answers[index].answer_text);
+						
+						if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
+							if (answers[index].is_correct == "Y") {
+								$(this).data("is-correct", "Y");
+								$(this).parent().css('color', '#47CC7A');
+								$(this).parent().find('.symbol').html('&nbsp;&#10004;');
+							}
+							else {
+								$(this).data("is-correct", "N");
+								$(this).parent().css('color', '#CC1C11');
+								$(this).parent().find('.symbol').html('&nbsp;&#10006;');
+							}
+						}
+					});
+				}
 				$("#dlg_" + question_type.toLowerCase()).dialog("close");
 			}
 		});
