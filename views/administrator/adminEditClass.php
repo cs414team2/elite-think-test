@@ -28,7 +28,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 							</table>
 					</section>	
 							<hr />
-							<h2> Change Class Instructor</h2>
+							<h2> Change Course Instructor</h2>
 							<select name="ddl_teachers" id="ddl_teachers" margin-bottom: 8px;>';
 								$admin = new Admin();
 								$admin->get_teacher_ddl($_REQUEST["id"]);
