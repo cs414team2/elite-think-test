@@ -14,10 +14,12 @@ class Test{
 	
 	private $alphabet;
 	private $test_id;
+	private $db;
 	
 	public function __construct($test_id){
 		$this->alphabet = range('a', 'z');
 		$this->test_id = $test_id;
+		$this->db = $this->prepare_connection();
 	}
 	
 	private function prepare_connection(){
@@ -53,19 +55,17 @@ class Test{
 	}
 	
 	public function get_class_name(){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT get_class_name_by_test(?)")  or die($db->error); 
-		$statement->bind_param("i", $this->test_id) 				or die($statement->error);
-		$statement->execute() 									or die($statement->error);
-		$statement->bind_result($class_name) 				or die($statement->error);
-		$statement->fetch() 							or die($statement->error);
+		$statement = $this->db->prepare("SELECT get_class_name_by_test(?)") or die($db->error); 
+		$statement->bind_param("i", $this->test_id) 				        or die($statement->error);
+		$statement->execute() 									            or die($statement->error);
+		$statement->bind_result($class_name) 				                or die($statement->error);
+		$statement->fetch() 							                    or die($statement->error);
 		
 		return $class_name;
 	}
 	
 	public function get_test_number(){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT get_test_number(?)"); 
+		$statement = $this->db->prepare("SELECT get_test_number(?)"); 
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($test_number);
@@ -77,8 +77,7 @@ class Test{
 	public function verify_test_access($user_id, $user_type){
 		switch($user_type){
 			case self::TEACHER:
-				$db = $this->prepare_connection();
-				$statement = $db->prepare("SELECT verify_teacher_test_access(?, ?)"); 
+				$statement = $this->db->prepare("SELECT verify_teacher_test_access(?, ?)"); 
 				$statement->bind_param("ii", $user_id, $this->test_id);
 				$statement->execute();
 				$statement->bind_result($access_status);
@@ -86,8 +85,7 @@ class Test{
 				break;
 			
 			case self::STUDENT:
-				$db = $this->prepare_connection();
-				$statement = $db->prepare("SELECT verify_student_test_access(?, ?)");
+				$statement = $this->db->prepare("SELECT verify_student_test_access(?, ?)");
 				$statement->bind_param("ii", $user_id, $this->test_id);
 				$statement->execute();
 				$statement->bind_result($access_status);
@@ -146,10 +144,9 @@ class Test{
 	}
 	
 	public function get_date_due(){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT date_due 
-		                           FROM   test 
-								   WHERE  test_id = ?") or die($db->error);
+		$statement = $this->db->prepare("SELECT date_due 
+		                                 FROM   test 
+								         WHERE  test_id = ?") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -162,10 +159,9 @@ class Test{
 	}
 	
 	public function get_date_active(){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT date_active 
-		                           FROM   test 
-								   WHERE  test_id = ?") or die($db->error);
+		$statement = $this->db->prepare("SELECT date_active 
+		                                 FROM   test 
+								         WHERE  test_id = ?") or die($this->db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -178,10 +174,9 @@ class Test{
 	}
 	
 	public function has_started($student_id){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT time_started 
-		                           FROM   student_test 
-								   WHERE  test_id = ? and student_id = ? and time_started is not null") or die($db->error);
+		$statement = $this->db->prepare("SELECT time_started 
+		                                 FROM   student_test 
+								         WHERE  test_id = ? and student_id = ? and time_started is not null") or die($db->error);
 		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
@@ -194,10 +189,9 @@ class Test{
 	}
 	
 	public function is_completed($student_id){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT is_completed 
-		                           FROM   student_test 
-								   WHERE  test_id = ? and student_id = ? and is_completed = 'Y'") or die($db->error);
+		$statement = $this->db->prepare("SELECT is_completed 
+		                                 FROM   student_test 
+								         WHERE  test_id = ? and student_id = ? and is_completed = 'Y'") or die($db->error);
 		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
@@ -209,10 +203,9 @@ class Test{
 	}
 	
 	public function has_timed_out($student_id){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT DISTINCT student_test_id 
-		                           FROM  student_test 
-								   WHERE test_id = ? and student_id = ? and end_time < now()") or die($db->error);
+		$statement = $this->db->prepare("SELECT DISTINCT student_test_id 
+		                                 FROM  student_test 
+								         WHERE test_id = ? and student_id = ? and end_time < now()") or die($db->error);
 		$statement->bind_param("ii", $this->test_id, $student_id);
 		$statement->execute();
 		$statement->store_result();
@@ -224,10 +217,9 @@ class Test{
 	}
 	
 	public function due_date_is_set(){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT count(date_due) 
-		                           FROM   test 
-		                           WHERE  test_id = ? and date_due is not null") or die($db->error);
+		$statement = $this->db->prepare("SELECT count(date_due) 
+		                                 FROM   test 
+		                                 WHERE  test_id = ? and date_due is not null") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($date_is_set);
@@ -237,16 +229,31 @@ class Test{
 	}
 	
 	public function active_date_is_set(){
-		$db = $this->prepare_connection();
-		$statement = $db->prepare("SELECT count(date_active) 
-		                           FROM   test 
-		                           WHERE  test_id = ? and date_active is not null") or die($db->error);
+		$statement = $this->db->prepare("SELECT count(date_active) 
+		                                 FROM   test 
+		                                 WHERE  test_id = ? and date_active is not null") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->bind_result($date_is_set);
 		$statement->fetch();
 		
 		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
+	}
+	
+	public function get_completed_tests(){
+		$statement = $db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
+                 		           FROM completed_tests 
+								   WHERE test_id = ?") or die($db->error);
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->bind_result($student_test_id, $student_id, $student_fname, $student_lname);
+		
+		if($statement->num_rows > 0){
+		$statement->fetch();
+		}
+		else
+			echo "<div> No Completed Tests </div>";
+		
 	}
 }
 ?>
