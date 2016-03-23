@@ -11,11 +11,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					
 					<section style="text-align:center">
 						<h2>Select a Test to Grade </h2>
-							<section id="studentTest" style="max-height:800px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">
-								<div class="gradeTestDiv"> 
-									<h1>Jesse Davis <button class="alt button special reset gradeTestButton" >Grade</button><h1>
-								</div>
-					</section>
+							<section id="studentTest" style="max-height:800px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">';
+								$test->get_completed_tests();
+					echo	'</section>
 
 					</section>	
 				</div>		

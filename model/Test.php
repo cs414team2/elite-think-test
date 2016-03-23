@@ -241,19 +241,23 @@ class Test{
 	}
 	
 	public function get_completed_tests(){
-		$statement = $db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
+		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
                  		           FROM completed_tests 
 								   WHERE test_id = ?") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
+		$statement->store_result();
 		$statement->bind_result($student_test_id, $student_id, $student_fname, $student_lname);
 		
 		if($statement->num_rows > 0){
-		$statement->fetch();
+			while($statement->fetch()){
+				echo'<div class="gradeTestDiv"> 
+						<h1>'. $student_lname .', '. $student_fname .' ('. $student_id .')<button class="alt button special reset gradeTestButton" >Grade</button><h1>
+					 </div>';
+			}
 		}
 		else
 			echo "<div> No Completed Tests </div>";
-		
 	}
 }
 ?>
