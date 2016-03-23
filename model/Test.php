@@ -123,22 +123,22 @@ class Test{
 		switch($question_type){
 			case self::MULTIPLE_CHOICE_QUESTION_TYPE:
 				if($is_correct == self::CORRECT)
-					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".htmlspecialchars($answer_content)."&nbsp;&#10004;</li>";
+					echo "\r\n<li style='color:#47CC7A; font-family: Segoe UI Light;'> <span class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>".htmlspecialchars($answer_content)."</span><span class='symbol'>&nbsp;&#10004;</span></li>";
 				else
-					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>".htmlspecialchars($answer_content)."&nbsp;&#10006;</li>";
+					echo "\r\n<li style='color:#CC1C11; font-family: Segoe UI Light;'> <span class='answer' data-answer-id='".$answer_id."' data-is-correct='N'>".htmlspecialchars($answer_content)."</span><span class='symbol'>&nbsp;&#10006;</span></li>";
 				break;
 			case self::TRUE_FALSE_QUESTION_TYPE:
 				if($answer_content == "T"){
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>True&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>True&nbsp;&#10004;</div>";
 					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>False&nbsp;&#10006;</div>";
 				}
 				else if($answer_content == "F"){
 					echo "\r\n<div style='color:#CC1C11; padding-left: 20px; font-family: Segoe UI Light;'>True&nbsp;&#10006;</div>";
-					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>False&nbsp;&#10004;</div>";
+					echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>False&nbsp;&#10004;</div>";
 				}
 				break;
 			case self::ESSAY_QUESTION_TYPE:
-				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."'>". htmlspecialchars(($answer_content == null ? "--" : $answer_content))."</div>";
+				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>". htmlspecialchars(($answer_content == null ? "(no description)" : $answer_content))."</div>";
 				break;
 		}
 	}

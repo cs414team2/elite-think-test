@@ -11,11 +11,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					
 					<section style="text-align:center">
 						<h2>Select a Test to Grade </h2>
-							<section id="studentTest" style="max-height:800px; overflow-y:auto">
-								<div> 
-								<h1>Jesse Davis  &nbsp&nbsp&nbsp <button class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;" style="height:40px">Grade</button><h1>
+							<section id="studentTest" style="max-height:800px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">
+								<div class="gradeTestDiv"> 
+									<h1>Jesse Davis <button class="alt button special reset gradeTestButton" >Grade</button><h1>
 								</div>
-							</section>
+					</section>
 
 					</section>	
 				</div>		
@@ -30,7 +30,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<br />
 						</div>
 					</section>
-				</div>		
+				</div>			
+
 		';
 	}
 	else {
