@@ -83,7 +83,7 @@
 						echo "gradeable_test";
 					echo "'><td>Test " . $test_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
-					echo "<td>" . $date_due . "</td>";
+					echo "<td>" . date('n/j/y', strtotime($date_due)) . "</td>";
 					echo "</tr>\r\n";
 				}
 			}

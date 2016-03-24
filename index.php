@@ -19,7 +19,6 @@
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
 		<script src="js/sorttable.js"></script>
-		<script src="js/tooltipScript.js"></script> <!-- Delete me if tooltip doesnt work -->
 		<script src="js/showHide.js" type="text/javascript"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <!-- Used on dialog boxes -->
 		
@@ -28,7 +27,6 @@
 			<link rel="stylesheet" href="views/css/skel.css" />
 			<link rel="stylesheet" href="views/css/style.css" />
 			<link rel="stylesheet" href="views/css/style-xlarge.css" />
-			<link rel="stylesheet" href="views/css/tooltipStyles.css" /> <!-- Delete me if tooltip doesnt work -->
 		</noscript>
 
 		<?php require_once("model/Session.php"); ?>
@@ -91,6 +89,11 @@
 						require_once('views/student/studentTestPage.php');
 						$load_footer = false;
 						break;
+						
+					case "admin_edit_teacher":
+						require_once('views/administrator/adminEditTeacher.php');
+						$load_footer = false;
+						break;	
 
 					case "logout": 
 						unset($_SESSION["credentials"]);

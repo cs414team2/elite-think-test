@@ -33,7 +33,6 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 						echo   '</tbody>
 							</table>
 					</section>	
-							<hr />
 							<h4> Change Class Instructor</h4>
 							<select name="ddl_teachers" id="ddl_teachers" margin-bottom: 8px;>';
 								$admin = new Admin();

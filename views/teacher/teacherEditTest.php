@@ -79,18 +79,18 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker">
 						</p>
-						<button id="btn_open_TFDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
+						<button id="btn_open_TFDialog"class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						<br />
-						<button id="submitTest "class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" >Submit Test</button>
+						<button id="btn_submit" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" >Submit Test</button>
 						
 						
 					</section>
 				</div>
 
 				<div class="smallScreenTestDiv" style="float:right;">
-					<h2 style="padding:10px;">'; $test->get_class_name(); echo ' - '; $test->get_test_number(); echo '</h2>
+					<h2 style="padding:10px;">'. $test->get_class_name() . ' - Test ' . $test->get_test_number() . '</h2>
 					<section id="testView">
 						<div id="test_content" align="left">
 							<div class="my-form-builder">

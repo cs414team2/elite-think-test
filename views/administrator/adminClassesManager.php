@@ -23,7 +23,7 @@ if (isset($_SESSION['credentials'])) {
 										<th>Course Id</th>
 										<th>Course Number</th>
 										<th>Course Name</th>
-										<th>Teacher Id</th>
+										<th>Teacher</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_classes">

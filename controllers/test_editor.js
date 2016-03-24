@@ -4,7 +4,9 @@ const ESSAY_QUESTION_TYPE           = 'ESSAY';
 const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
 const MAX_TEST_SIZE = 3;
 
-//*******************Functions****************************
+//****************************************************************
+//*                        Functions                             *
+//****************************************************************
 function load_questions() {
 	$.ajax({
 		url: "ajax/get_questions.php",
@@ -81,7 +83,7 @@ function add_question(question_type, question_text) {
 				$("#" + question_type).find("ul").append(question);
 				$("#" + question_type).show();
 				number_questions();
-				clear_question_fields(question_type);
+				clear_question_fields();
 				// Commented out to avoid focus on adding question
 				// $('html, body').animate({scrollTop: $("#" + question_type).height() }, 1);
 			}
@@ -90,107 +92,197 @@ function add_question(question_type, question_text) {
 
 }
 
-// Open a form to edit a question                                          ********* will setup a dialog thingy here***********
+// Open a form to edit a question
 function open_question_editor(question) {
 	var question_id   = question.id;
 	var question_type = question.getAttribute('data-question-type');
 	var question_text = $(question).find('.question_text').html();
 	var answers = [];
+	var answer_check_list = [ 'a', 'b', 'c', 'd'];
 	
-	/*replace button event on original method
-	$("#dlg_essay").dialog("open");
-	$("#btn_add_essay").unbind("click");
-	$("#btn_add_essay").click(function() {
-		edit_question(question_id, question_type, question_text, DEFAULT_QUESTION_WEIGHT, answers);
+	$(question).find(".answer").each(function(index){
+		answers[index] = { id : $(this).data("answer-id"),
+		                   content : $(this).html(),
+						   is_correct : $(this).data("is-correct")};
 	});
 	
-	/*custom with a bunch of code method*/
-	/*switch(question_type){
+	$("#dlg_" + question_type.toLowerCase()).data("question-id", question_id);
+	$("#dlg_" + question_type.toLowerCase()).dialog('option', 'show', {
+		effect: "size",
+		duration: 500
+	});
+	switch(question_type){
 		case TRUE_FALSE_QUESTION_TYPE:
-			break;
-		case MULTIPLE_CHOICE_QUESTION_TYPE:
-			break;
-		case ESSAY_QUESTION_TYPE:
-			answers[0] = $(question).find('.answer').html();
-			if (answers[0] == "--" || answers[0] == undefined)
-				answers[0] = "";
-			$("<div id='dlg_edit_essay' title='Edit Essay Question' style='background-color:white; text-align: center;'>" +
-					"<form>" + 
-						"<textarea id='txt_edit_question' rows='4' placeholder='Enter an Essay Question'" +
-						"	name='txt_edit_question' class='questionStyle'>" + question_text + "</textarea>" +
-						"<textarea id='txt_edit_essay_answer' rows='4' placeholder='Enter an Essay Question'" +
-						"	name='txt_edit_essay_answer' class='questionStyle'>" + (answers[0] == "--" ? "" : answers[0]) + "</textarea>" +
-						"<br />" +
-						"<p id='err_empty_question' style='display: none; color: red;'>"  +
-							"the question cannot be empty" +
-						"</p>" +
-						"<ul class='actions'>" +
-						"	<li><input id='btn_edit' type='button' value='Submit' class='button special' style='padding: 0 .5em; height: 2em; line-height: 0em;' " +
-								"onclick='edit_question(" + question_id + ", " + question_type + ")')/></li>" +
-						"	<li><input type='reset' value='Reset' class='alt button special reset' style='padding: 0 .5em; height: 2em; line-height: 0em;'/></li>" +
-						"</ul>" +
-					"</form>" +
-				"</div>").dialog({
-				modal: true,
-				width: 500,
-				show: {
-					effect: "size",
-					duration: 500
-				},
-				hide: {
-					effect: "size",
-					duration: 500
-				}
+			$("#txt_tfq_entry").val(html_special_chars_decode(question_text));
+			
+			$("#dlg_tf").data("answer-id", answers[0].id);
+			if (answers[0].content.substr(0, 1) == "T") {
+				$("#rb_answer_true").prop( "checked", true );
+			}
+			else {
+				$("#rb_answer_false").prop( "checked", true );
+			}
+		
+			$("#btn_add_tf").unbind("click");
+			$("#btn_add_tf").click(function() {
+				edit_question($("#dlg_tf").data("question-id"), TRUE_FALSE_QUESTION_TYPE);
 			});
 			break;
-	}*/
-	
-	/* clone method
-	$dialogy = $("#dlg_essay").clone();
-	$dialogy.find("input[type=button]").click(function(){
-		alert($dialogy.html());
-	});
-	$dialogy.dialog({
-		modal: true,
-		width: 500,
-		show: {
-			effect: "size",
-			duration: 500
-		},
-		hide: {
-			effect: "size",
-			duration: 500
-		}
-	});*/
+		case MULTIPLE_CHOICE_QUESTION_TYPE:
+			$("#txt_mcq_entry").val(html_special_chars_decode(question_text));
+			
+			$(".mc_answer").each(function(index){
+				$(this).data("answer-id", answers[index].id)
+				$(this).val(answers[index].content);
+				if (answers[index].is_correct == "Y")
+					$("#rb_is_answer_" + answer_check_list[index]).prop( "checked", true );
+			});
+		
+			$("#btn_add_mc").unbind("click");
+			$("#btn_add_mc").click(function() {
+				edit_question($("#dlg_mc").data("question-id"), MULTIPLE_CHOICE_QUESTION_TYPE);
+			});
+			break;
+		case ESSAY_QUESTION_TYPE:
+			if (answers[0].content == "(no description)")
+				answers[0].content = "";
+			$("#txt_eq_entry").val(html_special_chars_decode(question_text));
+
+			$("#txt_essay_answer").data("answer-id", answers[0].id);
+			$("#txt_essay_answer").val(answers[0].content);
+			
+			$("#btn_add_essay").unbind("click");
+			$("#btn_add_essay").click(function() {
+				edit_question($("#dlg_essay").data("question-id"), ESSAY_QUESTION_TYPE);
+			});
+			break;
+	}
+
+	$("#dlg_" + question_type.toLowerCase()).dialog("open");
 }
 
 function edit_question(question_id, question_type) {
-	var question_text   = $("#txt_edit_question").val();
+	var question_text;
 	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	var validated       = true;
-	
+	var answers         = [];
+
+	switch(question_type) {
+		case TRUE_FALSE_QUESTION_TYPE:
+			question_text = $("#txt_tfq_entry").val();
+			answers[0] = {answer_id : $("#dlg_tf").data("answer-id"),
+			              answer_text : $("#rb_answer_true").prop("checked") ? "T" : "F",
+						  is_correct : "Y"}
+			break;
+		case MULTIPLE_CHOICE_QUESTION_TYPE:
+			question_text = $("#txt_mcq_entry").val();
+			$(".mc_answer").each(function (index) {
+				var answer = $(this).val();
+				
+				if (jQuery.trim(answer).length <= 0) {
+					validated = false;
+					$(this).attr("placeholder", "Answer cannot be left blank.");
+				}
+				else {
+					answers[index] = { answer_id : $(this).data("answer-id"),
+					                   answer_text: answer,
+									   is_correct : false ? "Y" : "N"};
+				}
+			});
+			if (validated) {
+				$("[name='rb_is_answer']").each(function(index){
+					answers[index].is_correct = $(this).prop("checked") ? "Y" : "N";
+				});
+			}
+			break;
+		case ESSAY_QUESTION_TYPE:
+			question_text = $("#txt_eq_entry").val();
+			answers[0] = {answer_id : $("#txt_essay_answer").data("answer-id"),
+						  answer_text : $("#txt_essay_answer").val(),
+						  is_correct : "Y"}
+			break;
+		default:
+			validated = false;
+			break;
+	}
+
 	if (jQuery.trim(question_text).length <= 0) {
-		$("#err_empty_question").show();
+		$("#err_empty_tf").show();
+		$("#err_empty_mc").show();
+		$("#err_empty_eq").show();
 		validated = false;
 	}
 	
-	/*$.ajax({
-		url: 'ajax/edit_question.php',
-		data: {
-			question_id: question_id,
-			question_type: question_type,
-			question_text: question_text,
-			question_weight: question_weight
-			answers: answers
-		}
-	});*/
-	alert("edit question");
+	if (validated) {	
+		question_text = question_text.trim();
+		question_text = question_text[0].toUpperCase() + question_text.substr(1);
+		
+		$.ajax({
+			url: 'ajax/edit_question.php',
+			data: {
+				question_id: question_id,
+				question_type: question_type,
+				question_text: question_text,
+				question_weight: question_weight,
+				answers: answers
+			},
+			success : function(){
+				$("#" + question_id).find(".question_text").html(html_special_chars(question_text));
+				if (question_type == TRUE_FALSE_QUESTION_TYPE){
+					if (answers[0].answer_text == "T") {
+						$("#" + question_id).find(".true_answer").data("answer-id", answers[0].answer_id);
+						$("#" + question_id).find(".true_answer").css("color" , "#47CC7A");
+						$("#" + question_id).find(".true_answer").removeClass("answer").addClass("answer");
+						$("#" + question_id).find(".true_answer").html("True &#10004;");
+						
+						$("#" + question_id).find(".false_answer").removeData("answer-id");
+						$("#" + question_id).find(".false_answer").css("color" , "#CC1C11");
+						$("#" + question_id).find(".false_answer").removeClass("answer");
+						$("#" + question_id).find(".false_answer").html("False &#10006;");
+					}
+					else {
+						$("#" + question_id).find(".false_answer").data("answer-id", answers[0].answer_id);
+						$("#" + question_id).find(".false_answer").css("color" , "#47CC7A");
+						$("#" + question_id).find(".false_answer").removeClass("answer").addClass("answer");
+						$("#" + question_id).find(".false_answer").html("False &#10004;");
+						
+						$("#" + question_id).find(".true_answer").removeData("answer-id");
+						$("#" + question_id).find(".true_answer").css("color" , "#CC1C11");
+						$("#" + question_id).find(".true_answer").removeClass("answer");
+						$("#" + question_id).find(".true_answer").html("True &#10006;");
+					}
+				}
+				else {
+					$("#" + question_id).find(".answer").each(function(index){
+						if (answers[index].answer_text == "")
+							answers[index].answer_text = "(no description)";
+						
+						$(this).html(answers[index].answer_text);
+						
+						if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
+							if (answers[index].is_correct == "Y") {
+								$(this).data("is-correct", "Y");
+								$(this).parent().css('color', '#47CC7A');
+								$(this).parent().find('.symbol').html('&nbsp;&#10004;');
+							}
+							else {
+								$(this).data("is-correct", "N");
+								$(this).parent().css('color', '#CC1C11');
+								$(this).parent().find('.symbol').html('&nbsp;&#10006;');
+							}
+						}
+					});
+				}
+				$("#dlg_" + question_type.toLowerCase()).dialog("close");
+			}
+		});
+	}
 }
 
 function delete_question(question) {
 		var question_id = question.id;
 		
-		var section_thingy = question.parentElement;
+		var section = question.parentElement;
 		
 		$.ajax({
 		url: 'ajax/delete_question.php',
@@ -198,8 +290,8 @@ function delete_question(question) {
 		success: function(data) {
 			question.remove();
 			number_questions();
-			if ($(section_thingy).children().length == 0 )
-				$(section_thingy).hide();
+			if ($(section).children().length == 0 )
+				$("#" + question.getAttribute('data-question-type')).hide();
 		}
 	});
 }
@@ -222,26 +314,17 @@ function clear_error_messages() {
 	$("#err_empty_eq").hide();
 }
 
-function clear_question_fields(question_type) {
-	switch (question_type) {
-		case MULTIPLE_CHOICE_QUESTION_TYPE:
+function clear_question_fields() {
 			$("#txt_mcq_entry").val('');
 			$(".mc_answer").each(function(){
 				$(this).val('');
 				$(this).attr("placeholder", "");
 			});
-			break;
-		case TRUE_FALSE_QUESTION_TYPE:
 			$("#txt_tfq_entry").val('');
 			$("#rb_answer_true").prop('checked', true);
-			break;
-		case ESSAY_QUESTION_TYPE:
 			$("#txt_eq_entry").val('');
-			break;
-		default:
-			$(".questionStyle").val('');
-			break;
-	}
+			$("#txt_essay_answer").val('');
+
 }
 
 // Change the time limit for a test.
@@ -261,7 +344,33 @@ function update_time_info() {
 	});
 }
 
-//***********************Events************************
+// Strip HTML tags from a string.
+function html_special_chars(str) {
+	if (typeof(str) == "string") {
+		str = str.replace(/&/g, "&amp;");
+		str = str.replace(/"/g, "&quot;");
+		str = str.replace(/'/g, "&#039;");
+		str = str.replace(/</g, "&lt;");
+		str = str.replace(/>/g, "&gt;");
+	}
+	return str;
+}
+
+// Decode HTML character codes in a string.
+function html_special_chars_decode(str) {
+	if (typeof(str) == "string") {
+		str = str.replace(/&lt;/g, "<");
+		str = str.replace(/&gt;/g, ">");
+		str = str.replace(/&quot;/g, "\"");
+		str = str.replace(/&#039;/g, "'");
+		str = str.replace(/&amp;/g, "&");
+	}
+	return str;
+}
+
+//****************************************************************
+//*                          Events                              *
+//****************************************************************
 $(document).ready(function(){
 	var default_dialog = {
 		autoOpen: false,
@@ -276,6 +385,7 @@ $(document).ready(function(){
 			duration: 500
 		},
 		close: function() {
+			clear_question_fields();
 			clear_error_messages();
 		}
 	};
@@ -301,7 +411,7 @@ $(document).ready(function(){
 		
 	// Code to execute on Adding a TF Question
 	$('#btn_add_tf').click(function() {
-		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tf_entry").val());
+		add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
 	});
 	
 	// Code to execute on Adding a Multiple Choice Question
@@ -312,6 +422,12 @@ $(document).ready(function(){
 	// Code to execute on Adding an Essay Question
 	$('#btn_add_essay').click(function() {
 		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
+	});
+	
+	// Set the active date on a test to today.
+	$('#btn_submit').click(function(){
+		$( "#activeDatepicker" ).datepicker("setDate", new Date());
+		update_time_info();
 	});
 
 	// Remove the error message for a field as a user types in it
@@ -330,12 +446,42 @@ $(document).ready(function(){
 	
 	// Open a dialog box if a user clicks the open button.
 	$( "#btn_open_TFDialog" ).click(function() {
+		$("#dlg_tf").data("question-id", 0);
+		
+		
+		$("#dlg_tf").dialog('option', 'show', {
+			effect: "drop",
+			duration: 500
+		});
+		$("#btn_add_tf").unbind("click");
+		$("#btn_add_tf").click(function() {
+			add_question(TRUE_FALSE_QUESTION_TYPE, $("#txt_tfq_entry").val());
+		});
 		$( "#dlg_tf" ).dialog( "open" );
 	});	
 	$( "#btn_open_MCDialog" ).click(function() {
+		$("#dlg_mc").data("question-id", 0);
+		$(".mc_answer").each(function(){
+			$(this).data("answer-id", 0);
+		});
+		$("#dlg_mc").dialog('option', 'show', {
+			effect: "drop",
+			duration: 500
+		});
+		$("#btn_add_mc").unbind("click");
+		$("#btn_add_mc").click(function() {
+			add_question(MULTIPLE_CHOICE_QUESTION_TYPE, $("#txt_mcq_entry").val());
+		});
 		$( "#dlg_mc" ).dialog( "open" );
 	});
 	$( "#btn_open_EssayDialog" ).click(function() {
+		$("#dlg_essay").data("question-id", 0);
+		$("#txt_essay_answer").data("answer-id", 0);
+		
+		$("#dlg_essay").dialog('option', 'show', {
+			effect: "drop",
+			duration: 500
+		});
 		$("#btn_add_essay").unbind("click");
 		$("#btn_add_essay").click(function() {
 			add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
