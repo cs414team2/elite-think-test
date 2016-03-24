@@ -15,11 +15,17 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				<div class="container" style="text-align:center">
 					<section id="content" style"max-height:600px; text-align:center"">
 					<!-- Content -->
-					<h2> Add or Delete Students</h2>
+					<h4> Add or Delete Students</h4>
 						<div class="table-wrapper">
 							
 							<table class="sortable" >
 								<thead>
+									<tr>
+										<th style="text-align: center;"></th>
+										<th style="text-align: center;">ID</th>
+										<th style="text-align: center;">Last Name</th>
+										<th style="text-align: center;">First Name</th>
+									</tr>
 								</thead>
 								<tbody id="tbl_students">';
 									$admin = new Admin();
@@ -28,7 +34,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 							</table>
 					</section>	
 							<hr />
-							<h2> Change Class Instructor</h2>
+							<h4> Change Class Instructor</h4>
 							<select name="ddl_teachers" id="ddl_teachers" margin-bottom: 8px;>';
 								$admin = new Admin();
 								$admin->get_teacher_ddl($_REQUEST["id"]);

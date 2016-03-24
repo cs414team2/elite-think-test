@@ -27,6 +27,11 @@ if (isset($_SESSION['credentials'])) {
 							<br />	
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
+										
+										<p title="Current Classes" class="openTop openLeft blue" style="top:400px;left:650px;">
+											These are the classes that you are currently teaching.
+										</p>
+										
 										<thead>
 											<tr>
 												<th>Class #</th>
