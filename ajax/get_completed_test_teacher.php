@@ -5,6 +5,6 @@
 		//$test = new StudentTest($_REQUEST['student_id'], $_REQUEST['test_id']);
 		
 		//$test->get_test(Session::TEACHER);
-		echo 'hi everybody!';
+		echo 'Student ' . $_REQUEST['student_id'];
 	}
 ?>
