@@ -74,6 +74,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<p style="color:white;">
 							Active Date: 
 							<input type="text" style="color: black;" id="activeDatepicker">
+						<button id="btn_submit" class="show_hide button small" style="padding: 0 .5em; height: 2em; line-height: 0em; margin-top: 5px;" >Activate Now</button>
 						</p>
 						<p style="color:white;">
 							Date Due: 
@@ -83,7 +84,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						<br />
-						<button id="btn_submit" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" >Submit Test</button>
 						
 						
 					</section>
@@ -116,6 +116,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 									
 				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
 				<label for="rb_answer_false" class="questionLabel">False</label>
+				
+				<input type="number" id="txt_tf_weight" value="1">
+				<label for="txt_tf_weight">Weight</label>
 				<br /><br />
 				
 				<ul class="actions">
