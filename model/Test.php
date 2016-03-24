@@ -24,10 +24,10 @@ class Test{
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
 	
-	public function print_question($question_id, $question_text, $access_level, $question_type){
+	public function print_question($question_id, $question_text, $access_level, $question_type, $question_weight){
 		if($access_level == self::TEACHER){
 			echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "'>";
-			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span></div>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >".$question_weight."</span> Point(s)</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
 			echo "\r\n	    <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_question_editor(this.parentElement.parentElement)'>Edit</button>";
