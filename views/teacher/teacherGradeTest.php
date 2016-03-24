@@ -5,7 +5,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		$test = new Test($_REQUEST['test_id']);
 		
-		echo ' 
+		echo '
+			<script src="controllers/test_grader.js"></script>
 			<div class="testContainer">
 				<div id="sidebar" style="text-align:center">
 					

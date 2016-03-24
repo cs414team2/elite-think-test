@@ -83,7 +83,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
 						<br />
-						<button id="submitTest "class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" >Submit Test</button>
+						<button id="btn_submit" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" >Submit Test</button>
 						
 						
 					</section>
