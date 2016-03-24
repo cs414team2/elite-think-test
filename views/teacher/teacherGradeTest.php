@@ -7,6 +7,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		
 		echo '
 			<script src="controllers/test_grader.js"></script>
+			<script>
+				var test_id = '. $_REQUEST['test_id'] . ';
+			</script>
 			<div class="testContainer">
 				<div id="sidebar" style="text-align:center">
 					
@@ -22,12 +25,21 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div class="studentTest" style="float:right;">
 					<h2 style="padding:10px;">Test '. $test->get_test_number() . ' - ' . $test->get_class_name() . '</h2>
 					<section id="gradeView">
-						<div id="grade_content" style="display: none;">
-							<div class="my-form-builder" align="left">
-								<div class="loader">Loading...</div>
-							</div>
-							<br />
+						<div id="grade_content" class="my-form-builder" align="left" ';
+						if (isset($_REQUEST['student_id'])){
+							echo '>';
+							/*require_once('model/StudentTest');
+							$student_test = new StudentTest($_REQUEST['student_id'], $_REQUEST['test_id']);
+							$student_test->*/
+						}
+						else {
+							echo 'style="display: none;">
+							<div class="loader">Loading...</div>';
+						}
+						
+					echo '
 						</div>
+						<br />
 					</section>
 				</div>			
 
