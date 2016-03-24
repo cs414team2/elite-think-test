@@ -12,7 +12,7 @@
 		public function print_table($table) {
 			$this->table_name = $table;
 			$db = $this->prepare_connection();
-			$statement = $db->query("SELECT * FROM " . $table);
+			$statement = $db->query("SELECT * FROM " . $table . " ORDER BY ". $table ."_id DESC");
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
