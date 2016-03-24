@@ -1508,6 +1508,7 @@ span#countdown {
 	#slidingQ_1, #slidingQ_2, #slidingQ_3  {
 		display:none;
 	}
+	
 	/* Used for teacher test creation page test div */
 	.smallScreenTestDiv{
 		min-width: 100%;
