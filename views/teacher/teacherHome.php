@@ -16,14 +16,14 @@ if (isset($_SESSION['credentials'])) {
 			<div class="container">
 					
 				<!-- Content -->
-					<section style="text-align:center">
-						<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
-						<a class="show_hide" rel="#slidingDiv_2" >View Tests</a>
-						<a class="show_hide" rel="#slidingDiv_3" >Create Test</a><br />
-					</section>
-					
-					<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
-						<section id="viewClasses">
+				<section style="text-align:center">
+					<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
+					<a class="show_hide" rel="#slidingDiv_2" >View Tests</a>
+					<a class="show_hide" rel="#slidingDiv_3" >Create Test</a><br />
+				</section>
+				
+				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
+					<section id="viewClasses">
 						<div class="container1">
 							<br />	
 							<table class="alt sortable">
@@ -46,13 +46,12 @@ if (isset($_SESSION['credentials'])) {
 								</tbody>
 							</table>
 							<hr>				
-						
 						</div>
-						</section>
-					</div>
-					
-					<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;"> 	
-						<section id="viewTest">
+					</section>
+				</div>
+				
+				<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;"> 	
+					<section id="viewTest">
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->
 							<br />
@@ -96,20 +95,20 @@ if (isset($_SESSION['credentials'])) {
 							</table>
 							<hr>			
 						</div>
-						</section>
-					</div>
-					
-					<div id="slidingDiv_3" class="toggleDiv" style="display:none;">
-						<br />
-						<h4 style="text-align: center;">Please Select the Class...</h4>
-						<select name="Class" id="ddl_classes" style="text-align: center;">
-							<option selected="selected" value="null">- Classes -</option>
-						</select>
-						<br />
-						<section style="text-align: center;">
-							<button id="btn_create_test" class="button big">Create this test</button>
-						</section>
-					</div>
+					</section>
+				</div>
+				
+				<div id="slidingDiv_3" class="toggleDiv" style="display:none;">
+					<br />
+					<h4 style="text-align: center;">Please Select the Class...</h4>
+					<select name="Class" id="ddl_classes" style="text-align: center;">
+						<option selected="selected" value="null">- Classes -</option>
+					</select>
+					<br />
+					<section style="text-align: center;">
+						<button id="btn_create_test" class="button big">Create this test</button>
+					</section>
+				</div>
 					
 					
 					
