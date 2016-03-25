@@ -25,11 +25,11 @@ function load_questions() {
 }
 
 function add_question(question_type, question_text) {
-	var question_weight = DEFAULT_QUESTION_WEIGHT;
+	var question_weight = parseInt($("#txt_" + question_type.toLowerCase() + "_weight").val());
 	var answers         = [];
 	var validated       = true;
 		
-	if (jQuery.trim(question_text).length <= 0) {
+	if (jQuery.trim(question_text).length <= 0 || !(question_weight > 0)) {
 		$("#err_empty_tf").show();
 		$("#err_empty_mc").show();
 		$("#err_empty_eq").show();
@@ -97,13 +97,14 @@ function open_question_editor(question) {
 	var question_id   = question.id;
 	var question_type = question.getAttribute('data-question-type');
 	var question_text = $(question).find('.question_text').html();
+	var question_weight = $(question).find('.question_weight').text();
 	var answers = [];
 	var answer_check_list = [ 'a', 'b', 'c', 'd'];
 	
 	$(question).find(".answer").each(function(index){
 		answers[index] = { id : $(this).data("answer-id"),
 		                   content : $(this).html(),
-						   is_correct : $(this).data("is-correct")};
+						       is_correct : $(this).data("is-correct")};
 	});
 	
 	$("#dlg_" + question_type.toLowerCase()).data("question-id", question_id);
@@ -122,6 +123,7 @@ function open_question_editor(question) {
 			else {
 				$("#rb_answer_false").prop( "checked", true );
 			}
+			$("#txt_tf_weight").val(question_weight);
 		
 			$("#btn_add_tf").unbind("click");
 			$("#btn_add_tf").click(function() {
@@ -137,6 +139,7 @@ function open_question_editor(question) {
 				if (answers[index].is_correct == "Y")
 					$("#rb_is_answer_" + answer_check_list[index]).prop( "checked", true );
 			});
+			$("#txt_mc_weight").val(question_weight);
 		
 			$("#btn_add_mc").unbind("click");
 			$("#btn_add_mc").click(function() {
@@ -150,6 +153,7 @@ function open_question_editor(question) {
 
 			$("#txt_essay_answer").data("answer-id", answers[0].id);
 			$("#txt_essay_answer").val(html_special_chars_decode(answers[0].content));
+			$("#txt_essay_weight").val(question_weight);
 			
 			$("#btn_add_essay").unbind("click");
 			$("#btn_add_essay").click(function() {
@@ -163,7 +167,7 @@ function open_question_editor(question) {
 
 function edit_question(question_id, question_type) {
 	var question_text;
-	var question_weight = DEFAULT_QUESTION_WEIGHT;
+	var question_weight;
 	var validated       = true;
 	var answers         = [];
 
@@ -173,6 +177,7 @@ function edit_question(question_id, question_type) {
 			answers[0] = {answer_id : $("#dlg_tf").data("answer-id"),
 			              answer_text : $("#rb_answer_true").prop("checked") ? "T" : "F",
 						  is_correct : "Y"}
+			question_weight = $("#txt_tf_weight").val();
 			break;
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			question_text = $("#txt_mcq_entry").val();
@@ -194,19 +199,21 @@ function edit_question(question_id, question_type) {
 					answers[index].is_correct = $(this).prop("checked") ? "Y" : "N";
 				});
 			}
+			question_weight = $("#txt_mc_weight").val();
 			break;
 		case ESSAY_QUESTION_TYPE:
 			question_text = $("#txt_eq_entry").val();
 			answers[0] = {answer_id : $("#txt_essay_answer").data("answer-id"),
 						  answer_text : $("#txt_essay_answer").val(),
 						  is_correct : "Y"}
+			question_weight = $("#txt_essay_weight").val();
 			break;
 		default:
 			validated = false;
 			break;
 	}
 
-	if (jQuery.trim(question_text).length <= 0) {
+	if (jQuery.trim(question_text).length <= 0 || !(question_weight > 0)) {
 		$("#err_empty_tf").show();
 		$("#err_empty_mc").show();
 		$("#err_empty_eq").show();
@@ -228,6 +235,7 @@ function edit_question(question_id, question_type) {
 			},
 			success : function(){
 				$("#" + question_id).find(".question_text").html(html_special_chars(question_text));
+				$("#" + question_id).find(".question_weight").html(question_weight);
 				if (question_type == TRUE_FALSE_QUESTION_TYPE){
 					if (answers[0].answer_text == "T") {
 						$("#" + question_id).find(".true_answer").data("answer-id", answers[0].answer_id);
@@ -324,6 +332,7 @@ function clear_question_fields() {
 			$("#rb_answer_true").prop('checked', true);
 			$("#txt_eq_entry").val('');
 			$("#txt_essay_answer").val('');
+			$(".weight_entry").val(1);
 
 }
 
@@ -392,6 +401,13 @@ $(document).ready(function(){
 	
 	load_questions();
 	
+	// Prevent negatives from being input
+	$('input[type="number"]').keydown(function(event){
+		
+		if(event.keyCode == 109 || event.keyCode == 189 )
+			event.preventDefault();
+	});
+	
 	// Set the Dialog boxes and transition effects
 	$( "#dlg_tf" ).dialog(default_dialog);
 	$( "#dlg_mc" ).dialog(default_dialog);
@@ -425,7 +441,7 @@ $(document).ready(function(){
 	});
 	
 	// Set the active date on a test to today.
-	$('#btn_submit').click(function(){
+	$('#btn_activate').click(function(){
 		$( "#activeDatepicker" ).datepicker("setDate", new Date());
 		update_time_info();
 	});
@@ -439,6 +455,9 @@ $(document).ready(function(){
 	});
 	$("#txt_eq_entry").keypress(function(){
 		$("#err_empty_eq").hide();
+	});
+	$(".weight_entry").keypress(function(){
+		clear_error_messages();
 	});
 	
 	// Code to Reset all error messages on button reset

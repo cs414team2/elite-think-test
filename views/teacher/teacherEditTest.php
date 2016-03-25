@@ -74,7 +74,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<p style="color:white;">
 							Active Date: 
 							<input type="text" style="color: black;" id="activeDatepicker">
-						<button id="btn_submit" class="show_hide button small" style="padding: 0 .5em; height: 2em; line-height: 0em; margin-top: 5px;" >Activate Now</button>
+						<button id="btn_activate" class="show_hide button small" style="padding: 0 .5em; height: 2em; line-height: 0em; margin-top: 5px;" >Activate Now</button>
 						</p>
 						<p style="color:white;">
 							Date Due: 
@@ -106,20 +106,20 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<form>
 				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
-				<p id="err_empty_tf" style="display: none; color: red;">
-					Please fill in a question...
-				</p>
 				<br />
-				
 				<input type="radio" id="rb_answer_true" name="rb_answer_tf" checked>
 				<label for="rb_answer_true" class="questionLabel">True</label>
 									
 				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
 				<label for="rb_answer_false" class="questionLabel">False</label>
-				
-				<input type="number" id="txt_tf_weight" value="1">
-				<label for="txt_tf_weight">Weight</label>
-				<br /><br />
+				<br />
+				<input type="number" id="txt_tf_weight" value="1" min="1" class="weight_entry">
+				<label for="txt_tf_weight">Point(s)</label>
+				<br />
+				<p id="err_empty_tf" style="display: none; color: red;">
+					Please fill in all fields...
+				</p>
+				<br />
 				
 				<ul class="actions">
 					<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
@@ -156,7 +156,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
 				<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
 				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
-				<br/><br />
+				<br/>
+				<input type="number" id="txt_mc_weight" value="1" min="1" class="weight_entry">
+				<label for="txt_mc_weight">Point(s)</label>
+				<br />
 				<p id="err_empty_mc" style="display: none; color: red;">
 					Please fill in all fields...
 				</p>
@@ -172,8 +175,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<textarea id="txt_essay_answer" rows="4" placeholder="Enter an answer"
 				name="txt_essay_answer" class="questionStyle"></textarea>
 				<br />
+				<input type="number" id="txt_essay_weight" value="1" min="1" class="weight_entry">
+				<label for="txt_essay_weight">Point(s)</label>
+				<br />
 				<p id="err_empty_eq" style="display: none; color: red;">
-					Please fill in a question...
+					Please fill in all fields...
 				</p>
 				<ul class="actions">
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>

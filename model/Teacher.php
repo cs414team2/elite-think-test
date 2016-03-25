@@ -19,7 +19,7 @@
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $class_id . "'>";
+					echo "<tr " . "id='" . $class_id . "' class='clickable_row editable_class'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
 					echo "</tr>\r\n";

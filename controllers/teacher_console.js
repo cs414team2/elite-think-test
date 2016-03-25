@@ -6,7 +6,11 @@ function open_edit_page(test_id) {
 
 // Load all test and class lists
 function load_tests_and_classes() {
-	$("#tbl_classes").load("ajax/get_classes_for_teacher.php?user_id=" + user_id);
+	$("#tbl_classes").load("ajax/get_classes_for_teacher.php?user_id=" + user_id, function(){
+		$(".editable_class").click(function(){
+			window.location = "./?action=teacher_course_info&class_id=" + $(this).attr('id');
+		});
+	});
 	$("#tbl_active_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){
 		$('.gradeable_test').click(function(){
 			window.location = "./?action=teacher_grade_test&test_id=" + $(this).attr('id');
