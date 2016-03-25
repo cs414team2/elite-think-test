@@ -22,22 +22,23 @@ if (isset($_SESSION['credentials'])) {
 				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 					<section id="viewClassesStudent">
 						<div class="container1">
-
-									<table class="alt sortable">
-										<thead>
-											<tr>
-												<th>Course ID</th>
-												<th>Course Name</th>
-											</tr>
-										</thead>
-										<tbody id="tbl_classes">
-											<tr>
-												<td colspan="2" style="text-align: center">
-													Loading Classes...
-												</td>
-											</tr>
-										</tbody>
-									</table>								
+							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Enrolled Classes</caption>
+							<caption><i>Select a Class to View Test Grades</i></caption>
+								<thead>
+									<tr>
+										<th>Course ID</th>
+										<th>Course Name</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_classes">
+									<tr>
+										<td colspan="2" style="text-align: center">
+											Loading Classes...
+										</td>
+									</tr>
+								</tbody>
+							</table>								
 						</div>
 				
 					</section>
@@ -47,8 +48,9 @@ if (isset($_SESSION['credentials'])) {
 				
 					<section id="viewGradeStudent">
 						<div class="container1">
-
 							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Need To Complete</caption>
+							<caption><i>Select a Test When You Are Ready</i></caption>
 								<thead>
 									<tr>
 										<th>Class #</th>

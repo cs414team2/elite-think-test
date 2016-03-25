@@ -28,6 +28,7 @@ if (isset($_SESSION['credentials'])) {
 							<br />	
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>	
+							<caption><i>Select to View Class Information and Averages</i></caption>
 								<thead>
 									<tr>
 										<th>Course #</th>
@@ -57,6 +58,7 @@ if (isset($_SESSION['credentials'])) {
 							<br />
 							<table class="alt sortable" style="display: inline; max-width: 50%; ">
 							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
+							<caption><i>Select to Grade Submitted Tests</i></caption>	
 								<thead>
 									<tr>
 										<th>Test</th>
@@ -76,6 +78,7 @@ if (isset($_SESSION['credentials'])) {
 							<!-- View Tests > Right - Existing Tests -->
 							<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
 							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
+							<caption><i>Select to Edit Saved Drafts</i></caption>
 								<thead>
 									<tr>
 										<th>Test</th>
