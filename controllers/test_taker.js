@@ -25,6 +25,7 @@ function check_status() {
 			switch(status){
 				case TEST_NOT_STARTED:
 					$("#btn_start").removeAttr("disabled");
+					$("#btn_start").show();
 					$("#btn_complete").attr("disabled", "disabled");
 					break;
 				case TEST_STARTED:
@@ -32,6 +33,7 @@ function check_status() {
 					break;
 				case TEST_SUBMITTED:
 					$("#btn_start").attr("disabled", "disabled");
+					$("#btn_start").hide();
 					$("#btn_complete").attr("disabled", "disabled");
 					break;
 				case TEST_TIMED_OUT:
@@ -127,6 +129,7 @@ function submit_answers() {
 
 function disable_test () {
 	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_start").hide();
 	$("#btn_complete").removeAttr("disabled");
 	$(".answer").prop('disabled', true);
 	$(".studentEssayQuestion").prop('disabled', true);
@@ -135,6 +138,7 @@ function disable_test () {
 
 function submit_pledge() {
 	$("#btn_start").attr("disabled", "disabled");
+	$("#btn_start").hide();
 	$("#btn_complete").attr("disabled", "disabled");
 	$.ajax({
 		url : "ajax/submit_pledge.php",
