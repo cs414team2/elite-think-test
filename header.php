@@ -14,7 +14,7 @@
 					// Display's the user's name in the header
 					if (isset($_SESSION["credentials"]))
 					{
-						echo "<h1 style='text-shadow: none;'>Hello, Dave</h1>";//.$_SESSION["credentials"]->get_user_name()."</h1>";
+						echo "<h1 style='text-shadow: none;'>Hello, ".$_SESSION["credentials"]->get_first_name()."</h1>";
 						
 						switch($_SESSION["credentials"]->get_access_level()) {
 							case Session::ADMINISTRATOR:

@@ -70,7 +70,7 @@ $(document).ready(function(){
 					window.scroll(0,0);
 				}
 			});
-			
+			$( "#dlg_teacher" ).dialog( "close" );
 		}
 	})
 	
@@ -87,4 +87,23 @@ $(document).ready(function(){
 	$("#email").keypress(function(){
 		$("#err_email").hide();
 	});
+	
+	// Open a dialog box if a user clicks the open button.
+	$( "#dlg_teacher" ).dialog({
+      autoOpen: false,
+	  modal: true,
+	  width: 600,
+      show: {
+        effect: "fold",
+		duration: 500
+      },
+      hide: {
+        effect: "size",
+		duration: 500
+      }
+    });
+ 
+    $( "#btn_open_teacherDialog" ).click(function() {
+	  $( "#dlg_teacher" ).dialog( "open" );
+    });
 });
