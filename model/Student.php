@@ -95,7 +95,7 @@
 						}
 						else if($test_status == self::TEST_EXPIRED)
 							echo "<td style='font-weight:bold;'>Expired: Please Sign Pledge</td>";
-						echo "<td>" . $question_count . "</td>";
+						echo "<td style='text-align:center;'>" . $question_count . "</td>";
 					}
 				}
 				else{
@@ -104,7 +104,7 @@
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
 					echo "<td>Test " . $test_number . "</td>";
-					echo "<td>" . $date_due . "</td>";
+					echo "<td>" . date('n/j/y', strtotime($date_due)) . "</td>";
 					if($time_limit > 0)
 						echo "<td>" . $time_limit . " Minute(s)</td>";
 					else

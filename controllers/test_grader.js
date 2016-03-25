@@ -15,7 +15,7 @@ $(document).ready(function(){
 				student_id : $(this).data('student-id'),
 				test_id : test_id
 			},
-			success : function(test){
+			success : function(test) {
 				$("#grade_content").html(test);
 			}
 		});
