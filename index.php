@@ -94,6 +94,11 @@
 						require_once('views/administrator/adminEditTeacher.php');
 						$load_footer = false;
 						break;	
+						
+					case "teacher_course_info":
+						require_once('views/teacher/teacherCourseInfo.php');
+						$load_footer = false;
+						break;		
 
 					case "logout": 
 						unset($_SESSION["credentials"]);
