@@ -18,8 +18,10 @@ if (isset($_SESSION['credentials'], $_REQUEST["class_id"])) {
 				<h1>Class Letter Grades</h1>
 				<div style="font-color: black; border-style:solid; border-style: solid; border-color:black; border-width: 0.25em;">A: 12 &nbsp&nbsp B: 14 &nbsp&nbsp C:15 &nbsp&nbsp D: 6 &nbsp&nbsp F: 2</div>
 				<br /><br />
+				<h1>Class Average</h1>
 				<div style="border-style:solid; border-style: solid; border-color:black; border-width: 0.25em;">This is a div</div>
 				<br /><br />
+				<h1>Most missed Questions</h1>
 				<div style="border-style:solid; border-style: solid; border-color:black; border-width: 0.25em;">This is a div</div>
 				<br /><br />
 				<div style="border-style:solid; border-style: solid; border-color:black; border-width: 0.25em;">This is a div</div>
