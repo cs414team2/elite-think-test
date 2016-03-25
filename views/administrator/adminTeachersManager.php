@@ -13,7 +13,7 @@ if (isset($_SESSION['credentials'])) {
 			<div class="container">	
 				<!-- Content -->
 				<section id="content">
-					<h4 style="display:inline-block;">Click a Teacher to view assigned Classes</h4>
+					<h4 style="display:inline-block;">&#9699;&nbspClick a Teacher to view assigned Classes</h4>
 					<button id="btn_open_teacherDialog" class="show_hide" style="display:inline-block; float: right;">Add a Teacher</button>
 					<br /><br />
 					<input type="checkbox" id="copy" name="copy">
