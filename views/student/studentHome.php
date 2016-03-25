@@ -101,7 +101,7 @@ if (isset($_SESSION['credentials'])) {
 										<tr>
 											<th>Test</th>
 											<th>Class</th>
-											<th>Grade</th>
+											<th>Grade</th>  
 										</tr>
 									</thead>
 									<tbody id="tbl_graded_tests">
