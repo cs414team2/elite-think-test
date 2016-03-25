@@ -30,8 +30,10 @@ if (isset($_SESSION['credentials'])) {
 							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>	
 								<thead>
 									<tr>
-										<th>Class #</th>
-										<th>Class Name</th>
+										<th>Course #</th>
+										<th>Course Name</th>
+										<th># of Students</th>
+										<th>Course Average</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_classes">
