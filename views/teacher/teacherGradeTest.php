@@ -25,16 +25,18 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div class="studentTest" style="float:right;">
 					<h2 style="padding:10px;">Test '. $test->get_test_number() . ' - ' . $test->get_class_name() . '</h2>
 					<section id="gradeView">
-						<div id="grade_content" class="my-form-builder" align="left" ';
+						<div id="grade_content" align="left" ';
 						if (isset($_REQUEST['student_id'])){
 							echo '>';
 							require_once('model/StudentTest.php');
-							$student_test = new StudentTest($_REQUEST['student_id'], $_REQUEST['test_id']);
+							$student_test = new StudentTest($_REQUEST['test_id'], $_REQUEST['student_id']);
 							$student_test->print_test(Test::TEACHER);
 						}
 						else {
 							echo 'style="display: none;">
-							<div class="loader">Loading...</div>';
+							<div class="my-form-builder">
+								<div class="loader">Loading...</div>
+							</div>';
 						}
 						
 					echo '
