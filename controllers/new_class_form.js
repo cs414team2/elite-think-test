@@ -62,7 +62,7 @@ $(document).ready(function(){
 					window.scroll(0,0);
 				}
 			});
-			
+			$( "#dlg_course" ).dialog( "close" );
 		}
 		
 	});
@@ -74,4 +74,23 @@ $(document).ready(function(){
 	$("#courseNumber").keypress(function(){
 		$("#add_course_number_err").hide();
 	});
+	
+	// Open a dialog box if a user clicks the open button.
+	$( "#dlg_course" ).dialog({
+      autoOpen: false,
+	  modal: true,
+	  width: 600,
+      show: {
+        effect: "fold",
+		duration: 500
+      },
+      hide: {
+        effect: "size",
+		duration: 500
+      }
+    });
+ 
+    $( "#btn_open_courseDialog" ).click(function() {
+	  $( "#dlg_course" ).dialog( "open" );
+    });
 });

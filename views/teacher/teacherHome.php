@@ -7,6 +7,7 @@ if (isset($_SESSION['credentials'])) {
 			var user_id = '. $_SESSION['credentials']->get_user_id() .
 		';</script>
 		<script src="controllers/teacher_console.js"></script>
+
 		<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Home </h2>
@@ -26,20 +27,20 @@ if (isset($_SESSION['credentials'])) {
 						<div class="container1">
 							<br />	
 							<table class="alt sortable">
-							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
-										<thead>
-											<tr>
-												<th>Class #</th>
-												<th>Class Name</th>
-											</tr>
-										</thead>
-										<tbody id="tbl_classes">
-											<tr>
-												<td>
-													Loading Classes...
-												</td>
-											</tr>
-										</tbody>
+							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>	
+								<thead>
+									<tr>
+										<th>Class #</th>
+										<th>Class Name</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_classes">
+									<tr>
+										<td>
+											Loading Classes...
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							<hr>				
 						
@@ -47,7 +48,7 @@ if (isset($_SESSION['credentials'])) {
 						</section>
 					</div>
 					
-					<div id="slidingDiv_2" class="toggleDiv" style="display:none; "> 	
+					<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;"> 	
 						<section id="viewTest">
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->

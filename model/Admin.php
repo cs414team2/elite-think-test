@@ -12,7 +12,9 @@
 		// Prints out a table of teacher information
 		public function get_teachers() {
 			$db = $this->prepare_connection();
-			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname FROM teacher");
+			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname 
+			                         FROM teacher
+									 ORDER BY teacher_id DESC");
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
@@ -29,7 +31,6 @@
 		// Prints out a drop down list of teachers and selects the one teaching a given class.
 		public function get_teacher_ddl($class_id) {
 			$db = $this->prepare_connection();
-			
 			
 			$class_statement = $db->prepare("SELECT teacher_id FROM class WHERE class_id = ?");
 			$class_statement->bind_param("i", $class_id);

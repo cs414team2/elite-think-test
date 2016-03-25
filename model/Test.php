@@ -1,7 +1,7 @@
 <?php
 class Test{
 	const CORRECT                       = 'Y';     // Signifies that a question is correct
-	const INCORRECT                     = 'N';     // Signifies that a qusetion is correct
+	const INCORRECT                     = 'N';     // Signifies that a question is incorrect
 	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 	const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 	const ESSAY_QUESTION_TYPE           = 'ESSAY';
@@ -12,12 +12,10 @@ class Test{
 	const STUDENT                       = 3;
 	const DATE_IS_SET                   = 1;
 	
-	private $alphabet;
 	private $test_id;
 	private $db;
 	
 	public function __construct($test_id){
-		$this->alphabet = range('a', 'z');
 		$this->test_id = $test_id;
 		$this->db = $this->prepare_connection();
 	}
@@ -252,7 +250,7 @@ class Test{
 		if($statement->num_rows > 0){
 			while($statement->fetch()){
 				echo'<div class="gradeTestDiv">
-						<h1>'. $student_lname .', '. $student_fname .'<button class="alt button special reset gradeTestButton" >Grade</button><h1>
+						<h1>'. $student_lname .', '. $student_fname .'<button id='. $student_test_id .'class="alt button special reset gradeTestButton" data-student-id="'.$student_id.' >Grade</button><h1>
 					 </div>';
 			}
 		}

@@ -85,6 +85,7 @@ $(document).ready(function(){
 					window.scroll(0,0);
 				}
 			});
+			$( "#dlg_student" ).dialog( "close" );
 		}
 	})
 	
@@ -101,4 +102,24 @@ $(document).ready(function(){
 	$("#emailAddress").keypress(function(){
 		$("#add_email_err").hide();
 	});
+	
+	// Open a dialog box if a user clicks the open button.
+	$( "#dlg_student" ).dialog({
+      autoOpen: false,
+	  modal: true,
+	  width: 600,
+      show: {
+        effect: "fold",
+		duration: 500
+      },
+      hide: {
+        effect: "size",
+		duration: 500
+      }
+    });
+ 
+    $( "#btn_open_studentDialog" ).click(function() {
+	  $( "#dlg_student" ).dialog( "open" );
+    });
+	
 });

@@ -4,7 +4,9 @@ const ESSAY_QUESTION_TYPE           = 'ESSAY';
 const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
 const MAX_TEST_SIZE = 3;
 
-//*******************Functions****************************
+//****************************************************************
+//*                        Functions                             *
+//****************************************************************
 function load_questions() {
 	$.ajax({
 		url: "ajax/get_questions.php",
@@ -131,7 +133,7 @@ function open_question_editor(question) {
 			
 			$(".mc_answer").each(function(index){
 				$(this).data("answer-id", answers[index].id)
-				$(this).val(answers[index].content);
+				$(this).val(html_special_chars_decode(answers[index].content));
 				if (answers[index].is_correct == "Y")
 					$("#rb_is_answer_" + answer_check_list[index]).prop( "checked", true );
 			});
@@ -147,7 +149,7 @@ function open_question_editor(question) {
 			$("#txt_eq_entry").val(html_special_chars_decode(question_text));
 
 			$("#txt_essay_answer").data("answer-id", answers[0].id);
-			$("#txt_essay_answer").val(answers[0].content);
+			$("#txt_essay_answer").val(html_special_chars_decode(answers[0].content));
 			
 			$("#btn_add_essay").unbind("click");
 			$("#btn_add_essay").click(function() {
@@ -255,7 +257,7 @@ function edit_question(question_id, question_type) {
 						if (answers[index].answer_text == "")
 							answers[index].answer_text = "(no description)";
 						
-						$(this).html(answers[index].answer_text);
+						$(this).html(html_special_chars(answers[index].answer_text));
 						
 						if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
 							if (answers[index].is_correct == "Y") {
@@ -366,7 +368,9 @@ function html_special_chars_decode(str) {
 	return str;
 }
 
-//***********************Events************************
+//****************************************************************
+//*                          Events                              *
+//****************************************************************
 $(document).ready(function(){
 	var default_dialog = {
 		autoOpen: false,
@@ -418,6 +422,12 @@ $(document).ready(function(){
 	// Code to execute on Adding an Essay Question
 	$('#btn_add_essay').click(function() {
 		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
+	});
+	
+	// Set the active date on a test to today.
+	$('#btn_submit').click(function(){
+		$( "#activeDatepicker" ).datepicker("setDate", new Date());
+		update_time_info();
 	});
 
 	// Remove the error message for a field as a user types in it
