@@ -28,9 +28,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<div id="grade_content" class="my-form-builder" align="left" ';
 						if (isset($_REQUEST['student_id'])){
 							echo '>';
-							/*require_once('model/StudentTest');
+							require_once('model/StudentTest.php');
 							$student_test = new StudentTest($_REQUEST['student_id'], $_REQUEST['test_id']);
-							$student_test->*/
+							$student_test->print_test(Test::TEACHER);
 						}
 						else {
 							echo 'style="display: none;">
