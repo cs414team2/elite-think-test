@@ -15,40 +15,43 @@ if (isset($_SESSION['credentials'])) {
 				<!-- Content -->
 				<section style="text-align:center">
 					<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
-					<a class="show_hide" rel="#slidingDiv_2" >Take a Test</a><br />
+					<a class="show_hide" rel="#slidingDiv_2" >Take a Test</a>
+					<a class="show_hide" rel="#slidingDiv_3" >View Tests</a><br />
 				</section>
-				
 				
 				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
 					<section id="viewClassesStudent">
 						<div class="container1">
-
-									<table class="alt sortable">
-										<thead>
-											<tr>
-												<th>Course ID</th>
-												<th>Course Name</th>
-											</tr>
-										</thead>
-										<tbody id="tbl_classes">
-											<tr>
-												<td colspan="2" style="text-align: center">
-													Loading Classes...
-												</td>
-											</tr>
-										</tbody>
-									</table>								
+							<br />
+							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Enrolled Classes</caption>
+							<caption><i>Select a Class to View All Tests</i></caption>
+								<thead>
+									<tr>
+										<th>Course ID</th>
+										<th>Course Name</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_classes">
+									<tr>
+										<td colspan="2" style="text-align: center">
+											Loading Classes...
+										</td>
+									</tr>
+								</tbody>
+							</table>								
 						</div>
 				
 					</section>
 				</div>
 				
 				<div id="slidingDiv_2" class="toggleDiv" style="display:none"> 	
-				
 					<section id="viewGradeStudent">
 						<div class="container1">
-
+							<br />
 							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Need To Complete</caption>
+							<caption><i>Select a Test When You Are Ready</i></caption>
 								<thead>
 									<tr>
 										<th>Class #</th>
@@ -69,6 +72,48 @@ if (isset($_SESSION['credentials'])) {
 								</tbody>
 							</table>										
 
+						</div>
+					</section>
+				</div>		
+				<div id="slidingDiv_3" class="toggleDiv" style="display:none; text-align: center;"> 	
+					<section id="viewTestStudent">
+						<div class="container1">
+							<br />
+							<table class="alt sortable" style="display: inline; max-width: 50%; ">
+								<caption style="font-weight: bold; text-decoration: underline;">Ungraded Tests</caption>
+									<thead>
+										<tr>
+											<th>Test</th>
+											<th>Class</th>
+										</tr>
+									</thead>
+									<tbody id="tbl_tests">
+										<tr>
+											<td>
+												Loading Tests...
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<!-- View Tests > Right - Existing Tests -->
+								<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
+								<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
+									<thead>
+										<tr>
+											<th>Test</th>
+											<th>Class</th>
+											<th>Grade</th>  
+										</tr>
+									</thead>
+									<tbody id="tbl_graded_tests">
+										<tr>
+											<td>
+												Loading Tests...
+											</td>
+										</tr>
+									</tbody>
+								</table>
 						</div>
 					</section>
 				</div>					
