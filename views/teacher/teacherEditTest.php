@@ -113,7 +113,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="radio" id="rb_answer_false" name="rb_answer_tf" >
 				<label for="rb_answer_false" class="questionLabel">False</label>
 				<br />
-				<input type="number" id="txt_tf_weight" value="1" min="1" class="weight_entry">
+				<br />
+				<input type="number" id="txt_tf_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
 				<label for="txt_tf_weight">Point(s)</label>
 				<br />
 				<p id="err_empty_tf" style="display: none; color: red;">
@@ -157,8 +158,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
 				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
 				<br/>
-				<input type="number" id="txt_mc_weight" value="1" min="1" class="weight_entry">
+				<br />
+				<input type="number" id="txt_mc_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
 				<label for="txt_mc_weight">Point(s)</label>
+				<br />
 				<br />
 				<p id="err_empty_mc" style="display: none; color: red;">
 					Please fill in all fields...
@@ -175,8 +178,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<textarea id="txt_essay_answer" rows="4" placeholder="Enter an answer"
 				name="txt_essay_answer" class="questionStyle"></textarea>
 				<br />
-				<input type="number" id="txt_essay_weight" value="1" min="1" class="weight_entry">
+				<input type="number" id="txt_essay_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
 				<label for="txt_essay_weight">Point(s)</label>
+				<br />
 				<br />
 				<p id="err_empty_eq" style="display: none; color: red;">
 					Please fill in all fields...
