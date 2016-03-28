@@ -7,10 +7,10 @@ if (isset($_SESSION['credentials'])) {
 			<script src="controllers/toggle_active.js"></script>
 			<script src="controllers/new_teacher_form.js"></script>
 			<section id="main" class="wrapper style1">
-			<header class="major">
-				<h2>Teacher Manager</h2>
-			</header>
-			<div class="container">	
+				<header class="major">
+					<h2>Teacher Manager</h2>
+				</header>
+				<div class="container">	
 				<!-- Content -->
 				<section id="content">
 					<h4 style="display:inline-block;">&#9699;&nbspClick a Teacher to view assigned Classes</h4>
@@ -69,7 +69,7 @@ if (isset($_SESSION['credentials'])) {
 				
 				</form>
 				<br />
-				<button id="btn_add" class="button special big">Submit</button>			
+				<button id="btn_save" class="button special big">Submit</button>			
 			</div>
 		</section>';
 	}
