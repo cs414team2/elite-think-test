@@ -149,7 +149,7 @@
 					<td>". $student_lname ."</td>
 					<td>". $student_email ."</td>
 					<td>". $student_password ."</td>
-				 </td>";
+				</tr>";
 		}
 	}
 ?>

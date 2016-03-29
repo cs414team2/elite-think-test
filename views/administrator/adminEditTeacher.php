@@ -16,14 +16,16 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				<div class="container" >	
 					<!-- Content -->
 					<section>
-						<section style="display: inline-block; max-width: 50%;">
-							<select name="teacher" id="teacherSelection" style="display: inline-block; max-width: 55%;">
-								<option selected="selected" value="null">- Select Teacher -</option>
-							</select>
+						<section style="display: inline-block;">
+							<select name="teacher" id="teacherSelection" style="display: inline-block;">';
+							$admin = new Admin();
+							$admin->get_teacher_ddl($_REQUEST["id"]);
+					  echo '</select>
 							
-							<button class="big button special" style=" height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em; float:right">Select</button>
+							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em;">Edit This Teacher</button>
 						</section>
 						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="height: 2em; line-height: 0em; display:inline-block; float: right;">Edit Teacher Info</button>
+						<hr />
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Teacher Information</caption>
 							<thead>
@@ -36,17 +38,13 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 								</tr>
 							</thead>
 							<tbody>
-							 <tbody id="tbl_teacher_info">
-								<tr>
-									<td colspan="5" style="text-align: center;">
-										<div class="loader">Loading...</div>
-									</td>
-								</tr>
-							</tbody>
+							<tbody>';
+							 $teacher->get_full_teacher_info($_REQUEST["id"]);
+					  echo '</tbody>
 						</table>		
-						
-						<table class="alt" id="content" style="display: inline; max-width: 50%;">
-							<caption style="font-weight: bold; text-decoration: underline;">Enrolled Classes</caption>
+						<hr />
+						<table class="alt" id="content">
+							<caption style="font-weight: bold; text-decoration: underline;">Assigned Classes</caption>
 							<thead>
 								<tr>
 									<th>Course #</th>
