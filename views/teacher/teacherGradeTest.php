@@ -20,9 +20,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					echo	'</section>
 
 					</section>
-					<br /><br /><br />
+					<br /><br />
 					<section id="test_guide" style="padding:1em; min-height:50px; margin-left:2em; margin-right:2em; background-color:lightgray; ">
-						<p> <= - No answer given <br \> &Check - Correct answer given <br \> x - wrong answer given </p>
+					<h1> Grading Symbols </h1>
+						<p> <= - Student gave no answer <br \> &#10003; - Student gave correct answer  <br \> x - student gave wrong answer </p>
 						
 					
 					</section>
