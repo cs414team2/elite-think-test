@@ -14,8 +14,8 @@ if(isset($_SESSION["logon_failed"])) {
 <section id="one" name="one" class="wrapper style1">
 	<div class="container">
 		<header class="major">
-			<img src="images/eliteicon.png" width="200" height="230" alt="elite logo"/>
-			<h2>EliteThink</h2>
+			<img src="images/eliteicon.png" width="20%" height="25%" alt="elite logo"/>
+			<h3>EliteThink</h3>
 			<form method="post" action="redirect.php">
 				<h3>User name:</h3>
 				<input id="usernameEntry" type="text" name="username" autofocus>
@@ -27,6 +27,7 @@ if(isset($_SESSION["logon_failed"])) {
 				<br />
 				<br />
 				<p id="logon_fail_message" style="display:none; color: red;">Incorrect username or password.</p>
+				<br />
 				<br />
 				<br />
 				<br />
@@ -54,13 +55,13 @@ if(isset($_SESSION["logon_failed"])) {
 			<div class="4u$ 6u(2) 12u$(3)">
 				<section class="feature fa-save">
 					<h4>Save Your Work</h4>
-					<p>Your account is accessible on most devices. Log in from around the world!</p>
+					<p>Your account is accessible on most devices and browsers. Log in at any time!</p>
 				</section>
 			</div>
 			<div class="4u 6u$(2) 12u$(3)">
 				<section class="feature fa-desktop">
 					<h4>On-line Instructions</h4>
-					<p>Simple online services keep the style as simple as possible.</p>
+					<p>Simple online services keep the style as simple and usable as possible.</p>
 				</section>
 			</div>
 			<div class="4u 6u(2) 12u$(3)">

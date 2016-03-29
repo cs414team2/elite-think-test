@@ -45,4 +45,23 @@ $(document).ready(function() {
 	$("#btn_create_test").click(function(){
 		create_test();
 	})
+	
+	// Open a dialog box if a user clicks the open button.
+	$( "#dlg_test_stats" ).dialog({
+      autoOpen: false,
+	  modal: true,
+	  width: 600,
+      show: {
+        effect: "highlight",
+		duration: 500
+      },
+      hide: {
+        effect: "puff",
+		duration: 500
+      }
+    });
+ 
+    $( "#btn_open_stats_dialog" ).click(function() {
+	  $( "#dlg_test_stats" ).dialog( "open" );
+    });
 })

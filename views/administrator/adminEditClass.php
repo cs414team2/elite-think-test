@@ -1,7 +1,9 @@
 <?php
 include('model/Admin.php');
+include('model/Course.php');
 if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 	if ($_SESSION['credentials']->is_admin()) {
+		$course = new course($_REQUEST["id"]);
 		echo '
 		<script src="controllers/class_editor.js"></script>
 		<script>
@@ -9,7 +11,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 		</script>
 		<section id="main" class="wrapper style1">
 			<header class="major">
-				<h2 id="courseName">Place course Name here</h2>
+				<h2 id="courseName">'. $course->get_class_number() . ' - ' . $course->get_class_name() . '</h2>
 			</header>
 			
 			<div class="container">
@@ -22,7 +24,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				<h4 style="display:inline-block; float: left; margin-top: 10px;">Instructor:&nbsp&nbsp&nbsp</h4>
 				<select name="ddl_teachers" id="ddl_teachers" style="width: 240px; display:inline-block;">';
 					$admin = new Admin();
-					$admin->get_teachers($_REQUEST["id"]);
+					$admin->get_teacher_ddl($_REQUEST["id"]);
 		  echo '</select>
 				<br /><br />
 				<div class="table-wrapper">
