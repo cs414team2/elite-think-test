@@ -60,8 +60,8 @@
 			
 			// Decide whether to load active or inactive tables;
 			if($is_active)
-				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name 
-			                               FROM teacher_active_tests
+				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
+			                               FROM teacher_active_tests_and_stats
 			                               WHERE teacher_id = ?") or die($db->error);
 			else
 				$statement = $db->prepare("SELECT test_id, test_number, date_active, class_name
@@ -72,8 +72,11 @@
 			$statement->bind_param("i", $user_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($test_id, $test_number, $date_due, $class_name);
-			
+			if($is_active)
+				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests);
+			else
+				$statement->bind_result($test_id, $test_number, $date_due, $class_name);
+
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
 					echo "<tr " . "id='" . $test_id . "' class='clickable_row ";
@@ -84,6 +87,8 @@
 					echo "'><td>Test " . $test_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
 					echo "<td>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					echo ($is_active ? ("<td>". $completed ." / ". $total_tests ."</td>") : null);
+					// Put Stats TD Here!!!!!
 					echo "</tr>\r\n";
 				}
 			}
