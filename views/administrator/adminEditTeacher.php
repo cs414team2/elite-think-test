@@ -19,7 +19,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 						<section style="display: inline-block;">
 							<select name="teacher" id="teacherSelection" style="display: inline-block;">';
 							$admin = new Admin();
-							$admin->get_teacher_ddl($_REQUEST["id"]);
+							$admin->get_teachers($_REQUEST["id"]);
 					  echo '</select>
 							
 							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em;">Edit This Teacher</button>
