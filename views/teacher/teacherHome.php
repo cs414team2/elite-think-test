@@ -56,6 +56,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->
 							<br />
+							
 							<table class="alt sortable" style="display: inline; max-width: 50%; ">
 							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
 							<caption><i>Select to Grade Submitted Tests</i></caption>
@@ -76,8 +77,6 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</tbody>
 							</table>
-							
-							<a id="btn_open_stats_dialog" style="height: 2em; line-height: 0em; cursor: help;">Stats</a>
 							
 							<!-- View Tests > Right - Existing Tests -->
 							<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
