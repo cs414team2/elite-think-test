@@ -109,21 +109,48 @@ function start_test(first_time) {
 function submit_answers() {
 	var test = [];
 	var question_count = 0;
+	var answer_count   = 0;
 	
-	$(".answer:checked").each(function(index){
-		test[question_count++] = { question_id : $(this).attr('name'),
-			                       answer_given : $(this).val()}
+	$('#' + MULTIPLE_CHOICE_QUESTION_TYPE).find(".the_question").each(function(i, question) {
+		$(question).find(".answer:checked").each(function(){
+			answer_count++;
+			test[question_count++] = { question_id : $(this).attr('name'),
+			                          answer_given : $(this).val()}
+		});
+		if (answer_count == 0) {
+			test[question_count++] = { question_id : $(this).attr('id'),
+			                          answer_given : 'null',
+											 question_type : MULTIPLE_CHOICE_QUESTION_TYPE }
+		}
+		answer_count = 0;
+	});
+	$('#' + TRUE_FALSE_QUESTION_TYPE).find(".the_question").each(function(i, question) {
+		$(question).find(".answer:checked").each(function(){
+			answer_count++;
+			test[question_count++] = { question_id : $(this).attr('name'),
+			                          answer_given : $(this).val(),
+											 question_type : TRUE_FALSE_QUESTION_TYPE}
+		});
+		if (answer_count == 0) {
+			test[question_count++] = { question_id : $(this).attr('id'),
+			                          answer_given : 'null',
+											 question_type : TRUE_FALSE_QUESTION_TYPE }
+		}
+		answer_count = 0;
 	});
 	
 	$(".studentEssayQuestion").each(function(index){
 		test[question_count++] = { question_id : $(this).attr('name'),
-			                       answer_given : $(this).val()}
+			                       answer_given : $(this).val(),
+										 question_type : ESSAY_QUESTION_TYPE }
 	});
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
 		data: { test : test,
-		        student_id : student_id }
+		        student_id : student_id },
+		success: function(data) {
+		}
 	});
 }
 

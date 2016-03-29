@@ -18,7 +18,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<section id="studentTest" style="max-height:600px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">';
 								$test->get_completed_tests();
 					echo	'</section>
-
+				<button id="btn_finalize_grade">Finalize</button>
 					</section>
 					<br /><br />
 					<section id="test_guide" style="padding:1em; min-height:50px; margin-left:2em; margin-right:2em; background-color:lightgray; ">
