@@ -131,5 +131,17 @@
 			
 			echo $student_lname . ", " . $student_fname . " (" . $student_id . ")";
 		}
+		
+		public function get_full_student_info($student_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT *
+			                           FROM   student
+									   WHERE  student_id = ?") or die($db->error);
+			$statement->bind_param("i", $student_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($student);
+			$statement->fetch();
+		}
 	}
 ?>
