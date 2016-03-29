@@ -70,7 +70,7 @@ $(document).ready(function(){
 	  modal: true,
 	  width: 600,
       show: {
-        effect: "fold",
+        effect: "size",
 		duration: 500
       },
       hide: {

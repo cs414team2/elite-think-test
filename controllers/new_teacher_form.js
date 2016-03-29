@@ -1,6 +1,16 @@
 //***************Functions********************
 function loadTeachers() {
 	$("#tbl_teachers").load("ajax/get_table.php?table=teacher", function(){
+		$('.teacher_record, .Y').click(function(){
+			var teacher_id = $(this).attr('id');
+			window.location = 'index.php?action=admin_edit_teacher&id=' + teacher_id;
+		});
+		
+		$('.teacher_record, .N').click(function(){
+			var teacher_id = $(this).attr('id');
+			window.location = 'index.php?action=admin_edit_teacher&id=' + teacher_id;
+		});
+		
 		$(".N").hide();
 	});
 }

@@ -95,5 +95,39 @@
 				echo "</tr>";
 			}
 		}
+		// Displays the Teacher's name
+		public function get_teacher_info($teacher_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT teacher_fname, teacher_lname
+									   FROM   teacher
+									   WHERE  teacher_id = ?") or die($db->error);
+			$statement->bind_param("i", $teacher_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($teacher_fname, $teacher_lname);
+			$statement->fetch();
+			
+			echo $teacher_lname . ", " . $teacher_fname . " (" . $teacher_id . ")";
+		}
+		
+		public function get_full_teacher_info($teacher_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT teacher_id, teacher_fname, teacher_lname, teacher_email, teacher_password
+			                           FROM   teacher
+									   WHERE  teacher_id = ?") or die($db->error);
+			$statement->bind_param("i", $teacher_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($teacher_id, $teacher_fname, $teacher_lname, $teacher_email, $teacher_password);
+			$statement->fetch();
+			
+			echo "<tr>
+					<td>". $teacher_id ." </td>
+					<td>". $teacher_fname ."</td>
+					<td>". $teacher_lname ."</td>
+					<td>". $teacher_email ."</td>
+					<td>". $teacher_password ."</td>
+				</tr>";
+		}
 	}
 ?>

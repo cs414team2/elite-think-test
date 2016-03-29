@@ -131,5 +131,25 @@
 			
 			echo $student_lname . ", " . $student_fname . " (" . $student_id . ")";
 		}
+		
+		public function get_full_student_info($student_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT student_id, student_fname, student_lname, student_email, student_password
+			                           FROM   student
+									   WHERE  student_id = ?") or die($db->error);
+			$statement->bind_param("i", $student_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($student_id, $student_fname, $student_lname, $student_email, $student_password);
+			$statement->fetch();
+			
+			echo "<tr>
+					<td>". $student_id ." </td>
+					<td>". $student_fname ."</td>
+					<td>". $student_lname ."</td>
+					<td>". $student_email ."</td>
+					<td>". $student_password ."</td>
+				</tr>";
+		}
 	}
 ?>
