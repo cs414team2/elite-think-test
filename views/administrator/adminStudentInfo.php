@@ -17,6 +17,13 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container" >	
 					<!-- Content -->
 					<section>
+						<section style="display: inline-block; max-width: 50%;">
+							<select name="student" id="studentSelection" style="display: inline-block; max-width: 50%;">
+								<option selected="selected" value="null">- Select a Student -</option>
+							</select>
+							
+							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; float:right">Select</button>
+						</section>
 						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="display:inline-block; float: right;">Edit Student Info</button>
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Student Information</caption>
