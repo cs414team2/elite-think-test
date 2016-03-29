@@ -17,10 +17,11 @@ if (isset($_SESSION['credentials'])) {
 					<!-- Content -->
 					<section>
 						<section style="display: inline-block;">
-							<select name="student" id="studentSelection" style="display: inline-block;">
-								<option selected="selected" value="null">- Select Another Student -</option>
-							</select>
-							
+							<select name="student" id="studentSelection" style="display: inline-block;">';
+								$admin = new Admin();
+								$admin->get_students_ddl($_REQUEST["id"]);
+					  echo '</select>
+							<br />
 							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em;">Edit This Student</button>
 						</section>
 						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="height: 2em; line-height: 0em; display:inline-block; float: right;">Edit Student Info</button>
@@ -38,7 +39,7 @@ if (isset($_SESSION['credentials'])) {
 							</thead>
 							<tbody>
 							 <tbody>';
-							 $student->get_full_student_info($_REQUEST["id"]);
+								$student->get_full_student_info($_REQUEST["id"]);
 					  echo '</tbody>
 						</table>		
 						<hr />
@@ -51,7 +52,7 @@ if (isset($_SESSION['credentials'])) {
 								</tr>
 							</thead>
 							<tbody>';
-							 $student->print_classes($_REQUEST["id"]);
+								$student->print_classes($_REQUEST["id"]);
 					  echo '</tbody>
 						</table>				
 						

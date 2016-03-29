@@ -18,10 +18,10 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 					<section>
 						<section style="display: inline-block;">
 							<select name="teacher" id="teacherSelection" style="display: inline-block;">';
-							$admin = new Admin();
-							$admin->get_teachers($_REQUEST["id"]);
+								$admin = new Admin();
+								$admin->get_teachers_ddl_for_teacher($_REQUEST["id"]);
 					  echo '</select>
-							
+							<br />
 							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em;">Edit This Teacher</button>
 						</section>
 						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="height: 2em; line-height: 0em; display:inline-block; float: right;">Edit Teacher Info</button>
@@ -39,7 +39,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 							</thead>
 							<tbody>
 							<tbody>';
-							 $teacher->get_full_teacher_info($_REQUEST["id"]);
+								$teacher->get_full_teacher_info($_REQUEST["id"]);
 					  echo '</tbody>
 						</table>		
 						<hr />
@@ -52,7 +52,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 								</tr>
 							</thead>
 							<tbody>';
-							 $teacher->print_classes($_REQUEST["id"]);
+								$teacher->print_classes($_REQUEST["id"]);
 					  echo '</tbody>
 						</table>
 					</section>

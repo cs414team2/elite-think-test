@@ -21,8 +21,8 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				
 				<h4 style="display:inline-block; float: left; margin-top: 10px;">Instructor:&nbsp&nbsp&nbsp</h4>
 				<select name="ddl_teachers" id="ddl_teachers" style="width: 240px; display:inline-block;">';
-							$admin = new Admin();
-							$admin->get_teachers($_REQUEST["id"]);
+					$admin = new Admin();
+					$admin->get_teachers($_REQUEST["id"]);
 		  echo '</select>
 				<br /><br />
 				<div class="table-wrapper">
