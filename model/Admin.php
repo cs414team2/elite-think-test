@@ -9,7 +9,7 @@
 			return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 		}
 
-		// Prints out a table of teacher information
+		// Prints out a ddl of teacher information
 		public function get_teachers() {
 			$db = $this->prepare_connection();
 			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname 
@@ -28,7 +28,7 @@
 			}
 		}
 		
-		// Prints out a table of teacher information
+		// Prints out a ddl of teacher information and displays selected one
 		public function get_teachers_ddl_for_teacher($teacher_id) {
 			$db = $this->prepare_connection();
 			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname 
