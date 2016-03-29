@@ -10,7 +10,7 @@
 		}
 
 		// Prints out a table of teacher information
-		public function get_teachers() {
+		public function get_teachers($teacher_id) {
 			$db = $this->prepare_connection();
 			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname 
 			                         FROM teacher
@@ -18,7 +18,7 @@
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
-					echo "<option " . "value='" . $record['teacher_id'] . "'>";
+					echo "<option " . "value='" . $record['teacher_id'] . "'"($teacher_id == $record['teacher_id']? "selected" : " ")">";
 					echo $record['teacher_id'] . " &nbsp;&nbsp;" . $record['teacher_lname'] . ", " . $record['teacher_fname'];
 					echo "</option>\r\n";
 				}
