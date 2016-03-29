@@ -148,8 +148,8 @@
 					<td>". $student_fname ."</td>
 					<td>". $student_lname ."</td>
 					<td>". $student_email ."</td>
-					<td>". $student_password ."</td>"
-				"</td>";
+					<td>". $student_password ."</td>
+				</tr>";
 		}
 	}
 ?>

@@ -28,6 +28,44 @@
 			}
 		}
 		
+		// Prints out a table of teacher information
+		public function get_teachers_ddl_for_teacher($teacher_id) {
+			$db = $this->prepare_connection();
+			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname 
+			                         FROM teacher
+									 ORDER BY teacher_id DESC");
+			
+			if($statement->num_rows > 0){
+				while($record = $statement->fetch_assoc()){
+					echo "<option " . "value='" . $record['teacher_id'] . "'" . ($teacher_id == $record['teacher_id']? "selected" : " ") . ">";
+					echo $record['teacher_id'] . " &nbsp;&nbsp;" . $record['teacher_lname'] . ", " . $record['teacher_fname'];
+					echo "</option>\r\n";
+				}
+			}
+			else{
+				echo "<tr> <td> No Teachers </td> </tr>";
+			}
+		}
+		
+		// Prints out a ddl of student information
+		public function get_students_ddl($student_id) {
+			$db = $this->prepare_connection();
+			$statement = $db->query("SELECT student_id, student_lname, student_fname 
+			                         FROM student
+									 ORDER BY student_id DESC");
+			
+			if($statement->num_rows > 0){
+				while($record = $statement->fetch_assoc()){
+					echo "<option " . "value='" . $record['student_id'] . "'" . ($student_id == $record['student_id']? "selected" : " ") . ">";
+					echo $record['student_id'] . " &nbsp;&nbsp;" . $record['student_lname'] . ", " . $record['student_fname'];
+					echo "</option>\r\n";
+				}
+			}
+			else{
+				echo "<tr> <td> No Students </td> </tr>";
+			}
+		}
+		
 		// Prints out a drop down list of teachers and selects the one teaching a given class.
 		public function get_teacher_ddl($class_id) {
 			$db = $this->prepare_connection();
