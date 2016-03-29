@@ -19,7 +19,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 								$test->get_completed_tests();
 					echo	'</section>
 
-					</section>	
+					</section>
+					<br /><br /><br />
+					<section id="test_guide" style="padding:1em; min-height:50px; margin-left:2em; margin-right:2em; background-color:lightgray; ">
+						<p> <= - No answer given <br \> &Check - Correct answer given <br \> x - wrong answer given </p>
+						
+					
+					</section>
+						
 				</div>		
 		
 				<div class="studentTest" style="float:right;">
