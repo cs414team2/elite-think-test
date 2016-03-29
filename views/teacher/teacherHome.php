@@ -3,7 +3,8 @@ require_once('model/Teacher.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_teacher()) {
 		echo '
-			<script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script>
 			var user_id = '. $_SESSION['credentials']->get_user_id() .
 		';</script>
 		<script src="controllers/teacher_console.js"></script>
@@ -55,14 +56,17 @@ if (isset($_SESSION['credentials'])) {
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->
 							<br />
+							
 							<table class="alt sortable" style="display: inline; max-width: 50%; ">
 							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
-							<caption><i>Select to Grade Submitted Tests</i></caption>	
+							<caption><i>Select to Grade Submitted Tests</i></caption>
 								<thead>
 									<tr>
 										<th>Test</th>
 										<th>Class</th>
 										<th>Due Date</th>
+										<th>Complete</th>
+										<th>Stats</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_active_tests">
@@ -108,11 +112,12 @@ if (isset($_SESSION['credentials'])) {
 					<section style="text-align: center;">
 						<button id="btn_create_test" class="button big">Create this test</button>
 					</section>
-				</div>
-					
-					
-					
-					
+				</div>	
+			</div>
+			
+			<!-- Test Statistics div -->
+			<div id="dlg_test_stats" title="Test Statistics" style="text-align: center;">	
+				<h2>Hey smexy</h2>			
 			</div>
 		</section>';
 	}

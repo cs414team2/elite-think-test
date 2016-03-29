@@ -60,8 +60,8 @@
 			
 			// Decide whether to load active or inactive tables;
 			if($is_active)
-				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name 
-			                               FROM teacher_active_tests
+				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
+			                               FROM teacher_active_tests_and_stats
 			                               WHERE teacher_id = ?") or die($db->error);
 			else
 				$statement = $db->prepare("SELECT test_id, test_number, date_active, class_name
@@ -72,18 +72,21 @@
 			$statement->bind_param("i", $user_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($test_id, $test_number, $date_due, $class_name);
-			
+			if($is_active)
+				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests);
+			else
+				$statement->bind_result($test_id, $test_number, $date_due, $class_name);
+
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' class='clickable_row ";
-					if (!$is_active)
-						echo "editable_test";
-					else
-						echo "gradeable_test";
-					echo "'><td>Test " . $test_number . "</td>";
-					echo "<td>" . $class_name . "</td>";
-					echo "<td>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
+					$col_class = ($is_active ? "gradeable_test" : "editable_test");
+					echo "<td class='". $col_class ."'>Test " . $test_number . "</td>";
+					echo "<td class='". $col_class ."'>" . $class_name . "</td>";
+					echo "<td class='". $col_class ."'>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					echo ($is_active ? ("<td class='". $col_class ."'>". $completed ." / ". $total_tests ."</td>") : null);
+					if($is_active)
+						echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog' style='cursor: help;'></td>";
 					echo "</tr>\r\n";
 				}
 			}
