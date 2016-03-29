@@ -1099,7 +1099,7 @@ span#countdown {
 		.wrapper.style1 {
 			/* Comment this out to change login background div */
 			/* background: #84C2CC; */
-			/* background: linear-gradient(#F00, #000); */
+			/* background: linear-gradient(#84C2CC, #000); */
 		}
 
 			.wrapper.style1 .box {
@@ -1490,7 +1490,7 @@ span#countdown {
 		top:0; bottom:0; left:0;
 		min-width: 25%;
 		height: 500px;
-		background-image: url("../images/texture.jpg");
+		background: linear-gradient(#84C2CC, #000); 
 	}
 	.my-form-builder {
 		border:5px ridge #646464;
