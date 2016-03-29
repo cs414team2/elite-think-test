@@ -34,8 +34,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 							
 								
 								
-								<h4 style="color:white;">Put the progress here</h4>
-								
+								<progress id="test_progress" max="100" value="0" style="color:white;"></progress>
+								<br \><br \>
 								<button id="btn_complete" class="show_hide button small fit" disabled>Complete Test</button>		
 						</section>	
 					</div>
