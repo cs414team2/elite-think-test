@@ -95,5 +95,19 @@
 				echo "</tr>";
 			}
 		}
+		// Displays the Teacher's name
+		public function get_teacher_info($teacher_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT teacher_fname, teacher_lname
+									   FROM   teacher
+									   WHERE  teacher_id = ?") or die($db->error);
+			$statement->bind_param("i", $teacher_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($teacher_fname, $teacher_lname);
+			$statement->fetch();
+			
+			echo $teacher_lname . ", " . $teacher_fname . " (" . $teacher_id . ")";
+		}
 	}
 ?>
