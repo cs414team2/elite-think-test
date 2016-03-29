@@ -8,23 +8,22 @@ if (isset($_SESSION['credentials'])) {
 			<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 			<script src="controllers/edit_student_form.js"></script>
 			
-			
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2 id="courseName">'; $student->get_student_info($_REQUEST["id"]); echo '</h2>
+					<h2 id="studentName">'; $student->get_student_info($_REQUEST["id"]); echo '</h2>
 				</header>
 				
 				<div class="container" >	
 					<!-- Content -->
 					<section>
 						<section style="display: inline-block; max-width: 50%;">
-							<select name="student" id="studentSelection" style="display: inline-block; max-width: 50%;">
-								<option selected="selected" value="null">- Select a Student -</option>
+							<select name="student" id="studentSelection" style="display: inline-block; max-width: 55%;">
+								<option selected="selected" value="null">- Select Student -</option>
 							</select>
 							
-							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; float:right">Select</button>
+							<button class="big button special" style=" height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em; float:right">Select</button>
 						</section>
-						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="display:inline-block; float: right;">Edit Student Info</button>
+						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="height: 2em; line-height: 0em; display:inline-block; float: right;">Edit Student Info</button>
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Student Information</caption>
 							<thead>
@@ -64,7 +63,7 @@ if (isset($_SESSION['credentials'])) {
 								<option selected="selected" value="null">- Select a class -</option>
 							</select>
 							<br />
-							<button class="big button special" style="float:right" onclick="confirm(Does this Work?)">Enroll Student</button>
+							<button class="big button special" style="height: 2em; line-height: 0em; float:right" onclick="confirm(Does this Work?)">Enroll Student</button>
 						</section>
 					</section>
 				</div>	
