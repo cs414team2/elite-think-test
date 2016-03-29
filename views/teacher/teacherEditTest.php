@@ -83,6 +83,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_TFDialog"class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
+						<button id="btn_open_MatchDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Matching</button>
 						<br />
 						
 						
@@ -170,7 +171,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
 		</div>
-		
 		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
@@ -189,6 +189,44 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 					<li><input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
 				</ul>
+			</form>
+		</div>
+		<div id="dlg_match" title="Matching Section Entry" style="background-color:white; text-align: center;">
+			<form>
+				<textarea id="txt_matchq_entry" rows="2" placeholder="Enter a Matching Section Description"
+					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px;"></textarea>
+				<div style="display: inline-block; max-width: 50%;">
+					<div id="area_matching_questions">
+					</div>
+					<input id="txt_match_question" type="text"/>
+					<input id="btn_insert_match_question" type="button" class="button special" value="Add Question" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+					<p id="err_empty_match_question" style="display: none; color: red;">
+						Please enter a question...
+					</p>
+					<p id="err_unlinked_match_question" style="display: none; color: red;">
+						Each question must link to an answer...
+					</p>
+				</div>
+				<div style="display: inline-block; max-width: 50%;">
+					<div id="area_matching_answers">
+					</div>
+					<input id="txt_match_answer" type="text"/>
+					<input id="btn_insert_match_answer" type="button" class="button special" value="Add Answer" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+					<p id="err_empty_match_answer" style="display: none; color: red;">
+						Please enter an answer...
+					</p>
+				</div>
+				<br/>
+				<br />
+				<input type="number" id="txt_match_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
+				<label for="txt_match_weight">Point(s)</label>
+				<br />
+				<br />
+				<p id="err_empty_match" style="display: none; color: red;">
+					Please fill in all fields...
+				</p>
+				<input id="btn_add_match_section" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
 		</div>
 	

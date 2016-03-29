@@ -1,8 +1,11 @@
 const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 const ESSAY_QUESTION_TYPE           = 'ESSAY';
-const DEFAULT_QUESTION_WEIGHT = 1; // Should change this after we add ability to set a specific weight.
+const MATCHING_QUESTION_TYPE        = 'MATCH';
+const DEFAULT_QUESTION_WEIGHT = 1;
 const MAX_TEST_SIZE = 3;
+
+var unique_id = 0;
 
 //****************************************************************
 //*                        Functions                             *
@@ -70,7 +73,7 @@ function add_question(question_type, question_text) {
 	}
 	
 	if(validated){
-		$.ajax({
+	$.ajax({
 			url: 'ajax/add_question.php',
 			data: { 
 				test_id: test_id,
@@ -84,12 +87,41 @@ function add_question(question_type, question_text) {
 				$("#" + question_type).show();
 				number_questions();
 				clear_question_fields();
-				// Commented out to avoid focus on adding question
-				// $('html, body').animate({scrollTop: $("#" + question_type).height() }, 1);
 			}
 		});
 	}
 
+}
+
+function add_matching_section() {
+	
+}
+
+function insert_matching_question() {
+	$("#area_matching_questions").append(
+		
+	);
+}
+
+function insert_matching_answer() {
+	var answer = $("#txt_match_answer").val();
+	var validated = true;
+	if (jQuery.trim(answer).length <= 0) {
+		validated = false;
+		$("#err_empty_match_answer").show();
+	}
+	
+	if (validated) {
+		$("#area_matching_answers").append(
+			"<div class='new_match_answer' data-answer-id='" + get_new_uuid() + "'><span>"
+			+ answer
+			+ "</span><span onclick='remove_matching_answer(this.parentElement)'> &#128465;</span></div>"
+		);
+	}
+}
+
+function remove_matching_answer(answer) {
+	answer.remove();
 }
 
 // Open a form to edit a question
@@ -289,7 +321,6 @@ function edit_question(question_id, question_type) {
 
 function delete_question(question) {
 		var question_id = question.id;
-		
 		var section = question.parentElement;
 		
 		$.ajax({
@@ -320,20 +351,32 @@ function clear_error_messages() {
 	$("#err_empty_tf").hide();
 	$("#err_empty_mc").hide();
 	$("#err_empty_eq").hide();
+	$("#err_empty_match").hide();
+	$("#err_empty_match_question").hide();
+	$("#err_unlinked_match_question").hide();
+	$("#err_empty_match_answer").hide();
 }
 
 function clear_question_fields() {
-			$("#txt_mcq_entry").val('');
-			$(".mc_answer").each(function(){
-				$(this).val('');
-				$(this).attr("placeholder", "");
-			});
-			$("#txt_tfq_entry").val('');
-			$("#rb_answer_true").prop('checked', true);
-			$("#txt_eq_entry").val('');
-			$("#txt_essay_answer").val('');
-			$(".weight_entry").val(1);
-
+	$("#txt_mcq_entry").val('');
+	$(".mc_answer").each(function(){
+		$(this).val('');
+		$(this).attr("placeholder", "");
+	});
+	
+	$("#txt_tfq_entry").val('');
+	$("#rb_answer_true").prop('checked', true);
+	
+	$("#txt_eq_entry").val('');
+	$("#txt_essay_answer").val('');
+	
+	$("#txt_matchq_entry").val('');
+	$("#area_matching_questions").html('');
+	$("#area_matching_answers").html('');
+	$("#txt_match_question").val('');
+	$("#txt_match_answer").val('');
+	
+	$(".weight_entry").val(DEFAULT_QUESTION_WEIGHT);
 }
 
 // Change the time limit for a test.
@@ -377,6 +420,11 @@ function html_special_chars_decode(str) {
 	return str;
 }
 
+// Get a unique id.
+function get_new_uuid() {
+	return unique_id++;
+}
+
 //****************************************************************
 //*                          Events                              *
 //****************************************************************
@@ -412,7 +460,9 @@ $(document).ready(function(){
 	$( "#dlg_tf" ).dialog(default_dialog);
 	$( "#dlg_mc" ).dialog(default_dialog);
 	$( "#dlg_mc" ).dialog( "option", "width", 600 );
-	$( "#dlg_essay" ).dialog(default_dialog);	
+	$( "#dlg_essay" ).dialog(default_dialog);
+	$( "#dlg_match" ).dialog(default_dialog);
+	$( "#dlg_match" ).dialog( "option", "width", 800 );
 	
 	$("#txt_time_limit").on('input', function () {
 		if ($(this).val().length > 4) {
@@ -440,6 +490,20 @@ $(document).ready(function(){
 		add_question(ESSAY_QUESTION_TYPE, $("#txt_eq_entry").val());
 	});
 	
+	// Add a Matching Section
+	$('#btn_add_match_section').click(function() {
+		add_matching_section();
+	});
+	
+	// Add a matching question
+	$("#btn_insert_match_question").click(function(){
+		insert_matching_question();
+	});
+	// Add a matching answer
+	$("#btn_insert_match_answer").click(function(){
+		insert_matching_answer();
+	});
+	
 	// Set the active date on a test to today.
 	$('#btn_activate').click(function(){
 		$( "#activeDatepicker" ).datepicker("setDate", new Date());
@@ -455,6 +519,16 @@ $(document).ready(function(){
 	});
 	$("#txt_eq_entry").keypress(function(){
 		$("#err_empty_eq").hide();
+	});
+	$("#txt_matchq_entry").keypress(function(){
+		$("#err_empty_match").hide();
+	});
+	$("#txt_match_question").keypress(function(){
+		$("#err_empty_match_question").hide();
+		$("#err_unlinked_match_question").hide();
+	});
+	$("#txt_match_answer").keypress(function(){
+		$("#err_empty_match_answer").hide();
 	});
 	$(".weight_entry").keypress(function(){
 		clear_error_messages();
@@ -507,5 +581,18 @@ $(document).ready(function(){
 		});
 		$( "#dlg_essay" ).dialog( "open" );
 	});
-	
+	$("#btn_open_MatchDialog").click(function() {
+		$("#dlg_match").data("section-id", 0);
+		
+		$("#dlg_match").dialog('option', 'show', {
+			effect: "drop",
+			duration: 500
+		});
+		
+		$("#btn_add_match_section").unbind("click");
+		$('#btn_add_match_section').click(function() {
+			add_matching_section();
+		});
+		$( "#dlg_match" ).dialog( "open" );
+	});
 });
