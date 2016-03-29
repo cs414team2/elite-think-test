@@ -18,9 +18,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<section id="studentTest" style="max-height:600px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">';
 								$test->get_completed_tests();
 					echo	'</section>
+				<button id="btn_finalize_grade">Finalize</button>
 
 					</section>	
-				</div>		
+				</div>
 		
 				<div class="studentTest" style="float:right;">
 					<h2 style="padding:10px;">Test '. $test->get_test_number() . ' - ' . $test->get_class_name() . '</h2>

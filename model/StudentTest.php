@@ -171,7 +171,7 @@
 		public function print_question($question_id, $question_text, $user_type, $question_type, $question_weight, $points_received, $student_answer_id){
 			if($question_type == self::ESSAY_QUESTION_TYPE){
 				echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'>";
-				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_received' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;'><label for='txt_essay_points_received' class='question_weight'> / ". $question_weight ." Pt(s)</label></span></div>";
+				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_" . $question_id . "' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;'><label for='txt_essay_points_" . $question_id . "' class='question_weight'> / ". $question_weight ." Pt(s)</label></span></div>";
 			}
 			else{
 				echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'>";
