@@ -21,10 +21,10 @@
 		$eliteConnection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 		
 		// Store the question in the database.
-		$eliteConnection->query("SET @question_id = 0")                                               or die($eliteConnection->error);	
-		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)")      or die($eliteConnection->error);
-		$addStatement->bind_param("ssii", $question_text, $question_type, $test_id, $question_weight) or die($addStatement->error);
-		$addStatement->execute()                                                                      or die($addStatement->error);
+		$eliteConnection->query("SET @question_id = 0")                                               or die( "q" . $eliteConnection->error);	
+		$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)")      or die( "q" . $eliteConnection->error);
+		$addStatement->bind_param("ssii", $question_text, $question_type, $test_id, $question_weight) or die( "q" . $addStatement->error);
+		$addStatement->execute()                                                                      or die( "q" . $addStatement->error);
 		$addResult = $eliteConnection->query("SELECT @question_id as question_id");
 		$questionInfo = $addResult->fetch_assoc();
 		
@@ -38,7 +38,7 @@
 			$answer_is_correct = $answer['is_correct'];
 			
 			$addStatement->bind_param("iss", $question_id, $answer_text, $answer_is_correct) or die($addStatement->error);
-			$addStatement->execute()                                                         or die($addStatement->error);
+			$addStatement->execute()                                                         or die( "a" . $addStatement->error);
 			$addResult = $eliteConnection->query("SELECT @answer_id as answer_id");
 		}
 		

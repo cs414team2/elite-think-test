@@ -86,7 +86,7 @@ function add_question(question_type, question_text) {
 	}
 
 }
-
+/*
 function add_matching_section() {
 	
 }
@@ -103,7 +103,8 @@ function insert_matching_question() {
 	}
 	
 	if (linked_answer == null) {
-		linked_answer_text = " <span class='linked_answer'>(no linked answer)</span>";
+		validated = false;
+		$("#err_unlinked_match_question").show();
 	}
 	else {
 		linked_answer_text = " <span class='linked_answer'>(answer: " + $( "#ddl_matched_answer option:selected" ).text() + ")</span>";
@@ -132,9 +133,9 @@ function insert_matching_answer() {
 	
 	if (validated) {
 		$("#area_matching_answers").append(
-			"<div class='new_match_answer' data-answer-id='" + get_new_uuid() + "'><span class='new_match_answer_value'>"
+			"<div class='new_match_answer' data-answer-id='" + get_new_uuid() + "'><input type='text' class='new_match_answer_value' value='"
 			+ answer
-			+ "</span><span style='cursor: pointer;' onclick='remove_matching_answer(this.parentElement)'> &#128465;</span></div>"
+			+ "'><span style='cursor: pointer;' onclick='remove_matching_answer(this.parentElement)'> &#128465;</span></div>"
 		);
 		$("#txt_match_answer").val('');
 		fill_matching_answer_ddl();
@@ -151,7 +152,7 @@ function remove_matching_answer(answer) {
 	answer.remove();
 	fill_matching_answer_ddl();
 
-	$('.new_match_question').each(function(){
+	$('.new_match_question').each(function(){         // Need to make this not delete 
 		if ($(this).data('linked-answer') == answer_id) {
 			$(this).data('linked-answer', null);
 			$(this).find('.linked_answer').html("(no linked answer)");
@@ -173,7 +174,7 @@ function fill_matching_answer_ddl() {
 		$("#ddl_matched_answer").hide();
 	else
 		$("#ddl_matched_answer").show();
-}
+}*/
 
 // Open a form to edit a question
 function open_question_editor(question) {
@@ -251,8 +252,8 @@ function open_question_editor(question) {
 function edit_question(question_id, question_type) {
 	var question_text;
 	var question_weight;
-	var validated       = true;
-	var answers         = [];
+	var validated = true;
+	var answers   = [];
 
 	switch(question_type) {
 		case TRUE_FALSE_QUESTION_TYPE:
@@ -403,10 +404,10 @@ function clear_error_messages() {
 	$("#err_empty_tf").hide();
 	$("#err_empty_mc").hide();
 	$("#err_empty_eq").hide();
-	$("#err_empty_match").hide();
+	/*$("#err_empty_match").hide();
 	$("#err_empty_match_question").hide();
 	$("#err_unlinked_match_question").hide();
-	$("#err_empty_match_answer").hide();
+	$("#err_empty_match_answer").hide();*/
 }
 
 function clear_question_fields() {
@@ -423,10 +424,12 @@ function clear_question_fields() {
 	$("#txt_essay_answer").val('');
 	
 	$("#txt_matchq_entry").val('');
-	$("#area_matching_questions").html('');
+	/*$("#area_matching_questions").html('');
 	$("#area_matching_answers").html('');
+	$("#ddl_matched_answer").hide();
+	$("#ddl_matched_answer").html('');
 	$("#txt_match_question").val('');
-	$("#txt_match_answer").val('');
+	$("#txt_match_answer").val('');*/
 	
 	$(".weight_entry").val(DEFAULT_QUESTION_WEIGHT);
 }
@@ -573,14 +576,7 @@ $(document).ready(function(){
 		$("#err_empty_eq").hide();
 	});
 	$("#txt_matchq_entry").keypress(function(){
-		$("#err_empty_match").hide();
-	});
-	$("#txt_match_question").keypress(function(){
-		$("#err_empty_match_question").hide();
-		$("#err_unlinked_match_question").hide();
-	});
-	$("#txt_match_answer").keypress(function(){
-		$("#err_empty_match_answer").hide();
+		clear_error_messages();
 	});
 	$(".weight_entry").keypress(function(){
 		clear_error_messages();
