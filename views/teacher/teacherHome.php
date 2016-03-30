@@ -27,8 +27,7 @@ if (isset($_SESSION['credentials'])) {
 				  title: "Letter Grade Averages",
 				  width: 500,
 				  height: 400,
-				  backgroundColor: "#84C2CC",
-				  color: "#646464"
+				  backgroundColor: "transparent"
 				};
 
 				var chart = new google.visualization.PieChart(document.getElementById("piechart"));
@@ -59,20 +58,14 @@ if (isset($_SESSION['credentials'])) {
 				title: "# of Students Missing Questions",
 				width: 600,
 				height: 400,
-			    backgroundColor: "#84C2CC",
+			    backgroundColor: "transparent",
 				bar: {groupWidth: "95%"},
 				legend: { position: "none" },
 			  };
 			  var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
 			  chart.draw(view, options);
 		  }
-		</script>		
-		
-		
-		
-		
-		
-		
+		</script>
 
 		<section id="main" class="wrapper style1">
 			<header class="major">
@@ -181,9 +174,9 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 			
 			<!-- Test Statistics div -->
-			<div id="dlg_test_stats" title="Test Statistics" style="text-align: center; background-color:#84C2CC">	
-				<div id="piechart" style="background-color:#84C2CC" class="chart1" ></div>	
-				<div id="columnchart_values" style="background-color:#84C2CC" class="chart2"></div>
+			<div id="dlg_test_stats" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png)">	
+				<div id="piechart" class="chart1" ></div>	
+				<div id="columnchart_values" class="chart2"></div>
 				<br /><br />
 				<div>Highest grade:   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade:</div>
 			</div>

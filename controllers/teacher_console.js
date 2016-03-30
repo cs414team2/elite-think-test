@@ -57,7 +57,6 @@ $(document).ready(function() {
 	  modal: true,
 	  width: 1250,
 	  height: 600,
-	  
       show: {
         effect: "highlight",
 		duration: 500
