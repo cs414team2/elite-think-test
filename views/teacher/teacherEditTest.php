@@ -194,12 +194,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		<div id="dlg_match" title="Matching Section Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_matchq_entry" rows="2" placeholder="Enter a Matching Section Description"
-					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px;"></textarea>
+					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px; width: 100%;"></textarea>
 				<div style="display: inline-block; max-width: 50%;">
 					<div id="area_matching_questions">
 					</div>
 					<input id="txt_match_question" type="text"/>
 					<input id="btn_insert_match_question" type="button" class="button special" value="Add Question" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+					<select id="ddl_matched_answer" style="display: none;">
+					</select>
 					<p id="err_empty_match_question" style="display: none; color: red;">
 						Please enter a question...
 					</p>
