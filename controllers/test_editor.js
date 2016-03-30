@@ -86,7 +86,23 @@ function add_question(question_type, question_text) {
 }
 
 function add_matching_section() {
+	var validated   = true;
+	var description = $('#txt_matchq_entry').val();
+	var question    = [];
+	var answer      = [];
 	
+	if (jQuery.trim(description).length <= 0) {
+		validated = false
+		$('#err_empty_match').show();
+	}
+	
+	$('.match_question').each(function(){
+		var question_text = $(this).find('.txt_match_question');
+		
+		if (jQuery.trim(question_text).length <= 0) {
+			//alert(question_text);
+		}
+	});
 }
 
 
@@ -326,8 +342,8 @@ function clear_error_messages() {
 	$("#err_empty_tf").hide();
 	$("#err_empty_mc").hide();
 	$("#err_empty_eq").hide();
-	/*$("#err_empty_match").hide();
-	$("#err_empty_match_question").hide();
+	$("#err_empty_match").hide();
+	/*$("#err_empty_match_question").hide();
 	$("#err_unlinked_match_question").hide();
 	$("#err_empty_match_answer").hide();*/
 }
@@ -494,7 +510,7 @@ $(document).ready(function(){
 		$("#err_empty_eq").hide();
 	});
 	$("#txt_matchq_entry").keypress(function(){
-		clear_error_messages();
+		$("#err_empty_match").hide();
 	});
 	$(".weight_entry").keypress(function(){
 		clear_error_messages();

@@ -190,16 +190,16 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div style="display: inline-block; ">
 					Questions
 					<div id="area_matching_questions">
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
-						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
 					</div>
 					<p id="err_empty_match_question" style="display: none; color: red;">
 						Please enter a question...
@@ -233,7 +233,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<br />
 				<br />
 				<p id="err_empty_match" style="display: none; color: red;">
-					Please fill in all fields...
+					Please enter a description...
 				</p>
 				<input id="btn_add_match_section" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
