@@ -55,8 +55,9 @@ $(document).ready(function() {
 	$( "#dlg_test_stats" ).dialog({
       autoOpen: false,
 	  modal: true,
-	  width: 1000,
+	  width: 1250,
 	  height: 600,
+	  
       show: {
         effect: "highlight",
 		duration: 500
