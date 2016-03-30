@@ -41,7 +41,7 @@ if (isset($_SESSION['credentials'])) {
 					</section>
 				</div>
 		
-				<div id="dlg_course" title="Add a Course" style="background-color:white; text-align: center;">
+				<div id="dlg_course" class="dialog_box" title="Add a Course" style="background-color:white; text-align: center;">
 					<form>
 						<b>Course name:</b>
 						<input type="text" id="courseName" name="courseName" class="inputField" maxlength="45" placeholder=".NET Programming">

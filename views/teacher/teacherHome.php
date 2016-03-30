@@ -174,7 +174,7 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 			
 			<!-- Test Statistics div -->
-			<div id="dlg_test_stats" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png)">	
+			<div id="dlg_test_stats" class="dialog_box" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png)">	
 				<div id="piechart" class="chart1" ></div>	
 				<div id="columnchart_values" class="chart2"></div>
 				<br /><br />

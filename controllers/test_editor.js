@@ -3,9 +3,7 @@ const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 const ESSAY_QUESTION_TYPE           = 'ESSAY';
 const MATCHING_QUESTION_TYPE        = 'MATCH';
 const DEFAULT_QUESTION_WEIGHT = 1;
-const MAX_TEST_SIZE = 3;
-
-var unique_id = 0;
+const MAX_TEST_SIZE           = 3;
 
 //****************************************************************
 //*                        Functions                             *
@@ -86,95 +84,19 @@ function add_question(question_type, question_text) {
 	}
 
 }
-/*
+
 function add_matching_section() {
 	
 }
 
-function insert_matching_question() {
-	var question      = $("#txt_match_question").val();
-	var linked_answer = $("#ddl_matched_answer").val();
-	var validated     = true;
-	var linked_answer_text = "";
-	
-	if (jQuery.trim(question).length <= 0) {
-		validated = false;
-		$("#err_empty_match_question").show();
-	}
-	
-	if (linked_answer == null) {
-		validated = false;
-		$("#err_unlinked_match_question").show();
-	}
-	else {
-		linked_answer_text = " <span class='linked_answer'>(answer: " + $( "#ddl_matched_answer option:selected" ).text() + ")</span>";
-	}
-	
-	if (validated) {
-		$("#area_matching_questions").append(
-			"<div class='new_match_question' data-linked-answer='" + linked_answer + "' ><span class='new_match_question_value'>"
-			+ question
-			+ "</span>"
-			+ linked_answer_text
-			+ "<span style='cursor: pointer;' onclick='remove_matching_question(this.parentElement)'> &#128465;</span></div>"
-		);
-		$("#txt_match_question").val('');
+
+// Fill the question dropdowns that link a question to an answer.
+function fill_matching_answer_ddls() {
+	var answer_count;
+	for (answer_count = 0; answer_count < $('.txt_match_answer').length; answer_count++){
+		$('.ddl_matched_answer').append('<option value="' + answer_count + '">' + (parseInt(answer_count) + 1) + '</option>');
 	}
 }
-
-function insert_matching_answer() {
-	var answer = $("#txt_match_answer").val();
-	var validated = true;
-	
-	if (jQuery.trim(answer).length <= 0) {
-		validated = false;
-		$("#err_empty_match_answer").show();
-	}
-	
-	if (validated) {
-		$("#area_matching_answers").append(
-			"<div class='new_match_answer' data-answer-id='" + get_new_uuid() + "'><input type='text' class='new_match_answer_value' value='"
-			+ answer
-			+ "'><span style='cursor: pointer;' onclick='remove_matching_answer(this.parentElement)'> &#128465;</span></div>"
-		);
-		$("#txt_match_answer").val('');
-		fill_matching_answer_ddl();
-		
-	}
-}
-
-function remove_matching_question(question) {
-	question.remove();
-}
-
-function remove_matching_answer(answer) {
-	var answer_id = answer.getAttribute('data-answer-id');
-	answer.remove();
-	fill_matching_answer_ddl();
-
-	$('.new_match_question').each(function(){         // Need to make this not delete 
-		if ($(this).data('linked-answer') == answer_id) {
-			$(this).data('linked-answer', null);
-			$(this).find('.linked_answer').html("(no linked answer)");
-		}
-	});
-}
-
-// If possible matching answer's exist, put a dropdown to link a question to an answer.
-function fill_matching_answer_ddl() {
-	$("#ddl_matched_answer").html('');
-	
-	$(".new_match_answer").each(function(){
-		$("#ddl_matched_answer").append(
-			"<option value='" + $(this).data("answer-id") + "'>" + $(this).find(".new_match_answer_value").html() + "</option>"
-		);
-	});
-	
-	if ($("#ddl_matched_answer").children().length == 0 )
-		$("#ddl_matched_answer").hide();
-	else
-		$("#ddl_matched_answer").show();
-}*/
 
 // Open a form to edit a question
 function open_question_editor(question) {
@@ -475,11 +397,6 @@ function html_special_chars_decode(str) {
 	return str;
 }
 
-// Get a unique id.
-function get_new_uuid() {
-	return unique_id++;
-}
-
 //****************************************************************
 //*                          Events                              *
 //****************************************************************
@@ -503,6 +420,7 @@ $(document).ready(function(){
 	};
 	
 	load_questions();
+	fill_matching_answer_ddls();
 	
 	// Prevent negatives from being input
 	$('input[type="number"]').keydown(function(event){

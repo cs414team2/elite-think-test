@@ -57,7 +57,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 				</div>
 			</section>
 			
-			<div id="pledgeDialog" title="Pledge" style="background-color:white;">
+			<div id="pledgeDialog" class="dialog_box" title="Pledge" style="background-color:white;">
 				<p>I have completed this test without any outside help or online assistance. I understand that disciplinary actions may occur if I communicate answers to others.</p>
 			</div>
 			';

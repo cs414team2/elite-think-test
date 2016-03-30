@@ -41,7 +41,7 @@ if (isset($_SESSION['credentials'])) {
 				</section>
 			</div>
 				
-			<div id="dlg_teacher" title="Add a Teacher" style="background-color:white; text-align: center;">	
+			<div id="dlg_teacher" class="dialog_box" title="Add a Teacher" style="background-color:white; text-align: center;">	
 				<form>
 				  <b>First name: </b>
 				  <input type="text" id="first_name" "name="first_name" class="input_field" maxlength="45" placeholder="Joe">

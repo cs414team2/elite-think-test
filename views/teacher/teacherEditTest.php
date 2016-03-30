@@ -7,7 +7,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	$test = new Test($test_id);
 	
 	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
-		// PUT HTML HERE!
 		echo '
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="controllers/test_editor.js"></script>
@@ -15,14 +14,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		<section id="main" class="wrapper style1">
 		
 		    <script language="javascript">
-			var test_id = ' . $test_id . ';
-			function setRadio(obj)
-			{
-				if(obj.checked == true)
-					obj.checked = false;
-				else
-					obj.checked = true
-			}
+				var test_id = ' . $test_id . ';
 			</script>
 			
 			<script>
@@ -103,7 +95,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</div>
 		</section>
 		
-		<div id="dlg_tf" title="True/False Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_tf" class="dialog_box" title="True/False Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_tfq_entry" rows="3" placeholder="Enter a True/False Question"
 					name="txt_tfq_entry" class="questionStyle"></textarea>
@@ -130,7 +122,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			</form>
 		</div>
 		
-		<div id="dlg_mc" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_mc" class="dialog_box" title="Multiple Choice Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
 					name="txt_mcq_entry" class="questionStyle" ></textarea>
@@ -171,7 +163,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
 		</div>
-		<div id="dlg_essay" title="Essay Question Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_essay" class="dialog_box" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
 				name="txt_eq_entry" class="questionStyle"></textarea>
@@ -191,7 +183,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</ul>
 			</form>
 		</div>
-		<div id="dlg_match" title="Matching Section Entry" style="background-color:white; text-align: center;">
+		<div id="dlg_match" class="dialog_box" title="Matching Section Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_matchq_entry" rows="2" placeholder="Enter a Matching Section Description"
 					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px; width: 100%;"></textarea>
