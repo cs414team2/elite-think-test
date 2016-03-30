@@ -194,12 +194,21 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		<div id="dlg_match" title="Matching Section Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_matchq_entry" rows="2" placeholder="Enter a Matching Section Description"
-					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px;"></textarea>
-				<div style="display: inline-block; max-width: 50%;">
+					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px; width: 100%;"></textarea>
+				<div style="display: inline-block; ">
+					Questions
 					<div id="area_matching_questions">
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
+						<div><input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer"  style="width: 30px; display: inline; "></select></div>
 					</div>
-					<input id="txt_match_question" type="text"/>
-					<input id="btn_insert_match_question" type="button" class="button special" value="Add Question" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 					<p id="err_empty_match_question" style="display: none; color: red;">
 						Please enter a question...
 					</p>
@@ -207,11 +216,20 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						Each question must link to an answer...
 					</p>
 				</div>
-				<div style="display: inline-block; max-width: 50%;">
+				<div style="display: inline-block; ">
+					Answers
 					<div id="area_matching_answers">
+						<div> 1<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 2<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 3<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 4<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 5<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 6<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 7<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 8<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div> 9<input class="txt_match_answer" type="text" style="display: inline;"/></div>
+						<div>10<input class="txt_match_answer" type="text" style="display: inline;"/></div>
 					</div>
-					<input id="txt_match_answer" type="text"/>
-					<input id="btn_insert_match_answer" type="button" class="button special" value="Add Answer" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 					<p id="err_empty_match_answer" style="display: none; color: red;">
 						Please enter an answer...
 					</p>
@@ -219,7 +237,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<br/>
 				<br />
 				<input type="number" id="txt_match_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
-				<label for="txt_match_weight">Point(s)</label>
+				<label for="txt_match_weight">Point(s) per question</label>
 				<br />
 				<br />
 				<p id="err_empty_match" style="display: none; color: red;">
