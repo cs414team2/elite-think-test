@@ -13,7 +13,7 @@
 		$user_id                  = $_SESSION["credentials"]->get_user_id();
 		$test       		      = new Test($test_id);
 		$db         		      = prepare_connection();
-		$question_statement       = $db->prepare("SELECT question_id, question_text, question_weight FROM question WHERE test_id = ? and question_type = ?") or die($db->error);
+		$question_statement       = $db->prepare("SELECT question_id, question_text, question_weight FROM question WHERE test_id = ? and question_type = ? ORDER BY question_number") or die($db->error);
 		$answer_statement   	  = $db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?") or die($db->error);
 		$student_answer_statement = $db->prepare("SELECT answer_given FROM student_test_answers WHERE student_id = ? AND test_id = ? AND question_id = ?");
 		$question_type            = Test::TRUE_FALSE_QUESTION_TYPE;

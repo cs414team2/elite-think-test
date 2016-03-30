@@ -9,19 +9,27 @@
 		// Prints out classes for this teacher in an HTML table format
 		public function print_classes($teacher_id) {
 			$db = $this->prepare_connection();
-			$statement = $db->prepare("SELECT class_id, class_number, class_name 
-			                           FROM class 
-									   WHERE teacher_id = ? AND is_active='Y'") or die($db->error);
+			$statement = $db->prepare("SELECT class.class_id, class_number, class_name,
+									      (SELECT class_average 
+										   FROM   class_averages 
+										   WHERE  class_averages.class_id = class.class_id),
+										  (SELECT COUNT(student_id)
+										   FROM   enrollment
+										   WHERE  enrollment.class_id = class.class_id)
+			                           FROM   class 
+									   WHERE  teacher_id = ? AND is_active='Y'") or die($db->error);
 			$statement->bind_param("i", $teacher_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($class_id, $class_number, $class_name);
+			$statement->bind_result($class_id, $class_number, $class_name, $class_average, $student_count);
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
 					echo "<tr " . "id='" . $class_id . "' class='clickable_row editable_class'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
+					echo "<td>" . $student_count . "</td>";
+					echo ($class_average != null ? "<td>" . $class_average . "%</td>" : "<td> N/A </td>");
 					echo "</tr>\r\n";
 				}
 			}
