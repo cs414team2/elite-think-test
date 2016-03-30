@@ -31,7 +31,7 @@
 		}
 		
 		public function print_test($user_type){
-			$question_statement       = $this->db->prepare("SELECT question_id, question_text, question_weight FROM question WHERE test_id = ? and question_type = ?") or die($this->db->error);
+			$question_statement       = $this->db->prepare("SELECT question_id, question_text, question_weight FROM question WHERE test_id = ? AND question_type = ? ORDER BY question_number") or die($this->db->error);
 			$answer_statement   	  = $this->db->prepare("SELECT answer_id, answer_content, is_correct FROM answer WHERE question_id = ?") or die($this->db->error);
 			$student_answer_statement = $this->db->prepare("SELECT answer_given, points_received, student_answer_id FROM student_test_answers WHERE student_id = ? AND test_id = ? AND question_id = ?") or die($this->db->error);
 			$question_type            = self::TRUE_FALSE_QUESTION_TYPE;
