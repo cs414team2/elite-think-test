@@ -11,14 +11,19 @@ function load_tests_and_classes() {
 			window.location = "./?action=teacher_course_info&class_id=" + $(this).attr('id');
 		});
 	});
-	$("#tbl_active_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){
-		$('.gradeable_test').click(function(){
-			window.location = "./?action=teacher_grade_test&test_id=" + $(this).attr('id');
+	$("#tbl_active_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){	
+		$('.gradeable_test').click(function(event){
+			event.preventDefault();
+			window.location = "./?action=teacher_grade_test&test_id=" + $(this).parent().attr('id');
+		});
+		
+		$( ".btn_open_stats_dialog" ).click(function() {
+			$( "#dlg_test_stats" ).dialog( "open" );
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
 		$('.editable_test').click(function(){
-			open_edit_page($(this).attr('id'));
+			open_edit_page($(this).parent().attr('id'));
 		});
 	});
 	$.get("ajax/get_classes_ddl_for_teacher.php?user_id=" + user_id, function(list){
@@ -50,7 +55,8 @@ $(document).ready(function() {
 	$( "#dlg_test_stats" ).dialog({
       autoOpen: false,
 	  modal: true,
-	  width: 600,
+	  width: 1000,
+	  height: 600,
       show: {
         effect: "highlight",
 		duration: 500
@@ -61,7 +67,4 @@ $(document).ready(function() {
       }
     });
  
-    $( "#btn_open_stats_dialog" ).click(function() {
-	  $( "#dlg_test_stats" ).dialog( "open" );
-    });
-})
+});
