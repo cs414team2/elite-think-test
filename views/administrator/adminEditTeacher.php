@@ -49,6 +49,8 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 								<tr>
 									<th>Course #</th>
 									<th>Course Name</th>
+									<th># of Students</th>
+									<th>Class Average</th>
 								</tr>
 							</thead>
 							<tbody>';
