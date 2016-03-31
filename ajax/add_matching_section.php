@@ -4,7 +4,7 @@
 	require_once("../model/Test.php");
 
 	if(isset($_REQUEST['test_id'], $_REQUEST['section_description'], $_REQUEST['question_weight'], $_REQUEST['questions'], $_REQUEST['answers'])) {
-		
+
 		$test_id             = $_REQUEST['test_id'];
 		$section_description = $_REQUEST['section_description'];
 		$question_weight     = $_REQUEST['question_weight'];
@@ -50,18 +50,17 @@
 			}
 			
 			// Store the questions in the database
-			/*foreach($_REQUEST['questions'] as $question_number => $question) {
+			foreach($_REQUEST['questions'] as $question_number => $question) {
 				$question_text  = $question['text'];
 				$matched_answer = $question['answer'];
-				                                                           // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! matched answer is not being passed yet.
-				//$question_statement = $elite_connection->prepare('CALL add_matching_question(?,?,?, @question_id)');
-				//$question_statement->bind_param('sii', $question_text, $question_weight, $section_info['section_id']);
+				$question_statement = $elite_connection->prepare('CALL add_matching_question(?,?,?,?, @question_id)');
+				$question_statement->bind_param('siii', $question_text, $question_weight, $section_info['section_id'], $matched_answer);
 				$question_statement->execute();
 				$add_result = $elite_connection->query('select @question_id as question_id');
 				$question_info = $add_result->fetch_assoc();
 				
 				$_REQUEST['questions'][$question_number]['id'] = $question_info['question_id'];
-			}*/
+			}
 			
 			$elite_connection->commit();
 		}
@@ -70,7 +69,7 @@
 		}
 		$elite_connection->autocommit(TRUE);
 		
-		/*// Print the questions and answers.
+		/*// Print the questions and answers.                                      !!!!!!THIS IS COPYPASTA FROM ADD_QUESTION!!!!!!!!!!!!!
 		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level(), $question_type, $question_weight);
 		
 		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
