@@ -368,6 +368,57 @@ function edit_question(question_id, question_type) {
 	}
 }
 
+function open_matching_section_editor(section) {
+	/*var section_id      = section.getAttribute('data-section-id');    // Make sure the data section id matches.
+	var section_desc    = $(section).find('.section_desc').html();    // Make sure this matches with how sections are printed.
+	var question_weight = $(section).find('.question_weight').html(); // Make sure this works
+	var question = [];
+	var answer   = [];
+	
+	$(section).find('.question').each(function(index){             // Make sure questions are stored in something like this
+		question[index] = { text : $(this).html(),                    // See if this is how the text is stored.
+								  answer_id : $(this).data('answer-id')}    // Make sure the linked answer is stored.
+	});
+	
+	$(section).find('.answer').each(function(index){               // Make sure answers are stored like this.
+		answer[index] = { id : $(this).data('answer-id'),              // Make sure the answer id is here also
+                        text : $(this).html() } text : $(this).html(), // make sure this works
+								index : index}  // make sure this works
+	});
+	
+	$('#dlg_match').data('section-id', section_id);
+	$('#dlg_match').dialog('option', 'show', {
+		effect: "size",
+		duration: 500
+	});
+	
+	$('.txt_match_answer').each(function(index){
+		$(this).val(answer[index].text);                 // Make sure it's working
+	});
+	
+	$('.match_question').each(function(index){
+		var matched_answer;
+		$(this).find('.txt_match_question').val(question[index].text); // Make sure it's working
+		
+		for(i in answer) {
+			if (question[index].answer_id == answer[i].id) {
+				$(this).find('.ddl_matched_answer').attr('selectedIndex', answer[i].index);  // make sure this works.
+			}
+		}
+	});
+	
+	$('#btn_add_match_section').unbind('click');
+	$('#btn_add_match_section').click(function() {
+		edit_matching_section();
+	});
+	
+	$('#dlg_match').dialog('open');*/
+}
+
+function edit_matching_section(){
+	
+}
+
 function delete_question(question) {
 		var question_id = question.id;
 		var section = question.parentElement;
@@ -423,7 +474,7 @@ function clear_question_fields() {
 	$("#txt_matchq_entry").val('');
 	$(".txt_match_question").val('');
 	$(".txt_match_answer").val('');
-	/*$("#ddl_matched_answer").hide();
+	/*$("#ddl_matched_answer").hide();  // maybe set selected index to 0?
 	$("#ddl_matched_answer").html('');*/
 	
 	$(".weight_entry").val(DEFAULT_QUESTION_WEIGHT);
