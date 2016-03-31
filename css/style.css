@@ -19,6 +19,7 @@
 		background-image: url("../images/geometric.png");
 		background-repeat: repeat;
 		background-attachment: fixed;
+		padding-top: 200px;
 	}
 
 		body.is-loading * {
@@ -289,13 +290,16 @@
 
     width: 250px;
     background: #ffffff;
+	scroll: auto;
     min-height: 100%;
+	overflow: auto;
 }
 .sidebarStudent{
 		position:fixed;
 		padding-top:80px;
 		top:0; bottom:0; left:0;
 		min-width: 10%;
+		scroll: auto;
 		height: 500px;
 		background:#646464;
 
@@ -1594,4 +1598,29 @@ span#countdown {
  /* Dialog boxes */
 .dialog_box {
 	z-index: 10001;
+}
+
+.matching_questions{
+	max-width: 30%;
+	list-style-type: numeric;
+	margin-left: 20px;
+	margin-bottom: 1px;
+	font-family: Segoe UI Light;
+	display: inline-block;
+}
+.matching_answers{
+	min-width: 40%;
+	list-style-type:lower-alpha;
+	margin-left: 20px;
+	margin-bottom: 1px;
+	font-family: Segoe UI Light; 
+	display: inline-block; 
+	float: right;
+}
+.single_question_box{
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid black;
+	margin-top: 8px;
+	overflow: hidden /* Needed to avoid overflow in parent elements*/
 }

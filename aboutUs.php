@@ -24,6 +24,9 @@
 		<?php 
 			// Includes the Header for the page
 			require_once('model/Session.php');
+			if (!isset($SESSION)) {
+				session_start();
+			}
 			require_once('header.php');
 		?>
 
