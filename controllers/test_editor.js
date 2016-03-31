@@ -86,29 +86,88 @@ function add_question(question_type, question_text) {
 }
 
 function add_matching_section() {
-	var validated   = true;
-	var description = $('#txt_matchq_entry').val();
-	var question    = [];
-	var answer      = [];
+	var validated   	  = true;
+	var description 	  = $('#txt_matchq_entry').val();
+	var question_weight = parseInt($('#txt_match_weight').val());
+	var question    	  = [];
+	var answer      	  = [];
+	var question_count  = 0;
+	var answer_count    = 0;
 	
-	if (jQuery.trim(description).length <= 0) {
+	if (jQuery.trim(description).length <= 0 || !(question_weight > 0)) {
 		validated = false
 		$('#err_empty_match').show();
 	}
 	
 	$('.match_question').each(function(){
-		var question_text = $(this).find('.txt_match_question');
+		var question_text = $(this).find('.txt_match_question').val();
 		
-		if (jQuery.trim(question_text).length <= 0) {
-			//alert(question_text);
+		if (jQuery.trim(question_text).length > 0) {
+			question[question_count++] = { text : question_text,
+			                             answer : $(this).find('.ddl_matched_answer').val(), 
+												  id     : null};
 		}
 	});
+	
+	$('.txt_match_answer').each(function(index){
+		var answer_text = $(this).val();
+		
+		if (jQuery.trim(answer_text).length > 0) {
+			answer[answer_count++] = { text : answer_text,
+											  index : index,
+											  id    : null };
+		}
+	});
+	
+	if (question.length == 0) {
+		validated = false;
+		$('#err_empty_match_question').show();
+	}
+	if (answer.length == 0) {
+		validated = false;
+		$('#err_empty_match_answer').show();
+	}
+	
+	if (validated) {
+		for (i in question) {
+			validated = false;
+			
+			for (j in answer){
+				if (question[i].answer == answer[j].index) {
+					validated = true;
+				}
+			}
+			
+			if (validated == false){
+				$('#err_unlinked_match_question').show();
+				break;
+			}
+		}
+	}
+	
+	if (validated){
+		$.ajax({
+			url: 'ajax/add_matching_section.php',
+			data: {
+				test_id : test_id,
+				section_description: description,
+				question_weight: question_weight,
+				questions : question,
+				answers : answer
+			},
+			success: function(section) {
+				number_questions();
+				clear_question_fields();
+			}
+		});
+	}
 }
-
 
 // Fill the question dropdowns that link a question to an answer.
 function fill_matching_answer_ddls() {
 	var answer_count;
+	$('.ddl_matched_answer').html('');
+	
 	for (answer_count = 0; answer_count < $('.txt_match_answer').length; answer_count++){
 		$('.ddl_matched_answer').append('<option value="' + answer_count + '">' + (parseInt(answer_count) + 1) + '</option>');
 	}
@@ -343,9 +402,9 @@ function clear_error_messages() {
 	$("#err_empty_mc").hide();
 	$("#err_empty_eq").hide();
 	$("#err_empty_match").hide();
-	/*$("#err_empty_match_question").hide();
+	$("#err_empty_match_question").hide();
 	$("#err_unlinked_match_question").hide();
-	$("#err_empty_match_answer").hide();*/
+	$("#err_empty_match_answer").hide();
 }
 
 function clear_question_fields() {
@@ -362,12 +421,10 @@ function clear_question_fields() {
 	$("#txt_essay_answer").val('');
 	
 	$("#txt_matchq_entry").val('');
-	/*$("#area_matching_questions").html('');
-	$("#area_matching_answers").html('');
-	$("#ddl_matched_answer").hide();
-	$("#ddl_matched_answer").html('');
-	$("#txt_match_question").val('');
-	$("#txt_match_answer").val('');*/
+	$(".txt_match_question").val('');
+	$(".txt_match_answer").val('');
+	/*$("#ddl_matched_answer").hide();
+	$("#ddl_matched_answer").html('');*/
 	
 	$(".weight_entry").val(DEFAULT_QUESTION_WEIGHT);
 }
@@ -512,6 +569,16 @@ $(document).ready(function(){
 	$("#txt_matchq_entry").keypress(function(){
 		$("#err_empty_match").hide();
 	});
+	$(".txt_match_question").keypress(function(){
+		$("#err_empty_match_question").hide();
+	});
+	$(".txt_match_answer").keypress(function(){
+		$("#err_empty_match_answer").hide();
+	});
+	$(".ddl_matched_answer").click(function(){
+		$("#err_unlinked_match_question").hide();
+	});
+	
 	$(".weight_entry").keypress(function(){
 		clear_error_messages();
 	});
@@ -564,6 +631,7 @@ $(document).ready(function(){
 		$( "#dlg_essay" ).dialog( "open" );
 	});
 	$("#btn_open_MatchDialog").click(function() {
+		fill_matching_answer_ddls();
 		$("#dlg_match").data("section-id", 0);
 		
 		$("#dlg_match").dialog('option', 'show', {

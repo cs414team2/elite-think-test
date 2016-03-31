@@ -202,7 +202,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<div class="match_question"> <input class="txt_match_question" type="text" style="display: inline;"/><select class="ddl_matched_answer" style="width: 30px; display: inline; "></select></div>
 					</div>
 					<p id="err_empty_match_question" style="display: none; color: red;">
-						Please enter a question...
+						Please enter at least one question...
 					</p>
 					<p id="err_unlinked_match_question" style="display: none; color: red;">
 						Each question must link to an answer...
@@ -223,7 +223,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<div>10<input class="txt_match_answer" type="text" style="display: inline;"/></div>
 					</div>
 					<p id="err_empty_match_answer" style="display: none; color: red;">
-						Please enter an answer...
+						Please enter at least one answer...
 					</p>
 				</div>
 				<br/>
