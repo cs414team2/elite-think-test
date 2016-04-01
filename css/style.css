@@ -1477,6 +1477,25 @@ span#countdown {
 			font-size: 0.8em;
 		}
 		
+	.404pageBody {
+			background-image:url("images/geometric.png");
+			background-attachment: fixed;
+			background-size: cover;
+			padding-top: 20px;
+			text-shadow: 0em 0em 0.4em black;
+		}
+	.404pageImg {
+		-webkit-filter: drop-shadow(5px 5px 5px #222);
+		filter: drop-shadow(5px 5px 5px #222);
+	}
+	.404pageItem {
+		-webkit-transition: all .5s;
+		-moz-transition: all .5s;
+	    transition: all .5s;
+		color: white;
+		
+	}
+		
 	#testpageIconImage {
 		-webkit-filter: drop-shadow(1.5px 1.5px 1.5px #FFF);
 		filter: drop-shadow(1.5px 1.5px 1.5px #FFF);

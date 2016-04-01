@@ -36,7 +36,6 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.php">Home</a></li>
-						<li><a href="aboutUs.php">About Elite</a></li>
 						<li><a href="http://csmain/seproject/TimeMachine2/Student/Summary" target="_blank">Time Machine</a></li>
 						<?php
 						
@@ -57,6 +56,7 @@
 							}
 								
 						?>
+						<li><a href="aboutUs.php">About Elite</a></li>
 					</ul>
 				</nav>
 			</header> 
