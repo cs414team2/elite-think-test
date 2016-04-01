@@ -18,16 +18,17 @@ if (isset($_SESSION['credentials'])) {
 				  ["Task", "Hours per Day"],
 				  ["A\'s",     11],
 				  ["B\'s",      2],
-				  ["C\'s",  2],
-				  ["D\'s", 2],
-				  ["F\'s",    7]
+				  ["C\'s",      2],
+				  ["D\'s",      2],
+				  ["F\'s",      7]
 				]);
 
 				var options = {
 				  title: "Letter Grade Averages",
 				  width: 500,
 				  height: 400,
-				  backgroundColor: "transparent"
+				  backgroundColor: "transparent",
+				  pieSliceTextStyle: {color: "black"},
 				};
 
 				var chart = new google.visualization.PieChart(document.getElementById("piechart"));
@@ -40,10 +41,11 @@ if (isset($_SESSION['credentials'])) {
 			function drawChart1() {
 			  var data = google.visualization.arrayToDataTable([
 				["Element", "Missed", { role: "style" } ],
-				["Question 1", 8,  "lightblue"],
-				["Question 2", 10, "lightblue"],
-				["Question 3", 19, "lightblue"],
-				["Question 4", 21, "lightblue"]
+				["#1",  8, "red"],
+				["#2", 19, "yellow"],
+				["#3", 21, "green"],
+				["#4", 21, "blue"],
+				["#5", 21, "purple"]
 			  ]);
 
 			  var view = new google.visualization.DataView(data);
@@ -55,7 +57,7 @@ if (isset($_SESSION['credentials'])) {
 							   2]);
 
 			  var options = {
-				title: "# of Students Missing Questions",
+				title: "Top Missed Questions",
 				width: 600,
 				height: 400,
 			    backgroundColor: "transparent",
@@ -174,11 +176,11 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 			
 			<!-- Test Statistics div -->
-			<div id="dlg_test_stats" class="dialog_box" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png)">	
+			<div id="dlg_test_stats" class="dialog_box" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png);">	
 				<div id="piechart" class="chart1" ></div>	
 				<div id="columnchart_values" class="chart2"></div>
 				<br /><br />
-				<div>Highest grade:   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade:</div>
+				<div><h2 style="color: black; text-shadow: 0em 0em 0em black;">Highest grade:   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade:</h2></div>
 			</div>
 		</section>';
 	}

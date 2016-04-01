@@ -1642,6 +1642,9 @@ span#countdown {
 	display: inline-block; 
 	float: right;
 }
+.matching_input_box{
+	
+}
 .single_question_box{
 	font-weight: bold;
 	padding: 5px;
