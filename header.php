@@ -9,7 +9,7 @@
 					// Display's the user's name in the header
 					if (isset($_SESSION["credentials"]))
 					{
-						echo "<h1 style='text-shadow: none;'>Hello, ".$_SESSION["credentials"]->get_first_name()."</h1>";
+						echo "<h1 style='text-shadow: none;'><img src='images/favicon.ico' alt'icon'>Hello, ".$_SESSION["credentials"]->get_first_name()."</h1>";
 						
 						switch($_SESSION["credentials"]->get_access_level()) {
 							case Session::ADMINISTRATOR:
@@ -49,14 +49,15 @@
 										 "\r\n</li>";
 								}
 							}
+							echo '<li><a href="aboutUs.php">About Elite</a></li>';
+							
 							// Displays the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
 							{
-								echo '<li><a href="./?action=logout">Logout</a></li>';
+								echo '<li><a href="./?action=logout">Logout<img src="images/logout.png" alt="logout" style="height: 20px; width: 25px; margin-top: 10px;"></a></li>';
 							}
 								
 						?>
-						<li><a href="aboutUs.php">About Elite</a></li>
 					</ul>
 				</nav>
 			</header> 

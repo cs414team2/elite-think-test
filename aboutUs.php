@@ -50,8 +50,9 @@
 					<tr>
 						<td align="center">
 							<section id="content">
-							<a><img src="images/andrewWhiting.jpg" alt="" /></a>
-							<h3>Andrew Whiting </h3><h5> Project Manager</h5>
+							<a><img src="images/andrewWhiting.jpg" alt="Andrew" style="border-radius:2em;"/></a>
+							<h3>Andrew Whiting</h3>
+							<h5>Project Manager</h5>
 								<p>Home Town: Fayetteville, NC <br />
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
@@ -60,10 +61,11 @@
 								</p>
 							</section>
 						</td>
-						<td  align="center">
+						<td align="center">
 							<section id="content">
-							<a><img src="images/danielSwan.jpg" alt="" /></a>
-							<h3>Daniel Swan </h3><h5> Assistant Project Manager</h5>
+							<a><img src="images/danielSwan.jpg" alt="Daniel" style="border-radius:2em;"/></a>
+							<h3>Daniel Swan</h3>
+							<h5>Assistant Project Manager</h5>
 								<p>Home Town: Washburn, MO <br />
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
@@ -72,12 +74,13 @@
 								</p>
 							</section>
 						</td> 
-					  </tr>
-					  <tr>
-						<td  align="center">
+					</tr>
+					<tr>
+						<td align="center">
 							<section id="content">
-							<a><img src="images/jeremeScheffel.jpg" alt="" /></a>
-							<h3> Jereme Scheffel </h3><h5> Secretary</h5>
+							<a><img src="images/jeremeScheffel.jpg" alt="Jereme" style="border-radius:2em;"/></a>
+							<h3>Jereme Scheffel</h3>
+							<h5>Secretary</h5>
 								<p>Home Town: Cincinatti, OH <br />
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
@@ -86,10 +89,11 @@
 								</p>
 							</section>
 						</td>
-						<td  align="center">
+						<td align="center">
 							<section id="content">
-							<a><img src="images/jesseDavis.jpg" alt="" /></a>
-							<h3> Jesse Davis </h3><h5> Scheduler</h5>
+							<a><img src="images/jesseDavis.jpg" alt="Jesse" style="border-radius:2em;"/></a>
+							<h3>Jesse Davis</h3>
+							<h5>Scheduler</h5>
 								<p>Home Town: San Francisco, CA <br />
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
@@ -98,7 +102,7 @@
 								</p>
 							</section>
 						</td> 
-					  </tr>
+					</tr>
 					</table>									
 				</div>
 			</section>
