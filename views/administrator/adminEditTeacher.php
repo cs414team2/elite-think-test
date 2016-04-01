@@ -22,9 +22,8 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 								$admin->get_teachers_ddl_for_teacher($_REQUEST["id"]);
 					  echo '</select>
 							<br />
-							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em;">Edit This Teacher</button>
-						</section>
-						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="height: 2em; line-height: 0em; display:inline-block; float: right;">Edit Teacher Info</button>
+							</section>
+						<img src="images/edit_user.png" class="clickable_img" title="Edit This Teacher" id="btn_open_edit_studnet_dialog" style="display:inline-block; float: right;">
 						<hr />
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Teacher Information</caption>

@@ -15,7 +15,7 @@ if (isset($_SESSION['credentials'])) {
 					<!-- Content -->
 					<section id="content" >
 						<h4 style="display:inline-block;">&#9699;&nbspSelect a Class to Add Students</h4>
-						<button id="btn_open_courseDialog" class="show_hide" style="display:inline-block; float: right;">Add a Course</button>
+						<img src="images/add_class.jpg" class="clickable_img" title="Add a Course" id="btn_open_courseDialog" style="display:inline-block; float: right;">
 						<br /><br />
 						<input type="checkbox" id="copy" name="copy">
 						<label for="copy">Show Inactive Classes</label>
