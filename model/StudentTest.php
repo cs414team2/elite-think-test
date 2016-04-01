@@ -5,6 +5,7 @@
 		const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 		const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 		const ESSAY_QUESTION_TYPE           = 'ESSAY';
+		const MATCHING_QUESTION_TYPE        = 'MATCH';
 		const RIGHT_COLOR                   = ' color:#47CC7A;';
 		const WRONG_COLOR                   = ' color:#CC1C11;';
 		const CHECK_MARK                    = ' &#10004;';
@@ -19,11 +20,14 @@
 		private $test_id;
 		private $student_id;
 		private $db;
+		private $alphabet;
+		private $answer_count;
 		
 		public function __construct($test_id, $student_id){
-			$this->test_id = $test_id;
+			$this->test_id    = $test_id;
 			$this->student_id = $student_id;
-			$this->db = $this->prepare_connection();
+			$this->alphabet   = range('a', 'z');
+			$this->db         = $this->prepare_connection();
 		}
 		
 		private function prepare_connection(){
@@ -253,6 +257,88 @@
 				echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion'>". $answer_given ."</textarea>";
 				break;
 		}
+/*********************************************************************************************/
+/*                                      MATCHING SECTION                                     */
+/*********************************************************************************************/
+	public function print_matching_sections(){
+		$statement = $this->db->prepare("SELECT matching_section_id, matching_section_description
+									     FROM matching_section 
+									     WHERE test_id = ? ORDER BY section_number") or die($db->error);
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($matching_section_id, $matching_section_description);
+		
+		if($statement->num_rows > 0){
+			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> Matching Sections </h4>";
+			echo "\r\n  <ul class='question_list'>";
+			while($statement->fetch()){
+				$this->print_section($matching_section_id, $matching_section_description);
+			}
+			echo "\r\n  </ul>";
 		}
+		else {
+			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."' style='display:none;'>";
+			echo "\r\n  <h4> Matching Sections </h4>";
+		}
+		echo "\r\n</div>";
+	}
+	
+	public function print_section($matching_section_id, $matching_section_description){
+		echo "\r\n<li data-section_id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "<div><span>". $matching_section_description ."</span></div>";
+		
+		$this->print_matching_answers($matching_section_id);
+		$this->print_matching_questions($matching_section_id);
+		
+		echo "\r\n</li>";
+	}
+
+	public function print_matching_questions($matching_section_id){
+		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
+												  FROM matching_question 
+												  WHERE matching_section_id = ?") or die($db->error);
+		$question_statement->bind_param("i", $matching_section_id);
+		$question_statement->execute();
+		$question_statement->store_result();
+		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
+		
+		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
+		while($question_statement->fetch()){
+			echo "\r\n <li class='question_item question_list' >";
+			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
+			echo "\r\n   <select style='display: inline-block; float: right'>";
+			echo "\r\n       <option></option>";
+			for($count = 0; $count < $this->answer_count; $count++){
+				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
+			}
+			echo "\r\n   </select>";
+			echo "\r\n </li>";
+		}
+		echo "\r\n </ol>";
+		
+	}
+	
+	public function print_matching_answers($matching_section_id){
+		$this->answer_count = 0;
+		$answer_statement = $this->db->prepare("SELECT matching_answer_id, answer_content
+												FROM matching_answer 
+												WHERE matching_section_id = ?") or die($db->error);
+		$answer_statement->bind_param("i", $matching_section_id);
+		$answer_statement->execute();
+		$answer_statement->store_result();
+		$answer_statement->bind_result($matching_answer_id, $answer_content);
+		
+		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
+		while($answer_statement->fetch()){
+			echo "\r\n <li class='answer_item'>";
+			echo "\r\n   <span class='answer_text' data-question-id='". $matching_answer_id ."'>". htmlspecialchars($answer_content) ."</span>";
+			echo "\r\n </li>";
+			$this->answer_count++;
+		}
+		echo "\r\n </ol>";
+	}
+}
 	}
 ?>
