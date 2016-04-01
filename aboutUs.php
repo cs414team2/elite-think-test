@@ -4,7 +4,8 @@
 		<title>About Elite</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Elite Testing application" />
-		<meta name="keywords" content="testing, login, student, teacher, administrator" />		
+		<meta name="keywords" content="testing, login, student, teacher, administrator" />
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/jquery.scrollgress.min.js"></script>
@@ -24,10 +25,13 @@
 		<?php 
 			// Includes the Header for the page
 			require_once('model/Session.php');
+			if (!isset($SESSION)) {
+				session_start();
+			}
 			require_once('header.php');
 		?>
 
-		<!-- Main -->
+			<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>About Elite</h2>
@@ -78,7 +82,7 @@
 								   Major: Computer Information Systems<br />
 								   Year: Senior <br />
 								   Age: 22      <br />
-								   Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a>   <br />
+								   Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a><br />
 								</p>
 							</section>
 						</td>
@@ -98,11 +102,5 @@
 					</table>									
 				</div>
 			</section>
-			
-		<?php 
-			// Includes the Footer for the page
-			require_once('footer.php');
-		?>
-
 	</body>
 </html>

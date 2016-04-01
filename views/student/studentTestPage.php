@@ -50,7 +50,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<br />
 							</div>
 							<div style="text-align:center">
-								<button id="btn_start" class="show_hide button big  " style="height:200px;  width:400px; background-color:gray; display:none;" disabled>Start Test</button>
+								<img src="images/startbutton.png" class="clickable_img" title="Edit This Teacher" id="btn_start"  style=" display:none;" disabled>
 					        </div>
 						</section>
 					</div>

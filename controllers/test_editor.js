@@ -529,6 +529,7 @@ $(document).ready(function(){
 		autoOpen: false,
 		modal: true,
 		width: 500,
+		maxHeight: 650,
 		show: {
 			effect: "drop",
 			duration: 500

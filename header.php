@@ -4,12 +4,7 @@
 				<?php
 					require_once('model/Session.php');
 					
-					$link = array(
-						"http://color.adobe.com" => "Color Picker",
-						"elements.html" => "Elements",
-						"http://jqueryui.com/" => "jQuery Demos",
-						"http://csmain/seproject/TimeMachine2/Student/Summary" => "Time Machine"
-					);
+					$link = array();
 					
 					// Display's the user's name in the header
 					if (isset($_SESSION["credentials"]))
@@ -18,17 +13,13 @@
 						
 						switch($_SESSION["credentials"]->get_access_level()) {
 							case Session::ADMINISTRATOR:
-								$link = array(
-									"./?action=admin_student_manager" => "Manage Students",
-									"./?action=admin_teacher_manager" => "Manage Teachers",
-									"./?action=admin_class_manager" => "Manage Classes"
-								);
+								$link["./?action=admin_student_manager"] = "Manage Students";
+								$link["./?action=admin_teacher_manager"] = "Manage Teachers";
+								$link["./?action=admin_class_manager"]   = "Manage Classes";
 								break;
 							case Session::TEACHER:
-								$link = array();
 								break;
 							case Session::STUDENT:
-								$link = array();
 								break;
 						}
 					}
@@ -45,32 +36,19 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.php">Home</a></li>
+						<li><a href="http://csmain/seproject/TimeMachine2/Student/Summary" target="_blank">Time Machine</a></li>
 						<?php
-						$link["aboutUs.php"] = "About Elite";
 						
-						if (sizeof($link) > 0) {
-							echo "
-							<li>
-								<a href='' class='icon fa-angle-down'>Helpful Links</a>
-								<ul>";
-							
-							foreach ($link as $url => $name) {
-								echo "\r\n<li>" .
-									 "\r\n    <a href='" . $url . "'";
-								echo              preg_match("/http/", $url) == 1 ? " target='_blank'" : "";
-								echo          ">" . $name . "</a>" .
-									 "\r\n</li>";
+							if (sizeof($link) > 0) {
+								
+								foreach ($link as $url => $name) {
+									echo "\r\n<li>" .
+										 "\r\n    <a href='" . $url . "'";
+									echo              preg_match("/http/", $url) == 1 ? " target='_blank'" : "";
+									echo          ">" . $name . "</a>" .
+										 "\r\n</li>";
+								}
 							}
-							
-							echo "
-								</ul>
-							</li>";
-						}
-						?>
-						<li>
-							<a href="https://www.google.com/drive/">Google Drive</a>
-						</li>
-						<?php
 							// Displays the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
 							{
@@ -78,6 +56,7 @@
 							}
 								
 						?>
+						<li><a href="aboutUs.php">About Elite</a></li>
 					</ul>
 				</nav>
 			</header> 
