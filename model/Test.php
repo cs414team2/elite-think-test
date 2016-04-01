@@ -5,6 +5,7 @@ class Test{
 	const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 	const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 	const ESSAY_QUESTION_TYPE           = 'ESSAY';
+	const MATCHING_QUESTION_TYPE        = 'MATCH';
 	const UNAUTHENTICATED               = 0;
 	const AUTHENTICATED                 = 1;
 	const ADMINISTRATOR                 = 1;
@@ -240,8 +241,8 @@ class Test{
 	
 	public function get_completed_tests(){
 		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
-                 		           FROM completed_tests 
-								   WHERE test_id = ?") or die($db->error);
+									     FROM completed_tests 
+									     WHERE test_id = ?") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -256,6 +257,81 @@ class Test{
 		}
 		else
 			echo "<div> No Completed Tests </div>";
+	}
+	
+/*********************************************************************************************/
+/*                                      MATCHING SECTION                                     */
+/*********************************************************************************************/
+	public function print_matching_sections(){
+		$statement = $this->db->prepare("SELECT matching_section_id, matching_section_description
+									     FROM matching_section 
+									     WHERE test_id = ? ORDER BY section_number") or die($db->error);
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($matching_section_id, $matching_section_description);
+		
+		if($statement->num_rows > 0){
+			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> Matching Sections </h4>";
+			echo "\r\n  <ul class='question_list'>";
+			while($statement->fetch()){
+				$this->print_section($matching_section_id, $matching_section_description);
+			}
+			echo "\r\n  </ul>";
+		}
+		else {
+			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."' style='display:none;'>";
+			echo "\r\n  <h4> Matching Sections </h4>";
+		}
+		echo "\r\n</div>";
+	}
+	
+	public function print_section($matching_section_id, $matching_section_description){
+		echo "\r\n<li data-section_id='". $matching_section_id ."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "<h5>". $matching_section_description ."</h5>";
+		
+		$this->print_matching_questions($matching_section_id);
+		$this->print_matching_answers($matching_section_id);
+		
+		echo "\r\n</li>";
+	}
+
+	public function print_matching_questions($matching_section_id){
+		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
+												  FROM matching_question 
+												  WHERE matching_section_id = ?") or die($db->error);
+		$question_statement->bind_param("i", $matching_section_id);
+		$question_statement->execute();
+		$question_statement->store_result();
+		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
+		
+		echo "<ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
+		while($question_statement->fetch()){
+			echo "<li class='question_item'>";
+			echo "\r\n   <span class='answer_number answer answer_text' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
+			echo "</li>";
+		}
+		echo "</ol>";
+		
+	}
+	
+	public function print_matching_answers($matching_section_id){
+		$answer_statement = $this->db->prepare("SELECT matching_answer_id, answer_content
+												FROM matching_answer 
+												WHERE matching_section_id = ?") or die($db->error);
+		$answer_statement->bind_param("i", $matching_section_id);
+		$answer_statement->execute();
+		$answer_statement->store_result();
+		$answer_statement->bind_result($matching_answer_id, $answer_content);
+		
+		echo "<ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
+		while($answer_statement->fetch()){
+			echo "<li class='answer_item'>";
+			echo "\r\n   <span class='answer_number answer answer_text' data-question-id='". $matching_answer_id ."'>". htmlspecialchars($answer_content) ."</span>";
+			echo "</li>";
+		}
+		echo "</ol>";
 	}
 }
 ?>
