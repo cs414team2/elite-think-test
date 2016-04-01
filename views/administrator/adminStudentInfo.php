@@ -20,11 +20,8 @@ if (isset($_SESSION['credentials'])) {
 							<select name="student" id="studentSelection" style="display: inline-block;">';
 								$admin = new Admin();
 								$admin->get_students_ddl($_REQUEST["id"]);
-					  echo '</select>
-							<br />
-							<button class="big button special" style="height: 2em; line-height: 0em; margin-top: 4px; padding: 0 1em;">Edit This Student</button>
-						</section>
-						<button id="btn_open_edit_studnet_dialog" class="show_hide" style="height: 2em; line-height: 0em; display:inline-block; float: right;">Edit Student Info</button>
+					  echo '</select></section>
+						<img src="images/edit_user.png" class="clickable_img" title="Edit This Teacher" id="btn_open_edit_studnet_dialog"  style="display:inline-block; float: right;">
 						<hr />
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Student Information</caption>
