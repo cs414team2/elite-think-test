@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html>
-
-<style>
-	body {
-			background-image:url("images/geometric.png");
-			background-attachment: fixed;
-			background-size: cover;
-			padding-top: 20px;
-			text-shadow: 0em 0em 0.4em black;
-		}
-	img {
-		-webkit-filter: drop-shadow(5px 5px 5px #222);
-		filter: drop-shadow(5px 5px 5px #222);
-	}
-	a:hover{
-		color: yellow;
-	}
-	h1, h2, a {
-		-webkit-transition: all .5s;
-		-moz-transition: all .5s;
-	    transition: all .5s;
-		color: white;
-		
-	}
-</style>
-
-<body>
-
-	<div id="root_img" style="width:100%; height:100%">
-		<div id="id_immagine" align="center" style="width: 100%; height: 100%;">
-			<img src="images/flicker.gif" alt="404 Bulb" style="width: 20%; height: 20%">
-			<h1>Well, this is awkward...</h1>
-			<h2>You have a faulty bulb!</h2>
-			<h1><a href="index.php">Return Home</a></h1>
+	<head>
+		<title>Broken Bulb</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="Elite Testing application" />
+		<meta name="keywords" content="testing, login, student, teacher, administrator" />
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+	</head>
+	<body class="404pageBody">
+		<?php 
+				// Includes the Header for the page
+				require_once('model/Session.php');
+				if (!isset($SESSION)) {
+					session_start();
+				}
+				require_once('header.php');
+		?>
+			
+		<div id="root_img" style="width:100%; height:100%" >
+			<div id="id_immagine" align="center" style="width: 100%; height: 100%;">
+				<img src="images/flicker.gif" alt="404 Bulb" class="404pageImg" style="width: 20%; height: 20%">
+				<h1 class="404pageItem">Well, this is awkward...</h1>
+				<h2 class="404pageItem">You have a faulty bulb!</h2>
+				<h1 class="404pageItem"><a href="index.php">Return Home</a></h1>
+			</div>
 		</div>
-	</div>
-
-</body>
+	</body>
 </html>
