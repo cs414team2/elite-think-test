@@ -436,6 +436,24 @@ function delete_question(question) {
 	});
 }
 
+function delete_matching_section(section) {
+	var section_id = section.getAttribute('data-section-id'); // The test model has an underscore, so the model needs to be changed to fit this.
+	var section_area = section.parentElement;
+	
+	$.ajax({
+		url: 'ajax/delete_matching_section.php',
+		data: { section_id : section_id,
+		        test_id : test_id },
+		success: function(data) {
+			//section.remove();                                           Uncomment when we know it is working.
+			number_questions();
+			if ($(section_area).children().length == 0)
+				$('#MATCH').hide();
+		}
+		
+	});
+}
+
 // Display the question numbers.
 function number_questions() {
 	$( ".question_number" ).each(function( index ) {
