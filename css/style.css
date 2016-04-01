@@ -244,7 +244,7 @@
 		max-width: 300px;
 		margin: 0 auto;
 	}
-	
+
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -286,6 +286,15 @@
 			box-shadow: 0 0 0 1px #C723CC;
 		}
 		
+	/* Get the dropdown arrow back on select */
+	select{
+		-moz-appearance: menulist;
+		-webkit-appearance: menulist;
+		-o-appearance: menulist;
+		-ms-appearance: menulist;
+		appearance: menulist;
+	}	
+	
 	#sidebar {
 
     width: 250px;
@@ -1642,8 +1651,13 @@ span#countdown {
 	float: right;
 }
 .matching_input_box{
-	
+	padding: 1em 1em !important;
+	height: 2em !important;
+	line-height: 1em !important;
+	margin:0 !important;
+	padding:0 !important;
 }
+
 .single_question_box{
 	font-weight: bold;
 	padding: 5px;
