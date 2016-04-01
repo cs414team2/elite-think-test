@@ -52,8 +52,8 @@ function edit_student() {
 				);
 				$( '#ddl_switch_student option:selected' ).text(
 					$(temp_div).find('div').text()
-					+ $(temp_div).find('#info_last').html() + ', '
-					+ $(temp_div).find('#info_first').html()
+					+ $(temp_div).find('#info_last').text() + ', '
+					+ $(temp_div).find('#info_first').text()
 				);
 				$('#tbl_student_info').html($(temp_div).find('tbody').html());
 			}
@@ -163,10 +163,10 @@ $(document).ready(function(){
     });
  
     $( '#btn_open_edit_studnet_dialog' ).click(function() {
-		$('#first_name').val($('#info_first').html());
-		$('#last_name').val($('#info_last').html());
-		$('#password').val($('#info_password').html());
-		$('#email').val($('#info_email').html());
+		$('#first_name').val(html_special_chars_decode($('#info_first').html()));
+		$('#last_name').val(html_special_chars_decode($('#info_last').html()));
+		$('#password').val(html_special_chars_decode($('#info_password').html()));
+		$('#email').val(html_special_chars_decode($('#info_email').html()));
 		 
 	  $( '#dlg_edit_student_info' ).dialog( 'open' );
     });

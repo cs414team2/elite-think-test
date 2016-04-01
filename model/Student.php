@@ -144,7 +144,7 @@
 			$statement->fetch();
 			
 			echo "<tr>
-					<td id='info_id'>". $student_id ." </td>
+					<td id='info_id'>". $student_id ."</td>
 					<td id='info_first'>". $student_fname ."</td>
 					<td id='info_last'>". $student_lname ."</td>
 					<td id='info_email'>". $student_email ."</td>

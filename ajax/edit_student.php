@@ -13,9 +13,9 @@
 		$edit_statement = $elite_connection->prepare("CALL edit_student(?, ?, ?, ?, ?)") or die($elite_connection->error);
 		$edit_statement->bind_param("issss", $id, $first_name, $last_name, $email, $password) or die($edit_statement->error);
 		$edit_statement->execute() or die($edit_statement->error);
-		
+
 		echo "<table><tbody><tr>
-					<td id='info_id'>". $id ." </td>
+					<td id='info_id'>".$id."</td>
 					<td id='info_first'>". $first_name ."</td>
 					<td id='info_last'>". $last_name ."</td>
 					<td id='info_email'>". $email ."</td>
