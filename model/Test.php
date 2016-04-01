@@ -277,7 +277,7 @@ class Test{
 		if($statement->num_rows > 0){
 			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
 			echo "\r\n  <h4> Matching Sections </h4>";
-			echo "\r\n  <ul class='question_list'>";
+			echo "\r\n  <ul class='section_list'>";
 			while($statement->fetch()){
 				$this->print_section($matching_section_id, $matching_section_description);
 			}
@@ -286,16 +286,18 @@ class Test{
 		else {
 			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."' style='display:none;'>";
 			echo "\r\n  <h4> Matching Sections </h4>";
+			echo "\r\n  <ul class='section_list'>";
+			echo "\r\n  </ul>";
 		}
 		echo "\r\n</div>";
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<li data-section_id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
-		echo "<div><span>". $matching_section_description ."</span></div>";
+		echo "\r\n<li data-section-id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
 		echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_question_editor(this.parentElement.parentElement)'>Edit</button>
-				  <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>
+				  <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_matching_section_editor(this.parentElement.parentElement)'>Edit</button>
+				  <button onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>
 			  </div>";
 		
 		$this->print_matching_answers($matching_section_id);
@@ -315,8 +317,8 @@ class Test{
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "\r\n <li class='question_item question_list' >";
-			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
+			echo "\r\n <li class='question_item question_list' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
+			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
 			echo "\r\n   <select style='display: inline-block; float: right'>";
 			echo "\r\n       <option></option>";
 			for($count = 0; $count < $this->answer_count; $count++){
@@ -341,8 +343,8 @@ class Test{
 		
 		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
 		while($answer_statement->fetch()){
-			echo "\r\n <li class='answer_item'>";
-			echo "\r\n   <span class='answer_text' data-question-id='". $matching_answer_id ."'>". htmlspecialchars($answer_content) ."</span>";
+			echo "\r\n <li class='answer_item' data-answer-id='". $matching_answer_id ."'>";
+			echo "\r\n   <span class='answer_text'>". htmlspecialchars($answer_content) ."</span>";
 			echo "\r\n </li>";
 			$this->answer_count++;
 		}
