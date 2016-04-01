@@ -375,12 +375,12 @@ function open_matching_section_editor(section) {
 	var question = [];
 	var answer   = [];
 	
-	$(section).find('.question').each(function(index){             // Make sure questions are stored in something like this
+	$(section).find('.question_item').each(function(index){             // Make sure questions are stored in something like this
 		question[index] = { text : $(this).html(),                    // See if this is how the text is stored.
 								  answer_id : $(this).data('answer-id')}    // Make sure the linked answer is stored.
 	});
 	
-	$(section).find('.answer').each(function(index){               // Make sure answers are stored like this.
+	$(section).find('.answer_item').each(function(index){               // Make sure answers are stored like this.
 		answer[index] = { id : $(this).data('answer-id'),              // Make sure the answer id is here also
                         text : $(this).html() } text : $(this).html(), // make sure this works
 								index : index}  // make sure this works

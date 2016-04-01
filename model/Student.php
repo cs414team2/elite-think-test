@@ -144,11 +144,11 @@
 			$statement->fetch();
 			
 			echo "<tr>
-					<td>". $student_id ." </td>
-					<td>". $student_fname ."</td>
-					<td>". $student_lname ."</td>
-					<td>". $student_email ."</td>
-					<td>". $student_password ."</td>
+					<td id='info_id'>". $student_id ." </td>
+					<td id='info_first'>". $student_fname ."</td>
+					<td id='info_last'>". $student_lname ."</td>
+					<td id='info_email'>". $student_email ."</td>
+					<td id='info_password'>". $student_password ."</td>
 				</tr>";
 		}
 	}
