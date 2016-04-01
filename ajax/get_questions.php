@@ -11,6 +11,7 @@
 	if(isset($_SESSION["credentials"], $_REQUEST["test_id"])){
 		$test_id    		      = $_REQUEST["test_id"];
 		$user_id                  = $_SESSION["credentials"]->get_user_id();
+		$user_type                = $_SESSION["credentials"]->get_access_level();
 		$test       		      = new Test($test_id);
 		$db         		      = prepare_connection();
 		$question_statement       = $db->prepare("SELECT question_id, question_text, question_weight FROM question WHERE test_id = ? and question_type = ? ORDER BY question_number") or die($db->error);
@@ -33,7 +34,7 @@
 			echo "\r\n  <h4> T/F Questions </h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
-				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type, $question_weight );
+				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
 				
 				// Load all possible answers
 				$answer_statement->bind_param("i", $question_id);
@@ -49,7 +50,7 @@
 				$student_answer_statement->fetch();
 				
 				while($answer_statement->fetch())
-					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id, $answer_given);
+					$test->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 				echo "\r\n</li>";
 			}
 		}
@@ -74,7 +75,7 @@
 			echo "\r\n  <h4> Multiple Choice Questions </h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
-				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type, $question_weight );
+				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
 
 				// Load all answer options
 				$answer_statement->bind_param("i", $question_id);
@@ -91,7 +92,7 @@
 				
 				echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family Segoe UI Light;'>";
 				while($answer_statement->fetch())
-					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id, $answer_given);
+					$test->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 				echo "</ol>";
 				echo "\r\n</li>";
 			}
@@ -118,7 +119,7 @@
 			echo "\r\n  <h4> Essay Questions </h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
-				$test->print_question($question_id, $question_text, $_SESSION["credentials"]->get_access_level(), $question_type, $question_weight );
+				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
 				
 				// Load student answer options
 				$answer_statement->bind_param("i", $question_id);
@@ -134,7 +135,7 @@
 				$student_answer_statement->fetch();
 				
 				while($answer_statement->fetch())
-					$test->print_answer($is_correct, $answer_content, $question_type, $_SESSION["credentials"]->get_access_level(), $question_id, $answer_id, $answer_given);
+					$test->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 				echo "\r\n</li>";
 			}
 		}
@@ -148,7 +149,8 @@
 /*********************************************************************************************/
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
-		$test->print_matching_sections();
+		$question_type = Test::ESSAY_QUESTION_TYPE;
+		$test->print_matching_sections($user_type);
 	}
 	
 ?>

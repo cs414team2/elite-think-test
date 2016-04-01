@@ -17,6 +17,8 @@ class Test{
 	private $db;
 	private $alphabet;
 	private $answer_count;
+	private $user_type;
+	private $matching_answers_list;
 	
 	public function __construct($test_id){
 		$this->test_id  = $test_id;
@@ -265,7 +267,8 @@ class Test{
 /*********************************************************************************************/
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
-	public function print_matching_sections(){
+	public function print_matching_sections($u_type){
+		$this->user_type = $u_type;
 		$statement = $this->db->prepare("SELECT matching_section_id, matching_section_description
 									     FROM matching_section 
 									     WHERE test_id = ? ORDER BY section_number") or die($db->error);
@@ -293,10 +296,12 @@ class Test{
 	public function print_section($matching_section_id, $matching_section_description){
 		echo "\r\n<li data-section_id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
 		echo "<div><span>". $matching_section_description ."</span></div>";
-		echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_question_editor(this.parentElement.parentElement)'>Edit</button>
-				  <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>
-			  </div>";
+		if($this->user_type != self::STUDENT){
+			echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
+					  <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_question_editor(this.parentElement.parentElement)'>Edit</button>
+					  <button onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>
+				  </div>";
+		}
 		
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
@@ -315,14 +320,16 @@ class Test{
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "\r\n <li class='question_item question_list' >";
-			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
-			echo "\r\n   <select style='display: inline-block; float: right'>";
-			echo "\r\n       <option></option>";
-			for($count = 0; $count < $this->answer_count; $count++){
-				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
+			echo "\r\n <li class='question_item question_list' style='width: 500px;'>";
+			echo "\r\n   <span class='question_number' style='display: inline-block;'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
+			if($this->user_type == self::STUDENT){
+				echo "\r\n   <select class='matching_input_box' style='display: inline-block; float: right; width: 120px;'>";
+				echo "\r\n       <option></option>";
+				for($count = 0; $count < $this->answer_count; $count++){
+					echo "\r\n <option>". $this->alphabet[$count] . ") " . $this->matching_answers_list[$count] . "</option>";
+				}
+				echo "\r\n   </select>";
 			}
-			echo "\r\n   </select>";
 			echo "\r\n </li>";
 		}
 		echo "\r\n </ol>";
@@ -330,6 +337,7 @@ class Test{
 	}
 	
 	public function print_matching_answers($matching_section_id){
+		$this->matching_answers_list = array();
 		$this->answer_count = 0;
 		$answer_statement = $this->db->prepare("SELECT matching_answer_id, answer_content
 												FROM matching_answer 
@@ -341,6 +349,7 @@ class Test{
 		
 		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
 		while($answer_statement->fetch()){
+			$this->matching_answers_list[] = htmlspecialchars($answer_content);
 			echo "\r\n <li class='answer_item'>";
 			echo "\r\n   <span class='answer_text' data-question-id='". $matching_answer_id ."'>". htmlspecialchars($answer_content) ."</span>";
 			echo "\r\n </li>";
