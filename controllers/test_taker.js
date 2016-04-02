@@ -1,6 +1,7 @@
 const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
 const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 const ESSAY_QUESTION_TYPE           = 'ESSAY';
+const MATCHING_QUESTION_TYPE        = 'MATCH';
 const MAX_TEST_SIZE   = 3; // Maximum number of digits in the number of questions (example 999)
 const TEST_LOAD_DELAY = 3;
 const TEST_NOT_STARTED = '0';
@@ -30,6 +31,7 @@ function check_status() {
 					break;
 				case TEST_STARTED:
 					start_test(false);
+					updateProgressBar();
 					break;
 				case TEST_SUBMITTED:
 					$("#btn_start").attr("disabled", "disabled");
@@ -111,11 +113,12 @@ function submit_answers() {
 	var question_count = 0;
 	var answer_count   = 0;
 	
-	$('#' + MULTIPLE_CHOICE_QUESTION_TYPE).find(".the_question").each(function(i, question) {
+	$('#' + MULTIPLE_CHOICE_QUESTION_TYPE).find(".question_item").each(function(i, question) {
 		$(question).find(".answer:checked").each(function(){
 			answer_count++;
 			test[question_count++] = { question_id : $(this).attr('name'),
-			                          answer_given : $(this).val()}
+			                          answer_given : $(this).val(),
+									  question_type : MULTIPLE_CHOICE_QUESTION_TYPE }
 		});
 		if (answer_count == 0) {
 			test[question_count++] = { question_id : $(this).attr('id'),
@@ -124,7 +127,7 @@ function submit_answers() {
 		}
 		answer_count = 0;
 	});
-	$('#' + TRUE_FALSE_QUESTION_TYPE).find(".the_question").each(function(i, question) {
+	$('#' + TRUE_FALSE_QUESTION_TYPE).find(".question_item").each(function(i, question) {
 		$(question).find(".answer:checked").each(function(){
 			answer_count++;
 			test[question_count++] = { question_id : $(this).attr('name'),
@@ -147,6 +150,7 @@ function submit_answers() {
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
+		type:"POST",
 		data: { test : test,
 		        student_id : student_id },
 		success: function(data) {
@@ -190,6 +194,7 @@ function countdown_time() {
 	
 	if ((seconds_left % 5) == 0) {
 		submit_answers();
+		updateProgressBar();
 	}
 	
 	$("#div_minutes").html(minutes_left < 10 ? "0" + minutes_left : minutes_left);
@@ -203,6 +208,42 @@ function disable_timer(){
 	$("#div_minutes").html("--");
 	$("#div_seconds").html("--");
 }
+
+function updateProgressBar(){
+	var answered = 0;
+	var total_questions = $(".question_item").length;
+	$(".question_item").each(function(index){
+		switch($(this).data("question-type")){
+			case TRUE_FALSE_QUESTION_TYPE:
+				if($(this).find("[type='radio']:checked").length > 0)
+					answered++;
+			
+				break;
+			case MULTIPLE_CHOICE_QUESTION_TYPE:
+				if($(this).find("[type='radio']:checked").length > 0)
+					answered++;			
+			
+				break;
+			case ESSAY_QUESTION_TYPE:
+				var essay_txt = $(this).find("#txt_eq_entry").val()
+				if(jQuery.trim(essay_txt).length > 0)
+					answered++;
+			
+				break;
+			case MATCHING_QUESTION_TYPE:
+				if($(this).find("select").val() != 'null')
+					answered++;
+			
+				break;
+		}
+	});
+	$("progress").val((answered/total_questions)*100);
+	$("#questionAnswered").html(answered);
+	$("#total").html(total_questions);
+	$("#percentage").html(Math.round((answered/total_questions)*100));
+	
+}
+
 
 //***********************Events************************
 $(document).ready(function(){

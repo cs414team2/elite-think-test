@@ -36,12 +36,12 @@ class Test{
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
 			echo "\r\n	    <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' onclick='open_question_editor(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/delete1.png' class='clickable_img' onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>";
-			echo "\r\n      <button class='button special' onclick='raise_question(this.parentElement.parentElement)'>^</button>";
-			echo "\r\n      <button class='button special' onclick='lower_question(this.parentElement.parentElement)'>V</button>";
+			echo "\r\n      <img src='images/arrowup.png' class='clickable_img' onclick='raise_question(this.parentElement.parentElement)'>";
+			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img'  onclick='lower_question(this.parentElement.parentElement)'>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
-			echo "\r\n<li id='".$question_id."' class='the_question' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n<li id='".$question_id."' class='question_item' data-question-type='". $question_type . "' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . htmlspecialchars($question_text) ."<span class='question_weight' style='float: right;'>".$question_weight . ($question_weight == 1 ? " Point" : " Points") . "</span></div>";
 		}
 	}
@@ -298,8 +298,8 @@ class Test{
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
 		echo "<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
 		echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_matching_section_editor(this.parentElement.parentElement)'>Edit</button>
-				  <button onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>
+				  <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  <img src='images/delete1.png' class='clickable_img' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
 			  </div>";
 		
 		$this->print_matching_answers($matching_section_id);
@@ -319,10 +319,10 @@ class Test{
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "\r\n <li class='question_item question_list' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
+			echo "\r\n <li class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
 			echo "\r\n   <select style='display: inline-block; float: right'>";
-			echo "\r\n       <option></option>";
+			echo "\r\n       <option value='null'></option>";
 			for($count = 0; $count < $this->answer_count; $count++){
 				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
 			}

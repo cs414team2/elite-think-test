@@ -35,7 +35,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								
 								
 								<progress id="test_progress" max="100" value="0" style="color:white;"></progress>
-								<br \><br \>
+								&nbsp&nbsp&nbsp<span id="percentage"></span>%<br />
+								<span id="questionAnswered"></span>/<span id="total"></span>
+								<br /><br />
+								
 								<button id="btn_complete" class="show_hide button small fit" disabled>Complete Test</button>		
 						</section>	
 					</div>
@@ -50,7 +53,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 								<br />
 							</div>
 							<div style="text-align:center">
-								<img src="images/startbutton.png" class="clickable_img" title="Edit This Teacher" id="btn_start"  style=" display:none;" disabled>
+								<img src="images/startbutton.png" class="clickable_img" title="Start This Test" id="btn_start"  style=" display:none;" disabled>
 					        </div>
 						</section>
 					</div>
