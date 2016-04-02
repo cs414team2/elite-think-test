@@ -6,25 +6,26 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 		$teacher = new Teacher();
 		echo '
 			<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-			<script src="controllers/edit_student_form.js"></script>
+			<script src="controllers/edit_teacher_form.js"></script>
 			
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2 id="teacherName">'; $teacher->get_teacher_info($_REQUEST["id"]); echo '</h2>
+					<h2 id="h_teacher_info">'; $teacher->get_teacher_info($_REQUEST["id"]); echo '</h2>
 				</header>
 				
 				<div class="container" >	
 					<!-- Content -->
 					<section>
 						<section style="display: inline-block;">
-							<select name="teacher" id="teacherSelection" style="display: inline-block;">';
+							<select name="teacher" id="ddl_switch_teacher" style="display: inline-block;">';
 								$admin = new Admin();
 								$admin->get_teachers_ddl_for_teacher($_REQUEST["id"]);
 					  echo '</select>
 							<br />
 							</section>
-						<img src="images/edit_user.png" class="clickable_img" title="Edit This Teacher" id="btn_open_edit_studnet_dialog" style="display:inline-block; float: right;">
+						<img src="images/edit_user.png" class="clickable_img" title="Edit This Teacher" id="btn_open_edit_teacher_dialog" style="display:inline-block; float: right;">
 						<hr />
+						<div id="area_teacher_info">
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Teacher Information</caption>
 							<thead>
@@ -37,10 +38,12 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 								</tr>
 							</thead>
 							<tbody>
-							<tbody>';
+							<tbody id="tbl_teacher_info">';
 								$teacher->get_full_teacher_info($_REQUEST["id"]);
 					  echo '</tbody>
-						</table>		
+						</table>
+						</div>
+						<div id="area_loader" class="loader" style="display: none;">Loading...</div>
 						<hr />
 						<table class="alt" id="content">
 							<caption style="font-weight: bold; text-decoration: underline;">Assigned Classes</caption>
@@ -52,7 +55,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 									<th>Class Average</th>
 								</tr>
 							</thead>
-							<tbody>';
+							<tbody id="tbl_classes">';
 								$teacher->print_classes($_REQUEST["id"]);
 					  echo '</tbody>
 						</table>
@@ -60,7 +63,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				</div>	
 			</section>	
 
-			<div id="dlg_edit_student_info" class="dialog_box" title="Edit Teacher Information" style="background-color:white; text-align: center;">	
+			<div id="dlg_edit_teacher_info" class="dialog_box" title="Edit Teacher Information" style="background-color:white; text-align: center;">	
 				<form>
 				  <b>First name: </b>
 				  <input type="text" id="first_name" "name="first_name" class="input_field" maxlength="45" placeholder="Joe">
@@ -88,7 +91,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 				
 				</form>
 				<br />
-				<button id="btn_add" class="button special big">Save Changes</button>			
+				<button id="btn_save" class="button special big">Save Changes</button>			
 			</div>
 		';
 	}

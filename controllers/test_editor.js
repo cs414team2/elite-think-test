@@ -557,6 +557,22 @@ function number_questions() {
 	});
 }
 
+function raise_question(question) {
+	var prev_question = $(question).prev();
+	if ($(prev_question).length > 0) {
+		$(question).insertBefore($(prev_question));
+		number_questions();
+	}
+}
+
+function lower_question(question) {
+	var next_question = $(question).next();
+	if ($(next_question).length > 0) {
+		$(question).insertAfter($(next_question));
+		number_questions();
+	}
+}
+
 function clear_error_messages() {
 	$("#err_empty_tf").hide();
 	$("#err_empty_mc").hide();

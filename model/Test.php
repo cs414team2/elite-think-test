@@ -36,6 +36,8 @@ class Test{
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
 			echo "\r\n	    <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' onclick='open_question_editor(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/delete1.png' class='clickable_img' onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>";
+			echo "\r\n      <button class='button special' onclick='raise_question(this.parentElement.parentElement)'>^</button>";
+			echo "\r\n      <button class='button special' onclick='lower_question(this.parentElement.parentElement)'>V</button>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
