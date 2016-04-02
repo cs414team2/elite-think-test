@@ -560,16 +560,34 @@ function number_questions() {
 function raise_question(question) {
 	var prev_question = $(question).prev();
 	if ($(prev_question).length > 0) {
-		$(question).insertBefore($(prev_question));
-		number_questions();
+		$.ajax({
+			url: 'ajax/swap_questions.php',
+			data : {
+				question_id_1 : $(question).attr('id'),
+				question_id_2 : $(prev_question).attr('id')
+			},
+			success : function(data){
+				$(question).insertBefore($(prev_question));
+				number_questions();
+			}
+		});
 	}
 }
 
 function lower_question(question) {
 	var next_question = $(question).next();
 	if ($(next_question).length > 0) {
-		$(question).insertAfter($(next_question));
-		number_questions();
+		$.ajax({
+			url: 'ajax/swap_questions.php',
+			data : {
+				question_id_1 : $(question).attr('id'),
+				question_id_2 : $(next_question).attr('id')
+			},
+			success : function(){
+				$(question).insertAfter($(next_question));
+				number_questions();
+			}
+		});
 	}
 }
 
