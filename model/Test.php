@@ -15,10 +15,13 @@ class Test{
 	
 	private $test_id;
 	private $db;
+	private $alphabet;
+	private $answer_count;
 	
 	public function __construct($test_id){
-		$this->test_id = $test_id;
-		$this->db = $this->prepare_connection();
+		$this->test_id  = $test_id;
+		$this->db       = $this->prepare_connection();
+		$this->alphabet = range('a', 'z');
 	}
 	
 	private function prepare_connection(){
@@ -33,6 +36,8 @@ class Test{
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
 			echo "\r\n	    <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' onclick='open_question_editor(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/delete1.png' class='clickable_img' onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>";
+			echo "\r\n      <button class='button special' onclick='raise_question(this.parentElement.parentElement)'>^</button>";
+			echo "\r\n      <button class='button special' onclick='lower_question(this.parentElement.parentElement)'>V</button>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
@@ -274,7 +279,7 @@ class Test{
 		if($statement->num_rows > 0){
 			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
 			echo "\r\n  <h4> Matching Sections </h4>";
-			echo "\r\n  <ul class='question_list'>";
+			echo "\r\n  <ul class='section_list'>";
 			while($statement->fetch()){
 				$this->print_section($matching_section_id, $matching_section_description);
 			}
@@ -283,16 +288,22 @@ class Test{
 		else {
 			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."' style='display:none;'>";
 			echo "\r\n  <h4> Matching Sections </h4>";
+			echo "\r\n  <ul class='section_list'>";
+			echo "\r\n  </ul>";
 		}
 		echo "\r\n</div>";
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<li data-section_id='". $matching_section_id ."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
-		echo "<h5>". $matching_section_description ."</h5>";
+		echo "\r\n<li data-section-id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
+		echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
+				  <button style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small' onclick='open_matching_section_editor(this.parentElement.parentElement)'>Edit</button>
+				  <button onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' class='button special small'>Delete</button>
+			  </div>";
 		
-		$this->print_matching_questions($matching_section_id);
 		$this->print_matching_answers($matching_section_id);
+		$this->print_matching_questions($matching_section_id);
 		
 		echo "\r\n</li>";
 	}
@@ -306,17 +317,24 @@ class Test{
 		$question_statement->store_result();
 		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
 		
-		echo "<ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
+		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "<li class='question_item'>";
-			echo "\r\n   <span class='answer_number answer answer_text' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
-			echo "</li>";
+			echo "\r\n <li class='question_item question_list' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
+			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
+			echo "\r\n   <select style='display: inline-block; float: right'>";
+			echo "\r\n       <option></option>";
+			for($count = 0; $count < $this->answer_count; $count++){
+				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
+			}
+			echo "\r\n   </select>";
+			echo "\r\n </li>";
 		}
-		echo "</ol>";
+		echo "\r\n </ol>";
 		
 	}
 	
 	public function print_matching_answers($matching_section_id){
+		$this->answer_count = 0;
 		$answer_statement = $this->db->prepare("SELECT matching_answer_id, answer_content
 												FROM matching_answer 
 												WHERE matching_section_id = ?") or die($db->error);
@@ -325,13 +343,14 @@ class Test{
 		$answer_statement->store_result();
 		$answer_statement->bind_result($matching_answer_id, $answer_content);
 		
-		echo "<ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
+		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
 		while($answer_statement->fetch()){
-			echo "<li class='answer_item'>";
-			echo "\r\n   <span class='answer_number answer answer_text' data-question-id='". $matching_answer_id ."'>". htmlspecialchars($answer_content) ."</span>";
-			echo "</li>";
+			echo "\r\n <li class='answer_item' data-answer-id='". $matching_answer_id ."'>";
+			echo "\r\n   <span class='answer_text'>". htmlspecialchars($answer_content) ."</span>";
+			echo "\r\n </li>";
+			$this->answer_count++;
 		}
-		echo "</ol>";
+		echo "\r\n </ol>";
 	}
 }
 ?>

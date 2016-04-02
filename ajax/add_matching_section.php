@@ -4,9 +4,8 @@
 	require_once("../model/Test.php");
 
 	if(isset($_REQUEST['test_id'], $_REQUEST['section_description'], $_REQUEST['question_weight'], $_REQUEST['questions'], $_REQUEST['answers'])) {
-
 		$test_id             = $_REQUEST['test_id'];
-		$section_description = $_REQUEST['section_description'];
+		$section_description = ucfirst(trim($_REQUEST['section_description']));
 		$question_weight     = $_REQUEST['question_weight'];
 		
 		$test = new Test($test_id);
@@ -29,7 +28,7 @@
 
 			// Store the answers in the database
 			foreach($_REQUEST['answers'] as $answer_number => $answer) {
-				$answer_text = $answer['text'];
+				$answer_text = trim($answer['text']);
 				
 				$answer_statement = $elite_connection->prepare('CALL add_matching_answer(?,?, @answer_id)');
 				$answer_statement->bind_param('si', $answer_text, $section_info['section_id']);
@@ -51,7 +50,7 @@
 			
 			// Store the questions in the database
 			foreach($_REQUEST['questions'] as $question_number => $question) {
-				$question_text  = $question['text'];
+				$question_text  = trim($question['text']);
 				$matched_answer = $question['answer'];
 				$question_statement = $elite_connection->prepare('CALL add_matching_question(?,?,?,?, @question_id)');
 				$question_statement->bind_param('siii', $question_text, $question_weight, $section_info['section_id'], $matched_answer);
@@ -63,27 +62,13 @@
 			}
 			
 			$elite_connection->commit();
+			
+			$test->print_section($section_info['section_id'], $section_description);
 		}
 		catch(Exception $e){
 			$elite_connection->rollback();
 		}
 		$elite_connection->autocommit(TRUE);
-		
-		/*// Print the questions and answers.                                      !!!!!!THIS IS COPYPASTA FROM ADD_QUESTION!!!!!!!!!!!!!
-		$test->print_question($questionInfo['question_id'], $question_text, $_SESSION['credentials']->get_access_level(), $question_type, $question_weight);
-		
-		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
-			echo "<ol style='list-style-type:lower-alpha; margin-left: 20px; margin-bottom: 1px; font-family: Segoe UI Light;'>";
-				
-		foreach($_REQUEST['answers'] as $answer) {
-			$answer_info = $addResult->fetch_assoc();
-			$test->print_answer($answer['is_correct'], trim($answer['answer_text']), 
-								$question_type, TEACHER, $question_id, $answer_info['answer_id'], null);
-		}
-
-		if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
-			echo "</ol>";
-		echo "\r\n</li>";*/
 
 	}
 	else {

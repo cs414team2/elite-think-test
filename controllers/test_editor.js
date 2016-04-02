@@ -156,6 +156,8 @@ function add_matching_section() {
 				answers : answer
 			},
 			success: function(section) {
+				$('#' + MATCHING_QUESTION_TYPE).find('.section_list').append(section);
+				$('#' + MATCHING_QUESTION_TYPE).show();
 				number_questions();
 				clear_question_fields();
 			}
@@ -369,21 +371,22 @@ function edit_question(question_id, question_type) {
 }
 
 function open_matching_section_editor(section) {
-	/*var section_id      = section.getAttribute('data-section-id');    // Make sure the data section id matches.
-	var section_desc    = $(section).find('.section_desc').html();    // Make sure this matches with how sections are printed.
-	var question_weight = $(section).find('.question_weight').html(); // Make sure this works
+	var section_id      = section.getAttribute('data-section-id');
+	var section_desc    = $(section).find('.section_desc').html();
+	var question_weight = DEFAULT_QUESTION_WEIGHT;
 	var question = [];
 	var answer   = [];
 	
-	$(section).find('.question').each(function(index){             // Make sure questions are stored in something like this
-		question[index] = { text : $(this).html(),                    // See if this is how the text is stored.
-								  answer_id : $(this).data('answer-id')}    // Make sure the linked answer is stored.
+	$(section).find('.question_item').each(function(index){
+		question_weight = $(this).data('weight');
+		question[index] = { text : $(this).find('.question_text').html(),
+								  answer_id : $(this).data('matching-answer-id')} 
 	});
 	
-	$(section).find('.answer').each(function(index){               // Make sure answers are stored like this.
-		answer[index] = { id : $(this).data('answer-id'),              // Make sure the answer id is here also
-                        text : $(this).html() } text : $(this).html(), // make sure this works
-								index : index}  // make sure this works
+	$(section).find('.answer_item').each(function(index){
+		answer[index] = { id : $(this).data('answer-id'),
+                        text : $(this).find('.answer_text').html(),
+								index : index }
 	});
 	
 	$('#dlg_match').data('section-id', section_id);
@@ -391,18 +394,22 @@ function open_matching_section_editor(section) {
 		effect: "size",
 		duration: 500
 	});
-	
+
+	$("#txt_matchq_entry").val(section_desc);
+	$('#txt_match_weight').val(question_weight);
 	$('.txt_match_answer').each(function(index){
-		$(this).val(answer[index].text);                 // Make sure it's working
+		if (index < answer.length)
+			$(this).val(answer[index].text);
 	});
-	
 	$('.match_question').each(function(index){
 		var matched_answer;
-		$(this).find('.txt_match_question').val(question[index].text); // Make sure it's working
-		
-		for(i in answer) {
-			if (question[index].answer_id == answer[i].id) {
-				$(this).find('.ddl_matched_answer').attr('selectedIndex', answer[i].index);  // make sure this works.
+		if (index < question.length) {
+			$(this).find('.txt_match_question').val(question[index].text);
+			
+			for(i in answer) {
+				if (question[index].answer_id == answer[i].id) {
+					$(this).find('.ddl_matched_answer').val(answer[i].index);
+				}
 			}
 		}
 	});
@@ -412,11 +419,96 @@ function open_matching_section_editor(section) {
 		edit_matching_section();
 	});
 	
-	$('#dlg_match').dialog('open');*/
+	$('#dlg_match').dialog('open');
 }
 
 function edit_matching_section(){
+	var validated   	  = true;
+	var section_id      = $('#dlg_match').data('section-id');
+	var description 	  = $('#txt_matchq_entry').val();
+	var question_weight = parseInt($('#txt_match_weight').val());
+	var question    	  = [];
+	var answer      	  = [];
+	var question_count  = 0;
+	var answer_count    = 0;
 	
+	if (jQuery.trim(description).length <= 0 || !(question_weight > 0)) {
+		validated = false
+		$('#err_empty_match').show();
+	}
+	
+	$('.match_question').each(function(){
+		var question_text = $(this).find('.txt_match_question').val();
+		
+		if (jQuery.trim(question_text).length > 0) {
+			question[question_count++] = { text : question_text,
+			                             answer : $(this).find('.ddl_matched_answer').val(), 
+												  id     : null};
+		}
+	});
+	
+	$('.txt_match_answer').each(function(index){
+		var answer_text = $(this).val();
+		
+		if (jQuery.trim(answer_text).length > 0) {
+			answer[answer_count++] = { text : answer_text,
+											  index : index,
+											  id    : null };
+		}
+	});
+	
+	if (question.length == 0) {
+		validated = false;
+		$('#err_empty_match_question').show();
+	}
+	if (answer.length == 0) {
+		validated = false;
+		$('#err_empty_match_answer').show();
+	}
+	
+	if (validated) {
+		for (i in question) {
+			validated = false;
+			
+			for (j in answer){
+				if (question[i].answer == answer[j].index) {
+					validated = true;
+				}
+			}
+			
+			if (validated == false){
+				$('#err_unlinked_match_question').show();
+				break;
+			}
+		}
+	}
+	
+	if (validated){
+		
+		$('[data-section-id="' + section_id + '"]').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);  //Just for testing.
+
+		$.ajax({
+			url: 'ajax/edit_matching_section.php',
+			data: {
+				test_id : test_id,
+				section_id : section_id,
+				section_description: description,
+				question_weight: question_weight,
+				questions : question,
+				answers : answer
+			},
+			success: function(section) {
+				var temp_div = document.createElement('div');
+				temp_div.innerHTML = section;
+				
+				// If we have to reprint the entire section, then grab the innerHTML of the reprinted section, so that the surrounding li tag isn't included.
+				$('[data-section-id="' + section_id + '"]').html($(temp_div.innerHTML).html());               // Return value is not the edited section yet.
+				$('#dlg_match').dialog('close');
+				number_questions();
+				clear_question_fields();
+			}
+		});
+	}
 }
 
 function delete_question(question) {
@@ -436,6 +528,23 @@ function delete_question(question) {
 	});
 }
 
+function delete_matching_section(section) {
+	var section_id = section.getAttribute('data-section-id');
+	var section_area = section.parentElement;
+	
+	$.ajax({
+		url: 'ajax/delete_matching_section.php',
+		data: { section_id : section_id,
+		        test_id : test_id },
+		success: function(data) {
+			$(section).remove();
+			number_questions();
+			if ($(section_area).children().length == 0)
+				$('#MATCH').hide();
+		}
+	});
+}
+
 // Display the question numbers.
 function number_questions() {
 	$( ".question_number" ).each(function( index ) {
@@ -446,6 +555,22 @@ function number_questions() {
 		formatted_number = formatted_number + (index + 1 + ")");
 		$(this).html(formatted_number);
 	});
+}
+
+function raise_question(question) {
+	var prev_question = $(question).prev();
+	if ($(prev_question).length > 0) {
+		$(question).insertBefore($(prev_question));
+		number_questions();
+	}
+}
+
+function lower_question(question) {
+	var next_question = $(question).next();
+	if ($(next_question).length > 0) {
+		$(question).insertAfter($(next_question));
+		number_questions();
+	}
 }
 
 function clear_error_messages() {
@@ -474,8 +599,7 @@ function clear_question_fields() {
 	$("#txt_matchq_entry").val('');
 	$(".txt_match_question").val('');
 	$(".txt_match_answer").val('');
-	/*$("#ddl_matched_answer").hide();  // maybe set selected index to 0?
-	$("#ddl_matched_answer").html('');*/
+	$(".ddl_matched_answer").val(0);
 	
 	$(".weight_entry").val(DEFAULT_QUESTION_WEIGHT);
 }

@@ -1,5 +1,5 @@
 //***************Functions********************
-function edit_student() {
+function edit_teacher() {
 	var password = $('#password').val();
 	var first_name = $('#first_name').val();
 	var last_name = $('#last_name').val();
@@ -34,54 +34,54 @@ function edit_student() {
 	if (validated)
 	{
 		$.ajax({
-			url: 'ajax/edit_student.php',
+			url: 'ajax/edit_teacher.php',
 			data: { id : $('#info_id').html(),
 			        first_name : first_name,
 			        last_name : last_name,
 			        email : email,
 			        password : password,
 			},
-			success : function(student){
+			success : function(teacher){
 				var temp_div = document.createElement('div');
-				temp_div.innerHTML = student;
+				temp_div.innerHTML = teacher;
 				
-				$('#h_student_info').html(
+				$('#h_teacher_info').html(
 					$(temp_div).find('#info_last').html() + ', '
 					+ $(temp_div).find('#info_first').html() + ' ('
 					+ $(temp_div).find('#info_id').html() + ')'
 				);
-				$( '#ddl_switch_student option:selected' ).text(
+				$( '#ddl_switch_teacher option:selected' ).text(
 					$(temp_div).find('div').text()
 					+ $(temp_div).find('#info_last').text() + ', '
 					+ $(temp_div).find('#info_first').text()
 				);
-				$('#tbl_student_info').html($(temp_div).find('tbody').html());
+				$('#tbl_teacher_info').html($(temp_div).find('tbody').html());
 			}
 		});
-		$( '#dlg_edit_student_info' ).dialog( 'close' );
+		$( '#dlg_edit_teacher_info' ).dialog( 'close' );
 	}
 }
 
-// Populate the page with information from a student.
-function load_student() {
-	$('#area_student_info').hide();
+// Populate the page with information from a teacher.
+function load_teacher() {
+	$('#area_teacher_info').hide();
 	$('#area_loader').show();
 	
 	$.ajax({
-		url: 'ajax/get_student_info.php',
-		data : { student_id : $('#ddl_switch_student').val()},
-      dataType : 'html',
-		success: function(student){
+		url: 'ajax/get_teacher_info.php',
+		data : { teacher_id : $('#ddl_switch_teacher').val()},
+		dataType : 'html',
+		success: function(teacher){
 			var temp_div = document.createElement('div');
-			temp_div.innerHTML = student;
+			temp_div.innerHTML = teacher;
 			
-			$('#h_student_info').html($(temp_div).find('#heading_info').html());
-			$('#tbl_student_info').html($(temp_div).find('#information_line tbody').html());
+			$('#h_teacher_info').html($(temp_div).find('#heading_info').html());
+			$('#tbl_teacher_info').html($(temp_div).find('#information_line tbody').html());
 			$('#tbl_classes').html($(temp_div).find('#class_table tbody').html());
 			set_class_links();
 			
 			$('#area_loader').hide();
-			$('#area_student_info').show();
+			$('#area_teacher_info').show();
 		}
 	});
 }
@@ -124,11 +124,11 @@ $(document).ready(function(){
 	
 	// Take a new teacher's name, password, and email address and add them to the database.
 	$('#btn_save').click(function() {
-		edit_student();
+		edit_teacher();
 	});	
 	
-	$('#ddl_switch_student').change(function(){
-		load_student();
+	$('#ddl_switch_teacher').change(function(){
+		load_teacher();
 	});
 	
 	// Read the enter key press if user is in the add form and press the add button.
@@ -152,7 +152,7 @@ $(document).ready(function(){
 	});
 	
 	// Open a dialog box if a user clicks the open button.
-	$( '#dlg_edit_student_info' ).dialog({
+	$( '#dlg_edit_teacher_info' ).dialog({
       autoOpen: false,
 	  modal: true,
 	  width: 600,
@@ -172,12 +172,12 @@ $(document).ready(function(){
 		}
     });
  
-    $( '#btn_open_edit_studnet_dialog' ).click(function() {
+    $( '#btn_open_edit_teacher_dialog' ).click(function() {
 		$('#first_name').val(html_special_chars_decode($('#info_first').html()));
 		$('#last_name').val(html_special_chars_decode($('#info_last').html()));
 		$('#password').val(html_special_chars_decode($('#info_password').html()));
 		$('#email').val(html_special_chars_decode($('#info_email').html()));
 		 
-	  $( '#dlg_edit_student_info' ).dialog( 'open' );
+	  $( '#dlg_edit_teacher_info' ).dialog( 'open' );
     });
 });

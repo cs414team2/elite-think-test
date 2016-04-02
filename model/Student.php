@@ -21,7 +21,7 @@
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $class_id . "'>";
+					echo "<tr " . "id='" . $class_id . "' class='clickable_row'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
 					echo "</tr>\r\n";
@@ -144,11 +144,11 @@
 			$statement->fetch();
 			
 			echo "<tr>
-					<td>". $student_id ." </td>
-					<td>". $student_fname ."</td>
-					<td>". $student_lname ."</td>
-					<td>". $student_email ."</td>
-					<td>". $student_password ."</td>
+					<td id='info_id'>". $student_id ."</td>
+					<td id='info_first'>". $student_fname ."</td>
+					<td id='info_last'>". $student_lname ."</td>
+					<td id='info_email'>". $student_email ."</td>
+					<td id='info_password'>". $student_password ."</td>
 				</tr>";
 		}
 	}

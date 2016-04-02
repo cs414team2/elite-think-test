@@ -133,11 +133,11 @@
 			$statement->fetch();
 			
 			echo "<tr>
-					<td>". $teacher_id ." </td>
-					<td>". $teacher_fname ."</td>
-					<td>". $teacher_lname ."</td>
-					<td>". $teacher_email ."</td>
-					<td>". $teacher_password ."</td>
+					<td id='info_id'>". $teacher_id ."</td>
+					<td id='info_first'>". $teacher_fname ."</td>
+					<td id='info_last'>". $teacher_lname ."</td>
+					<td id='info_email'>". $teacher_email ."</td>
+					<td id='info_password'>". $teacher_password ."</td>
 				</tr>";
 		}
 	}
