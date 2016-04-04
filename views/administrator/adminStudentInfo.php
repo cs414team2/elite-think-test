@@ -1,7 +1,7 @@
 <?php
 require_once('model/Admin.php');
-require_once('model/student.php');
-if (isset($_SESSION['credentials'])) {
+require_once('model/Student.php');
+if (isset($_SESSION['credentials'], $_REQUEST['id'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		$student = new student();
 		echo'
@@ -10,19 +10,21 @@ if (isset($_SESSION['credentials'])) {
 			
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2 id="studentName">'; $student->get_student_info($_REQUEST["id"]); echo '</h2>
+					<h2 id="h_student_info">'; $student->get_student_info($_REQUEST["id"]); echo '</h2>
 				</header>
 				
-				<div class="container" >	
+				<div class="container" >
 					<!-- Content -->
 					<section>
 						<section style="display: inline-block;">
-							<select name="student" id="studentSelection" style="display: inline-block;">';
+							<select name="student" id="ddl_switch_student" style="display: inline-block;">';
 								$admin = new Admin();
 								$admin->get_students_ddl($_REQUEST["id"]);
+
 					  echo '</select></section>
 						<img src="images/edit_user.png" class="clickable_img" title="Edit This Teacher" id="btn_open_edit_studnet_dialog"  style="display:inline-block; float: right;">
 						<hr />
+						<div id="area_student_info">
 						<table class="alt" id="content">
 						<caption style="font-weight: bold; text-decoration: underline;">Student Information</caption>
 							<thead>
@@ -34,11 +36,12 @@ if (isset($_SESSION['credentials'])) {
 									<th>Password</th>
 								</tr>
 							</thead>
-							<tbody>
-							 <tbody>';
+							 <tbody id="tbl_student_info">';
 								$student->get_full_student_info($_REQUEST["id"]);
 					  echo '</tbody>
-						</table>		
+						</table>
+						</div>
+						<div id="area_loader" class="loader" style="display: none;">Loading...</div>
 						<hr />
 						<table class="alt" id="content" style="display: inline; max-width: 50%;">
 							<caption style="font-weight: bold; text-decoration: underline;">Enrolled Classes</caption>
@@ -48,17 +51,17 @@ if (isset($_SESSION['credentials'])) {
 									<th>Course Name</th>
 								</tr>
 							</thead>
-							<tbody>';
+							<tbody id="tbl_classes">';
 								$student->print_classes($_REQUEST["id"]);
 					  echo '</tbody>
 						</table>				
 						
 						<section style="display: inline; max-width: 50%; float:right">
-							<select name="class" id="classSelection">
+							<select name="class" id="ddl_select_class">
 								<option selected="selected" value="null">- Select a class -</option>
 							</select>
 							<br />
-							<button class="big button special" style="height: 2em; line-height: 0em; float:right" onclick="confirm(Does this Work?)">Enroll Student</button>
+							<button class="big button special" style="height: 2em; line-height: 0em; float:right" onclick="confirm(\'Does this Work?\')">Enroll Student</button>
 						</section>
 					</section>
 				</div>	
@@ -92,7 +95,7 @@ if (isset($_SESSION['credentials'])) {
 				
 				</form>
 				<br />
-				<button id="btn_add" class="button special big">Save Changes</button>			
+				<button id="btn_save" class="button special big">Save Changes</button>			
 			</div>
 		';
 	}

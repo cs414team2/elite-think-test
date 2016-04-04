@@ -753,7 +753,7 @@ span#countdown {
 	}
 	
 	
-	.question_list {
+	.question_list, .section_list {
 		list-style-type: none;
 		margin-bottom: 0;
 		padding-left: 0;

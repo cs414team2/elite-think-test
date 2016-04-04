@@ -73,7 +73,7 @@ $(document).ready(function(){
 						firstname: firstname,
 						lastname: lastname,
 						email: email
-					  },
+				},
 				success: function (){
 					loadStudents();
 				
