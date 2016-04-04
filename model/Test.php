@@ -320,8 +320,8 @@ class Test{
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "\r\n <li class='question_item question_list' style='width: 500px;'>";
-			echo "\r\n   <span class='question_number' style='display: inline-block;'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
+			echo "\r\n <li class='question_item question_list' style='width: 300px;'>";
+			echo "\r\n   <span class='question_number' style='display: inline-block; margin-bottom: 20px;'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
 			if($this->user_type == self::STUDENT){
 				echo "\r\n   <select class='matching_input_box' style='display: inline-block; float: right; width: 120px;'>";
 				echo "\r\n       <option></option>";
