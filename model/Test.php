@@ -300,7 +300,7 @@ class Test{
 	public function print_section($matching_section_id, $matching_section_description){
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
 		echo "<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
-		if($this->user_type != self::STUDENT){
+		if($this->user_type == self::TEACHER){
 			echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
 				  <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
 				  <img src='images/delete1.png' class='clickable_img' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
@@ -323,7 +323,7 @@ class Test{
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "\r\n <li style='width: 300px;' class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
+			echo "\r\n <li style='width: 300px; margin-bottom: 7px;' class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
 			if($this->user_type == self::STUDENT){
 				echo "\r\n   <select class='matching_input_box' style='display: inline-block; float: right; width: 120px;'>";
