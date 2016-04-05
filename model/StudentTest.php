@@ -22,6 +22,7 @@
 		private $db;
 		private $alphabet;
 		private $answer_count;
+		private $user_type;
 		
 		public function __construct($test_id, $student_id){
 			$this->test_id    = $test_id;
@@ -169,6 +170,7 @@
 				echo "\r\n  <ul class='question_list'>";
 			}
 			echo "\r\n   </ul>\r\n</div>";
+			$this->print_matching_sections();
 		}
 		
 		// Print the question
@@ -260,7 +262,8 @@
 /*********************************************************************************************/
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
-	public function print_matching_sections(){
+	public function print_matching_sections($u_type){
+		$this->user_type = $u_type;
 		$statement = $this->db->prepare("SELECT matching_section_id, matching_section_description
 									     FROM matching_section 
 									     WHERE test_id = ? ORDER BY section_number") or die($db->error);
