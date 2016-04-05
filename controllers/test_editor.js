@@ -364,6 +364,7 @@ function edit_question(question_id, question_type) {
 						}
 					});
 				}
+				$("#" + question_id).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 				$("#dlg_" + question_type.toLowerCase()).dialog("close");
 			}
 		});
@@ -485,7 +486,6 @@ function edit_matching_section(){
 	
 	if (validated){
 		
-		$('[data-section-id="' + section_id + '"]').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);  //Just for testing.
 
 		$.ajax({
 			url: 'ajax/edit_matching_section.php',
@@ -498,11 +498,16 @@ function edit_matching_section(){
 				answers : answer
 			},
 			success: function(section) {
+				$('[data-section-id="' + section_id + '"]').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeOut(100).fadeIn(100);
 				var temp_div = document.createElement('div');
 				temp_div.innerHTML = section;
+
+				$('[data-section-id="' + section_id + '"]').html('');
 				
-				// If we have to reprint the entire section, then grab the innerHTML of the reprinted section, so that the surrounding li tag isn't included.
-				$('[data-section-id="' + section_id + '"]').html($(temp_div.innerHTML).html());               // Return value is not the edited section yet.
+				$(temp_div).children().each(function(){
+					$('[data-section-id="' + section_id + '"]').append($(this).html());
+				});
+				
 				$('#dlg_match').dialog('close');
 				number_questions();
 				clear_question_fields();
@@ -534,8 +539,7 @@ function delete_matching_section(section) {
 	
 	$.ajax({
 		url: 'ajax/delete_matching_section.php',
-		data: { section_id : section_id,
-		        test_id : test_id },
+		data: { section_id : section_id },
 		success: function(data) {
 			$(section).remove();
 			number_questions();
