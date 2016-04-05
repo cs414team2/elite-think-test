@@ -60,6 +60,10 @@ class Test{
 			
 	}
 	
+	public function set_user_type($user_type) {
+		$this->user_type = $user_type;
+	}
+	
 	public function get_class_name(){
 		$statement = $this->db->prepare("SELECT get_class_name_by_test(?)") or die($db->error); 
 		$statement->bind_param("i", $this->test_id) 				        or die($statement->error);

@@ -17,6 +17,10 @@
 		echo '<table id="class_table"><tbody>';
 		$student->print_classes($_REQUEST["student_id"]);
 		echo '</tbody></table>';
+		
+		echo '<select id="unenrolled_classes">';
+		$student->print_classes_dropdown($_REQUEST["student_id"]);
+		echo '</select>';
 	}
 
 ?>

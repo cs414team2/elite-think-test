@@ -23,6 +23,7 @@
 		private $alphabet;
 		private $answer_count;
 		private $user_type;
+		private $matching_answers_list;
 		
 		public function __construct($test_id, $student_id){
 			$this->test_id    = $test_id;
@@ -254,7 +255,7 @@
 					   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;". $false_color ."'>False ". $false_symbol ."</label>";
 					break;
 				case self::ESSAY_QUESTION_TYPE:
-					echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion'>". $answer_given ."</textarea>";
+					echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion' disabled='true'>". $answer_given ."</textarea>";
 					break;
 			}
 		}
@@ -272,7 +273,7 @@
 		$statement->bind_result($matching_section_id, $matching_section_description);
 		
 		if($statement->num_rows > 0){
-			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
+			echo "<div class='my-form-builder' id='".self::MATCHING_QUESTION_TYPE."'>";
 			echo "\r\n  <h4> Matching Sections </h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($statement->fetch()){
@@ -298,24 +299,44 @@
 	}
 
 	public function print_matching_questions($matching_section_id){
-		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
-												  FROM matching_question 
-												  WHERE matching_section_id = ?") or die($db->error);
-		$question_statement->bind_param("i", $matching_section_id);
+		$question_type = self::MATCHING_QUESTION_TYPE;
+		$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, mq.matching_answer_id, ma.matching_answer_id, ma.answer_content, sa.answer_given,
+		                                                 (SELECT answer_content
+														    FROM matching_answer
+														   WHERE matching_answer_id = sa.answer_given) as answer_given_content
+												    FROM matching_question mq
+												    JOIN matching_answer ma on ma.matching_answer_id = mq.matching_answer_id
+												    JOIN student_answer sa on sa.question_id = mq.matching_question_id
+												   WHERE mq.matching_section_id = ?
+												     AND sa.question_type = ?
+												     AND sa.student_id = ?") or die($this->db->error);
+		$question_statement->bind_param("isi", $matching_section_id, $question_type, $this->student_id);
 		$question_statement->execute();
 		$question_statement->store_result();
-		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
+		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id, $correct_answer, $answer_content, $answer_given, $answer_given_content);
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
 			echo "\r\n <li class='question_item question_list' >";
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
-			echo "\r\n   <select style='display: inline-block; float: right'>";
-			echo "\r\n       <option></option>";
+			
+			$symbol = self::CHECK_MARK;
+			if ($answer_given == null) {
+				$symbol = self::LEFT_ARROW;
+			}
+			else if ($answer_given == $correct_answer) {
+				$symbol = self::CHECK_MARK;
+			}
+			else {
+				echo "\r\n <span style='". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
+			}
+			echo "\r\n <span style='". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
+			
+			/*echo "\r\n   <select style='display: inline-block; float: right'>";
 			for($count = 0; $count < $this->answer_count; $count++){
 				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
 			}
-			echo "\r\n   </select>";
+			echo "\r\n   </select>";*/
 			echo "\r\n </li>";
 		}
 		echo "\r\n </ol>";

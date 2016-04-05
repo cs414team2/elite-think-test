@@ -7,10 +7,11 @@
 	const MATCHING_QUESTION_TYPE        = 'MATCH';
 	
 	print_r($_REQUEST);
+	echo (int) $_SERVER['CONTENT_LENGTH'];
 	
 	if (isset($_REQUEST['test'], $_REQUEST['student_id'])) {
 		$student_id = $_REQUEST['student_id'];
-		$test = json_decode(stripslashes($_REQUEST['test']));
+		$test = $_REQUEST['test'];
 
 		$elite_connection = new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2") or die($elite_connection->error);
 		$add_statement = $elite_connection->prepare("CALL add_student_answer(?,?,?,?)")                 or die($add_statement->error);
@@ -25,7 +26,7 @@
 				}
 			}
 			
-			$add_statement->bind_param("iis", $student_id, $question_id, $answer_given, $question_type) or die($add_statement->error);
+			$add_statement->bind_param("iiss", $student_id, $question_id, $answer_given, $question_type) or die($add_statement->error);
 			$add_statement->execute() or die($add_statement->error);
 		}
 	}

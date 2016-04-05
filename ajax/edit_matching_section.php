@@ -54,6 +54,7 @@
 			$_REQUEST['questions'][$question_number]['id'] = $question_info['question_id'];
 		}
 		
+		$test->set_user_type(Test::TEACHER);
 		$test->print_section($section_id, $section_description);
 		
 	}

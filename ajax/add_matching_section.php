@@ -63,6 +63,7 @@
 			
 			$elite_connection->commit();
 			
+			$test->set_user_type(Test::TEACHER);
 			$test->print_section($section_info['section_id'], $section_description);
 		}
 		catch(Exception $e){
