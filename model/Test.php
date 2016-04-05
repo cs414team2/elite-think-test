@@ -299,15 +299,20 @@ class Test{
 	
 	public function print_section($matching_section_id, $matching_section_description){
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
-		echo "<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
-		if($this->user_type == self::TEACHER){
-			echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
-				  <img src='images/delete1.png' class='clickable_img' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
-			  </div>";
+		echo "\r\n<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
+		if($this->user_type == self::TEACHER) {
+			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
+				  \r\n<img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  \r\n<img src='images/delete1.png' class='clickable_img' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
+			  \r\n</div>";
 		}
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
+		
+		if($this->user_type == self::TEACHER) {
+			echo "\r\n<img src='images/arrowup.png' class='clickable_img' onclick='raise_section(this.parentElement)'>
+				  \r\n<img src='images/arrowDown.png' class='clickable_img'  onclick='lower_section(this.parentElement)'>";
+		}
 		
 		echo "\r\n</li>";
 	}

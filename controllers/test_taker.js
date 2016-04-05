@@ -114,7 +114,7 @@ function submit_answers() {
 	var question_count = 0;
 	var answer_count   = 0;
 	
-	$('#' + MULTIPLE_CHOICE_QUESTION_TYPE).find(".question_item").each(function(i, question) {
+	/*$('#' + MULTIPLE_CHOICE_QUESTION_TYPE).find(".question_item").each(function(i, question) {
 		$(question).find(".answer:checked").each(function(){
 			answer_count++;
 			test[question_count++] = { question_id : $(this).attr('name'),
@@ -141,31 +141,30 @@ function submit_answers() {
 											 question_type : TRUE_FALSE_QUESTION_TYPE }
 		}
 		answer_count = 0;
-	});
+	});*/
 	
 	$('.studentEssayQuestion').each(function(index){
 		test[question_count++] = { question_id : $(this).attr('name'),
 			                       answer_given : $(this).val(),
 										 question_type : ESSAY_QUESTION_TYPE }
 	});
-	
+	/*
 	$('#' + MATCHING_QUESTION_TYPE).find('.question_item').each(function(){
 		test[question_count++] = { question_id : $(this).data('question-id'),
 										  answer_given : $(this).find('select').val(),
 										 question_type : MATCHING_QUESTION_TYPE }
-	});
-
-	alert(test[question_count - 1].answer_given);
+	});*/
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
 		type: "POST",
-		data: { //test : test,
+		data: { test : test,
 				  student_id : student_id },
 		success: function(data) {
+			//alert(data);
 		},
-		error: function(data){
-			alert(data);
+		error: function(response){
+			//alert(response.status + " " + response.statusText);
 		}
 	});
 }
@@ -176,6 +175,7 @@ function disable_test () {
 	$("#btn_complete").removeAttr("disabled");
 	$(".answer").prop('disabled', true);
 	$(".studentEssayQuestion").prop('disabled', true);
+	$(".matching_input_box").prop('disabled', true);
 	disable_timer();
 }
 
@@ -190,7 +190,7 @@ function submit_pledge() {
 			student_id : student_id
 		},
 		success : function(){
-			//                     Load the graded answers
+			//                     Load the graded answers maybe
 		}
 	});
 }

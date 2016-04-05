@@ -595,6 +595,40 @@ function lower_question(question) {
 	}
 }
 
+function raise_section(section) {
+	var prev_section = $(section).prev();
+	if ($(prev_section).length > 0) {
+		$.ajax({
+			url: 'ajax/swap_sections.php',
+			data : {
+				section_id_1 : $(section).data('section-id'),
+				section_id_2 : $(prev_section).data('section-id')
+			},
+			success : function() {
+				$(section).insertBefore($(prev_section));
+				number_questions();
+			}
+		});
+	}
+}
+
+function lower_section(section){
+	var next_section = $(section).next();
+	if ($(next_section).length > 0) {
+		$.ajax({
+			url: 'ajax/swap_sections.php',
+			data : {
+				section_id_1 : $(section).data('section-id'),
+				section_id_2 : $(next_section).data('section-id')
+			},
+			success : function(data) {
+				$(section).insertAfter($(next_section));
+				number_questions();
+			}
+		});
+	}
+}
+
 function clear_error_messages() {
 	$("#err_empty_tf").hide();
 	$("#err_empty_mc").hide();
