@@ -11,14 +11,13 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				var test_id = '. $_REQUEST['test_id'] . ';
 			</script>
 			<div class="testContainer">
-				<div id="sidebar" style="text-align:center">
-					
+				<div id="sidebar" style="text-align:center; margin-top:3em;">
 					<section style="text-align:center">
 						<h2>Select a Test to Grade </h2>
 							<section id="studentTest" style="max-height:600px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">';
 								$test->get_completed_tests();
 					echo	'</section>
-				<button id="btn_finalize_grade">Finalize</button>
+				<button class="alt button special" id="btn_finalize_grade">Finalize Grade</button>
 					</section>
 					<br /><br />
 					<section id="test_guide" style="padding:1em; min-height:50px; margin-left:2em; margin-right:2em; background-color:lightgray; ">
@@ -31,7 +30,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</div>		
 		
 				<div class="studentTest" style="float:right;">
-					<h2 style="padding:10px;">Test '. $test->get_test_number() . ' - ' . $test->get_class_name() . '</h2>
+					<h2 style="padding:10px;"><span id="grade_curr_stud_name"></span> Test '. $test->get_test_number() . ' - ' . $test->get_class_name() . '</h2>
 					<section id="gradeView">
 						<div id="grade_content" align="left" ';
 						if (isset($_REQUEST['student_id'])){

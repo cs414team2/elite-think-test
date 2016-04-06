@@ -59,7 +59,7 @@
 
 			if($question_type == Test::MULTIPLE_CHOICE_QUESTION_TYPE)
 				echo "</ol>";
-			echo "\r\n</li>";
+			echo "\r\n<hr /></li>";
 			
 			$eliteConnection->commit();
 		}
