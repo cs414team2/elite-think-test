@@ -11,6 +11,17 @@ function load_tests_and_classes() {
 			open_test_taking_page($(this).attr('id'));
 		});
 	});
+	
+	$ajax({
+		url: 'ajax/get_graded_tests_student.php',
+		data: {student_id : user_id},
+		success : function(test_table) {
+			$('#tbl_graded_tests').html(test_table);
+			$('#tbl_graded_tests').children('tr').click(function(){
+				window.location = './?action=student_view_test&test_id=' + $(this).data('test-id');
+			});
+		}
+	});
 }
 
 //******************Events**********************

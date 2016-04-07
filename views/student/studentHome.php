@@ -102,13 +102,14 @@ if (isset($_SESSION['credentials'])) {
 									<thead>
 										<tr>
 											<th>Test</th>
+											<th>Class #</th>
 											<th>Class</th>
 											<th>Grade</th>  
 										</tr>
 									</thead>
 									<tbody id="tbl_graded_tests">
 										<tr>
-											<td>
+											<td >
 												Loading Tests...
 											</td>
 										</tr>

@@ -119,6 +119,29 @@
 			if($tests_available == 0)
 				echo "<tr> <td colspan='6' style='text-align:center;'> No Tests Available </td> </tr>";
 		}
+
+		// Print all of the graded tests for a student.
+		public function print_graded_tests($student_id) {
+			$elite_connection = $this->prepare_connection();
+			$test_statement = $elite_connection->prepare('SELECT t.test_id, t.test_number, c.class_number, c.class_name, st.grade
+														    FROM student_test st
+														    JOIN test t ON t.test_id   = st.test_id
+														    JOIN class c ON c.class_id = t.class_id
+														   WHERE st.student_id = ?
+														     AND st.grade IS NOT NULL');
+			$test_statement->bind_param('i', $student_id);
+			$test_statement->bind_result($test_id, $test_num, $class_num, $class_name, $grade);
+			$test_statement->execute();
+			
+			while($test_statement->fetch()){
+				echo '\r\n<tr class="clickable_row graded_test" data-test-id"'.$test_id.'">';
+				echo '\r\n<td>Test '.$test_num.'</td>';
+				echo '\r\n<td>'.$class_num.'</td>';
+				echo '\r\n<td>'.$class_name.'</td>';
+				echo '\r\n<td>'.$grade.'</td>';
+				echo '\r\n</tr>';
+			}
+		}
 		
 		public function get_student_info($student_id){
 			$db = $this->prepare_connection();
