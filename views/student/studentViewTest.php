@@ -13,20 +13,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<div class="testContainer">
 				<div id="sidebar" style="text-align:center; margin-top:3em;">
 					<section style="text-align:center">
-						<h2>Select a Test to Grade </h2>
-							<section id="studentTest" style="max-height:600px; padding:1em; min-height:450px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">';
-								$test->get_completed_tests();
-					echo	'</section>
-				<button class="alt button special" id="btn_finalize_grade">Finalize Grade</button>
+						<h2>Your Grade</h2>
+						<h2>B</h2>
+						<h2>86.5%</h2>
 					</section>
-					<br /><br />
-					<section id="test_guide" style="padding:1em; min-height:50px; margin-left:2em; margin-right:2em; background-color:lightgray; ">
-					<h1> Grading Symbols </h1>
-						<p> <= - Student gave no answer <br \> &#10003; - Student gave correct answer  <br \> x - student gave wrong answer </p>
-						
-					
-					</section>
-						
 				</div>		
 		
 				<div class="studentTest" style="float:right;">
