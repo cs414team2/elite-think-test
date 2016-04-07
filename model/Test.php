@@ -329,7 +329,8 @@ class Test{
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
-			echo "\r\n <li style='width: 300px; margin-bottom: 7px;' class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."' data-weight='".$question_weight."'>";
+			$matching_answer_tag = ($this->user_type == self::TEACHER ? "data-matching-answer-id='". $matching_answer_id ."'" : "");
+			echo "\r\n <li style='width: 300px; margin-bottom: 7px;' class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' ". $matching_answer_tag ." data-weight='".$question_weight."'>";
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
 			if($this->user_type == self::STUDENT){
 				echo "\r\n   <select class='matching_input_box' style='display: inline-block; float: right; width: 120px;'>";
