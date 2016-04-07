@@ -43,7 +43,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['id'])) {
 						</div>
 						<div id="area_loader" class="loader" style="display: none;">Loading...</div>
 						<hr />
-						<table class="alt" id="content" style="display: inline; max-width: 50%;">
+						<table id="table_classes" class="alt" id="content" style="display: inline; max-width: 50%;">
 							<caption style="font-weight: bold; text-decoration: underline;">Enrolled Classes</caption>
 							<thead>
 								<tr>
@@ -54,14 +54,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['id'])) {
 							<tbody id="tbl_classes">';
 								$student->print_classes($_REQUEST["id"]);
 					  echo '</tbody>
-						</table>				
+						</table>
 						
-						<section style="display: inline; max-width: 50%; float:right">
-							<select name="class" id="ddl_select_class">
-								<option selected="selected" value="null">- Select a class -</option>
-							</select>
+						<section id="area_enroll_class" style="display: inline; max-width: 50%; float:right">
+							<select name="class" id="ddl_select_class">';
+								$student->print_classes_dropdown($_REQUEST["id"]);
+					  echo	'</select>
 							<br />
-							<button class="big button special" style="height: 2em; line-height: 0em; float:right" onclick="confirm(\'Does this Work?\')">Enroll Student</button>
+							<button id="btn_enroll" class="big button special" style="height: 2em; line-height: 0em; float:right">Enroll Student</button>
 						</section>
 					</section>
 				</div>	

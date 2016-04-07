@@ -23,6 +23,7 @@
 		private $alphabet;
 		private $answer_count;
 		private $user_type;
+		private $matching_answers_list;
 		
 		public function __construct($test_id, $student_id){
 			$this->test_id    = $test_id;
@@ -74,7 +75,7 @@
 					
 					while($answer_statement->fetch())
 						$this->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
-					echo "\r\n</li>";
+					echo "\r\n<hr /></li>";
 				}
 			}
 			else{
@@ -118,7 +119,7 @@
 					while($answer_statement->fetch())
 						$this->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 					echo "</ol>";
-					echo "\r\n</li>";
+					echo "\r\n<hr /></li>";
 				}
 			}
 			else {
@@ -161,7 +162,7 @@
 					
 					while($answer_statement->fetch())
 						$this->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
-					echo "\r\n</li>";
+					echo "\r\n<hr /></li>";
 				}
 			}
 			else {
@@ -176,11 +177,11 @@
 		// Print the question
 		public function print_question($question_id, $question_text, $user_type, $question_type, $question_weight, $points_received, $student_answer_id){
 			if($question_type == self::ESSAY_QUESTION_TYPE){
-				echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'>";
+				echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'>";
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_" . $question_id . "' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;'><label for='txt_essay_points_" . $question_id . "' class='question_weight'> / ". $question_weight ." Pt(s)</label></span></div>";
 			}
 			else{
-				echo "\r\n<li id='".$question_id."' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'>";
+				echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'>";
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'>&nbsp;<span class='question_weight' >". $points_received ."</span> Point(s)</span></div>";
 			}
 		}
@@ -204,7 +205,7 @@
 					}
 					
 					echo "\r\n<li>
-								<input type='radio' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' ". ($answer_given == $answer_id ? "checked" : " ") . ">
+								<input type='radio' disabled='disabled' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' ". ($answer_given == $answer_id ? "checked" : " ") . ">
 								<label for='answer_". $answer_id ."' style='". $color ."'>". htmlspecialchars($answer_content) . $symbol . "</label>
 							  </li>";
 					break;
@@ -248,13 +249,13 @@
 						$false_symbol = self::CHECK_MARK;
 					}
 					echo "\r\n
-						  <input type='radio' id='answer_". $answer_id ."_true' name='". $question_id ."' value='T' class='answer' ". ($answer_given == 'T' ? "checked" : " ") . ">" 
+						  <input type='radio' disabled='disabled' id='answer_". $answer_id ."_true' name='". $question_id ."' value='T' class='answer' ". ($answer_given == 'T' ? "checked" : " ") . ">" 
 					   . "<label for='answer_" . $answer_id . "_true' style='margin-left: 5px;". $true_color ."'>True ". $true_symbol ."</label>
-						  \r\n<input type='radio' id='answer_". $answer_id ."_false' name='". $question_id ."' value='F' class='answer' ". ($answer_given == 'F' ? "checked" : " ") . ">"
+						  \r\n<input type='radio' disabled='disabled' id='answer_". $answer_id ."_false' name='". $question_id ."' value='F' class='answer' ". ($answer_given == 'F' ? "checked" : " ") . ">"
 					   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;". $false_color ."'>False ". $false_symbol ."</label>";
 					break;
 				case self::ESSAY_QUESTION_TYPE:
-					echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion'>". $answer_given ."</textarea>";
+					echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion' disabled='true'>". $answer_given ."</textarea>";
 					break;
 			}
 		}
@@ -272,7 +273,7 @@
 		$statement->bind_result($matching_section_id, $matching_section_description);
 		
 		if($statement->num_rows > 0){
-			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
+			echo "<div class='my-form-builder' id='".self::MATCHING_QUESTION_TYPE."'>";
 			echo "\r\n  <h4> Matching Sections </h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($statement->fetch()){
@@ -288,35 +289,55 @@
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<li data-section_id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "\r\n<li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
 		echo "<div><span>". $matching_section_description ."</span></div>";
 		
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
 		
-		echo "\r\n</li>";
+		echo "\r\n<hr /></li>";
 	}
 
 	public function print_matching_questions($matching_section_id){
-		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
-												  FROM matching_question 
-												  WHERE matching_section_id = ?") or die($db->error);
-		$question_statement->bind_param("i", $matching_section_id);
+		$question_type = self::MATCHING_QUESTION_TYPE;
+		$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, mq.matching_answer_id, ma.matching_answer_id, ma.answer_content, sa.answer_given,
+		                                                 (SELECT answer_content
+														    FROM matching_answer
+														   WHERE matching_answer_id = sa.answer_given) as answer_given_content
+												    FROM matching_question mq
+												    JOIN matching_answer ma on ma.matching_answer_id = mq.matching_answer_id
+												    JOIN student_answer sa on sa.question_id = mq.matching_question_id
+												   WHERE mq.matching_section_id = ?
+												     AND sa.question_type = ?
+												     AND sa.student_id = ?") or die($this->db->error);
+		$question_statement->bind_param("isi", $matching_section_id, $question_type, $this->student_id);
 		$question_statement->execute();
 		$question_statement->store_result();
-		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
+		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id, $correct_answer, $answer_content, $answer_given, $answer_given_content);
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
 		while($question_statement->fetch()){
 			echo "\r\n <li class='question_item question_list' >";
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
-			echo "\r\n   <select style='display: inline-block; float: right'>";
-			echo "\r\n       <option></option>";
+			
+			$symbol = self::CHECK_MARK;
+			if ($answer_given == null) {
+				$symbol = self::LEFT_ARROW;
+			}
+			else if ($answer_given == $correct_answer) {
+				$symbol = self::CHECK_MARK;
+			}
+			else {
+				echo "\r\n <span style='". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
+			}
+			echo "\r\n <span style='". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
+			
+			/*echo "\r\n   <select style='display: inline-block; float: right'>";
 			for($count = 0; $count < $this->answer_count; $count++){
 				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
 			}
-			echo "\r\n   </select>";
-			echo "\r\n </li>";
+			echo "\r\n   </select>";*/
+			echo "\r\n</li>";
 		}
 		echo "\r\n </ol>";
 		

@@ -32,18 +32,18 @@ class Test{
 	
 	public function print_question($question_id, $question_text, $access_level, $question_type, $question_weight){
 		if($access_level == self::TEACHER){
-			echo "\r\n<li id='".$question_id."' class='single_question_box' data-question-type='". $question_type . "'>";
-			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >". $question_weight ."</span> Point(s)</span></div>";
+			echo "\r\n<li id='".$question_id."' class='' data-question-type='". $question_type . "'>";
+			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text question_style'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >". $question_weight ."</span> Point(s)</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-			echo "\r\n	    <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' onclick='open_question_editor(this.parentElement.parentElement)'>";
-			echo "\r\n	    <img src='images/delete1.png' class='clickable_img' onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>";
-			echo "\r\n      <img src='images/arrowup.png' class='clickable_img' onclick='raise_question(this.parentElement.parentElement)'>";
-			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img'  onclick='lower_question(this.parentElement.parentElement)'>";
+			echo "\r\n	    <img src='images/edit.png' class='clickable_img' title='Edit Question' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' onclick='open_question_editor(this.parentElement.parentElement)'>";
+			echo "\r\n	    <img src='images/delete1.png' class='clickable_img' title='Delete Question' onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>";
+			echo "\r\n      <img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
+			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
-			echo "\r\n<li id='".$question_id."' class='question_item' data-question-type='". $question_type . "' style='font-weight: bold; padding: 5px; border: 1px solid black; margin-top: 8px'>";
+			echo "\r\n<li id='".$question_id."' class='question_item' data-question-type='". $question_type . "' style='margin-top: 8px'>";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . htmlspecialchars($question_text) ."<span class='question_weight' style='float: right;'>".$question_weight . ($question_weight == 1 ? " Point" : " Points") . "</span></div>";
 		}
 	}
@@ -58,6 +58,10 @@ class Test{
 				break;
 		}
 			
+	}
+	
+	public function set_user_type($user_type) {
+		$this->user_type = $user_type;
 	}
 	
 	public function get_class_name(){
@@ -258,7 +262,7 @@ class Test{
 		if($statement->num_rows > 0){
 			while($statement->fetch()){
 				echo'<div class="gradeTestDiv">
-						<h1>'. $student_lname .', '. $student_fname .'<button id="'. $student_test_id .'" class="alt button special reset gradeTestButton" data-student-id="'.$student_id.'" >Grade</button><h1>
+						'. $student_lname .', '. $student_fname .'<button id="'. $student_test_id .'" class="alt button special gradeTestButton" data-student-id="'.$student_id.'" data-student-name="'.$student_fname.'">Grade</button>
 					 </div>';
 			}
 		}
@@ -298,18 +302,20 @@ class Test{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<li data-section-id='". $matching_section_id ."' class='single_question_box' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
-		echo "<div><span class='section_desc'>". htmlspecialchars($matching_section_description) ."</span></div>";
-		if($this->user_type == self::TEACHER){
-			echo "<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  <img src='images/edit.png' class='clickable_img' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
-				  <img src='images/delete1.png' class='clickable_img' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
-			  </div>";
+		echo "\r\n<li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span></div>";
+		if($this->user_type == self::TEACHER) {
+			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
+				  \r\n<img src='images/edit.png' class='clickable_img' title='Edit Question' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  \r\n<img src='images/delete1.png' class='clickable_img' title='Delete Question' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
+			      \r\n<img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
+				  \r\n<img src='images/arrowDown.png' class='clickable_img' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
+			  \r\n</div>";
 		}
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
 		
-		echo "\r\n</li>";
+		echo "\r\n<hr /></li>";
 	}
 
 	public function print_matching_questions($matching_section_id){

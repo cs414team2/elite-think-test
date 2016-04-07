@@ -160,6 +160,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
 		</div>
+		
 		<div id="dlg_essay" class="dialog_box" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
@@ -180,6 +181,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</ul>
 			</form>
 		</div>
+		
 		<div id="dlg_match" class="dialog_box" title="Matching Section Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_matchq_entry" rows="1" placeholder="Enter a Matching Section Description"

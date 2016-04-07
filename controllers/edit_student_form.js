@@ -1,3 +1,6 @@
+const STUDENT_NOT_ENROLLED = 0;
+const STUDENT_IS_ENROLLED  = 1;
+
 //***************Functions********************
 function edit_student() {
 	var password = $('#password').val();
@@ -62,6 +65,35 @@ function edit_student() {
 	}
 }
 
+function enroll_student(){
+	var student = [{ id : $('#info_id').html(),
+	        enrolled : STUDENT_IS_ENROLLED}];
+	
+	if ($('#ddl_select_class').val() != 'null') {
+		$.ajax({
+			url: 'ajax/update_enrollment.php',
+			data : {
+				class_id : $('#ddl_select_class').val(),
+				student : student
+			},
+			success : function(){
+				$.ajax({
+					url: 'ajax/get_student_info.php',
+					data : { student_id : $('#info_id').html() },
+					success : function(student) {
+						var temp_div = document.createElement('div');
+						temp_div.innerHTML = student;
+						
+						$('#tbl_classes').html($(temp_div).find('#class_table tbody').html());
+						set_class_links();
+						$('#ddl_select_class').html($(temp_div).find('#unenrolled_classes').html());
+					}
+				});
+			}
+		})
+	}
+}
+
 // Populate the page with information from a student.
 function load_student() {
 	$('#area_student_info').hide();
@@ -79,6 +111,7 @@ function load_student() {
 			$('#tbl_student_info').html($(temp_div).find('#information_line tbody').html());
 			$('#tbl_classes').html($(temp_div).find('#class_table tbody').html());
 			set_class_links();
+			$('#ddl_select_class').html($(temp_div).find('#unenrolled_classes').html());
 			
 			$('#area_loader').hide();
 			$('#area_student_info').show();
@@ -92,6 +125,12 @@ function set_class_links() {
 			window.location = './?action=admin_edit_class&id=' + $(this).attr('id');
 		});
 	});
+}
+
+function check_unenrolled_classes() {
+	if ($('#ddl_select_class').children().length == 0) {
+		$('#area_enroll_class').hide();
+	}
 }
 
 // Strip HTML tags from a string.
@@ -121,11 +160,16 @@ function html_special_chars_decode(str) {
 // ******************Events*******************
 $(document).ready(function(){
 	set_class_links();
+	check_unenrolled_classes();
 	
-	// Take a new teacher's name, password, and email address and add them to the database.
+	// Take a new student's name, password, and email address and add them to the database.
 	$('#btn_save').click(function() {
 		edit_student();
 	});	
+	
+	$('#btn_enroll').click(function(){
+		enroll_student();
+	});
 	
 	$('#ddl_switch_student').change(function(){
 		load_student();
