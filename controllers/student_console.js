@@ -11,8 +11,7 @@ function load_tests_and_classes() {
 			open_test_taking_page($(this).attr('id'));
 		});
 	});
-	
-	$ajax({
+	$.ajax({
 		url: 'ajax/get_graded_tests_student.php',
 		data: {student_id : user_id},
 		success : function(test_table) {

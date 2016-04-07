@@ -84,9 +84,13 @@
 						
 					case "student_class_console":
 						require_once('views/student/studentClassConsole.php');
-						break;	
+						break;
 					case "student_test_page":
 						require_once('views/student/studentTestPage.php');
+						$load_footer = false;
+						break;
+					case "student_view_test":
+						require_once('views/student/studentViewTest.php');
 						$load_footer = false;
 						break;
 						

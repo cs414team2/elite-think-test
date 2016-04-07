@@ -109,7 +109,7 @@ if (isset($_SESSION['credentials'])) {
 									</thead>
 									<tbody id="tbl_graded_tests">
 										<tr>
-											<td >
+											<td colspan="4">
 												Loading Tests...
 											</td>
 										</tr>

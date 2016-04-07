@@ -1,3 +1,5 @@
+const MAX_TEST_SIZE = 3;
+
 //****************************************************************
 //*                      Global Variables :(                     *
 //****************************************************************
@@ -23,6 +25,18 @@ function finalize_grade() {
 					grade : grade },
 		success : function(data){
 		}
+	});
+}
+
+// Display the question numbers.
+function number_questions() {
+	$( ".question_number" ).each(function( index ) {
+		var formatted_number = "";
+		for (i = 0; i < (MAX_TEST_SIZE - (index + 1).toString().length); i++) {
+			formatted_number = formatted_number + "&nbsp;";
+		}
+		formatted_number = formatted_number + (index + 1 + ")");
+		$(this).html(formatted_number);
 	});
 }
 

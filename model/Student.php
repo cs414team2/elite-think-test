@@ -128,18 +128,24 @@
 														    JOIN test t ON t.test_id   = st.test_id
 														    JOIN class c ON c.class_id = t.class_id
 														   WHERE st.student_id = ?
-														     AND st.grade IS NOT NULL');
-			$test_statement->bind_param('i', $student_id);
-			$test_statement->bind_result($test_id, $test_num, $class_num, $class_name, $grade);
-			$test_statement->execute();
+														     AND st.grade IS NOT NULL') or die($elite_connection->error);
+			$test_statement->bind_param('i', $student_id) or die($test_statement->error);
+			$test_statement->bind_result($test_id, $test_num, $class_num, $class_name, $grade) or die($test_statement->error);
+			$test_statement->execute() or die($test_statement->error);
+			$test_statement->store_result();
 			
-			while($test_statement->fetch()){
-				echo '\r\n<tr class="clickable_row graded_test" data-test-id"'.$test_id.'">';
-				echo '\r\n<td>Test '.$test_num.'</td>';
-				echo '\r\n<td>'.$class_num.'</td>';
-				echo '\r\n<td>'.$class_name.'</td>';
-				echo '\r\n<td>'.$grade.'</td>';
-				echo '\r\n</tr>';
+			if($test_statement->num_rows > 0){
+				while($test_statement->fetch()){
+					echo "\r\n<tr class='clickable_row graded_test' data-test-id='".$test_id."'>";
+					echo "\r\n<td>Test ".$test_num."</td>";
+					echo "\r\n<td>".$class_num."</td>";
+					echo "\r\n<td>".$class_name."</td>";
+					echo "\r\n<td>".$grade."%</td>";
+					echo "\r\n</tr>";
+				}
+			}
+			else {
+				echo "\r\n<tr><td colspan='4'>No Graded Tests</td></tr>";
 			}
 		}
 		
