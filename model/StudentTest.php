@@ -75,7 +75,7 @@
 					
 					while($answer_statement->fetch())
 						$this->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
-					echo "\r\n<hr /></li>";
+					echo "\r\n</li>";
 				}
 			}
 			else{
@@ -119,7 +119,7 @@
 					while($answer_statement->fetch())
 						$this->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 					echo "</ol>";
-					echo "\r\n<hr /></li>";
+					echo "\r\n</li>";
 				}
 			}
 			else {
@@ -162,7 +162,7 @@
 					
 					while($answer_statement->fetch())
 						$this->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
-					echo "\r\n<hr /></li>";
+					echo "\r\n</li>";
 				}
 			}
 			else {
@@ -177,11 +177,11 @@
 		// Print the question
 		public function print_question($question_id, $question_text, $user_type, $question_type, $question_weight, $points_received, $student_answer_id){
 			if($question_type == self::ESSAY_QUESTION_TYPE){
-				echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'>";
+				echo "\r\n<hr /><li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'>";
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_" . $question_id . "' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;'><label for='txt_essay_points_" . $question_id . "' class='question_weight'> / ". $question_weight ." Pt(s)</label></span></div>";
 			}
 			else{
-				echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'>";
+				echo "\r\n<hr /><li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'>";
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'>&nbsp;<span class='question_weight' >". $points_received ."</span> Point(s)</span></div>";
 			}
 		}
@@ -289,13 +289,13 @@
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "\r\n<hr /><li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
 		echo "<div><span>". $matching_section_description ."</span></div>";
 		
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
 		
-		echo "\r\n<hr /></li>";
+		echo "\r\n</li>";
 	}
 
 	public function print_matching_questions($matching_section_id){

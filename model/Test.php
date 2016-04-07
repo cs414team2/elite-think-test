@@ -32,7 +32,7 @@ class Test{
 	
 	public function print_question($question_id, $question_text, $access_level, $question_type, $question_weight){
 		if($access_level == self::TEACHER){
-			echo "\r\n<li id='".$question_id."' class='' data-question-type='". $question_type . "'>";
+			echo "\r\n<hr /><li id='".$question_id."' class='' data-question-type='". $question_type . "'>";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text question_style'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >". $question_weight ."</span> Point(s)</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
@@ -43,7 +43,7 @@ class Test{
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
-			echo "\r\n<li id='".$question_id."' class='question_item' data-question-type='". $question_type . "' style='margin-top: 8px'>";
+			echo "\r\n<hr /><li id='".$question_id."' class='question_item' data-question-type='". $question_type . "' style='margin-top: 8px'>";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;" . htmlspecialchars($question_text) ."<span class='question_weight' style='float: right;'>".$question_weight . ($question_weight == 1 ? " Point" : " Points") . "</span></div>";
 		}
 	}
@@ -302,7 +302,7 @@ class Test{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "\r\n<hr /><li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
 		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span></div>";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
@@ -315,7 +315,7 @@ class Test{
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
 		
-		echo "\r\n<hr /></li>";
+		echo "\r\n<br /><br /><br /><br /></li>";
 	}
 
 	public function print_matching_questions($matching_section_id){
