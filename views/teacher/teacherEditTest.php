@@ -87,49 +87,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 								<div class="loader">Loading...</div>
 							</div>
 						</div>
-						
-						<!-- Delete me from here ☺☻☺☻☺☻☺☻☺☻☺☻-->
-						<div class="my-form-builder">
-							<h4> Matching Questions - Hardcoded, delete me please! </h4>
-							<ul class="question_list">
-							
-								<li class="single_question_box">
-									<div>
-										<span class="question_number">
-											5)
-										</span>
-										<span class="question_text">
-											Color Matching
-										</span>
-										<span style="float: right;"> 
-											<span class="question_weight">
-												4
-											</span>
-											Point(s)
-										</span>
-									</div>
-									<div class="rightAlignInDiv" style="display: inline-block; max-width: 50%;">
-										<button style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small" onclick="open_question_editor(this.parentElement.parentElement)">Edit</button>
-										<button onclick="delete_question(this.parentElement.parentElement)" style="padding: 0 .5em; height: 2em; line-height: 0em;" href="#" class="button special small">Delete</button>
-									</div>
-									<ol class="matching_questions">
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Apple</span></li>
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Grape</span></li>
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Orange</span></li>
-									</ol>
-									<ol class="matching_answers">
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Orange</span></li>
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Red</span></li>
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Purple</span></li>
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Purple</span></li>
-										<li> <span class="answer" data-answer-id="340" data-is-correct="N">Purple</span></li>
-									</ol>
-								</li>
-				
-							</ul>
-						</div>
-						<!-- Delete me to here ☺☻☺☻☺☻☺☻☺☻☺☻-->
-						
 					</section>
 				</div>
 			</div>
@@ -203,6 +160,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
 			</form>
 		</div>
+		
 		<div id="dlg_essay" class="dialog_box" title="Essay Question Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_eq_entry" rows="4" placeholder="Enter an Essay Question"
@@ -223,6 +181,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</ul>
 			</form>
 		</div>
+		
 		<div id="dlg_match" class="dialog_box" title="Matching Section Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_matchq_entry" rows="1" placeholder="Enter a Matching Section Description"

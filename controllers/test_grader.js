@@ -33,6 +33,7 @@ $(document).ready(function(){
 	$('#btn_finalize_grade').hide();
 	
 	$('.gradeTestButton').click(function(){
+		var student_name = $(this).data('student-name');
 		student_id = $(this).data('student-id');
 		$('#grade_content').show();
 		$.ajax({
@@ -44,6 +45,7 @@ $(document).ready(function(){
 			success : function(test) {
 				$('#grade_content').html(test);
 				$('#btn_finalize_grade').show();
+				$('#grade_curr_stud_name').html(student_name + "'s");
 			}
 		});
 	});

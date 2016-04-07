@@ -16,7 +16,7 @@
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 		$elite_connection->query('SET @section_id = 0');
 		$elite_connection->query('SET @answer_id = 0');
-		$elite_connection->query('set @answer_id = 0');
+		$elite_connection->query('SET @question_id = 0');
 		
 		try {
 			// Store the matching section in the database
@@ -63,6 +63,7 @@
 			
 			$elite_connection->commit();
 			
+			$test->set_user_type(Test::TEACHER);
 			$test->print_section($section_info['section_id'], $section_description);
 		}
 		catch(Exception $e){

@@ -12,7 +12,9 @@ const TEST_TIMED_OUT   = '3';
 var test_clock;
 var seconds_left;
 
-//*******************Functions****************************
+//*********************************************************
+//*                     Functions              				 *
+//*********************************************************
 
 // Check to see if a student has or has not started taking a test, or has finished taking a test.
 function check_status() {
@@ -31,7 +33,6 @@ function check_status() {
 					break;
 				case TEST_STARTED:
 					start_test(false);
-					updateProgressBar();
 					break;
 				case TEST_SUBMITTED:
 					$("#btn_start").attr("disabled", "disabled");
@@ -56,6 +57,7 @@ function load_questions() {
 			$('#test_content').html(questions);
 			number_questions();
 			start_timer();
+			updateProgressBar();
 		}
 	});
 }
@@ -71,7 +73,6 @@ function number_questions() {
 		$(this).html(formatted_number);
 	});
 }
-
 
 function start_test(first_time) {
 	
@@ -142,17 +143,23 @@ function submit_answers() {
 		answer_count = 0;
 	});
 	
-	$(".studentEssayQuestion").each(function(index){
+	$('.studentEssayQuestion').each(function(index){
 		test[question_count++] = { question_id : $(this).attr('name'),
 			                       answer_given : $(this).val(),
 										 question_type : ESSAY_QUESTION_TYPE }
 	});
+
+	$('#' + MATCHING_QUESTION_TYPE).find('.question_item').each(function(){
+		test[question_count++] = { question_id : $(this).data('question-id'),
+										  answer_given : $(this).find('select').val(),
+										 question_type : MATCHING_QUESTION_TYPE }
+	});
 	
 	$.ajax({
 		url: "ajax/store_student_answers.php",
-		type:"POST",
+		type: "POST",
 		data: { test : test,
-		        student_id : student_id },
+				  student_id : student_id },
 		success: function(data) {
 		}
 	});
@@ -164,6 +171,7 @@ function disable_test () {
 	$("#btn_complete").removeAttr("disabled");
 	$(".answer").prop('disabled', true);
 	$(".studentEssayQuestion").prop('disabled', true);
+	$(".matching_input_box").prop('disabled', true);
 	disable_timer();
 }
 
@@ -178,7 +186,7 @@ function submit_pledge() {
 			student_id : student_id
 		},
 		success : function(){
-			//                     Load the graded answers
+			//                     Load the graded answers maybe
 		}
 	});
 }
@@ -194,8 +202,8 @@ function countdown_time() {
 	
 	if ((seconds_left % 5) == 0) {
 		submit_answers();
-		updateProgressBar();
 	}
+	updateProgressBar();
 	
 	$("#div_minutes").html(minutes_left < 10 ? "0" + minutes_left : minutes_left);
 	$("#div_seconds").html((seconds_left % 60) < 10 ? "0" + (seconds_left % 60) : seconds_left % 60);
@@ -244,8 +252,9 @@ function updateProgressBar(){
 	
 }
 
-
-//***********************Events************************
+//*********************************************************
+//*                      Events                				 *
+//*********************************************************
 $(document).ready(function(){
 	check_status();
 	

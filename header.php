@@ -9,7 +9,24 @@
 					// Display's the user's name in the header
 					if (isset($_SESSION["credentials"]))
 					{
-						echo "<h1 style='text-shadow: none;'><img src='images/favicon.ico' alt'icon'>Hello, ".$_SESSION["credentials"]->get_first_name()."</h1>";
+						echo "<h1 style='text-shadow: none;'><img src='images/favicon.ico' alt'icon'>";
+						
+						if (date('H') < 12)
+						{
+							echo "Good morning, ";
+						}
+						else if(date('H') < 16)
+						{
+							echo "Good afternoon, ";
+						}
+						else if(date('H') < 24)
+						{
+							echo "Good evening, ";
+						}
+						else
+							echo "Hello, ";
+						
+						echo $_SESSION["credentials"]->get_first_name()."</h1>";
 						
 						switch($_SESSION["credentials"]->get_access_level()) {
 							case Session::ADMINISTRATOR:
@@ -36,7 +53,6 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="index.php">Home</a></li>
-						<li><a href="http://csmain/seproject/TimeMachine2/Student/Summary" target="_blank">Time Machine</a></li>
 						<?php
 						
 							if (sizeof($link) > 0) {
