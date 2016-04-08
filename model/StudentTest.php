@@ -6,8 +6,8 @@ class StudentTest{
 	const TRUE_FALSE_QUESTION_TYPE      = 'TF';
 	const ESSAY_QUESTION_TYPE           = 'ESSAY';
 	const MATCHING_QUESTION_TYPE        = 'MATCH';
-	const RIGHT_COLOR                   = ' color:#47CC7A;';
-	const WRONG_COLOR                   = ' color:#CC1C11;';
+	const RIGHT_COLOR                   = ' #47CC7A;';
+	const WRONG_COLOR                   = ' #CC1C11;';
 	const CHECK_MARK                    = ' &#10004;';
 	const X_MARK                        = ' &#10006;';
 	const LEFT_ARROW                    = ' &lArr;';
@@ -39,15 +39,47 @@ class StudentTest{
 	public function get_letter_grade() {
 		$grade = $this->get_number_grade();
 		
-		if($grade > 98) {
+		if($grade >= 98) {
 			$letter_grade = 'A+';
 		}
-		elseif($grade > 93) {
+		elseif($grade >= 93) {
 			$letter_grade = 'A';
 		}
 		elseif($grade >= 90) {
 			$letter_grade = 'A-';
 		}
+		elseif($grade >= 88) {
+			$letter_grade = 'B+';
+		}
+		elseif($grade >= 83) {
+			$letter_grade = 'B';
+		}
+		elseif($grade >= 80) {
+			$letter_grade = 'B-';
+		}
+		elseif($grade >= 78) {
+			$letter_grade = 'C+';
+		}
+		elseif($grade >= 73) {
+			$letter_grade = 'C';
+		}
+		elseif($grade >= 70) {
+			$letter_grade = 'C-';
+		}
+		elseif($grade >= 68) {
+			$letter_grade = 'D+';
+		}
+		elseif($grade >= 63) {
+			$letter_grade = 'D';
+		}
+		elseif($grade >= 60) {
+			$letter_grade = 'D-';
+		}
+		else {
+			$letter_grade = 'F';
+		}
+		
+		return $letter_grade;
 	}
 	
 	public function get_number_grade() {
@@ -236,7 +268,7 @@ class StudentTest{
 					
 					echo "\r\n<li>
 								<input type='radio' disabled='disabled' id='answer_". $answer_id ."' name='". $question_id ."' value='". $answer_id ."' class='answer' ". ($answer_given == $answer_id ? "checked" : " ") . ">
-								<label for='answer_". $answer_id ."' style='". $color ."'>". htmlspecialchars($answer_content) . $symbol . "</label>
+								<label for='answer_". $answer_id ."' style='color:". $color ."'>". htmlspecialchars($answer_content) . $symbol . "</label>
 							  </li>";
 					break;
 				case self::TRUE_FALSE_QUESTION_TYPE:
@@ -280,9 +312,9 @@ class StudentTest{
 					}
 					echo "\r\n
 						  <input type='radio' disabled='disabled' id='answer_". $answer_id ."_true' name='". $question_id ."' value='T' class='answer' ". ($answer_given == 'T' ? "checked" : " ") . ">" 
-					   . "<label for='answer_" . $answer_id . "_true' style='margin-left: 5px;". $true_color ."'>True ". $true_symbol ."</label>
+					   . "<label for='answer_" . $answer_id . "_true' style='margin-left: 5px; color:". $true_color ."'>True ". $true_symbol ."</label>
 						  \r\n<input type='radio' disabled='disabled' id='answer_". $answer_id ."_false' name='". $question_id ."' value='F' class='answer' ". ($answer_given == 'F' ? "checked" : " ") . ">"
-					   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px;". $false_color ."'>False ". $false_symbol ."</label>";
+					   . "<label for='answer_" . $answer_id . "_false' style='margin-left: 5px; color:". $false_color ."'>False ". $false_symbol ."</label>";
 					break;
 				case self::ESSAY_QUESTION_TYPE:
 					echo "\r\n<textarea id='txt_eq_entry' rows='4' name='" . htmlspecialchars($question_id) . "' style='text-align:left;' class='studentEssayQuestion' disabled='true'>". $answer_given ."</textarea>";
@@ -358,9 +390,9 @@ class StudentTest{
 				$symbol = self::CHECK_MARK;
 			}
 			else {
-				echo "\r\n <span style='". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
+				echo "\r\n <span style='color:". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
 			}
-			echo "\r\n <span style='". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
+			echo "\r\n <span style='color:". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
 			
 			/*echo "\r\n   <select style='display: inline-block; float: right'>";
 			for($count = 0; $count < $this->answer_count; $count++){

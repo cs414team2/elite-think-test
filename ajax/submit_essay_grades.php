@@ -10,13 +10,14 @@
 			$student_answer_id = $grade['student_answer_id'];
 			$points_recieved   = $grade['points_recieved'];
 			
-			$add_statement->bind_param("id", $student_answer_id, $points_recieved);
-			$add_statement->execute();
+			$add_statement->bind_param("id", $student_answer_id, $points_recieved) or die($add_statement->error);
+			$add_statement->execute() or die($add_statement->error);
 		}
 		$add_statement->close();
 		
 		$finalized_statement = $elite_connection->prepare("CALL set_final_grade(?,?)") or die($elite_connection->error);
 		$finalized_statement->bind_param("ii", $student_id, $test_id) or die($finalized_statement->error);
 		$finalized_statement->execute() or die($finalized_statement->error);
+		
 	}
 ?>
