@@ -119,7 +119,7 @@ function submit_answers() {
 			answer_count++;
 			test[question_count++] = { question_id : $(this).attr('name'),
 			                          answer_given : $(this).val(),
-									  question_type : MULTIPLE_CHOICE_QUESTION_TYPE }
+									       question_type : MULTIPLE_CHOICE_QUESTION_TYPE }
 		});
 		if (answer_count == 0) {
 			test[question_count++] = { question_id : $(this).attr('id'),

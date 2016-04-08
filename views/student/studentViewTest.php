@@ -16,7 +16,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div id="sidebar" style="text-align:center; margin-top:3em;">
 					<section style="text-align:center">
 						<h2>Your Grade</h2>
-						<h2 style="font-size: 72pt;">B</h2>
+						<h2 style="font-size: 72pt;">'.$student_test->get_letter_grade().'</h2>
 						<h2>'.$student_test->get_number_grade().'%</h2>
 					</section>
 				</div>
