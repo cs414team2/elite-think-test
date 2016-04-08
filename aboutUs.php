@@ -46,64 +46,57 @@
 							   the student and the teacher in mind.</p>
 					</section>
 					
-					<table>
-					<tr>
-						<td align="center">
 							<section id="content">
-							<a><img src="images/andrewWhiting.jpg" alt="Andrew" style="border-radius:2em;"/></a>
-							<h3>Andrew Whiting</h3>
-							<h5>Project Manager</h5>
-								<p>Home Town: Fayetteville, NC <br />
-								   Major: Computer Information Systems<br />
-								   Year: Senior <br />
-								   Age: 22      <br />
-								   Fun Fact:    <br />
-								</p>
-							</section>
-						</td>
-						<td align="center">
-							<section id="content">
-							<a><img src="images/danielSwan.jpg" alt="Daniel" style="border-radius:2em;"/></a>
-							<h3>Daniel Swan</h3>
-							<h5>Assistant Project Manager</h5>
-								<p>Home Town: Washburn, MO <br />
-								   Major: Computer Information Systems<br />
-								   Year: Senior <br />
-								   Age: <?php echo floor((time() - strtotime("Apr 18, 1989 08:00:00 CST")) / (60 * 60 * 24 * 365)); ?> <br />
-								   Fun Fact:    <br />
-								</p>
-							</section>
-						</td> 
-					</tr>
-					<tr>
-						<td align="center">
-							<section id="content">
-							<a><img src="images/jeremeScheffel.jpg" alt="Jereme" style="border-radius:2em;"/></a>
-							<h3>Jereme Scheffel</h3>
-							<h5>Secretary</h5>
-								<p>Home Town: Cincinatti, OH <br />
-								   Major: Computer Information Systems<br />
-								   Year: Senior <br />
-								   Age: 22      <br />
-								   Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a><br />
-								</p>
-							</section>
-						</td>
-						<td align="center">
-							<section id="content">
-							<a><img src="images/jesseDavis.jpg" alt="Jesse" style="border-radius:2em;"/></a>
-							<h3>Jesse Davis</h3>
-							<h5>Scheduler</h5>
-								<p>Home Town: San Francisco, CA <br />
-								   Major: Computer Information Systems<br />
-								   Year: Senior <br />
-								   Age: 21      <br />
-								   Fun Fact:    Has been hit by a car-twice.<br />
-								</p>
-							</section>
-						</td> 
-					</tr>
-					</table>									
+							<img src="images/andrewWhiting.jpg" class="circular" alt="Andrew"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<img src="images/danielSwan.jpg" alt="Daniel" class="circular" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<img src="images/jeremeScheffel.jpg" alt="Jereme" class="circular"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							<img src="images/jesseDavis.jpg" alt="Jesse" class="circular"/>
+
+							<div>
+							<table style="text-align:center">
+								<tr>
+									<td>
+										<h3>Andrew Whiting</h3>
+										<h5>Project Manager</h5>
+											 Home Town: Fayetteville, NC <br />
+											   Major: Computer Information Systems<br />
+											   Year: Senior <br />
+											   Age: 22      <br />
+											   Fun Fact:    <br />
+									</td>		   
+									<td>
+										<h3>Daniel Swan</h3>
+										<h5>Assistant Project Manager</h5>
+											   Home Town: Washburn, MO <br />
+											   Major: Computer Information Systems<br />
+											   Year: Senior <br />
+											   Age: <?php echo floor((time() - strtotime("Apr 18, 1989 08:00:00 CST")) / (60 * 60 * 24 * 365)); ?> <br />
+											   Fun Fact:    <br />
+									</td>
+									<td>
+									
+										<h3>Jereme Scheffel</h3>
+										<h5>Secretary</h5>
+											   Home Town: Cincinatti, OH <br />
+											   Major: Computer Information Systems<br />
+											   Year: Senior <br />
+											   Age: 22      <br />
+											   Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a><br />
+									</td>
+									<td>
+									
+										<h3>Jesse Davis</h3>
+										<h5>Scheduler</h5>
+											   Home Town: San Francisco, CA <br />
+											   Major: Computer Information Systems<br />
+											   Year: Senior <br />
+											   Age: 21      <br />
+											   Fun Fact:    Has been hit by a car-twice.<br />
+									</td>
+								</tr>	
+							</table>	
+							</div>
+								
 				</div>
 			</section>
 	</body>
