@@ -5,70 +5,10 @@ if (isset($_SESSION['credentials'])) {
 		echo '
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="controllers/teacher_console.js"></script>
 		<script>
 			var user_id = '. $_SESSION['credentials']->get_user_id() .
 		';</script>
-		<script src="controllers/teacher_console.js"></script>
-		 <script type="text/javascript">
-			  google.charts.load("current", {"packages":["corechart"]});
-			  google.charts.setOnLoadCallback(drawChart);
-			  function drawChart() {
-
-				var data = google.visualization.arrayToDataTable([
-				  ["Task", "Hours per Day"],
-				  ["A\'s",     11],
-				  ["B\'s",      2],
-				  ["C\'s",      2],
-				  ["D\'s",      2],
-				  ["F\'s",      7]
-				]);
-
-				var options = {
-				  title: "Letter Grade Averages",
-				  width: 500,
-				  height: 400,
-				  backgroundColor: "transparent",
-				  pieSliceTextStyle: {color: "black"},
-				};
-
-				var chart = new google.visualization.PieChart(document.getElementById("piechart"));
-
-				chart.draw(data, options);
-			  }
-		</script>
-		<script type="text/javascript">
-			google.charts.setOnLoadCallback(drawChart1);
-			function drawChart1() {
-			  var data = google.visualization.arrayToDataTable([
-				["Element", "Missed", { role: "style" } ],
-				["#1",  8, "red"],
-				["#2", 19, "yellow"],
-				["#3", 21, "green"],
-				["#4", 21, "blue"],
-				["#5", 21, "purple"]
-			  ]);
-
-			  var view = new google.visualization.DataView(data);
-			  view.setColumns([0, 1,
-							   { calc: "stringify",
-								 sourceColumn: 1,
-								 type: "string",
-								 role: "annotation" },
-							   2]);
-
-			  var options = {
-				title: "Top Missed Questions",
-				width: 600,
-				height: 400,
-			    backgroundColor: "transparent",
-				bar: {groupWidth: "95%"},
-				legend: { position: "none" },
-			  };
-			  var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-			  chart.draw(view, options);
-		  }
-		</script>
-
 		<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>Teacher Home </h2>

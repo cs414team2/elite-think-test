@@ -393,12 +393,6 @@ class StudentTest{
 				echo "\r\n <span style='color:". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
 			}
 			echo "\r\n <span style='color:". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
-			
-			/*echo "\r\n   <select style='display: inline-block; float: right'>";
-			for($count = 0; $count < $this->answer_count; $count++){
-				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
-			}
-			echo "\r\n   </select>";*/
 			echo "\r\n</li>";
 		}
 		echo "\r\n </ol>";
