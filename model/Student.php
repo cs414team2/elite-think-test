@@ -149,6 +149,34 @@
 			}
 		}
 		
+		public function print_ungraded_tests($student_id) {
+			$elite_connection = $this->prepare_connection();
+			$test_statement = $elite_connection->prepare('SELECT t.test_id, t.test_number, c.class_number, c.class_name, st.grade
+														    FROM student_test st
+														    JOIN test t ON t.test_id   = st.test_id
+														    JOIN class c ON c.class_id = t.class_id
+														   WHERE st.student_id = ?
+														     AND st.grade IS NULL
+															 AND st.pledge_signed = "Y"') or die($elite_connection->error);
+			$test_statement->bind_param('i', $student_id) or die($test_statement->error);
+			$test_statement->bind_result($test_id, $test_num, $class_num, $class_name, $grade) or die($test_statement->error);
+			$test_statement->execute() or die($test_statement->error);
+			$test_statement->store_result();
+			
+			if($test_statement->num_rows > 0){
+				while($test_statement->fetch()){
+					echo "\r\n<tr data-test-id='".$test_id."'>";
+					echo "\r\n<td>Test ".$test_num."</td>";
+					echo "\r\n<td>".$class_num."</td>";
+					echo "\r\n<td>".$class_name."</td>";
+					echo "\r\n</tr>";
+				}
+			}
+			else {
+				echo "\r\n<tr><td colspan='4'>No Ungraded Tests</td></tr>";
+			}
+		}
+		
 		public function get_student_info($student_id){
 			$db = $this->prepare_connection();
 			$statement = $db->prepare("SELECT student_fname, student_lname
