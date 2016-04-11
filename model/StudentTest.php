@@ -236,14 +236,14 @@ class StudentTest{
 	// Print the question
 	public function print_question($question_id, $question_text, $user_type, $question_type, $question_weight, $points_received, $student_answer_id){
 		if($question_type == self::ESSAY_QUESTION_TYPE){
-			echo "\r\n<hr /><li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'>";
+			echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'><hr />";
 			if ($user_type == self::TEACHER) 
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_" . $question_id . "' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;'><label for='txt_essay_points_" . $question_id . "' class='question_weight'> / ". $question_weight ." " . ($question_weight > 1 ? "Points" : "Point") . "</label></span></div>";
 			else
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> " . $points_received . " / ". $question_weight ." " . ($question_weight > 1 ? "Points" : "Point") . "</span></div>";
 		}
 		else{
-			echo "\r\n<hr /><li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'>";
+			echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."'><hr />";
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> ". $points_received . " / ". $question_weight ." " . ($question_weight > 1 ? "Points" : "Point") . "</span></div>";
 		}
 	}
@@ -351,7 +351,7 @@ class StudentTest{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		echo "\r\n<hr /><li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'>";
+		echo "\r\n<li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
 		echo "<div><span>". $matching_section_description ."</span></div>";
 		
 		$this->print_matching_answers($matching_section_id);
@@ -393,12 +393,6 @@ class StudentTest{
 				echo "\r\n <span style='color:". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
 			}
 			echo "\r\n <span style='color:". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
-			
-			/*echo "\r\n   <select style='display: inline-block; float: right'>";
-			for($count = 0; $count < $this->answer_count; $count++){
-				echo "\r\n <option>". $this->alphabet[$count] ."</option>";
-			}
-			echo "\r\n   </select>";*/
 			echo "\r\n</li>";
 		}
 		echo "\r\n </ol>";
