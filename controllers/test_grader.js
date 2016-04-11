@@ -24,7 +24,6 @@ function finalize_grade() {
 					student_id: student_id,
 					grade : grade },
 		success : function(data){
-			alert(data);
 		}
 	});
 }

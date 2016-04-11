@@ -19,5 +19,7 @@
 		$finalized_statement->bind_param("ii", $student_id, $test_id) or die($finalized_statement->error);
 		$finalized_statement->execute() or die($finalized_statement->error);
 		
+		echo $test_id . " " . $student_id;
+		
 	}
 ?>

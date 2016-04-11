@@ -28,7 +28,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="container1">
 							<br />	
 							<table class="alt sortable">
-							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>	
+							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
 							<caption><i>Select to View Class Information and Averages</i></caption>
 								<thead>
 									<tr>
@@ -46,12 +46,12 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</tbody>
 							</table>
-							<hr>				
+							<hr>
 						</div>
 					</section>
 				</div>
 				
-				<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;"> 	
+				<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;">
 					<section id="viewTest">
 						<div class="container">
 							<!-- View Tests > Left - New Tests -->
@@ -97,7 +97,7 @@ if (isset($_SESSION['credentials'])) {
 									</tr>
 								</tbody>
 							</table>
-							<hr>			
+							<hr>
 						</div>
 					</section>
 				</div>
@@ -117,10 +117,11 @@ if (isset($_SESSION['credentials'])) {
 			
 			<!-- Test Statistics div -->
 			<div id="dlg_test_stats" class="dialog_box" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png);">	
-				<div id="piechart" class="chart1" ></div>	
-				<div id="columnchart_values" class="chart2"></div>
+				<div id="pie_letter_frequency" class="chart1" ></div>	
+				<div id="bar_missed_questions" class="chart2"></div>
 				<br /><br />
-				<div><h2 style="color: black; text-shadow: 0em 0em 0em black;">Highest grade:   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade:</h2></div>
+				<div><h2 style="color: black; text-shadow: 0em 0em 0em black;">Highest grade:   <span id="h_highest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: <span id="h_lowest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade: <span id="h_avg"></span></h2></div>
+				 
 			</div>
 		</section>';
 	}

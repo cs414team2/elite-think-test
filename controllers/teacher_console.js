@@ -21,9 +21,9 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			draw_grade_pie(test_id);
+			load_test_statistics(test_id);
 			draw_question_graph(test_id);
-			$( "#dlg_test_stats" ).dialog( "open" );
+			
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
@@ -48,12 +48,12 @@ function create_test() {
 	}
 }
 
-// Draw a pie chart with the number of students who received each grade.
-function draw_grade_pie(test_id) {
+// Draw a pie chart with the number of students who received each grade.                     <--- Will combine graph and other stats in this function.
+function load_test_statistics(test_id) {
 	var grade_stats = [["Letter", "Number of students who achieved"]];
-	var pie_chart = new google.visualization.PieChart(document.getElementById("piechart"));
+	var pie_chart = new google.visualization.PieChart(document.getElementById("pie_letter_frequency"));
 	var grade_data;
-	var options = {
+	var pie_options = {
 	  title: "Letter Grade Averages",
 	  width: 500,
 	  height: 400,
@@ -71,9 +71,14 @@ function draw_grade_pie(test_id) {
 			$(statistics).find('.grade_count').each(function(index){
 				grade_stats.push([$(this).attr('id') + "\'s" , parseInt($(this).text(), 10)]);
 			});
-			
 			grade_data = new google.visualization.arrayToDataTable(grade_stats);
-			pie_chart.draw(grade_data, options);
+			pie_chart.draw(grade_data, pie_options);
+			
+			$('#h_highest').html($(statistics).find('#highest_grade').html());
+			$('#h_lowest').html($(statistics).find('#lowest_grade').html());
+			$('#h_avg').html($(statistics).find('#average_grade').html());
+			
+			$( "#dlg_test_stats" ).dialog( "open" );
 		}
 	});	  
 }
@@ -97,7 +102,7 @@ function draw_question_graph(test_id) {
 					 role: "annotation" },
 					2]);
 
-  var options = {
+  var bar_options = {
 	title: "Top Missed Questions",
 	width: 600,
 	height: 400,
@@ -105,8 +110,8 @@ function draw_question_graph(test_id) {
 	bar: {groupWidth: "95%"},
 	legend: { position: "none" },
   };
-  var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-  chart.draw(view, options);
+  var bar_chart = new google.visualization.ColumnChart(document.getElementById("bar_missed_questions"));
+  bar_chart.draw(view, bar_options);
 }
 
 //******************************************************************
