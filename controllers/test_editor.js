@@ -665,16 +665,28 @@ function update_time_info() {
 	var date_due    = $("#datepicker").datepicker( "getDate" );
 	var date_active = $("#activeDatepicker").datepicker( "getDate" );
 	var time_limit  = $("#txt_time_limit").val();
+	var validated = true;
 	
-	$.ajax({
-		url : "ajax/update_test_time_info.php",
-		data : {
-			test_id : test_id,
-		    date_due : date_due.getTime() / 1000,
-			date_active : date_active.getTime() / 1000,
-			time_limit : time_limit
-		}
-	});
+	if (isNaN(parseInt(time_limit))) {
+		validated = false;
+		$("#txt_time_limit").val($("#txt_time_limit").attr('name'));
+	}
+	
+	//alert(date_due instanceof Date);         Daniel, you were going to store "getDate" to see if it works that simply.
+	//alert(date_active);
+	
+	if (validated) {
+		$.ajax({
+			url : "ajax/update_test_time_info.php",
+			data : {
+				test_id : test_id,
+				date_due : date_due.getTime() / 1000,
+				date_active : date_active.getTime() / 1000,
+				time_limit : time_limit
+			}
+		});
+	}
+	
 }
 
 // Strip HTML tags from a string.
@@ -729,8 +741,8 @@ $(document).ready(function(){
 	
 	// Prevent negatives from being input
 	$('input[type="number"]').keydown(function(event){
-		
-		if(event.keyCode == 109 || event.keyCode == 189 )
+		if(event.keyCode == 109 || event.keyCode == 189      // Negative keycode
+           || event.keyCode == 190 || event.keyCode == 110 ) // Decimal keycode
 			event.preventDefault();
 	});
 	
