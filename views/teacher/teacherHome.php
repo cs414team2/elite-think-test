@@ -110,7 +110,7 @@ if (isset($_SESSION['credentials'])) {
 					</select>
 					<br />
 					<section style="text-align: center;">
-						<button id="btn_create_test" class="button big">Create this test</button>
+						<button id="btn_create_test" class="button special big">Create this test</button>
 					</section>
 				</div>	
 			</div>

@@ -1527,12 +1527,14 @@ span#countdown {
 	}
 	
 	#sidebar {
+		text-align: center;
 		position: fixed;
-		padding-top: 44px;
+		margin-top: 3em;
+		padding-top: 10px;
 		top:0; bottom:0; left:0;
 		min-width: 25%;
 		height: 500px;
-		background: linear-gradient(#000, #2f4f4f); 
+		background: linear-gradient(#000, #2f4f4f);
 	}
 	.my-form-builder {
 		border:5px ridge #646464;
