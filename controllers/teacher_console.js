@@ -1,10 +1,12 @@
-/*var next_color = 0;
-function get_next_color() {
-	
-	
-	next_color++;
-	return
-}*/
+//*********************************************************************
+//*                 Constants and Global Variables :(                 *
+//*********************************************************************
+var color_iterator = { color : ["blue", "green", "red", "orange", "purple"],
+							  next_color : 0,
+                       next : function() { if (this.next_color >= this.color.length) { this.next_color = 0;} 
+							                      return this.color[this.next_color++];
+							                    }					
+                     }
 
 //*********************************************************************
 //		             				 Functions		             				 *
@@ -102,11 +104,19 @@ function load_test_statistics(test_id) {
 			//bar_data = google.visualization.arrayToDataTable(question_stats);
 			bar_data = google.visualization.arrayToDataTable([
 				["Question", "Missed", { role: "style" } ],
-				["#1",  8, "red"],
-				["#2", 19, "orange"],
-				["#3", 21, "green"],
-				["#4", 21, "blue"],
-				["#6", 4, "purple"],
+				["#1",  8, color_iterator.next()],
+				["#2", 19, color_iterator.next()],
+				["#3", 21, color_iterator.next()],
+				["#4", 21, color_iterator.next()],
+				["#6", 4, color_iterator.next()],
+				["#2", 19, color_iterator.next()],
+				["#3", 21, color_iterator.next()],
+				["#4", 21, color_iterator.next()],
+				["#6", 4, color_iterator.next()],
+				["#2", 19, color_iterator.next()],
+				["#3", 21, color_iterator.next()],
+				["#4", 21, color_iterator.next()],
+				["#6", 4, color_iterator.next()]
 			  ]);
 
 			bar_view = new google.visualization.DataView(bar_data);
@@ -127,14 +137,6 @@ function load_test_statistics(test_id) {
 		}
 	});	  
 }
-
-// Draw a bar graph with the number of questions missed the most times.
-/*function draw_question_graph(test_id) {
-
-
-
-
-}*/
 
 //******************************************************************
 //		             				 Events		             				 *
