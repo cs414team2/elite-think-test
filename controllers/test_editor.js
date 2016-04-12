@@ -4,6 +4,8 @@ const ESSAY_QUESTION_TYPE           = 'ESSAY';
 const MATCHING_QUESTION_TYPE        = 'MATCH';
 const DEFAULT_QUESTION_WEIGHT = 1;
 const MAX_TEST_SIZE           = 3;
+const MAX_MINUTE_DIGITS       = 4;
+const MAX_POINT_DIGITS        = 2;
 
 //****************************************************************
 //*                        Functions                             *
@@ -672,6 +674,11 @@ function update_time_info() {
 		$("#txt_time_limit").val($("#txt_time_limit").attr('name'));
 	}
 
+	if (date_due < date_active) {
+		validated = false;
+		alert('no');
+	}
+	
 	if (validated) {
 		$.ajax({
 			url : "ajax/update_test_time_info.php",
@@ -750,12 +757,19 @@ $(document).ready(function(){
 	$( "#dlg_essay" ).dialog(default_dialog);
 	$( "#dlg_match" ).dialog(default_dialog);
 	$( "#dlg_match" ).dialog( "option", "width", 800 );
+	$( "#dlg_match" ).dialog( "option", "maxHeight", 700 );
 	
 	$("#txt_time_limit").on('input', function () {
-		if ($(this).val().length > 4) {
-			$(this).val($(this).val().slice(0,4));
+		if ($(this).val().length > MAX_MINUTE_DIGITS) {
+			$(this).val($(this).val().slice(0, MAX_MINUTE_DIGITS));
 		}
     });
+	 
+	$(".weight_entry").on('input', function () {
+		if ($(this).val().length > MAX_POINT_DIGITS) {
+			$(this).val($(this).val().slice(0, MAX_POINT_DIGITS));
+		}
+   });
 	
 	// Change the time limit for a test.
 	$("#txt_time_limit").blur(function (){

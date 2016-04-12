@@ -22,7 +22,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="table-wrapper">
 							<table class="sortable">
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>ID</th>
 										<th>First</th>
 										<th>Last</th>

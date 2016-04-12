@@ -22,6 +22,7 @@ class StudentTest{
 	private $db;
 	private $alphabet;
 	private $answer_count;
+	private $question_count;
 	private $user_type;
 	private $matching_answers_list;
 	
@@ -357,10 +358,17 @@ class StudentTest{
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
 		
-		echo "\r\n</li>";
+		echo "\r\n";
+		// Loop to print whitespace depending on how many items there are
+		for($count = 0; $count < ($this->answer_count - $this->question_count); $count++)
+		{
+			echo "<br />";
+		}
+		echo "</li>";
 	}
 
 	public function print_matching_questions($matching_section_id){
+		$this->question_count = 0;
 		$question_type = self::MATCHING_QUESTION_TYPE;
 		$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, mq.matching_answer_id, ma.matching_answer_id, ma.answer_content, sa.answer_given,
 		                                                 (SELECT answer_content
@@ -371,7 +379,8 @@ class StudentTest{
 												    JOIN student_answer sa on sa.question_id = mq.matching_question_id
 												   WHERE mq.matching_section_id = ?
 												     AND sa.question_type = ?
-												     AND sa.student_id = ?") or die($this->db->error);
+												     AND sa.student_id = ?
+												   ORDER BY mq.question_number") or die($this->db->error);
 		$question_statement->bind_param("isi", $matching_section_id, $question_type, $this->student_id);
 		$question_statement->execute();
 		$question_statement->store_result();
@@ -394,6 +403,7 @@ class StudentTest{
 			}
 			echo "\r\n <span style='color:". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
 			echo "\r\n</li>";
+			$this->question_count++;
 		}
 		echo "\r\n </ol>";
 		

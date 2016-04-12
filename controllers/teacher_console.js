@@ -1,4 +1,14 @@
 //*********************************************************************
+//*                 Constants and Global Variables :(                 *
+//*********************************************************************
+var color_iterator = { color : ["blue", "green", "red", "orange", "purple"],
+							  next_color : 0,
+                       next : function() { if (this.next_color >= this.color.length) { this.next_color = 0;} 
+							                      return this.color[this.next_color++];
+							                    }
+                     }
+
+//*********************************************************************
 //		             				 Functions		             				 *
 //*********************************************************************
 // open the test edit page for a specific test
@@ -21,9 +31,8 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			load_test_statistics(test_id);
-			draw_question_graph(test_id);
-			
+			//load_test_statistics(test_id);
+			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
@@ -48,11 +57,22 @@ function create_test() {
 	}
 }
 
-// Draw a pie chart with the number of students who received each grade.                     <--- Will combine graph and other stats in this function.
+// Print a pie chart with grade frequency, a bar graph with missed question frequency, and grade statistics.
 function load_test_statistics(test_id) {
+	var bar_chart = new google.visualization.ColumnChart(document.getElementById("bar_missed_questions"));
+	var bar_data;
+	var bar_options = {
+		title: "Top Missed Questions",
+		width: 600,
+		height: 400,
+		backgroundColor: "transparent",
+		bar: {groupWidth: "95%"},
+		legend: { position: "none" },
+	};
+	var bar_view;
+	var grade_data;
 	var grade_stats = [["Letter", "Number of students who achieved"]];
 	var pie_chart = new google.visualization.PieChart(document.getElementById("pie_letter_frequency"));
-	var grade_data;
 	var pie_options = {
 	  title: "Letter Grade Averages",
 	  width: 500,
@@ -60,6 +80,7 @@ function load_test_statistics(test_id) {
 	  backgroundColor: "transparent",
 	  pieSliceTextStyle: {color: "black"},
 	};
+	var question_stats = [["Question", "Missed", { role: "style" } ]];
 	
 	$.ajax({
 		url: 'ajax/get_test_statistics.php',
@@ -73,6 +94,21 @@ function load_test_statistics(test_id) {
 			});
 			grade_data = new google.visualization.arrayToDataTable(grade_stats);
 			pie_chart.draw(grade_data, pie_options);
+		
+			$(statistics).find('.missed_question_count').each(function(index){
+				question_stats.push(["#" + $(this).attr('id'), parseInt($(this).text(), 10), color_iterator.next()]);
+			});
+			if ($(statistics).find('.missed_question_count').length == 0)
+				question_stats.push(['', 0, color_iterator.next()]);
+			bar_data = google.visualization.arrayToDataTable(question_stats);
+			bar_view = new google.visualization.DataView(bar_data);
+			bar_view.setColumns([0, 1,
+				{ calc: "stringify",
+					sourceColumn: 1,
+					type: "string",
+					role: "annotation" },
+				2]);
+			bar_chart.draw(bar_view, bar_options);
 			
 			$('#h_highest').html($(statistics).find('#highest_grade').html());
 			$('#h_lowest').html($(statistics).find('#lowest_grade').html());
@@ -83,52 +119,11 @@ function load_test_statistics(test_id) {
 	});	  
 }
 
-// Draw a bar graph with the number of questions missed the most times.
-function draw_question_graph(test_id) {
-  var data = google.visualization.arrayToDataTable([
-	["Element", "Missed", { role: "style" } ],
-	["#1",  8, "red"],
-	["#2", 19, "orange"],
-	["#3", 21, "green"],
-	["#4", 21, "blue"],
-	["#5", 21, "#ff77ee"],
-	["#6", 4, "purple"],
-	["#7", 22, "purple"],
-	["#8", 21, "purple"],
-	["#5", 21, "purple"],
-	["#5", 21, "purple"],
-	["#5", 21, "purple"],
-	["#5", 21, "purple"]
-  ]);
-
-  var view = new google.visualization.DataView(data);
-  view.setColumns([0, 1,
-					{ calc: "stringify",
-					 sourceColumn: 1,
-					 type: "string",
-					 role: "annotation" },
-					2]);
-
-  var bar_options = {
-	title: "Top Missed Questions",
-	width: 600,
-	height: 400,
-	 backgroundColor: "transparent",
-	bar: {groupWidth: "95%"},
-	legend: { position: "none" },
-  };
-  var bar_chart = new google.visualization.ColumnChart(document.getElementById("bar_missed_questions"));
-  bar_chart.draw(view, bar_options);
-}
-
 //******************************************************************
 //		             				 Events		             				 *
 //******************************************************************
 $(document).ready(function() {
-	
-	// Load google charts.
 	google.charts.load("current", {"packages":["corechart"]});
-	
 	load_tests_and_classes();
 	
 	$("#btn_create_test").click(function(){
