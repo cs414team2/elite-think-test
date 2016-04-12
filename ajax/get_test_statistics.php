@@ -1,4 +1,6 @@
 <?php
+	const MIN_PERCENTAGE_MISSED = .5; // The minimum percent of students to miss a question for the question to be considered
+
 	// This AJAX block takes in a test id and returns the statistics for that test.
 	$grade_alphabet   = range('A', 'D');
 	$grade_alphabet[] = 'F';
@@ -21,8 +23,23 @@
 		echo '</div>';
 		$statement->close();
 		
-		// Print the question number of the most missed question and how many people missed that question.
+		/*// Print the question number of the most missed question and how many people missed that question.
+		$min_percent = MIN_PERCENTAGE_MISSED;
+		echo '<div>';
+		$statement = $elite_connection->prepare('SELECT times_missed, question_number
+		                                           FROM missed_questions_count
+												  WHERE test_id = ?
+												    AND (times_missed/times_answered) >= ?');
+		$statement->bind_param('i', $_REQUEST['test_id'], $min_percent);
+		$statement->bind_result($times_missed, $question_number);
+		$statement->execute();
 		
+		while($statement->fetch()) {
+			echo '<span id="'.$question_number.'" class="missed_question_count">'.$times_missed.'</span>';
+		}
+		
+		echo '</div>';
+		$statement->close();*/
 		
 		// Print the min, max, and average grades
 		$statement = $elite_connection->prepare('SELECT max(grade) as max_grade, min(grade) as min_grade, avg(grade) as avg_grade
