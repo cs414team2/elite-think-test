@@ -120,10 +120,11 @@ function load_student() {
 }
 
 function set_class_links() {
-	$('#tbl_classes').find('.clickable_row').each(function(){
+	$('#tbl_classes').find('tr').each(function(){
 		$(this).click(function(){
 			window.location = './?action=admin_edit_class&id=' + $(this).attr('id');
 		});
+		$(this).addClass('clickable_row');
 	});
 }
 
