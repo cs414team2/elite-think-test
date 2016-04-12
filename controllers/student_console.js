@@ -21,6 +21,14 @@ function load_tests_and_classes() {
 			});
 		}
 	});
+	
+	$.ajax({
+		url: 'ajax/get_ungraded_tests_student.php',
+		data: {student_id : user_id},
+		success : function(test_table) {
+			$('#tbl_ungraded_tests').html(test_table);
+		}
+	});
 }
 
 //******************Events**********************

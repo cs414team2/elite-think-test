@@ -60,17 +60,18 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<br /><br />
 						<h5>Time Limit:</h5>
 						<p style="color:white;">
-							<input id="txt_time_limit" type="number" name="timeLimit" value="50" style="text-align: center; width: 60px;" min="0">
+							<input id="txt_time_limit" type="number" name="50" value="50" style="text-align: center; width: 60px;" min="0"
+							  onFocus=(this.name=this.value)>
 							minutes
 						</p>
 						<p style="color:white;">
 							Active Date: 
-							<input type="text" style="color: black;" id="activeDatepicker">
+							<input type="text" style="color: black;" id="activeDatepicker" onFocus=(this.name=this.value)>
 						<button id="btn_activate" class="show_hide button small" style="padding: 0 .5em; height: 2em; line-height: 0em; margin-top: 5px;" >Activate Now</button>
 						</p>
 						<p style="color:white;">
 							Date Due: 
-							<input type="text" style="color: black;" id="datepicker">
+							<input type="text" style="color: black;" id="datepicker" onFocus=(this.name=this.value)>
 						</p>
 						<button id="btn_open_TFDialog"class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
 						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
