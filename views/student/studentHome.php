@@ -87,7 +87,7 @@ if (isset($_SESSION['credentials'])) {
 											<th>Class</th>
 										</tr>
 									</thead>
-									<tbody id="tbl_tests">
+									<tbody id="tbl_ungraded_tests">
 										<tr>
 											<td>
 												Loading Tests...
