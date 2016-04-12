@@ -321,7 +321,8 @@ class Test{
 	public function print_matching_questions($matching_section_id){
 		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
 												  FROM matching_question 
-												  WHERE matching_section_id = ?") or die($db->error);
+												  WHERE matching_section_id = ?
+												  ORDER BY question_number") or die($db->error);
 		$question_statement->bind_param("i", $matching_section_id);
 		$question_statement->execute();
 		$question_statement->store_result();
