@@ -379,7 +379,8 @@ class StudentTest{
 												    JOIN student_answer sa on sa.question_id = mq.matching_question_id
 												   WHERE mq.matching_section_id = ?
 												     AND sa.question_type = ?
-												     AND sa.student_id = ?") or die($this->db->error);
+												     AND sa.student_id = ?
+												   ORDER BY mq.question_number") or die($this->db->error);
 		$question_statement->bind_param("isi", $matching_section_id, $question_type, $this->student_id);
 		$question_statement->execute();
 		$question_statement->store_result();

@@ -5,7 +5,7 @@ var color_iterator = { color : ["blue", "green", "red", "orange", "purple"],
 							  next_color : 0,
                        next : function() { if (this.next_color >= this.color.length) { this.next_color = 0;} 
 							                      return this.color[this.next_color++];
-							                    }					
+							                    }
                      }
 
 //*********************************************************************
@@ -31,9 +31,8 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			load_test_statistics(test_id);
-			//draw_question_graph(test_id);
-			
+			//load_test_statistics(test_id);
+			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
@@ -58,7 +57,7 @@ function create_test() {
 	}
 }
 
-// Draw a pie chart with the number of students who received each grade.                     <--- Will combine graph and other stats in this function.
+// Print a pie chart with grade frequency, a bar graph with missed question frequency, and grade statistics.
 function load_test_statistics(test_id) {
 	var bar_chart = new google.visualization.ColumnChart(document.getElementById("bar_missed_questions"));
 	var bar_data;
@@ -96,29 +95,12 @@ function load_test_statistics(test_id) {
 			grade_data = new google.visualization.arrayToDataTable(grade_stats);
 			pie_chart.draw(grade_data, pie_options);
 		
-			/*$(statistics).find('.missed_question_count').each(function(index){
-				question_stats.push(["#" + $(this).attr('id'), parseInt($(this).text(), 10), get_next_color()]);
-			});*/
-			// question_stats.push([number, missed, color]);
-		
-			//bar_data = google.visualization.arrayToDataTable(question_stats);
-			bar_data = google.visualization.arrayToDataTable([
-				["Question", "Missed", { role: "style" } ],
-				["#1",  8, color_iterator.next()],
-				["#2", 19, color_iterator.next()],
-				["#3", 21, color_iterator.next()],
-				["#4", 21, color_iterator.next()],
-				["#6", 4, color_iterator.next()],
-				["#2", 19, color_iterator.next()],
-				["#3", 21, color_iterator.next()],
-				["#4", 21, color_iterator.next()],
-				["#6", 4, color_iterator.next()],
-				["#2", 19, color_iterator.next()],
-				["#3", 21, color_iterator.next()],
-				["#4", 21, color_iterator.next()],
-				["#6", 4, color_iterator.next()]
-			  ]);
-
+			$(statistics).find('.missed_question_count').each(function(index){
+				question_stats.push(["#" + $(this).attr('id'), parseInt($(this).text(), 10), color_iterator.next()]);
+			});
+			if ($(statistics).find('.missed_question_count').length == 0)
+				question_stats.push(['', 0, color_iterator.next()]);
+			bar_data = google.visualization.arrayToDataTable(question_stats);
 			bar_view = new google.visualization.DataView(bar_data);
 			bar_view.setColumns([0, 1,
 				{ calc: "stringify",
@@ -126,7 +108,6 @@ function load_test_statistics(test_id) {
 					type: "string",
 					role: "annotation" },
 				2]);
-			
 			bar_chart.draw(bar_view, bar_options);
 			
 			$('#h_highest').html($(statistics).find('#highest_grade').html());
@@ -142,10 +123,7 @@ function load_test_statistics(test_id) {
 //		             				 Events		             				 *
 //******************************************************************
 $(document).ready(function() {
-	
-	// Load google charts.
 	google.charts.load("current", {"packages":["corechart"]});
-	
 	load_tests_and_classes();
 	
 	$("#btn_create_test").click(function(){
