@@ -31,9 +31,8 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			load_test_statistics(test_id);
-			//google.charts.load("current", {"packages":["corechart"]});
-			//google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
+			//load_test_statistics(test_id);
+			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){

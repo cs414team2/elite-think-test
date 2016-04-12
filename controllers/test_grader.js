@@ -17,7 +17,7 @@ function finalize_grade() {
 							    points_recieved : $(this).find('input[type="number"]').val()
 		}
 	});
-
+	
 	$.ajax({
 		url : 'ajax/submit_essay_grades.php',
 		data : { test_id : test_id,
