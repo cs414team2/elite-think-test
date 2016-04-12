@@ -60,6 +60,7 @@ $(document).ready(function(){
 				$('#grade_content').html(test);
 				$('#btn_finalize_grade').show();
 				$('#grade_curr_stud_name').html(student_name + "'s");
+				number_questions();
 			}
 		});
 	});

@@ -91,6 +91,13 @@ function draw_question_graph(test_id) {
 	["#2", 19, "yellow"],
 	["#3", 21, "green"],
 	["#4", 21, "blue"],
+	["#5", 21, "purple"],
+	["#6", 4, "purple"],
+	["#7", 22, "purple"],
+	["#8", 21, "purple"],
+	["#5", 21, "purple"],
+	["#5", 21, "purple"],
+	["#5", 21, "purple"],
 	["#5", 21, "purple"]
   ]);
 
