@@ -88,10 +88,10 @@ function draw_question_graph(test_id) {
   var data = google.visualization.arrayToDataTable([
 	["Element", "Missed", { role: "style" } ],
 	["#1",  8, "red"],
-	["#2", 19, "yellow"],
+	["#2", 19, "orange"],
 	["#3", 21, "green"],
 	["#4", 21, "blue"],
-	["#5", 21, "purple"],
+	["#5", 21, "#ff77ee"],
 	["#6", 4, "purple"],
 	["#7", 22, "purple"],
 	["#8", 21, "purple"],
@@ -126,6 +126,7 @@ function draw_question_graph(test_id) {
 //******************************************************************
 $(document).ready(function() {
 	
+	// Load google charts.
 	google.charts.load("current", {"packages":["corechart"]});
 	
 	load_tests_and_classes();
