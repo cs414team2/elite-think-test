@@ -1528,7 +1528,7 @@ span#countdown {
 	
 	#sidebar {
 		position: fixed;
-		padding-top: 15px;
+		padding-top: 44px;
 		top:0; bottom:0; left:0;
 		min-width: 25%;
 		height: 500px;
@@ -1684,3 +1684,28 @@ span#countdown {
 	-moz-border-radius: 150px;
 	background: url(http://link-to-your/image.jpg) no-repeat;
 	}
+.smallButton{
+	padding: 0 .5em !important;
+	height: 2em !important;
+	line-height: 0em !important;
+	margin-top: 5px !important;
+}
+	
+#view_classes_tab, #take_test_tab, #view_tests_tab, #view_teacher_classes_tab, #view_teacher_tests_tab, #view_create_test_tab{
+	width: 33%;
+}
+
+#view_ungraded_tests_tab, #view_graded_tests_tab{
+	background-color: #646464;
+	width: 45%;
+}
+#view_classes_tab:focus,
+#take_test_tab:focus, 
+#view_tests_tab:focus, 
+#view_ungraded_tests_tab:focus,
+#view_graded_tests_tab:focus,
+#view_teacher_classes_tab:focus,
+#view_teacher_tests_tab:focus,
+#view_create_test_tab:focus {
+	background-color: #0AF;
+}

@@ -20,6 +20,7 @@
 		<script src="js/init.js"></script>
 		<script src="js/sorttable.js"></script>
 		<script src="js/showHide.js" type="text/javascript"></script>
+		<script src="js/showHideInner.js" type="text/javascript"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <!-- Used on dialog boxes -->
 		
 		<link rel="stylesheet" href="css/spinner.css" />

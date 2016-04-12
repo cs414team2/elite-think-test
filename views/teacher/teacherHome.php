@@ -18,9 +18,9 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 				<section style="text-align:center">
-					<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
-					<a class="show_hide" rel="#slidingDiv_2" >View Tests</a>
-					<a class="show_hide" rel="#slidingDiv_3" >Create Test</a><br />
+					<a class="show_hide" rel="#slidingDiv_1" id="view_teacher_classes_tab">View Classes</a>
+					<a class="show_hide" rel="#slidingDiv_2" id="view_teacher_tests_tab">View Tests</a>
+					<a class="show_hide" rel="#slidingDiv_3" id="view_create_test_tab">Create Test</a><br />
 				</section>
 				
 				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
@@ -31,7 +31,7 @@ if (isset($_SESSION['credentials'])) {
 							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
 							<caption><i>Select to View Class Information and Averages</i></caption>
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>Course #</th>
 										<th>Course Name</th>
 										<th># of Students</th>
@@ -61,7 +61,7 @@ if (isset($_SESSION['credentials'])) {
 							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
 							<caption><i>Select to Grade Submitted Tests</i></caption>
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>Test</th>
 										<th>Class</th>
 										<th>Due Date</th>
@@ -83,7 +83,7 @@ if (isset($_SESSION['credentials'])) {
 							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
 							<caption><i>Select to Edit Saved Drafts</i></caption>
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>Test</th>
 										<th>Class</th>
 										<th>Active Date</th>

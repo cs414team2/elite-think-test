@@ -17,6 +17,7 @@ class Test{
 	private $db;
 	private $alphabet;
 	private $answer_count;
+	private $question_count;
 	private $user_type;
 	private $matching_answers_list;
 	
@@ -315,10 +316,17 @@ class Test{
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
 		
-		echo "\r\n<br /><br /><br /><br /></li>";
+		echo "\r\n";
+		// Loop to print whitespace depending on how many items there are
+		for($count = 0; $count < ($this->answer_count - $this->question_count); $count++)
+		{
+			echo "<br />";
+		}
+		echo "</li>";
 	}
 
 	public function print_matching_questions($matching_section_id){
+		$this->question_count = 0;
 		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
 												  FROM matching_question 
 												  WHERE matching_section_id = ?") or die($db->error);
@@ -341,6 +349,7 @@ class Test{
 				echo "\r\n   </select>";
 			}
 			echo "\r\n </li>";
+			$this->question_count++;
 		}
 		echo "\r\n </ol>";
 	}
