@@ -25,7 +25,6 @@
 		<!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <!-- Used on dialog boxes -->
 		<script src="js/jquery-ui-1.11.4/jquery-ui.js"></script> <!-- Used on dialog boxes -->
 
-		
 		<link rel="stylesheet" href="css/spinner.css" />
 		<noscript>
 			<link rel="stylesheet" href="views/css/skel.css" />

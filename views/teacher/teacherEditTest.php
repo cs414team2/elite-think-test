@@ -60,7 +60,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<br /><br />
 						<h5>Time Limit:</h5>
 						<p style="color:white;">
-							<input id="txt_time_limit" type="number" name="50" value="50" style="text-align: center; width: 60px;" min="0"
+							<input id="txt_time_limit" type="number" name="50" value="' . $test->get_time_limit() . '" style="text-align: center; width: 60px;" min="0"
 							  onFocus=(this.name=this.value)>
 							minutes
 						</p>

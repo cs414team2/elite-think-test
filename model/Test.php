@@ -271,6 +271,19 @@ class Test{
 			echo "<div> No Completed Tests </div>";
 	}
 	
+	public function get_time_limit() {
+		$statement = $this->db->prepare('SELECT time_limit
+		                                   FROM test
+										  WHERE test_id = ?');
+		
+		$statement->bind_param('i', $this->test_id);
+		$statement->bind_result($time_limit);
+		$statement->execute();
+		$statement->fetch();
+		
+		return $time_limit;
+	}
+	
 /*********************************************************************************************/
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
