@@ -67,16 +67,16 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<p style="color:white;">
 							Active Date: 
 							<input type="text" style="color: black;" id="activeDatepicker" onFocus=(this.name=this.value)>
-						<button id="btn_activate" class="show_hide button small" style="padding: 0 .5em; height: 2em; line-height: 0em; margin-top: 5px;" >Activate Now</button>
+						<button id="btn_activate" class="show_hide button small smallButton" style="margin-top: 5px;" >Activate Now</button>
 						</p>
 						<p style="color:white;">
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker" onFocus=(this.name=this.value)>
 						</p>
-						<button id="btn_open_TFDialog"class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_2" >True / False</button>
-						<button id="btn_open_MCDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_1" >Multiple Choice</button>
-						<button id="btn_open_EssayDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Essay</button>
-						<button id="btn_open_MatchDialog" class="show_hide button small fit" style="padding: 0 .5em; height: 2em; line-height: 0em;" rel="#slidingQ_3" >Matching</button>	
+						<button id="btn_open_TFDialog"class="show_hide button small fit smallButton" rel="#slidingQ_2" >True / False</button>
+						<button id="btn_open_MCDialog" class="show_hide button small fit smallButton" rel="#slidingQ_1" >Multiple Choice</button>
+						<button id="btn_open_EssayDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Essay</button>
+						<button id="btn_open_MatchDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Matching</button>	
 					</section>
 				</div>
 
@@ -114,8 +114,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<br />
 				
 				<ul class="actions">
-					<li><input id="btn_add_tf" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-					<li><input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input id="btn_add_tf" type="button" class="button special smallButton" value="Submit" /></li>
+					<li><input type="reset" value="Reset" class="alt button special smallButton" /></li>
 				</ul>
 			</form>
 		</div>
@@ -157,8 +157,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<p id="err_empty_mc" style="display: none; color: red;">
 					Please fill in all fields...
 				</p>
-				<input id="btn_add_mc" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
-				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+				<input id="btn_add_mc" type="button" class="button special smallButton" value="Submit" />
+				<input type="reset" value="Reset" class="alt button special reset smallButton"/>
 			</form>
 		</div>
 		
@@ -177,8 +177,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					Please fill in all fields...
 				</p>
 				<ul class="actions">
-					<li><input id="btn_add_essay" type="button" value="Submit" class="button special" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
-					<li><input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/></li>
+					<li><input id="btn_add_essay" type="button" value="Submit" class="button special smallButton"/></li>
+					<li><input type="reset" value="Reset" class="alt button special smallButton"/></li>
 				</ul>
 			</form>
 		</div>
@@ -235,8 +235,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<p id="err_empty_match" style="display: none; color: red;">
 					Please enter a description...
 				</p>
-				<input id="btn_add_match_section" type="button" class="button special" value="Submit" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
-				<input type="reset" value="Reset" class="alt button special reset" style="padding: 0 .5em; height: 2em; line-height: 0em;"/>
+				<input id="btn_add_match_section" type="button" class="button special smallButton" value="Submit"/>
+				<input type="reset" value="Reset" class="alt button special smallButton"/>
 			</form>
 		</div>
 	

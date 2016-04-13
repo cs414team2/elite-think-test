@@ -3,6 +3,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_student()) {
 		echo '
 		<script src="controllers/student_console.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script>var user_id = ' . $_SESSION['credentials']->get_user_id() . ';
 		</script>
 		<section id="main" class="wrapper style1">
@@ -13,10 +14,11 @@ if (isset($_SESSION['credentials'])) {
 			<div class="container">
 					
 				<!-- Content -->
-				<section style="text-align:center">
-					<a class="show_hide" rel="#slidingDiv_1" >View Classes</a>
-					<a class="show_hide" rel="#slidingDiv_2" >Take a Test</a>
-					<a class="show_hide" rel="#slidingDiv_3" >View Tests</a><br />
+				<section>
+					<button class="show_hide" rel="#slidingDiv_1" id="view_classes_tab" >View Classes</button>
+					<button class="show_hide" rel="#slidingDiv_2" id="take_test_tab">Take a Test</button>
+					<button class="show_hide" rel="#slidingDiv_3" id="view_tests_tab">View Tests</button>
+					<br />
 				</section>
 				
 				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
@@ -26,9 +28,10 @@ if (isset($_SESSION['credentials'])) {
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Enrolled Classes</caption>
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>Course ID</th>
 										<th>Course Name</th>
+										<th>Course Average</th>
 									</tr>
 								</thead>
 								<tbody id="tbl_classes">
@@ -52,7 +55,7 @@ if (isset($_SESSION['credentials'])) {
 							<caption style="font-weight: bold; text-decoration: underline;">Need To Complete</caption>
 							<caption><i>Select a Test When You Are Ready</i></caption>
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>Class #</th>
 										<th>Class Name</th>
 										<th>Test #</th>
@@ -76,13 +79,19 @@ if (isset($_SESSION['credentials'])) {
 				</div>		
 				<div id="slidingDiv_3" class="toggleDiv" style="display:none; text-align: center;"> 	
 					<section id="viewTestStudent">
-						<div class="container1">
-							<br />
-							<table class="alt sortable" style="display: inline; max-width: 50%; ">
+					<br />
+					<button class="show_hide_inner" rel="#slidingDiv_4" id="view_graded_tests_tab">Graded</button>
+					<button class="show_hide_inner" rel="#slidingDiv_5" id="view_ungraded_tests_tab">Ungraded</button>
+					<br />
+						<div id="slidingDiv_5" class="toggleInnerDiv" style="display:none; ">
+							<section style="text-align:center;">
+								<table class="alt sortable">
 								<caption style="font-weight: bold; text-decoration: underline;">Ungraded Tests</caption>
+								<caption><i>Tests pending Teacher response</i></caption>
 									<thead>
-										<tr>
+										<tr class="clickable_row">
 											<th>Test</th>
+											<th>Class #</th>
 											<th>Class</th>
 										</tr>
 									</thead>
@@ -94,13 +103,15 @@ if (isset($_SESSION['credentials'])) {
 										</tr>
 									</tbody>
 								</table>
-								
-								<!-- View Tests > Right - Existing Tests -->
-								<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
+							</section>
+						</div>
+						<div id="slidingDiv_4" class="toggleInnerDiv" style="display:none;">
+							<section style="text-align:center;">
+								<table class="alt sortable">
 								<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
 								<caption><i>Select a Test to view the missed questions</i></caption>
 									<thead>
-										<tr>
+										<tr class="clickable_row">
 											<th>Test</th>
 											<th>Class #</th>
 											<th>Class</th>
@@ -115,6 +126,7 @@ if (isset($_SESSION['credentials'])) {
 										</tr>
 									</tbody>
 								</table>
+							</section>
 						</div>
 					</section>
 				</div>					

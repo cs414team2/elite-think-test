@@ -14,7 +14,7 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container">
 					<!-- Content -->
 					<section id="content">
-						<h4 style="display:inline-block;">&#9699;&nbspClick a Student to make changes</h4>
+						<h4 style="display:inline-block;">Click a Student to make changes</h4>
 						<img src="images/add_user.png" class="clickable_img" title="Add a Student" id="btn_open_studentDialog"  style="display:inline-block; float: right;">
 						<br /><br />
 						<input type="checkbox" id="copy" name="copy">
@@ -22,7 +22,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="table-wrapper">
 							<table class="sortable">
 								<thead>
-									<tr>
+									<tr class="clickable_row">
 										<th>ID</th>
 										<th>First</th>
 										<th>Last</th>
