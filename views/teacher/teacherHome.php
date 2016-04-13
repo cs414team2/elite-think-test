@@ -25,82 +25,72 @@ if (isset($_SESSION['credentials'])) {
 				</section>
 				
 				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
-					<section id="viewClasses">
-						<div class="container1">
-							<br />	
-							<table class="alt sortable">
-							<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
-							<caption><i>Select to View Class Information and Averages</i></caption>
-								<thead>
-									<tr class="clickable_row">
-										<th>Course #</th>
-										<th>Course Name</th>
-										<th># of Students</th>
-										<th>Course Average</th>
-									</tr>
-								</thead>
-								<tbody id="tbl_classes">
-									<tr>
-										<td>
-											Loading Classes...
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<hr>
-						</div>
-					</section>
+					<br />	
+					<table class="alt sortable">
+					<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
+					<caption><i>Select to View Class Information and Averages</i></caption>
+						<thead>
+							<tr class="clickable_row">
+								<th>Course #</th>
+								<th>Course Name</th>
+								<th># of Students</th>
+								<th>Course Average</th>
+							</tr>
+						</thead>
+						<tbody id="tbl_classes">
+							<tr>
+								<td>
+									Loading Classes...
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr>
 				</div>
 				
 				<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;">
-					<section id="viewTest">
-						<div class="container">
-							<!-- View Tests > Left - New Tests -->
-							<br />
-							
-							<table class="alt sortable" style="display: inline; max-width: 50%; ">
-							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
-							<caption><i>Select to Grade Submitted Tests</i></caption>
-								<thead>
-									<tr class="clickable_row">
-										<th>Test</th>
-										<th>Class</th>
-										<th>Due Date</th>
-										<th>Complete</th>
-										<th>Stats</th>
-									</tr>
-								</thead>
-								<tbody id="tbl_active_tests">
-									<tr>
-										<td>
-											Loading Tests...
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							
-							<!-- View Tests > Right - Existing Tests -->
-							<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
-							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
-							<caption><i>Select to Edit Saved Drafts</i></caption>
-								<thead>
-									<tr class="clickable_row">
-										<th>Test</th>
-										<th>Class</th>
-										<th>Active Date</th>
-									</tr>
-								</thead>
-								<tbody id="tbl_inactive_tests">
-									<tr>
-										<td>
-											Loading Tests...
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<hr>
-						</div>
-					</section>
+					<br />
+					<table class="alt sortable" style="display: inline; max-width: 50%; ">
+					<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
+					<caption><i>Select to Grade Submitted Tests</i></caption>
+						<thead>
+							<tr class="clickable_row">
+								<th>Test</th>
+								<th>Class</th>
+								<th>Due Date</th>
+								<th>Complete</th>
+								<th>Stats</th>
+							</tr>
+						</thead>
+						<tbody id="tbl_active_tests">
+							<tr>
+								<td>
+									Loading Tests...
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!-- View Tests > Right - Existing Tests -->
+					<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
+					<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
+					<caption><i>Select to Edit Saved Drafts</i></caption>
+						<thead>
+							<tr class="clickable_row">
+								<th>Test</th>
+								<th>Class</th>
+								<th>Active Date</th>
+							</tr>
+						</thead>
+						<tbody id="tbl_inactive_tests">
+							<tr>
+								<td>
+									Loading Tests...
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr>
 				</div>
 				
 				<div id="slidingDiv_3" class="toggleDiv" style="display:none;">
@@ -111,7 +101,7 @@ if (isset($_SESSION['credentials'])) {
 					</select>
 					<br />
 					<section style="text-align: center;">
-						<button id="btn_create_test" class="button big">Create this test</button>
+						<button id="btn_create_test" class="button special big">Create this test</button>
 					</section>
 				</div>	
 			</div>
