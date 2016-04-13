@@ -12,19 +12,23 @@
 		// Print classes for this student in an HTML table format
 		public function print_classes($student_id) {
 			$db = $this->prepare_connection();
-			$statement = $db->prepare("SELECT class_number, class_name, is_active, class_id
-			                           FROM student_classes
+			$statement = $db->prepare("SELECT class_number, class_name, is_active, class_id, 
+											(SELECT ROUND(AVG(scg.grade), 2) as average
+											 FROM student_class_grades scg
+											 WHERE scg.student_id = sc.student_id AND scg.class_id = sc.class_id)
+			                           FROM student_classes sc
 									   WHERE student_id = ? AND is_active='Y'") or die($db->error);
 			$statement->bind_param("i", $student_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($class_number, $class_name, $is_active, $class_id);
+			$statement->bind_result($class_number, $class_name, $is_active, $class_id, $average);
 			
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
 					echo "<tr " . "id='" . $class_id . "'>";
 					echo "<td>" . $class_number . "</td>";
 					echo "<td>" . $class_name . "</td>";
+					echo ($average != null ? "<td>" . $average . "% </td>" : "<td> N/A </td>");
 					echo "</tr>\r\n";
 				}
 			}
