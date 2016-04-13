@@ -3,6 +3,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_student()) {
 		echo '
 		<script src="controllers/student_console.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script>var user_id = ' . $_SESSION['credentials']->get_user_id() . ';
 		</script>
 		<section id="main" class="wrapper style1">
