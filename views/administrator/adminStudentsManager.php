@@ -3,7 +3,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		require_once('model/Table.php');
 		echo '<!-- Main -->
-			<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+			<link rel="stylesheet" href="css/jquery-ui-1.11.4.custom/jquery-ui.css">
 		
 			<script src="controllers/new_student_form.js"></script>
 			<script src="controllers/toggle_active.js"></script>
