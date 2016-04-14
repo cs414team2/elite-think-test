@@ -3,17 +3,10 @@
 // Load the list of classes and set the row's to redirect to the class management page.
 function loadClasses() {
 	$("#tbl_classes").load("ajax/get_table.php?table=class", function(){
-		$('.class_record, .Y').click(function(){
+		$('.class_record').click(function(){
 			var class_id = $(this).attr('id');
 			window.location = 'index.php?action=admin_edit_class&id=' + class_id;
 		});
-		
-		$('.class_record, .N').click(function(){
-			var class_id = $(this).attr('id');
-			window.location = 'index.php?action=admin_edit_class&id=' + class_id;
-		});
-		
-		$(".N").hide();
 	});
 }
 
