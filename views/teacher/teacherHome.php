@@ -28,7 +28,7 @@ if (isset($_SESSION['credentials'])) {
 					<br />	
 					<table class="alt sortable">
 					<caption style="font-weight: bold; text-decoration: underline;">Current Classes</caption>
-					<caption><i>Select to View Class Information and Averages</i></caption>
+					<caption><i>Select to View Enrolled Students</i></caption>
 						<thead>
 							<tr class="clickable_row">
 								<th>Course #</th>
@@ -151,14 +151,22 @@ if (isset($_SESSION['credentials'])) {
 				<br /><br />
 				<div><h2 style="color: black; text-shadow: 0em 0em 0em black;">Highest grade:   <span id="h_highest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: <span id="h_lowest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade: <span id="h_avg"></span></h2></div>
 			</div>
-			
+
 			<!-- Class Statistics div -->
-			<div id="dlg_class_stats" class="dialog_box" title="Class Statistics" style="text-align: center; background-image: url(images/texture.png);">	
-				<div id="pie_letter_frequency" class="chart1" ></div>	
-				<div id="bar_missed_questions" class="chart2"></div>
-				<br /><br />
-				<div><h2 style="color: black; text-shadow: 0em 0em 0em black;">Highest grade:   <span id="h_highest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: <span id="h_lowest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade: <span id="h_avg"></span></h2></div>
-				 
+			<div id="dlg_class_stats" class="dialog_box" title="Students" style="background-image: url(images/texture.png);">
+				<table id="table_enrolled_students" class="alt sortable">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Grade</th>
+					</tr>
+				</thead>
+				<tbody id="tbl_enrolled_students" style="background-color:white;">
+				</tbody>
+				</table>
+				<div id="area_class_loader" class="loader" style="display: none;">Loading...</div>
 			</div>
 		</section>';
 	}

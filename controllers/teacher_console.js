@@ -20,7 +20,21 @@ function open_edit_page(test_id) {
 function load_tests_and_classes() {
 	$("#tbl_classes").load("ajax/get_classes_for_teacher.php?user_id=" + user_id, function(){
 		$(".editable_class").click(function(){
+			
+			$('#table_enrolled_students').hide();
+			$('#area_class_loader').show();
 			$( "#dlg_class_stats" ).dialog( "open" );
+			
+			$.ajax({
+				url : "ajax/get_enrolled_students.php",
+				data : { class_id : $(this).attr('id') },
+				success : function(students) {
+					
+					$('#tbl_enrolled_students').html(students);
+					$('#area_class_loader').hide();
+					$('#table_enrolled_students').show();
+				}
+			});
 		});
 	});
 	$("#tbl_active_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){	
@@ -149,7 +163,7 @@ $(document).ready(function() {
 	$( "#dlg_class_stats" ).dialog({
       autoOpen: false,
 	  modal: true,
-	  width: 1250,
+	  width: 1024,
 	  height: 600,
       show: {
         effect: "highlight",
