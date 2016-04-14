@@ -1,7 +1,7 @@
 //*********************************************************************
-//*                 Constants and Global Variables :(                 *
+//*                           Objects                                 *
 //*********************************************************************
-var color_iterator = { color : ["blue", "green", "red", "orange", "purple"],
+var color_iterator = { color : ["#3366cc", "green", "#e52d0b", "orange", "purple"],
 							  next_color : 0,
                        next : function() { if (this.next_color >= this.color.length) { this.next_color = 0;} 
 							                      return this.color[this.next_color++];
@@ -31,7 +31,6 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			//load_test_statistics(test_id);
 			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
 		});
 	});

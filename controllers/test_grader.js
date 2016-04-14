@@ -1,4 +1,5 @@
 const MAX_TEST_SIZE = 3;
+const MAX_POINT_DIGITS = 4;
 
 //****************************************************************
 //*                      Global Variables :(                     *
@@ -61,6 +62,22 @@ $(document).ready(function(){
 				$('#btn_finalize_grade').show();
 				$('#grade_curr_stud_name').html(student_name + "'s");
 				number_questions();
+				
+ 				// Prevent negatives from being input in number boxes.
+				$('input[type="number"]').keydown(function(event){
+					if(event.keyCode == 109 || event.keyCode == 189)       // Negative keycode
+						event.preventDefault();
+					
+				});
+				
+				$('input[type="number"]').on('input', function () {
+					if ($(this).val().length > MAX_POINT_DIGITS) {
+						$(this).val($(this).val().slice(0, MAX_POINT_DIGITS));
+					}
+					/*if (isNaN(parseInt($(this).val()))){  // Does not allow user to back space to remove the last digit. (Which prevents an empty box, but that might be annoying to the user.)
+						$(this).val($(this).attr('name'));
+					}*/
+				}); 
 			}
 		});
 	});

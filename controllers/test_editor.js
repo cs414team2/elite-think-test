@@ -563,6 +563,7 @@ function number_questions() {
 	});
 }
 
+// Swap the given question with the question above it.
 function raise_question(question) {
 	var prev_question = $(question).prev();
 	if ($(prev_question).length > 0) {
@@ -580,6 +581,7 @@ function raise_question(question) {
 	}
 }
 
+// Swap the given question with the question below it.
 function lower_question(question) {
 	var next_question = $(question).next();
 	if ($(next_question).length > 0) {
@@ -597,6 +599,7 @@ function lower_question(question) {
 	}
 }
 
+// Swap the given section with the section above it.
 function raise_section(section) {
 	var prev_section = $(section).prev();
 	if ($(prev_section).length > 0) {
@@ -614,6 +617,7 @@ function raise_section(section) {
 	}
 }
 
+// Swap the given section with the section below it.
 function lower_section(section){
 	var next_section = $(section).next();
 	if ($(next_section).length > 0) {
@@ -742,7 +746,7 @@ $(document).ready(function(){
 	load_questions();
 	fill_matching_answer_ddls();
 	
-	// Prevent negatives from being input
+	// Prevent negatives, decimals, and the enter key from being input in number boxes.
 	$('input[type="number"]').keydown(function(event){
 		if(event.keyCode == 109 || event.keyCode == 189       // Negative keycode
            || event.keyCode == 190 || event.keyCode == 110  // Decimal keycode
