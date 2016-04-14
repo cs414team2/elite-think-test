@@ -45,7 +45,10 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
+			$('#area_stats').hide();
+			$('#area_stats_loader').show();
 			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
+			$( "#dlg_test_stats" ).dialog( "open" );
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
@@ -127,7 +130,8 @@ function load_test_statistics(test_id) {
 			$('#h_lowest').html($(statistics).find('#lowest_grade').html());
 			$('#h_avg').html($(statistics).find('#average_grade').html());
 			
-			$( "#dlg_test_stats" ).dialog( "open" );
+			$('#area_stats_loader').hide();
+			$('#area_stats').show();
 		}
 	});	  
 }

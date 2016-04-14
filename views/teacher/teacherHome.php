@@ -146,10 +146,13 @@ if (isset($_SESSION['credentials'])) {
 			
 			<!-- Test Statistics div -->
 			<div id="dlg_test_stats" class="dialog_box" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png);">	
+				<div id="area_stats">
 				<div id="pie_letter_frequency" class="chart1" ></div>	
 				<div id="bar_missed_questions" class="chart2"></div>
 				<br /><br />
 				<div><h2 style="color: black; text-shadow: 0em 0em 0em black;">Highest grade:   <span id="h_highest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  Lowest grade: <span id="h_lowest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Average grade: <span id="h_avg"></span></h2></div>
+				</div>
+				<div id="area_stats_loader" class="loader" style="display: none;">Loading...</div>
 			</div>
 
 			<!-- Class Statistics div -->
