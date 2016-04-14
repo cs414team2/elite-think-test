@@ -2,17 +2,10 @@
 function loadStudents() {
 	$("#tbl_students").load("ajax/get_table.php?table=student", function() {
 		
-		$('.student_record, .Y').click(function(){
+		$('.student_record').click(function(){
 			var student_id = $(this).attr('id');
 			window.location = 'index.php?action=admin_student_info&id=' + student_id;
 		});
-		
-		$('.student_record, .N').click(function(){
-			var student_id = $(this).attr('id');
-			window.location = 'index.php?action=admin_student_info&id=' + student_id;
-		});
-		
-		$(".N").hide();
 	});
 }
 

@@ -3,10 +3,9 @@ require_once('model/Admin.php');
 if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
-			<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-			
+			<link rel="stylesheet" href="css/jquery-ui-1.11.4.custom/jquery-ui.css">
 			<script src="controllers/new_class_form.js"></script>
-			<script src="controllers/toggle_active.js"></script>
+			
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Class Manager</h2>
@@ -16,9 +15,7 @@ if (isset($_SESSION['credentials'])) {
 					<section id="content" >
 						<h4 style="display:inline-block;">Select a Class to Add Students</h4>
 						<img src="images/add_class.jpg" class="clickable_img" title="Add a Course" id="btn_open_courseDialog" style="display:inline-block; float: right;">
-						<br /><br />
-						<input type="checkbox" id="copy" name="copy">
-						<label for="copy">Show Inactive Classes</label>
+						<br /><br /><br />
 						<div class="table-wrapper">
 							<table class="sortable">
 								<thead>

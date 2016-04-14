@@ -8,7 +8,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 	
 	if ($_SESSION['credentials']->is_teacher() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		echo '
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="css/jquery-ui-1.11.4.custom/jquery-ui.css">
 		<script src="controllers/test_editor.js"></script>
 		
 		<section id="main" class="wrapper style1">
@@ -60,7 +60,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<br /><br />
 						<h5>Time Limit:</h5>
 						<p style="color:white;">
-							<input id="txt_time_limit" type="number" name="50" value="50" style="text-align: center; width: 60px;" min="0"
+							<input id="txt_time_limit" type="number" name="50" value="' . $test->get_time_limit() . '" style="text-align: center; width: 60px;" min="0"
 							  onFocus=(this.name=this.value)>
 							minutes
 						</p>

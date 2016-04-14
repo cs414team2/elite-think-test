@@ -26,12 +26,40 @@ class Course{
 		return new mysqli("csweb.studentnet.int", "team2_cs414", "t2CS414", "cs414_team2");
 	}
 	
+	
+	// Getters and Setters
 	public function get_class_name(){
 		return $this->name;
 	}
 	
 	public function get_class_number(){
 		return $this->number;
+	}
+	
+	// Print the enrolled students
+	public function print_students(){
+		$student_statement = $this->elite_db_connection->prepare('SELECT s.student_id, s.student_fname, s.student_lname, s.student_email
+		                                                            FROM enrollment e
+																	JOIN student s ON s.student_id = e.student_id
+																   WHERE e.class_id = ?');
+		$student_statement->bind_param('i', $this->id);
+		$student_statement->bind_result($student_id, $student_first, $student_last, $student_email);
+		$student_statement->execute();
+		$student_statement->store_result();
+		
+		if($student_statement->num_rows > 0){
+			while($student_statement->fetch()){
+				echo "\r\n<tr>";
+				echo "\r\n  <td>" . $student_id . "</td>";
+				echo "\r\n  <td>" . $student_last . ", " . $student_first . "</td>";
+				echo "\r\n  <td>" . $student_email . "</td>";
+				echo "\r\n  <td>GRADE HERE!!</td>";
+				echo "\r\n</tr>";
+			}
+		}
+		else {
+			echo "\r\n<tr><td colspan='4'>No Students Enrolled</td></tr>";
+		}
 	}
 
 }
