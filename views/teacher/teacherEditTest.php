@@ -54,9 +54,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<header class="major">
 			</header>
 			<div class="testContainer">
-				<div id="sidebar" style="text-align:center">
+				<div id="sidebar" class="sidebar" style="text-align:center">
 					<section style="text-align:center">
-						<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
+			<!--		<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/> -->
 						<br /><br />
 						<h5>Time Limit:</h5>
 						<p style="color:white;">
@@ -69,20 +69,23 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<input type="text" style="color: black;" id="activeDatepicker" onFocus=(this.name=this.value)>
 						<button id="btn_activate" class="show_hide button small smallButton" style="margin-top: 5px;" >Activate Now</button>
 						</p>
+						<img src="images/sidebarSlide.png" id="slide" class="clickable_img" style="padding: 0 .5em; height: 2em; line-height: 0em; float:right;"><br /><br />
 						<p style="color:white;">
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker" onFocus=(this.name=this.value)>
+							
 						</p>
+
 						<button id="btn_open_TFDialog"class="show_hide button small fit smallButton" rel="#slidingQ_2" >True / False</button>
 						<button id="btn_open_MCDialog" class="show_hide button small fit smallButton" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Essay</button>
 						<button id="btn_open_MatchDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Matching</button>	
 					</section>
 				</div>
-
-				<div class="smallScreenTestDiv" style="float:right;">
+				
+				<div id="testDiv" class="smallScreenTestDiv" style="float:right;">
 					<h2 style="padding:10px;">'. $test->get_class_name() . ' - Test ' . $test->get_test_number() . '</h2>
-					<section id="testView">
+					<section id="testView">		
 						<div id="test_content" align="left">
 							<div class="my-form-builder">
 								<div class="loader">Loading...</div>
@@ -90,6 +93,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						</div>
 					</section>
 				</div>
+				
 			</div>
 		</section>
 		

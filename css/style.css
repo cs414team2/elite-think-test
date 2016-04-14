@@ -295,7 +295,7 @@
 		appearance: menulist;
 	}	
 	
-	#sidebar {
+	.sidebar {
 
     width: 250px;
     background: #ffffff;
@@ -303,6 +303,16 @@
     min-height: 100%;
 	overflow: auto;
 }
+	.sidebarClose{
+		width: 250px;
+		background: #ffffff;
+		scroll: auto;
+		min-height: 100%;
+		overflow: auto;
+		margin-left: -22%;
+}
+
+	
 
 .sidebarStudent{
 		position:fixed;
@@ -1556,6 +1566,9 @@ span#countdown {
 		min-width: 100%;
 		padding-left: 25%;
 	}
+	.removeTestPadding{
+		padding-left: 0% !important;
+	}
 	
 	input[type="text"].questionStyle {
 		text-align: left;
@@ -1709,3 +1722,9 @@ span#countdown {
 #view_create_test_tab:focus {
 	background-color: #0AF;
 }
+
+
+
+
+
+
