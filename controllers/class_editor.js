@@ -6,6 +6,9 @@ const STUDENT_IS_ENROLLED = 1;
 function update_enrollment() {
 	var student = [];
 	
+	$('#area_students').hide();
+	$('#area_loader').show();
+	
 	$("tbody").children("tr").each(function (index) {
 		student[index] = { id : $(this).attr("id"),
 				     enrolled : $(this).find("input").prop("checked") ? STUDENT_IS_ENROLLED : STUDENT_NOT_ENROLLED};
@@ -22,6 +25,11 @@ function update_enrollment() {
 			$("#tbl_students").html(student_list);
 			window.scroll(0,0);
 			update_row_click_events();
+			
+			$('#area_students').animate({ scrollTop: 0 }, 1);
+			$('#area_loader').hide();
+			$('#area_students').show();
+			
 		}
 	});
 }

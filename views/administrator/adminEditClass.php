@@ -27,7 +27,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 					$admin->get_teacher_ddl($_REQUEST["id"]);
 		  echo '</select>
 				<br /><br />
-				<div class="table-wrapper">
+				<div id="area_students" class="table-wrapper">
 					<table style="text-align:center">
 						<thead>
 							<tr>
@@ -42,7 +42,8 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 							$admin->get_students($_REQUEST["id"]);
 				echo   '</tbody>
 					</table>
-				</div>		
+				</div>
+				<div id="area_loader" style="display: none;"><div class="loader">Loading...</div><br/></div>
 			</div>
 		</section>
 		';

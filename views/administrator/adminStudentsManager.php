@@ -16,7 +16,7 @@ if (isset($_SESSION['credentials'])) {
 						<h4 style="display:inline-block;">Click a Student to make changes</h4>
 						<img src="images/add_user.png" class="clickable_img" title="Add a Student" id="btn_open_studentDialog"  style="display:inline-block; float: right;">
 						<br /><br /><br />
-						<div class="table-wrapper">
+						<div id="area_students" class="table-wrapper">
 							<table class="sortable">
 								<thead>
 									<tr class="clickable_row">
