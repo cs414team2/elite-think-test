@@ -3,6 +3,7 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_student()) {
 		echo '
 		<script src="controllers/student_console.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script>var user_id = ' . $_SESSION['credentials']->get_user_id() . ';
 		</script>
 		<section id="main" class="wrapper style1">
@@ -52,7 +53,7 @@ if (isset($_SESSION['credentials'])) {
 							<br />
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Need To Complete</caption>
-							<caption><i>Select a Test When You Are Ready</i></caption>
+							<caption><i>Click a Test When You Are Ready</i></caption>
 								<thead>
 									<tr class="clickable_row">
 										<th>Class #</th>
@@ -108,7 +109,7 @@ if (isset($_SESSION['credentials'])) {
 							<section style="text-align:center;">
 								<table class="alt sortable">
 								<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
-								<caption><i>Select a Test to view the missed questions</i></caption>
+								<caption><i>Click a Test to view the missed questions</i></caption>
 									<thead>
 										<tr class="clickable_row">
 											<th>Test</th>

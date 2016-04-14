@@ -1,7 +1,7 @@
 //*********************************************************************
-//*                 Constants and Global Variables :(                 *
+//*                           Objects                                 *
 //*********************************************************************
-var color_iterator = { color : ["blue", "green", "red", "orange", "purple"],
+var color_iterator = { color : ["#3366cc", "green", "#e52d0b", "orange", "purple"],
 							  next_color : 0,
                        next : function() { if (this.next_color >= this.color.length) { this.next_color = 0;} 
 							                      return this.color[this.next_color++];
@@ -20,7 +20,21 @@ function open_edit_page(test_id) {
 function load_tests_and_classes() {
 	$("#tbl_classes").load("ajax/get_classes_for_teacher.php?user_id=" + user_id, function(){
 		$(".editable_class").click(function(){
-			window.location = "./?action=teacher_course_info&class_id=" + $(this).attr('id');
+			
+			$('#table_enrolled_students').hide();
+			$('#area_class_loader').show();
+			$( "#dlg_class_stats" ).dialog( "open" );
+			
+			$.ajax({
+				url : "ajax/get_enrolled_students.php",
+				data : { class_id : $(this).attr('id') },
+				success : function(students) {
+					
+					$('#tbl_enrolled_students').html(students);
+					$('#area_class_loader').hide();
+					$('#table_enrolled_students').show();
+				}
+			});
 		});
 	});
 	$("#tbl_active_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){	
@@ -31,8 +45,10 @@ function load_tests_and_classes() {
 		
 		$( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			//load_test_statistics(test_id);
+			$('#area_stats').hide();
+			$('#area_stats_loader').show();
 			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
+			$( "#dlg_test_stats" ).dialog( "open" );
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
@@ -114,7 +130,8 @@ function load_test_statistics(test_id) {
 			$('#h_lowest').html($(statistics).find('#lowest_grade').html());
 			$('#h_avg').html($(statistics).find('#average_grade').html());
 			
-			$( "#dlg_test_stats" ).dialog( "open" );
+			$('#area_stats_loader').hide();
+			$('#area_stats').show();
 		}
 	});	  
 }
@@ -135,6 +152,22 @@ $(document).ready(function() {
       autoOpen: false,
 	  modal: true,
 	  width: 1250,
+	  height: 600,
+      show: {
+        effect: "highlight",
+		duration: 500
+      },
+      hide: {
+        effect: "puff",
+		duration: 500
+      }
+    });
+	
+	// Open a dialog box if a user clicks the open button.
+	$( "#dlg_class_stats" ).dialog({
+      autoOpen: false,
+	  modal: true,
+	  width: 1024,
 	  height: 600,
       show: {
         effect: "highlight",

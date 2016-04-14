@@ -1,7 +1,7 @@
 <?php
-	const MAX_PERCENTAGE_MISSED = .50; // The minimum percent of students to miss a question for the question to be considered
-	const MIN_QUESTION_RESULTS  = 5;
-	const PERCENTAGE_DECREMENT  = .05;
+	const MAX_PERCENTAGE_MISSED = .40; // The percent of students to miss a question for the question to be listed
+	const MIN_QUESTION_RESULTS  = 5;   // The minimum number of missed questions needed to list before decrementing the percent of students.
+	const PERCENTAGE_DECREMENT  = .05; // How far to decrement the percentage missed
 
 	// This AJAX block takes in a test id and returns the statistics for that test.
 	$grade_alphabet   = range('A', 'D');

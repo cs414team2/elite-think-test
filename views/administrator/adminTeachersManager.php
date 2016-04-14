@@ -3,9 +3,8 @@ if (isset($_SESSION['credentials'])) {
 	if ($_SESSION['credentials']->is_admin()) {
 		echo'<!-- Main -->
 			<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-			
-			<script src="controllers/toggle_active.js"></script>
 			<script src="controllers/new_teacher_form.js"></script>
+			
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Teacher Manager</h2>
@@ -13,11 +12,9 @@ if (isset($_SESSION['credentials'])) {
 				<div class="container">	
 				<!-- Content -->
 				<section id="content">
-					<h4 style="display:inline-block;">&#9699;&nbsp;Click a Teacher to view assigned Classes</h4>
+					<h4 style="display:inline-block;">Click a Teacher to view assigned Classes</h4>
 					<img src="images/add_user.png" class="clickable_img" title="Add a Teacher" id="btn_open_teacherDialog" class="show_hide" style="display:inline-block; float: right;">
-					<br /><br />
-					<input type="checkbox" id="copy" name="copy">
-					<label for="copy">Show Inactive Teachers</label>
+					<br /><br /><br />
 					<div class="table-wrapper">
 						<table class="sortable">
 							<thead>

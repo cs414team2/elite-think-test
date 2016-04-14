@@ -17,7 +17,7 @@
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
 					{
-						echo "<tr " . "id='" . $record[$table . "_id"] . "' class='clickable_row ". $table . "_record, " . $record[self::IS_ACTIVE]."'>";
+						echo "<tr " . "id='" . $record[$table . "_id"] . "' class='clickable_row ". $table . "_record'>";
 						foreach($record as $col_name => $col_data) {
 						  if($col_name != self::IS_ACTIVE)
 							echo "<td>" . $col_data . "</td>";

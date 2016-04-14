@@ -7,7 +7,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 	
 	if ($_SESSION['credentials']->is_student() && $test->verify_test_access($_SESSION['credentials']->get_user_id(), $_SESSION['credentials']->get_access_level())) {
 		echo '<section id="main" class="wrapper style1">
-				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+				<link rel="stylesheet" href="css/jquery-ui-1.11.4.custom/jquery-ui.css">
 				<script src="controllers/test_taker.js"></script>
 				<script>
 					var test_id    = ' . $test_id . ';

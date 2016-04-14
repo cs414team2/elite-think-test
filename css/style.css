@@ -780,6 +780,10 @@ span#countdown {
 	
 	.clickable_row {
 		cursor: pointer;
+		background: -webkit-linear-gradient(rgba(208,208,208,.3),rgba(255,255,255,.7),rgba(255,255,255,.7),rgba(208,208,208,.3));
+		background: -moz-linear-gradient(rgba(208,208,208,.3),rgba(255,255,255,.7),rgba(255,255,255,.7),rgba(208,208,208,.3));
+		background: -o-linear-gradient(rgba(208,208,208,.3),rgba(255,255,255,.7),rgba(255,255,255,.7),rgba(208,208,208,.3));
+		background: linear-gradient(rgba(208,208,208,.3),rgba(255,255,255,.7),rgba(255,255,255,.7),rgba(208,208,208,.3));
 	}
 	
 	.clickable_img {
@@ -1537,12 +1541,14 @@ span#countdown {
 	}
 	
 	#sidebar {
+		text-align: center;
 		position: fixed;
-		padding-top: 44px;
+		margin-top: 3em;
+		padding-top: 10px;
 		top:0; bottom:0; left:0;
 		min-width: 25%;
 		height: 500px;
-		background: linear-gradient(#000, #2f4f4f); 
+		background: linear-gradient(#000, #2f4f4f);
 	}
 	.my-form-builder {
 		border:5px ridge #646464;
@@ -1708,10 +1714,13 @@ span#countdown {
 	width: 33%;
 }
 
-#view_ungraded_tests_tab, #view_graded_tests_tab{
+#view_ungraded_tests_tab, #view_graded_tests_tab, #view_graded_tests_button, #view_ungraded_tests_button, #view_drafts_tests_button{
 	background-color: #646464;
 	width: 45%;
 }
+#view_graded_tests_button:focus,
+#view_ungraded_tests_button:focus,
+#view_drafts_tests_button:focus,
 #view_classes_tab:focus,
 #take_test_tab:focus, 
 #view_tests_tab:focus, 

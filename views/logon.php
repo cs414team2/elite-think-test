@@ -18,9 +18,9 @@ if(isset($_SESSION["logon_failed"])) {
 			<h3>EliteThink</h3>
 			<form method="post" action="redirect.php">
 				<h3>User name:</h3>
-				<input id="usernameEntry" type="text" name="username" autofocus>
+				<input id="usernameEntry" type="text" name="username" maxlength="45" autofocus>
 				<br><h3>Password:</h3>
-				<input type="password" name="password">
+				<input type="password" name="password" maxlength="45">
 				<br />
 				<input class="button special big" name="senddata" type="submit" value="Login">
 				<input type="hidden" name="action" value="login" />

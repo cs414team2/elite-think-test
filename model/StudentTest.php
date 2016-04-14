@@ -8,6 +8,7 @@ class StudentTest{
 	const MATCHING_QUESTION_TYPE        = 'MATCH';
 	const RIGHT_COLOR                   = ' #47CC7A;';
 	const WRONG_COLOR                   = ' #CC1C11;';
+	const UNANSWERED_COLOR              = ' orange';
 	const CHECK_MARK                    = ' &#10004;';
 	const X_MARK                        = ' &#10006;';
 	const LEFT_ARROW                    = ' &lArr;';
@@ -239,7 +240,7 @@ class StudentTest{
 		if($question_type == self::ESSAY_QUESTION_TYPE){
 			echo "\r\n<li id='".$question_id."' style='margin-top: 8px' data-question-type='". $question_type . "' data-points-received='". $points_received ."' data-student-answer-id='". $student_answer_id ."'><hr />";
 			if ($user_type == self::TEACHER) 
-				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_" . $question_id . "' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;'><label for='txt_essay_points_" . $question_id . "' class='question_weight'> / ". $question_weight ." " . ($question_weight > 1 ? "Points" : "Point") . "</label></span></div>";
+				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> <input type='number' id='txt_essay_points_" . $question_id . "' value='". $question_weight ."' min='0' max='". $question_weight ."' style='width:3.5em; margin-bottom:1em; margin-top:1em;' onFocus=(this.name=this.value)><label for='txt_essay_points_" . $question_id . "' class='question_weight'> / ". $question_weight ." " . ($question_weight > 1 ? "Points" : "Point") . "</label></span></div>";
 			else
 				echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text'>" . htmlspecialchars($question_text) ."</span><span style='float: right;'> " . $points_received . " / ". $question_weight ." " . ($question_weight > 1 ? "Points" : "Point") . "</span></div>";
 		}
@@ -263,8 +264,8 @@ class StudentTest{
 							$symbol = ($color == self::RIGHT_COLOR ? self::CHECK_MARK : " ");
 						}
 					else{
-						$color = ($is_correct == 'Y' ? self::RIGHT_COLOR : " ");
-						$symbol = ($color == self::RIGHT_COLOR ? self::LEFT_ARROW : " ");
+						$color = ($is_correct == 'Y' ? self::UNANSWERED_COLOR : " ");
+						$symbol = ($color == self::UNANSWERED_COLOR ? self::LEFT_ARROW : " ");
 					}
 					
 					echo "\r\n<li>
@@ -281,7 +282,7 @@ class StudentTest{
 							$false_symbol = ' ';
 						}
 						elseif($answer_given == null){
-							$true_color  = self::RIGHT_COLOR;
+							$true_color  = self::UNANSWERED_COLOR;
 							$false_color = ' ';
 							$true_symbol = self::LEFT_ARROW;
 							$false_symbol = ' ';
@@ -300,7 +301,7 @@ class StudentTest{
 						$true_symbol = ' ';
 					}
 					elseif($answer_given == null){
-						$false_color = self::RIGHT_COLOR;
+						$false_color = self::UNANSWERED_COLOR;
 						$true_color = ' ';
 						$false_symbol = self::LEFT_ARROW;
 						$true_symbol = ' ';
@@ -352,8 +353,16 @@ class StudentTest{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
+		$statement = $this->db->prepare("SELECT SUM(section_points_received), SUM(section_points_total)
+										 FROM student_matching_section_points
+										 WHERE student_id = ? AND matching_section_id = ?") or die($db->error);
+		$statement->bind_param("ii", $this->student_id, $matching_section_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($section_points_received, $section_points_total);
+		$statement->fetch();
 		echo "\r\n<li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
-		echo "<div><span>". $matching_section_description ."</span></div>";
+		echo "<div><span>". $matching_section_description ."</span> <span style='float:right' data-points-received='". $section_points_received ."'> ". $section_points_received ." / ". $section_points_total ." pts </span></div>";
 		
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);

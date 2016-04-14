@@ -1,3 +1,10 @@
+<?php
+	if(!(isset($_POST['username'], $_POST['password']))){
+		header('Location: index.php');
+		die();
+	}
+?>
+
 <!DOCTYPE HTML>
 <!-- This page acts as a middle-man to process logon information and pass the
      Session information to the index page.
@@ -5,9 +12,10 @@
      arrow is hit after a fresh login -->
 <html>
 	<head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery-1.12.3.js" type="text/javascript"></script>
 		<?php
-			require_once('model/Session.php');
+		if(isset($_POST['username'], $_POST['password'])){
+ 			require_once('model/Session.php');
 			session_start();
 			$session = new Session($_POST['username'], $_POST['password']);
 								
@@ -30,6 +38,14 @@
 						});
 				      </script>';
 			}
+		}
+		else {
+			echo '<script type="text/javascript">
+						$(document).ready(function(){
+							window.location = "index.php?#one";
+						});
+				      </script>';
+		}
 		?>
 	</head>
 </html>
