@@ -68,6 +68,9 @@ function edit_student() {
 function enroll_student(){
 	var student = [{ id : $('#info_id').html(),
 	        enrolled : STUDENT_IS_ENROLLED}];
+
+	$('#area_enroll_class').hide();
+	$('#area_enroll_loader').show();
 	
 	if ($('#ddl_select_class').val() != 'null') {
 		$.ajax({
@@ -76,7 +79,7 @@ function enroll_student(){
 				class_id : $('#ddl_select_class').val(),
 				student : student
 			},
-			success : function(){
+			success : function(){				
 				$.ajax({
 					url: 'ajax/get_student_info.php',
 					data : { student_id : $('#info_id').html() },
@@ -87,17 +90,24 @@ function enroll_student(){
 						$('#tbl_classes').html($(temp_div).find('#class_table tbody').html());
 						set_class_links();
 						$('#ddl_select_class').html($(temp_div).find('#unenrolled_classes').html());
+						
+						$('#area_enroll_loader').hide();
+						$('#area_enroll_class').show();
 					}
 				});
 			}
-		})
+		});
 	}
+	$('#area_enroll_loader').hide();
+	$('#area_enroll_class').show();
 }
 
 // Populate the page with information from a student.
 function load_student() {
 	$('#area_student_info').hide();
 	$('#area_loader').show();
+	$('#area_enroll_class').hide();
+	$('#area_enroll_loader').show();
 	
 	$.ajax({
 		url: 'ajax/get_student_info.php',
@@ -115,6 +125,8 @@ function load_student() {
 			
 			$('#area_loader').hide();
 			$('#area_student_info').show();
+			$('#area_enroll_loader').hide();
+			$('#area_enroll_class').show();
 		}
 	});
 }
