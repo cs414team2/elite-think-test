@@ -4,9 +4,8 @@ if (isset($_SESSION['credentials'])) {
 		require_once('model/Table.php');
 		echo '<!-- Main -->
 			<link rel="stylesheet" href="css/jquery-ui-1.11.4.custom/jquery-ui.css">
-		
 			<script src="controllers/new_student_form.js"></script>
-			<script src="controllers/toggle_active.js"></script>
+			
 			<section id="main" class="wrapper style1">
 				<header class="major">
 					<h2>Student Manager</h2>
@@ -16,9 +15,7 @@ if (isset($_SESSION['credentials'])) {
 					<section id="content">
 						<h4 style="display:inline-block;">Click a Student to make changes</h4>
 						<img src="images/add_user.png" class="clickable_img" title="Add a Student" id="btn_open_studentDialog"  style="display:inline-block; float: right;">
-						<br /><br />
-						<input type="checkbox" id="copy" name="copy">
-						<label for="copy">Show Inactive Students</label>
+						<br /><br /><br />
 						<div class="table-wrapper">
 							<table class="sortable">
 								<thead>
