@@ -50,47 +50,85 @@ if (isset($_SESSION['credentials'])) {
 				
 				<div id="slidingDiv_2" class="toggleDiv" style="display:none; text-align: center;">
 					<br />
-					<table class="alt sortable" style="display: inline; max-width: 50%; ">
-					<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
-					<caption><i>Select to Grade Submitted Tests</i></caption>
-						<thead>
-							<tr class="clickable_row">
-								<th>Test</th>
-								<th>Class</th>
-								<th>Due Date</th>
-								<th>Complete</th>
-								<th>Stats</th>
-							</tr>
-						</thead>
-						<tbody id="tbl_active_tests">
-							<tr>
-								<td>
-									Loading Tests...
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<button class="show_hide_inner" rel="#slidingDiv_4" id="view_graded_tests_button">Graded</button>
+					<button class="show_hide_inner" rel="#slidingDiv_5" id="view_ungraded_tests_button">Ungraded</button>
+					<button class="show_hide_inner" rel="#slidingDiv_6" id="view_drafts_tests_button">Drafts</button>
+					<br />
 					
-					<!-- View Tests > Right - Existing Tests -->
-					<table class="alt sortable" style="display: inline; margin-left: 5%; max-width: 50%;">
-					<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
-					<caption><i>Select to Edit Saved Drafts</i></caption>
-						<thead>
-							<tr class="clickable_row">
-								<th>Test</th>
-								<th>Class</th>
-								<th>Active Date</th>
-							</tr>
-						</thead>
-						<tbody id="tbl_inactive_tests">
-							<tr>
-								<td>
-									Loading Tests...
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<hr>
+					<div id="slidingDiv_4" class="toggleInnerDiv" style="display:none; ">
+						<section style="text-align:center;">
+							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
+							<caption><i>Select to View Graded Tests</i></caption>
+								<thead>
+									<tr class="clickable_row">
+										<th>Test</th>
+										<th>Class</th>
+										<th>Due Date</th>
+										<th>Complete</th>
+										<th>Stats</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_active_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+					</div>
+					
+					<div id="slidingDiv_5" class="toggleInnerDiv" style="display:none; ">
+						<section style="text-align:center;">
+							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Active Tests</caption>
+							<caption><i>Select to Grade Submitted Tests</i></caption>
+								<thead>
+									<tr class="clickable_row">
+										<th>Test</th>
+										<th>Class</th>
+										<th>Due Date</th>
+										<th>Complete</th>
+										<th>Stats</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_active_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+					</div>
+					
+					<div id="slidingDiv_6" class="toggleInnerDiv" style="display:none; ">
+						<section style="text-align:center;">
+							<!-- View Tests > - Existing Tests -->
+							<table class="alt sortable">
+							<caption style="font-weight: bold; text-decoration: underline;">Inactive Tests</caption>
+							<caption><i>Select to Edit Saved Drafts</i></caption>
+								<thead>
+									<tr class="clickable_row">
+										<th>Test</th>
+										<th>Class</th>
+										<th>Active Date</th>
+									</tr>
+								</thead>
+								<tbody id="tbl_inactive_tests">
+									<tr>
+										<td>
+											Loading Tests...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<hr>
+						</section>
+					</div>	
 				</div>
 				
 				<div id="slidingDiv_3" class="toggleDiv" style="display:none;">

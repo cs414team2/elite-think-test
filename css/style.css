@@ -1701,10 +1701,13 @@ span#countdown {
 	width: 33%;
 }
 
-#view_ungraded_tests_tab, #view_graded_tests_tab{
+#view_ungraded_tests_tab, #view_graded_tests_tab, #view_graded_tests_button, #view_ungraded_tests_button, #view_drafts_tests_button{
 	background-color: #646464;
 	width: 45%;
 }
+#view_graded_tests_button:focus,
+#view_ungraded_tests_button:focus,
+#view_drafts_tests_button:focus,
 #view_classes_tab:focus,
 #take_test_tab:focus, 
 #view_tests_tab:focus, 
