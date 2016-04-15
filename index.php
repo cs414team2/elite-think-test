@@ -33,6 +33,8 @@
 		</noscript>
 
 		<?php require_once("model/Session.php"); ?>
+		
+		
 		<?php
 			function loadHomePage($access_level) {
 				switch($access_level){
@@ -59,6 +61,9 @@
 			
 			ini_set('session.gc_probability', 0);
 			session_start();
+			
+			// Includes the Header for the page
+			require_once('header.php');
 			
 			if (isset($_REQUEST['action'])) {
 				switch ($_REQUEST['action']) {
@@ -126,11 +131,6 @@
 				// <!-- Loads the Log On page -->
 				require_once('views/logon.php');
 			}
-		?>
-		
-		<!-- Includes the Header for the page -->
-		<?php 
-			require_once('header.php');
 		?>
 		
 		<!-- Includes the Footer for the page -->

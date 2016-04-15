@@ -37,7 +37,7 @@ function load_tests_and_classes() {
 			});
 		});
 	});
-	$("#tbl_active_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){	
+	$("#tbl_ungraded_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){	
 		$('.gradeable_test').click(function(event){
 			event.preventDefault();
 			window.location = "./?action=teacher_grade_test&test_id=" + $(this).parent().attr('id');

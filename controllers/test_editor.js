@@ -679,8 +679,7 @@ function update_time_info() {
 	}
 
 	if (date_due < date_active) {
-		validated = false;
-		alert('no');
+		// Should we do something here???????????????????????????????????????????????????????
 	}
 	
 	if (validated) {
@@ -743,9 +742,10 @@ $(document).ready(function(){
 		}
 	};
 
+	// close dialog boxes when clicking outside of them.
 	$("body").on("click",".ui-widget-overlay",function() {
-     $(".ui-dialog-titlebar-close").click();
-   });
+		$(".ui-dialog-titlebar-close").click();
+    });
 
 	$("#slide").click(function() {
 		if($("#sidebar").hasClass("sidebar"))

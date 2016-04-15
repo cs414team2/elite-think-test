@@ -21,6 +21,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				$(function() {
 					var dateIsSet = '.$test->active_date_is_set().'
 					$( "#activeDatepicker" ).datepicker({
+						minDate: 0,
+						defaultDate: "+1d",
 						onSelect: update_time_info
 					});
 					if(dateIsSet == true){
@@ -28,7 +30,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					}
 					else{
 						// Defaults to be active the next day
-						$( "#activeDatepicker" ).datepicker({ minDate: 0, defaultDate: +1 });
 						$( "#activeDatepicker" ).datepicker("setDate", new Date().getDay+1);
 					}
 				});
@@ -38,6 +39,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				$(function() {
 					var dateIsSet = '.$test->due_date_is_set().'
 					$( "#datepicker" ).datepicker({
+						minDate: 0,
+						defaultDate: "+7d",
 						onSelect: update_time_info
 					});
 					if(dateIsSet == true){
@@ -45,7 +48,6 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					}
 					else{
 						// Defaults to being due 7 days after date making
-						$( "#datepicker" ).datepicker({ minDate: 0, defaultDate: +7 });
 						$( "#datepicker" ).datepicker("setDate", new Date().getDay+7);
 					}
 				});
