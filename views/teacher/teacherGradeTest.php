@@ -48,10 +48,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						
 					echo '
 						</div>
-						<div id="area_grade_loader" class="loader" style="display:none;">
-							Loading...
+						<div id="area_grade_loader" style="display:none;" class="my-form-builder">
+							<div   class="loader">Loading...</div>
 						</div>
-						<br />
 					</section>
 				</div>			
 
