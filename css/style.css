@@ -787,6 +787,11 @@ span#countdown {
 	}
 	
 	.clickable_img {
+		/* border: 1px solid grey;
+		border-radius: 7px;
+		box-shadow: 1px 1px 1px black;
+		background-color: white;
+		padding: 3px; */
 		cursor: pointer;
 	}
 	.clickable_img:hover{
