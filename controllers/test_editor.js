@@ -742,32 +742,19 @@ $(document).ready(function(){
 			clear_error_messages();
 		}
 	};
-
+	
 	$("body").on("click",".ui-widget-overlay",function() {
      $(".ui-dialog-titlebar-close").click();
    });
 
-	$("#slide").click(function() {
-		if($("#sidebar").hasClass("sidebar"))
-		{	
-			$("#sidebar").addClass("sidebarClose");
-			$("#slide").attr("src", "images/sidebarSlide1.png");
-			$("#sidebar").removeClass("sidebar");
-			$("#testDiv").removeClass("removeTestPadding");
-		}
-		else
-		{
-			$("#sidebar").addClass("sidebar");
-			$("#testDiv").addClass("removeTestPadding");
-			$("#sidebar").removeClass("sidebarClose");
-			$("#slide").attr("src", "images/sidebarSlide.png");			
-		}
-		
+   	$('#saveTest').click(function() {
+		window.location = "./";
 	});
 	
-   $("#slide1").click(function() {
-		$("#sidebar").addClass("sidebar");
-		$("#sidebar").removeClass("sidebarClose");	
+	$('#postTest').click(function() {
+		$( "#activeDatepicker" ).datepicker("setDate", new Date());
+		update_time_info();
+		window.location = "./";
 	});
 	
 	load_questions();
