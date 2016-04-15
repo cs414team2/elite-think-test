@@ -57,7 +57,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div id="sidebar" class="sidebar" style="text-align:center">
 					<section style="text-align:center">
 			<!--		<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/> -->
-						<br /><br />
+						
 						<h5>Time Limit:</h5>
 						<p style="color:white;">
 							<input id="txt_time_limit" type="number" name="50" value="' . $test->get_time_limit() . '" style="text-align: center; width: 60px;" min="0"
@@ -67,9 +67,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<p style="color:white;">
 							Active Date: 
 							<input type="text" style="color: black;" id="activeDatepicker" onFocus=(this.name=this.value)>
-						<button id="btn_activate" class="show_hide button small smallButton" style="margin-top: 5px;" >Activate Now</button>
-						</p>
-						<img src="images/sidebarSlide.png" id="slide" class="clickable_img" style="padding: 0 .5em; height: 2em; line-height: 0em; float:right;"><br /><br />
+						
 						<p style="color:white;">
 							Date Due: 
 							<input type="text" style="color: black;" id="datepicker" onFocus=(this.name=this.value)>
@@ -80,6 +78,11 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_MCDialog" class="show_hide button small fit smallButton" rel="#slidingQ_1" >Multiple Choice</button>
 						<button id="btn_open_EssayDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Essay</button>
 						<button id="btn_open_MatchDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Matching</button>	
+						<br />
+						<img src="images/saveImage.png" width="75em" height="85em"  class="clickable_img" title="Save As Draft" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<img src="images/postTest.png" width="75em" height="85em"  class="clickable_img" title="Post This Test" /><br />
+						<h1> Save and Close &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
+						
 					</section>
 				</div>
 				
