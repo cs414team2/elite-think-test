@@ -81,7 +81,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<br />
 						<img src="images/saveImage.png" width="75em" height="85em"  class="clickable_img" title="Save As Draft" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 						<img src="images/postTest.png" width="75em" height="85em"  class="clickable_img" title="Post This Test" /><br />
-						<h1> Save and Close &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
+						<h1> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp Save and Close&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post Test&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
 						
 					</section>
 				</div>
