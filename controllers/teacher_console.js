@@ -93,6 +93,8 @@ function load_test_statistics(test_id) {
 	  title: "Letter Grade Averages",
 	  width: 500,
 	  height: 400,
+     'chartArea': {'width': '100%', 'height': '70%'},
+     'legend': {'position': 'bottom'},
 	  backgroundColor: "transparent",
 	  pieSliceTextStyle: {color: "black"},
 	};
@@ -106,7 +108,7 @@ function load_test_statistics(test_id) {
 			statistics.innerHTML = data;
 			
 			$(statistics).find('.grade_count').each(function(index){
-				grade_stats.push([$(this).attr('id') + "\'s" , parseInt($(this).text(), 10)]);
+				grade_stats.push([$(this).attr('id') + "\'s " , parseInt($(this).text(), 10)]);
 			});
 			grade_data = new google.visualization.arrayToDataTable(grade_stats);
 			pie_chart.draw(grade_data, pie_options);

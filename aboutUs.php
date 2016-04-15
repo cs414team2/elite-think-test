@@ -26,6 +26,7 @@
 			// Includes the Header for the page
 			require_once('model/Session.php');
 			if (!isset($SESSION)) {
+				ini_set('session.gc_probability', 0);
 				session_start();
 			}
 			require_once('header.php');

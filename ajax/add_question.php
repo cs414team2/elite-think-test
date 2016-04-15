@@ -1,6 +1,9 @@
 <?php
 	require_once("../model/Test.php");
 	require_once("../model/Session.php");
+	require_once("../model/ErrorLogger.php");
+	
+	ini_set('session.gc_probability', 0);
 	session_start();
 	
 	// Make sure these constants match up with model/Session.php !
@@ -70,6 +73,6 @@
 
 	}
 	else {
-		throw new Exception("Not all question information provided.");
+		new ErrorLogger('ajax/add_question.php:line 13 - isset returned false');
 	}
 ?>

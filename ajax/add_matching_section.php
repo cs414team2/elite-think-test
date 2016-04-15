@@ -68,7 +68,7 @@
 			$test->print_section($section_info['section_id'], $section_description);
 		}
 		catch(Exception $e){
-			//$elite_connection->rollback();
+			$elite_connection->rollback();
 			new ErrorLogger($e->getFile() . " : " . $e->getLine() . " : " . $e->getMessage());
 		}
 		$elite_connection->autocommit(TRUE);

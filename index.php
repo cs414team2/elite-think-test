@@ -57,6 +57,7 @@
 		<?php
 			$load_footer = true;
 			
+			ini_set('session.gc_probability', 0);
 			session_start();
 			
 			if (isset($_REQUEST['action'])) {
