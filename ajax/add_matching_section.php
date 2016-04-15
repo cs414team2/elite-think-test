@@ -2,6 +2,7 @@
 	// This AJAX block takes in a matching section and adds it to a database.
 
 	require_once("../model/Test.php");
+	require_once("../model/ErrorLogger.php");
 
 	if(isset($_REQUEST['test_id'], $_REQUEST['section_description'], $_REQUEST['question_weight'], $_REQUEST['questions'], $_REQUEST['answers'])) {
 		$test_id             = $_REQUEST['test_id'];
@@ -68,11 +69,12 @@
 		}
 		catch(Exception $e){
 			$elite_connection->rollback();
+			new ErrorLogger($e->getFile() . " : " . $e->getLine() . " : " . $e->getMessage());
 		}
 		$elite_connection->autocommit(TRUE);
 
 	}
 	else {
-		throw new Exception("Not all section information provided.");
+		new ErrorLogger("'ajax/add_matching_section.php' - Not all section information provided. (line 7 isset returned false)");
 	}
 ?>

@@ -742,7 +742,11 @@ $(document).ready(function(){
 			clear_error_messages();
 		}
 	};
-	
+
+	$("body").on("click",".ui-widget-overlay",function() {
+     $(".ui-dialog-titlebar-close").click();
+   });
+
 	$("#slide").click(function() {
 		if($("#sidebar").hasClass("sidebar"))
 		{	
@@ -761,11 +765,10 @@ $(document).ready(function(){
 		
 	});
 	
-    $("#slide1").click(function() {
-	$("#sidebar").addClass("sidebar");
-	$("#sidebar").removeClass("sidebarClose");	
+   $("#slide1").click(function() {
+		$("#sidebar").addClass("sidebar");
+		$("#sidebar").removeClass("sidebarClose");	
 	});
-	
 	
 	load_questions();
 	fill_matching_answer_ddls();

@@ -49,8 +49,10 @@ $(document).ready(function(){
 	
 	$('.gradeTestButton').click(function(){
 		var student_name = $(this).data('student-name');
+		
+		$('#grade_content').hide();
+		$('#area_grade_loader').show();
 		student_id = $(this).data('student-id');
-		$('#grade_content').show();
 		$.ajax({
 			url : 'ajax/get_completed_test_teacher.php',
 			data : {
@@ -59,6 +61,8 @@ $(document).ready(function(){
 			},
 			success : function(test) {
 				$('#grade_content').html(test);
+				$('#area_grade_loader').hide();
+				$('#grade_content').show();
 				$('#btn_finalize_grade').show();
 				$('#grade_curr_stud_name').html(student_name + "'s");
 				number_questions();
