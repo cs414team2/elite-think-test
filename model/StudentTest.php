@@ -402,8 +402,10 @@ class StudentTest{
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
 			
 			$symbol = self::CHECK_MARK;
+			$color  = self::RIGHT_COLOR;
 			if ($answer_given == null) {
 				$symbol = self::LEFT_ARROW;
+				$color = self::UNANSWERED_COLOR;
 			}
 			else if ($answer_given == $correct_answer) {
 				$symbol = self::CHECK_MARK;
@@ -411,7 +413,7 @@ class StudentTest{
 			else {
 				echo "\r\n <span style='color:". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
 			}
-			echo "\r\n <span style='color:". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
+			echo "\r\n <span style='color:". $color ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
 			echo "\r\n</li>";
 			$this->question_count++;
 		}

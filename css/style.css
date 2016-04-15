@@ -1677,6 +1677,7 @@ span#countdown {
 	line-height: 1em !important;
 	margin:0 !important;
 	padding:0 !important;
+	display: inline !important;
 }
 
 .single_question_box{

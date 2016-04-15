@@ -186,6 +186,7 @@ function submit_pledge() {
 			student_id : student_id
 		},
 		success : function(){
+			window.location = './';
 			//                     Load the graded answers maybe
 		}
 	});

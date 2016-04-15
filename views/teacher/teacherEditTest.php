@@ -195,20 +195,20 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		<div id="dlg_match" class="dialog_box" title="Matching Section Entry" style="background-color:white; text-align: center;">
 			<form>
 				<textarea id="txt_matchq_entry" rows="1" placeholder="Enter a Matching Section Description"
-					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px; width: 100%;"></textarea>
+					name="txt_matchq_entry" class="questionStyle" style="margin-bottom: 5px; width: 100%;" tabindex="1"></textarea>
 				<div style="display: inline-block; ">
 					Questions & Match
 					<div id="area_matching_questions">
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
-						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="display: inline; width: 260px;"/><select class="ddl_matched_answer matching_input_box" style="width: 50px; display: inline; "></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="2"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="4"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="6"/><select class="ddl_matched_answer matching_input_box" style="width: 50px"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="8"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="10"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="12"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="14"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="16"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="18"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
+						<div class="match_question"> <input class="txt_match_question matching_input_box" type="text" style="width: 260px;" tabindex="20"/><select class="ddl_matched_answer matching_input_box" style="width: 50px;"></select></div>
 					</div>
 					<p id="err_empty_match_question" style="display: none; color: red;">
 						Please enter at least one question...
@@ -220,32 +220,32 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div style="display: inline-block; ">
 					Answers
 					<div id="area_matching_answers">
-						<div> 1<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 2<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 3<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 4<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 5<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 6<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 7<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 8<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 9<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
-						<div> 10<input class="txt_match_answer matching_input_box" type="text" style="display: inline;"/></div>
+						<div> 1<input class="txt_match_answer matching_input_box" type="text" tabindex="3"/></div>
+						<div> 2<input class="txt_match_answer matching_input_box" type="text" tabindex="5"/></div>
+						<div> 3<input class="txt_match_answer matching_input_box" type="text" tabindex="7"/></div>
+						<div> 4<input class="txt_match_answer matching_input_box" type="text" tabindex="9"/></div>
+						<div> 5<input class="txt_match_answer matching_input_box" type="text" tabindex="11"/></div>
+						<div> 6<input class="txt_match_answer matching_input_box" type="text" tabindex="13"/></div>
+						<div> 7<input class="txt_match_answer matching_input_box" type="text" tabindex="15"/></div>
+						<div> 8<input class="txt_match_answer matching_input_box" type="text" tabindex="17"/></div>
+						<div> 9<input class="txt_match_answer matching_input_box" type="text" tabindex="19"/></div>
+						<div>10<input class="txt_match_answer matching_input_box" type="text" tabindex="21"/></div>
 					</div>
 					<p id="err_empty_match_answer" style="display: none; color: red;">
 						Please enter at least one answer...
 					</p>
 				</div>
-				<br/>
 				<br />
-				<input type="number" id="txt_match_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
+				<br />
+				<input type="number" id="txt_match_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry" tabindex="22">
 				<label for="txt_match_weight">Point(s) per question</label>
 				<br />
 				<br />
 				<p id="err_empty_match" style="display: none; color: red;">
 					Please enter a description...
 				</p>
-				<input id="btn_add_match_section" type="button" class="button special smallButton" value="Submit"/>
-				<input type="reset" value="Reset" class="alt button special smallButton"/>
+				<input id="btn_add_match_section" type="button" class="button special smallButton" value="Submit" tabindex="23"/>
+				<input type="reset" value="Reset" class="alt button special smallButton" tabindex="24"/>
 			</form>
 		</div>
 	

@@ -4,18 +4,17 @@ const MAX_POINT_DIGITS = 4;
 //****************************************************************
 //*                      Global Variables :(                     *
 //****************************************************************
-var student_id = 0;
 
 //****************************************************************
 //*                        Functions                             *
 //****************************************************************
-function finalize_grade() {
+function finalize_grade(student_id) {
 	var grade = [];
 	var validated
 
 	$('[data-question-type="ESSAY"]').each(function(index){
 		grade[index] = { student_answer_id : $(this).data('student-answer-id'),
-							    points_recieved : $(this).find('input[type="number"]').val()
+						   points_recieved : $(this).find('input[type="number"]').val()
 		}
 	});
 	
@@ -25,6 +24,18 @@ function finalize_grade() {
 					student_id: student_id,
 					grade : grade },
 		success : function(data){
+			$('.gradeTestDiv [data-student-id="' + student_id + '"]').parent().remove();
+			$('#grade_content').hide();
+			$('#grade_content').html('');
+			$('#grade_curr_stud_name').html('');
+			$('#btn_finalize_grade').hide();
+			$('#btn_finalize_grade').data('student-id', null);
+			
+			if ($('#studentTest').children().length == 0)
+				window.location = './';
+		},
+		error : function(error) {
+			alert('Points given is too high.');
 		}
 	});
 }
@@ -49,10 +60,10 @@ $(document).ready(function(){
 	
 	$('.gradeTestButton').click(function(){
 		var student_name = $(this).data('student-name');
+		var student_id = $(this).data('student-id');
 		
 		$('#grade_content').hide();
 		$('#area_grade_loader').show();
-		student_id = $(this).data('student-id');
 		$.ajax({
 			url : 'ajax/get_completed_test_teacher.php',
 			data : {
@@ -64,6 +75,7 @@ $(document).ready(function(){
 				$('#area_grade_loader').hide();
 				$('#grade_content').show();
 				$('#btn_finalize_grade').show();
+				$('#btn_finalize_grade').data('student-id', student_id);
 				$('#grade_curr_stud_name').html(student_name + "'s");
 				number_questions();
 				
@@ -87,6 +99,6 @@ $(document).ready(function(){
 	});
 	
 	$('#btn_finalize_grade').click(function(){
-		finalize_grade();
+		finalize_grade($(this).data('student-id'));
 	});
 });
