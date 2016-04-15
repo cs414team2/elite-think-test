@@ -743,6 +743,30 @@ $(document).ready(function(){
 		}
 	};
 	
+	$("#slide").click(function() {
+		if($("#sidebar").hasClass("sidebar"))
+		{	
+			$("#sidebar").addClass("sidebarClose");
+			$("#slide").attr("src", "images/sidebarSlide1.png");
+			$("#sidebar").removeClass("sidebar");
+			$("#testDiv").removeClass("removeTestPadding");
+		}
+		else
+		{
+			$("#sidebar").addClass("sidebar");
+			$("#testDiv").addClass("removeTestPadding");
+			$("#sidebar").removeClass("sidebarClose");
+			$("#slide").attr("src", "images/sidebarSlide.png");			
+		}
+		
+	});
+	
+    $("#slide1").click(function() {
+	$("#sidebar").addClass("sidebar");
+	$("#sidebar").removeClass("sidebarClose");	
+	});
+	
+	
 	load_questions();
 	fill_matching_answer_ddls();
 	
