@@ -743,6 +743,10 @@ $(document).ready(function(){
 		}
 	};
 	
+	$("body").on("click",".ui-widget-overlay",function() {
+     $(".ui-dialog-titlebar-close").click();
+   });
+	
 	load_questions();
 	fill_matching_answer_ddls();
 	

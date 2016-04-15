@@ -38,12 +38,16 @@ class Course{
 	
 	// Print the enrolled students
 	public function print_students(){
-		$student_statement = $this->elite_db_connection->prepare('SELECT s.student_id, s.student_fname, s.student_lname, s.student_email
+		$student_statement = $this->elite_db_connection->prepare('SELECT s.student_id, s.student_fname, s.student_lname, s.student_email,
+																		(SELECT ROUND(AVG(scg.grade), 2)
+											                               FROM student_class_grades scg
+											                              WHERE scg.student_id = s.student_id AND scg.class_id = ?) as grade
 		                                                            FROM enrollment e
 																	JOIN student s ON s.student_id = e.student_id
-																   WHERE e.class_id = ?');
-		$student_statement->bind_param('i', $this->id);
-		$student_statement->bind_result($student_id, $student_first, $student_last, $student_email);
+																   WHERE e.class_id = ?
+																   ORDER BY s.student_lname, s.student_fname');
+		$student_statement->bind_param('ii', $this->id, $this->id);
+		$student_statement->bind_result($student_id, $student_first, $student_last, $student_email, $grade);
 		$student_statement->execute();
 		$student_statement->store_result();
 		
@@ -53,7 +57,7 @@ class Course{
 				echo "\r\n  <td>" . $student_id . "</td>";
 				echo "\r\n  <td>" . $student_last . ", " . $student_first . "</td>";
 				echo "\r\n  <td>" . $student_email . "</td>";
-				echo "\r\n  <td>GRADE HERE!!</td>";
+				echo "\r\n  <td>". $grade . ($grade != null ? "%" : "N/A") . "</td>";
 				echo "\r\n</tr>";
 			}
 		}
