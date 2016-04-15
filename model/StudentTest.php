@@ -353,8 +353,16 @@ class StudentTest{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
+		$statement = $this->db->prepare("SELECT SUM(section_points_received), SUM(section_points_total)
+										 FROM student_matching_section_points
+										 WHERE student_id = ? AND matching_section_id = ?") or die($db->error);
+		$statement->bind_param("ii", $this->student_id, $matching_section_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($section_points_received, $section_points_total);
+		$statement->fetch();
 		echo "\r\n<li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
-		echo "<div><span>". $matching_section_description ."</span></div>";
+		echo "<div><span>". $matching_section_description ."</span> <span style='float:right' data-points-received='". $section_points_received ."'> ". $section_points_received ." / ". $section_points_total ." pts </span></div>";
 		
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
