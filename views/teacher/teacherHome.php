@@ -71,7 +71,7 @@ if (isset($_SESSION['credentials'])) {
 								</thead>
 								<tbody id="tbl_graded_tests">
 									<tr>
-										<td>
+										<td colspan="5">
 											Loading Tests...
 										</td>
 									</tr>
@@ -96,7 +96,7 @@ if (isset($_SESSION['credentials'])) {
 								</thead>
 								<tbody id="tbl_ungraded_tests">
 									<tr>
-										<td>
+										<td colspan="5">
 											Loading Tests...
 										</td>
 									</tr>
@@ -120,7 +120,7 @@ if (isset($_SESSION['credentials'])) {
 								</thead>
 								<tbody id="tbl_inactive_tests">
 									<tr>
-										<td>
+										<td colspan="5">
 											Loading Tests...
 										</td>
 									</tr>

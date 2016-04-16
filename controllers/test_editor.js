@@ -81,6 +81,9 @@ function add_question(question_type, question_text) {
 				$("#" + question_type).show();
 				number_questions();
 				clear_question_fields();
+			},
+			error: function(error) {
+				alert('Question was not added!');
 			}
 		});
 	}

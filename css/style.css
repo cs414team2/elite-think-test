@@ -1018,6 +1018,10 @@ span#countdown {
 			cursor: default;
 			opacity: 0.25;
 		}
+		
+	.show_hide_inner {
+		width:32%!important;
+	}
 
 /* Feature */
 

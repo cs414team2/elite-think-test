@@ -37,7 +37,16 @@ function load_tests_and_classes() {
 			});
 		});
 	});
-	$("#tbl_ungraded_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + true, function(){	
+	$("#tbl_graded_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_graded=" + true, function(){
+		$( ".btn_open_stats_dialog" ).click(function() {
+			var test_id = $(this).parent().parent().attr('id');
+			$('#area_stats').hide();
+			$('#area_stats_loader').show();
+			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
+			$( "#dlg_test_stats" ).dialog( "open" );
+		});
+	});
+	$("#tbl_ungraded_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_graded=" + false, function(){
 		$('.gradeable_test').click(function(event){
 			event.preventDefault();
 			window.location = "./?action=teacher_grade_test&test_id=" + $(this).parent().attr('id');
@@ -51,7 +60,7 @@ function load_tests_and_classes() {
 			$( "#dlg_test_stats" ).dialog( "open" );
 		});
 	});
-	$("#tbl_inactive_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_active=" + false, function(){
+	$("#tbl_inactive_tests").load("ajax/get_drafts.php?user_id=" + user_id, function(){
 		$('.editable_test').click(function(){
 			open_edit_page($(this).parent().attr('id'));
 		});

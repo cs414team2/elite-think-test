@@ -18,11 +18,16 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 								$test->get_completed_tests();
 					echo	'</section>
 					</section>
-					<button class="alt fit button special" style="width:26.5em; margin:.5em;" id="btn_finalize_grade">Finalize Grade</button>
+					<button class="alt fit button special" style="width: 85%; margin:.5em;" id="btn_finalize_grade">Finalize Grade</button>
 					
 					<section id="test_guide" style="padding:1em; min-height:50px;  margin:1em; margin-left:2em; margin-right:2em; background-color:lightgray; ">
 					<h1> Grading Symbols </h1>
-						<p> &#8656; - Student gave no answer <br \> &#10003; - Student gave correct answer  <br \> x - student gave wrong answer </p>
+						<!--<p> &#8656; - Student gave no answer <br \> &#10003; - Student gave correct answer  <br \> x - student gave wrong answer </p>-->
+						<ul style="list-style-type: none; text-align: left;">
+							<li>&#8656; - Student gave no answer</li>
+                            <li>&#10003; - Student gave correct answer</li>
+							<li>&#10006; - student gave wrong answer </li>
+						</ul>
 						
 					
 					</section>

@@ -1,3 +1,7 @@
+const MULTIPLE_CHOICE_QUESTION_TYPE = 'MC';
+const TRUE_FALSE_QUESTION_TYPE      = 'TF';
+const ESSAY_QUESTION_TYPE           = 'ESSAY';
+const MATCHING_QUESTION_TYPE        = 'MATCH';
 const MAX_TEST_SIZE = 3;
 const MAX_POINT_DIGITS = 4;
 
@@ -93,7 +97,14 @@ $(document).ready(function(){
 					/*if (isNaN(parseInt($(this).val()))){  // Does not allow user to back space to remove the last digit. (Which prevents an empty box, but that might be annoying to the user.)
 						$(this).val($(this).attr('name'));
 					}*/
-				}); 
+				});
+				
+				// If an essay question is empty, set the default grade to 0.
+				$('#' + ESSAY_QUESTION_TYPE + ' li').each(function(){
+					if(jQuery.trim($(this).find('#txt_eq_entry').val()).length == 0){
+						$(this).find('input[type="number"]').val(0);
+					}
+				});
 			}
 		});
 	});

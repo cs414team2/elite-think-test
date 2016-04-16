@@ -26,6 +26,7 @@
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 		
 		try {
+			
 			// Store the question in the database.
 			$eliteConnection->query("SET @question_id = 0") ;	
 			$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)");
@@ -68,6 +69,8 @@
 		}
 		catch(Exception $e){
 			$eliteConnection->rollback();
+			new ErrorLogger($e);
+			throw $e;
 		}
 		$eliteConnection->autocommit(TRUE);
 
