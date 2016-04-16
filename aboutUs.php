@@ -71,7 +71,7 @@
 											   Home Town: Washburn, MO <br />
 											   Major: Computer Information Systems<br />
 											   Year: Senior <br />
-											   Age: <?php echo floor((time() - strtotime("Apr 18, 1989 08:00:00 CST")) / (60 * 60 * 24 * 365)); ?> <br />
+											   Age: <?php echo floor((time() - strtotime("Apr 18, 1989 08:00:00 CST")) / (60 * 60 * 24 * 366)); ?> <br />
 											   Fun Fact:    <br />
 									</td>
 									<td>

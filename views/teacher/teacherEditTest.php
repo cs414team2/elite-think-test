@@ -135,30 +135,44 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					name="txt_mcq_entry" class="questionStyle" ></textarea>
 				<br />
 				
-				<label for="mcAnswer1" class="questionLabel"> A)</label>
-				<input id="mcAnswer1" type="text" name="mcAnswer1" class="questionStyle mc_answer">
-				<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
-				<label for="rb_is_answer_a" class="questionLabel">Answer</label>
-				<br/><br />
+				<div id="area_mc_answers">
+					<div class="mc_answer">
+						<label for="txt_mc_answer_1" class="questionLabel"> A)</label>
+						<input id="txt_mc_answer_1" type="text" name="txt_mc_answer_1" class="questionStyle answer_text">
+						<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
+						<label for="rb_is_answer_a" class="questionLabel">Answer</label>
+					<br/>
+					<br/>
+					</div>
+					
+					<div class="mc_answer">
+						<label for="txt_mc_answer_2" class="questionLabel"> B)</label>
+						<input id="txt_mc_answer_2" type="text" name="txt_mc_answer_2" class="questionStyle answer_text">
+						<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
+						<label for="rb_is_answer_b" class="questionLabel">Answer</label>
+					<br/>
+					<br/>
+					</div>
+					
+					<div class="mc_answer">
+						<label for="txt_mc_answer_3" class="questionLabel"> C)</label>
+						<input id="txt_mc_answer_3" type="text" name="txt_mc_answer_3" class="questionStyle answer_text">
+						<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
+						<label for="rb_is_answer_c" class="questionLabel">Answer</label>
+					<br/>
+					<br/>
+					</div>
+					
+					<div class="mc_answer">
+						<label for="txt_mc_answer_4" class="questionLabel"> D)</label>
+						<input id="txt_mc_answer_4" type="text" name="txt_mc_answer_4" class="questionStyle answer_text">
+						<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
+						<label for="rb_is_answer_d" class="questionLabel">Answer</label>
+					<br />
+					<br/>
+					</div>
+				</div>
 				
-				<label for="mcAnswer2" class="questionLabel"> B)</label>
-				<input id="mcAnswer2" type="text" name="mcAnswer2" class="questionStyle mc_answer">
-				<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
-				<label for="rb_is_answer_b" class="questionLabel">Answer</label>
-				<br/><br />
-				
-				<label for="mcAnswer3" class="questionLabel"> C)</label>
-				<input id="mcAnswer3" type="text" name="mcAnswer3" class="questionStyle mc_answer">
-				<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
-				<label for="rb_is_answer_c" class="questionLabel">Answer</label>
-				<br/><br />
-				
-				<label for="mcAnswer4" class="questionLabel"> D)</label>
-				<input id="mcAnswer4" type="text" name="mcAnswer4" class="questionStyle mc_answer">
-				<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
-				<label for="rb_is_answer_d" class="questionLabel">Answer</label>
-				<br/>
-				<br />
 				<input type="number" id="txt_mc_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
 				<label for="txt_mc_weight">Point(s)</label>
 				<br />

@@ -39,8 +39,8 @@ class Test{
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
 			echo "\r\n      <img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
 			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
-			echo "\r\n	    <img src='images/edit.png' class='clickable_img' title='Edit Question' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#' onclick='open_question_editor(this.parentElement.parentElement)'>";
-			echo "\r\n	    <img src='images/delete1.png' class='clickable_img' title='Delete Question' onclick='delete_question(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>";
+			echo "\r\n	    <img src='images/edit.png' class='clickable_img' title='Edit Question' href='#' style='width: 29px; height: 29px;' onclick='open_question_editor(this.parentElement.parentElement)'>";
+			echo "\r\n	    <img src='images/delete.png' class='clickable_img' title='Delete Question' style='width: 29px; height: 29px;' onclick='delete_question(this.parentElement.parentElement)' href='#'>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
@@ -322,8 +322,8 @@ class Test{
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
 				  \r\n<img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
 				  \r\n<img src='images/arrowDown.png' class='clickable_img' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
-				  \r\n<img src='images/edit.png' class='clickable_img' title='Edit Question' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
-				  \r\n<img src='images/delete1.png' class='clickable_img' title='Delete Question' onclick='delete_matching_section(this.parentElement.parentElement)' style='padding: 0 .5em; height: 2em; line-height: 0em;' href='#'>
+				  \r\n<img src='images/edit.png' class='clickable_img' title='Edit Question' style='width: 29px; height: 29px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  \r\n<img src='images/delete.png' class='clickable_img' title='Delete Question' style='width: 29px; height: 29px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
 			  \r\n</div>";
 		}
 		$this->print_matching_answers($matching_section_id);
