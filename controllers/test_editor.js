@@ -165,13 +165,31 @@ function add_matching_section() {
 	}
 }
 
+function add_mc_answer(answer_text, is_answer) {
+
+	$('#area_mc_answers').append(
+	  "\r\n <div class='mc_answer'>"
+	  + "\r\n		<br />"
+	  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
+	  + "\r\n		<input id='txt_mc_answer_' type='text' name='txt_mc_answer_' class='questionStyle answer_text'>"
+	  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
+	  +	(is_answer ? "checked" : "")
+	  +">"
+	  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
+	  + "\r\n	</div>"
+	);
+	
+	number_answers();
+}
+
 // Fill the question dropdowns that link a question to an answer.
 function fill_matching_answer_ddls() {
+	var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	var answer_count;
 	$('.ddl_matched_answer').html('');
 	
 	for (answer_count = 0; answer_count < $('.txt_match_answer').length; answer_count++){
-		$('.ddl_matched_answer').append('<option value="' + answer_count + '">' + (parseInt(answer_count) + 1) + '</option>');
+		$('.ddl_matched_answer').append('<option value="' + answer_count + '">' + alphabet[answer_count] + '</option>');
 	}
 }
 
@@ -186,7 +204,7 @@ function open_question_editor(question) {
 	$(question).find(".answer").each(function(index){
 		answers[index] = { id : $(this).data("answer-id"),
 		                   content : $(this).html(),
-						       is_correct : $(this).data("is-correct")};
+						   is_correct : $(this).data("is-correct")};
 	});
 	
 	$("#dlg_" + question_type.toLowerCase()).data("question-id", question_id);
@@ -215,12 +233,28 @@ function open_question_editor(question) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			$("#txt_mcq_entry").val(html_special_chars_decode(question_text));
 			
-			$(".mc_answer").each(function(index){
+			$('#area_mc_answers').html('');
+			for (i in answers) {
+				$('#area_mc_answers').append(
+					"\r\n <div class='mc_answer' data-answer-id='" + answers[i].id + "'>"
+				  + "\r\n		<br />"
+				  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
+				  + "\r\n		<input id='txt_mc_answer_' type='text' value='" + answers[i].content + "' name='txt_mc_answer_' class='questionStyle answer_text'>"
+				  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
+				  +	(answers[i].is_correct == "Y" ? "checked" : "")
+				  +">"
+				  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
+				  + "\r\n	</div>"
+				);
+			}
+			number_answers();
+			
+			/* $(".mc_answer").each(function(index){
 				$(this).data("answer-id", answers[index].id)
 				$(this).find('.answer_text').val(html_special_chars_decode(answers[index].content));
 				if (answers[index].is_correct == "Y")
 					$(this).find('[name="rb_is_answer"]').prop( "checked", true );
-			});
+			}); */
 			$("#txt_mc_weight").val(question_weight);
 		
 			$("#btn_add_mc").unbind("click");
@@ -555,6 +589,19 @@ function number_questions() {
 	});
 }
 
+// Display the multiple choice answer letters
+function number_answers() {
+	var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	
+	$('.mc_answer').each(function(index){
+		$(this).find('.letter_label').html(alphabet[index] + ') ');
+		$(this).find('.letter_label').prop('for', 'txt_mc_answer_' + index);
+		$(this).find('.answer_text').prop('id', 'txt_mc_answer_' + index);
+		$(this).find('input[type="radio"]').prop('id', 'rb_is_answer_' + index);
+		$(this).find('.radio_label').prop('for', 'rb_is_answer_' + index);
+	});
+}
+
 // Swap the given question with the question above it.
 function raise_question(question) {
 	var prev_question = $(question).prev();
@@ -719,7 +766,7 @@ $(document).ready(function(){
 		autoOpen: false,
 		modal: true,
 		width: 500,
-		maxHeight: 650,
+		maxHeight: 675,
 		show: {
 			effect: "drop",
 			duration: 500
@@ -755,7 +802,7 @@ $(document).ready(function(){
 	// Prevent negatives, decimals, and the enter key from being input in number boxes.
 	$('input[type="number"]').keydown(function(event){
 		if(event.keyCode == 109 || event.keyCode == 189       // Negative keycode
-           || event.keyCode == 190 || event.keyCode == 110  // Decimal keycode
+           || event.keyCode == 190 || event.keyCode == 110    // Decimal keycode
            || event.keyCode == 13 )
 			event.preventDefault();
 	});
@@ -868,6 +915,14 @@ $(document).ready(function(){
 	});	
 	$( "#btn_open_MCDialog" ).click(function() {
 		$("#dlg_mc").data("question-id", 0);
+		
+		$('#area_mc_answers').html('');
+		
+		add_mc_answer('', true);
+		add_mc_answer('', false);
+		add_mc_answer('', false);
+		add_mc_answer('', false);
+		
 		$(".mc_answer").each(function(){
 			$(this).data("answer-id", 0);
 		});

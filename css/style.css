@@ -778,6 +778,7 @@ span#countdown {
 		overflow:auto;
 	}
 	
+	
 	.clickable_row {
 		cursor: pointer;
 		background: -webkit-linear-gradient(rgba(208,208,208,.3),rgba(255,255,255,.7),rgba(255,255,255,.7),rgba(208,208,208,.3));

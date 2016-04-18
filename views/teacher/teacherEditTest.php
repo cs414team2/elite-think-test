@@ -81,8 +81,8 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_EssayDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Essay</button>
 						<button id="btn_open_MatchDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Matching</button>	
 						<br />
-						<img src="images/saveImage.png" width="75em" height="85em" id="saveTest"  class="clickable_img" title="Save As Draft" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<img src="images/postTest.png" width="75em" height="95em" id="postTest"  class="clickable_img" title="Post This Test" /><br />
+						<img src="images/saveImage.png" width="85em" height="85em" id="saveTest"  class="clickable_img" title="Save As Draft" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<img src="images/post_test.png" width="85em" height="85em" id="postTest"  class="clickable_img" title="Post This Test" style="padding-left: 10px; padding-right: 10px;"/><br />
 						<h1> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp Save and Close&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post Test&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
 						
 					</section>
@@ -133,45 +133,47 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 			<form>
 				<textarea id="txt_mcq_entry" rows="2" placeholder="Enter a Multiple Choice Question"
 					name="txt_mcq_entry" class="questionStyle" ></textarea>
-				<br />
-				
+
 				<div id="area_mc_answers">
 					<div class="mc_answer">
-						<label for="txt_mc_answer_1" class="questionLabel"> A)</label>
+						<br />
+						<label for="txt_mc_answer_1" class="questionLabel letter_label"> A)</label>
 						<input id="txt_mc_answer_1" type="text" name="txt_mc_answer_1" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
-						<label for="rb_is_answer_a" class="questionLabel">Answer</label>
-					<br/>
-					<br/>
+						<label for="rb_is_answer_a" class="questionLabel radio_label">Answer</label>
 					</div>
 					
 					<div class="mc_answer">
-						<label for="txt_mc_answer_2" class="questionLabel"> B)</label>
+						<br />
+						<label for="txt_mc_answer_2" class="questionLabel letter_label"> B)</label>
 						<input id="txt_mc_answer_2" type="text" name="txt_mc_answer_2" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
-						<label for="rb_is_answer_b" class="questionLabel">Answer</label>
-					<br/>
-					<br/>
+						<label for="rb_is_answer_b" class="questionLabel radio_label">Answer</label>
 					</div>
 					
 					<div class="mc_answer">
-						<label for="txt_mc_answer_3" class="questionLabel"> C)</label>
+						<br />
+						<label for="txt_mc_answer_3" class="questionLabel letter_label"> C)</label>
 						<input id="txt_mc_answer_3" type="text" name="txt_mc_answer_3" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
-						<label for="rb_is_answer_c" class="questionLabel">Answer</label>
-					<br/>
-					<br/>
+						<label for="rb_is_answer_c" class="questionLabel radio_label">Answer</label>
 					</div>
 					
 					<div class="mc_answer">
-						<label for="txt_mc_answer_4" class="questionLabel"> D)</label>
+						<br />
+						<label for="txt_mc_answer_4" class="questionLabel letter_label"> D)</label>
 						<input id="txt_mc_answer_4" type="text" name="txt_mc_answer_4" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
-						<label for="rb_is_answer_d" class="questionLabel">Answer</label>
-					<br />
-					<br/>
+						<label for="rb_is_answer_d" class="questionLabel radio_label">Answer</label>
 					</div>
 				</div>
+				
+				<label style="float:left;">
+					<img src="images/add-icon.png" alt="(+)" class="clickable_img" style="width: 32px; padding-top: 5px;" onclick="add_mc_answer()" />
+					Add Answer
+				</label>
+				<br />
+				<br />
 				
 				<input type="number" id="txt_mc_weight" value="1" min="1" max="999" style="width: 70px; text-align: center;" class="weight_entry">
 				<label for="txt_mc_weight">Point(s)</label>
@@ -234,16 +236,16 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<div style="display: inline-block; ">
 					Answers
 					<div id="area_matching_answers">
-						<div> 1<input class="txt_match_answer matching_input_box" type="text" tabindex="3"/></div>
-						<div> 2<input class="txt_match_answer matching_input_box" type="text" tabindex="5"/></div>
-						<div> 3<input class="txt_match_answer matching_input_box" type="text" tabindex="7"/></div>
-						<div> 4<input class="txt_match_answer matching_input_box" type="text" tabindex="9"/></div>
-						<div> 5<input class="txt_match_answer matching_input_box" type="text" tabindex="11"/></div>
-						<div> 6<input class="txt_match_answer matching_input_box" type="text" tabindex="13"/></div>
-						<div> 7<input class="txt_match_answer matching_input_box" type="text" tabindex="15"/></div>
-						<div> 8<input class="txt_match_answer matching_input_box" type="text" tabindex="17"/></div>
-						<div> 9<input class="txt_match_answer matching_input_box" type="text" tabindex="19"/></div>
-						<div>10<input class="txt_match_answer matching_input_box" type="text" tabindex="21"/></div>
+						<div> a<input class="txt_match_answer matching_input_box" type="text" tabindex="3"/></div>
+						<div> b<input class="txt_match_answer matching_input_box" type="text" tabindex="5"/></div>
+						<div> c<input class="txt_match_answer matching_input_box" type="text" tabindex="7"/></div>
+						<div> d<input class="txt_match_answer matching_input_box" type="text" tabindex="9"/></div>
+						<div> e<input class="txt_match_answer matching_input_box" type="text" tabindex="11"/></div>
+						<div> f<input class="txt_match_answer matching_input_box" type="text" tabindex="13"/></div>
+						<div> g<input class="txt_match_answer matching_input_box" type="text" tabindex="15"/></div>
+						<div> h<input class="txt_match_answer matching_input_box" type="text" tabindex="17"/></div>
+						<div> i<input class="txt_match_answer matching_input_box" type="text" tabindex="19"/></div>
+						<div> j<input class="txt_match_answer matching_input_box" type="text" tabindex="21"/></div>
 					</div>
 					<p id="err_empty_match_answer" style="display: none; color: red;">
 						Please enter at least one answer...
