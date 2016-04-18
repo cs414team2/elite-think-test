@@ -62,39 +62,72 @@
 			}
 		}
 		
+		// Prints out unfinished tests for a teacher in an HTML table format
+		public function print_drafts($user_id){
+			$db = $this->prepare_connection();
+			$statement = $db->prepare("SELECT test_id, test_number, date_active, class_name
+			                             FROM teacher_inactive_tests
+			                            WHERE teacher_id = ?") or die($db->error);
+			
+			// Set bind parameters and execute query
+			$statement->bind_param("i", $user_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($test_id, $test_number, $date_due, $class_name);
+
+			if($statement->num_rows > 0){
+				while($statement->fetch()){
+					echo "\r\n<tr " . "id='" . $test_id . "' class='clickable_row'>";
+					echo "<td class='editable_test'>Test " . $test_number . "</td>";
+					echo "<td class='editable_test'>" . $class_name . "</td>";
+					echo "<td class='editable_test'>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					echo "</tr>";
+				}
+			}
+			else{
+				echo "\r\n<tr>";
+				echo "<td> N/A </td>";
+				echo "<td> N/A </td>";
+				echo "<td> N/A </td>";
+				echo "</tr>";
+			}
+		}
+		
 		// Prints out tests for a teacher in an HTML table format
-		public function print_tests($user_id, $is_active){
+		public function print_tests($user_id, $is_graded){
 			$db = $this->prepare_connection();
 			
 			// Decide whether to load active or inactive tables;
-			if($is_active)
+			if($is_graded)
 				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
 			                               FROM teacher_active_tests_and_stats
 			                               WHERE teacher_id = ?") or die($db->error);
 			else
-				$statement = $db->prepare("SELECT test_id, test_number, date_active, class_name
-			                               FROM teacher_inactive_tests
+				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
+			                               FROM teacher_active_tests_and_stats
 			                               WHERE teacher_id = ?") or die($db->error);
 			
 			// Set bind parameters and execute query
 			$statement->bind_param("i", $user_id);
 			$statement->execute();
 			$statement->store_result();
-			if($is_active)
+			if($is_graded)
 				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests);
 			else
-				$statement->bind_result($test_id, $test_number, $date_due, $class_name);
+				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests);
 
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
-					$col_class = ($is_active ? "gradeable_test" : "editable_test");
+					echo "<tr " . "id='" . $test_id . "' ";
+					 if ($is_graded == false)
+						 echo "class='clickable_row'";
+					echo ">";
+					$col_class = ($is_graded ? "graded_test" : "gradeable_test");
 					echo "<td class='". $col_class ."'>Test " . $test_number . "</td>";
 					echo "<td class='". $col_class ."'>" . $class_name . "</td>";
 					echo "<td class='". $col_class ."'>" . date('n/j/y', strtotime($date_due)) . "</td>";
-					echo ($is_active ? ("<td class='". $col_class ."'>". $completed ." / ". $total_tests ."</td>") : null);
-					if($is_active)
-						echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog' style='cursor: help;'></td>";
+					echo "<td class='". $col_class ."'>". $completed ." / ". $total_tests ."</td>";
+					echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog' style='cursor: help;'></td>";
 					echo "</tr>\r\n";
 				}
 			}
@@ -106,6 +139,7 @@
 				echo "</tr>";
 			}
 		}
+		
 		// Displays the Teacher's name
 		public function get_teacher_info($teacher_id){
 			$db = $this->prepare_connection();

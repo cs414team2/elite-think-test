@@ -33,10 +33,11 @@
 			$db = $this->prepare_connection();
 			$statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname 
 			                         FROM teacher
-									 ORDER BY teacher_id DESC");
+									 ORDER BY teacher_lname");
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
+					$record['teacher_id'] = ($record['teacher_id'] == '2' ? '00002' : $record['teacher_id']);
 					echo "<option " . "value='" . $record['teacher_id'] . "'" . ($teacher_id == $record['teacher_id']? "selected" : " ") . ">";
 					echo $record['teacher_id'] . " &nbsp;&nbsp;" . $record['teacher_lname'] . ", " . $record['teacher_fname'];
 					echo "</option>\r\n";
@@ -52,7 +53,7 @@
 			$db = $this->prepare_connection();
 			$statement = $db->query("SELECT student_id, student_lname, student_fname 
 			                         FROM student
-									 ORDER BY student_id DESC");
+									 ORDER BY student_lname");
 			
 			if($statement->num_rows > 0){
 				while($record = $statement->fetch_assoc()){
@@ -78,10 +79,11 @@
 			echo "<option value='null' " . ($class_statement->num_rows > 0 ? "selected='selected'" : " ") . ">- No teacher assigned -</option>";
 			$class_statement->close();
 			
-			$teacher_statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname FROM teacher");
+			$teacher_statement = $db->query("SELECT teacher_id, teacher_lname, teacher_fname FROM teacher ORDER BY teacher_lname");
 			
 			if($teacher_statement->num_rows > 0){
 				while($record = $teacher_statement->fetch_assoc()){
+					$record['teacher_id'] = ($record['teacher_id'] == '2' ? '00002' : $record['teacher_id']);
 					echo "<option " . "value='" . $record['teacher_id'] . "' ". ($teacher_id == $record['teacher_id'] ? "selected='selected'" : " ") . ">";
 					echo $record['teacher_id'] . " &nbsp;&nbsp;" . $record['teacher_lname'] . ", " . $record['teacher_fname'];
 					echo "</option>\r\n";
@@ -100,7 +102,7 @@
 											  is_active,
 											  is_enrolled(student_id, ?) as enrolled
 									   FROM   student
-									   ORDER BY enrolled DESC");
+									   ORDER BY enrolled DESC, student_lname");
 			$statement->bind_param("i", $c_id);
 			$statement->execute();
 			$statement->store_result();

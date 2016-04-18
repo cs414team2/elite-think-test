@@ -1,6 +1,7 @@
 <?php
 	require_once('../model/Test.php');
 	require_once('../model/Session.php');
+	ini_set('session.gc_probability', 0);
 	session_start();
 	
 	// Create the connection string.

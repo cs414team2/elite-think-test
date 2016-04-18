@@ -778,6 +778,7 @@ span#countdown {
 		overflow:auto;
 	}
 	
+	
 	.clickable_row {
 		cursor: pointer;
 		background: -webkit-linear-gradient(rgba(208,208,208,.3),rgba(255,255,255,.7),rgba(255,255,255,.7),rgba(208,208,208,.3));
@@ -787,6 +788,20 @@ span#countdown {
 	}
 	
 	.clickable_img {
+	    /* border: 1px solid grey; 
+		border-radius: 7px;
+		box-shadow: 1px 1px 1px black;
+		background-color: white;
+		padding: 3px; */
+		cursor: pointer; 
+	}
+	
+	.clickable_img_circular {
+	    border: 1px solid grey; 
+		border-radius: 18px;
+		box-shadow: 1px 1px 1px black;
+		background-color: white;
+		padding: 2px;
 		cursor: pointer;
 	}
 	.clickable_img:hover{
@@ -1013,6 +1028,10 @@ span#countdown {
 			cursor: default;
 			opacity: 0.25;
 		}
+		
+	.show_hide_inner {
+		width:32%!important;
+	}
 
 /* Feature */
 
@@ -1677,6 +1696,7 @@ span#countdown {
 	line-height: 1em !important;
 	margin:0 !important;
 	padding:0 !important;
+	display: inline !important;
 }
 
 .single_question_box{

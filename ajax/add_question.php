@@ -1,6 +1,9 @@
 <?php
 	require_once("../model/Test.php");
 	require_once("../model/Session.php");
+	require_once("../model/ErrorLogger.php");
+	
+	ini_set('session.gc_probability', 0);
 	session_start();
 	
 	// Make sure these constants match up with model/Session.php !
@@ -23,6 +26,7 @@
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 		
 		try {
+			
 			// Store the question in the database.
 			$eliteConnection->query("SET @question_id = 0") ;	
 			$addStatement = $eliteConnection->prepare("CALL add_question(?, ?, ?, ?, @question_id)");
@@ -65,11 +69,13 @@
 		}
 		catch(Exception $e){
 			$eliteConnection->rollback();
+			new ErrorLogger($e);
+			throw $e;
 		}
 		$eliteConnection->autocommit(TRUE);
 
 	}
 	else {
-		throw new Exception("Not all question information provided.");
+		new ErrorLogger('ajax/add_question.php:line 13 - isset returned false');
 	}
 ?>

@@ -39,22 +39,17 @@ function add_question(question_type, question_text) {
 			validated = false;
 		}
 		else {
-			$(".mc_answer").each(function (index) {
-				var answer = $(this).val();
+			$('.mc_answer').each(function (index) {
+				var answer = $(this).find('.answer_text').val();
 				
 				if (jQuery.trim(answer).length <= 0) {
 					validated = false;
-					$(this).attr("placeholder", "Answer cannot be left blank.");
+					$(this).find('.answer_text').attr('placeholder', 'Answer cannot be left blank.');
 				}
 				else {
-					answers[index] = {answer_text: answer, is_correct : false ? "Y" : "N"};
+					answers[index] = {answer_text: answer, is_correct : $(this).find('[name="rb_is_answer"]').prop('checked') ? 'Y' : 'N'};
 				}
 			});
-			if (validated) {
-				$("[name='rb_is_answer']").each(function(index){
-					answers[index].is_correct = $(this).prop("checked") ? "Y" : "N";
-				});
-			}
 		}
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
@@ -81,6 +76,9 @@ function add_question(question_type, question_text) {
 				$("#" + question_type).show();
 				number_questions();
 				clear_question_fields();
+			},
+			error: function(error) {
+				alert('Question was not added!');
 			}
 		});
 	}
@@ -167,13 +165,31 @@ function add_matching_section() {
 	}
 }
 
+function add_mc_answer(answer_text, is_answer) {
+
+	$('#area_mc_answers').append(
+	  "\r\n <div class='mc_answer'>"
+	  + "\r\n		<br />"
+	  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
+	  + "\r\n		<input id='txt_mc_answer_' type='text' name='txt_mc_answer_' class='questionStyle answer_text'>"
+	  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
+	  +	(is_answer ? "checked" : "")
+	  +">"
+	  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
+	  + "\r\n	</div>"
+	);
+	
+	number_answers();
+}
+
 // Fill the question dropdowns that link a question to an answer.
 function fill_matching_answer_ddls() {
+	var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	var answer_count;
 	$('.ddl_matched_answer').html('');
 	
 	for (answer_count = 0; answer_count < $('.txt_match_answer').length; answer_count++){
-		$('.ddl_matched_answer').append('<option value="' + answer_count + '">' + (parseInt(answer_count) + 1) + '</option>');
+		$('.ddl_matched_answer').append('<option value="' + answer_count + '">' + alphabet[answer_count] + '</option>');
 	}
 }
 
@@ -184,12 +200,11 @@ function open_question_editor(question) {
 	var question_text = $(question).find('.question_text').html();
 	var question_weight = $(question).find('.question_weight').text();
 	var answers = [];
-	var answer_check_list = [ 'a', 'b', 'c', 'd'];
 	
 	$(question).find(".answer").each(function(index){
 		answers[index] = { id : $(this).data("answer-id"),
 		                   content : $(this).html(),
-						       is_correct : $(this).data("is-correct")};
+						   is_correct : $(this).data("is-correct")};
 	});
 	
 	$("#dlg_" + question_type.toLowerCase()).data("question-id", question_id);
@@ -218,12 +233,28 @@ function open_question_editor(question) {
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			$("#txt_mcq_entry").val(html_special_chars_decode(question_text));
 			
-			$(".mc_answer").each(function(index){
+			$('#area_mc_answers').html('');
+			for (i in answers) {
+				$('#area_mc_answers').append(
+					"\r\n <div class='mc_answer' data-answer-id='" + answers[i].id + "'>"
+				  + "\r\n		<br />"
+				  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
+				  + "\r\n		<input id='txt_mc_answer_' type='text' value='" + answers[i].content + "' name='txt_mc_answer_' class='questionStyle answer_text'>"
+				  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
+				  +	(answers[i].is_correct == "Y" ? "checked" : "")
+				  +">"
+				  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
+				  + "\r\n	</div>"
+				);
+			}
+			number_answers();
+			
+			/* $(".mc_answer").each(function(index){
 				$(this).data("answer-id", answers[index].id)
-				$(this).val(html_special_chars_decode(answers[index].content));
+				$(this).find('.answer_text').val(html_special_chars_decode(answers[index].content));
 				if (answers[index].is_correct == "Y")
-					$("#rb_is_answer_" + answer_check_list[index]).prop( "checked", true );
-			});
+					$(this).find('[name="rb_is_answer"]').prop( "checked", true );
+			}); */
 			$("#txt_mc_weight").val(question_weight);
 		
 			$("#btn_add_mc").unbind("click");
@@ -266,24 +297,19 @@ function edit_question(question_id, question_type) {
 			break;
 		case MULTIPLE_CHOICE_QUESTION_TYPE:
 			question_text = $("#txt_mcq_entry").val();
-			$(".mc_answer").each(function (index) {
-				var answer = $(this).val();
+			$('.mc_answer').each(function (index) {
+				var answer = $(this).find('.answer_text').val();
 				
 				if (jQuery.trim(answer).length <= 0) {
 					validated = false;
-					$(this).attr("placeholder", "Answer cannot be left blank.");
+					$(this).find('.answer_text').attr('placeholder', 'Answer cannot be left blank.');
 				}
 				else {
 					answers[index] = { answer_id : $(this).data("answer-id"),
 					                   answer_text: answer,
-									   is_correct : false ? "Y" : "N"};
+									   is_correct : $(this).find("[name='rb_is_answer']").prop("checked") ? "Y" : "N"};
 				}
 			});
-			if (validated) {
-				$("[name='rb_is_answer']").each(function(index){
-					answers[index].is_correct = $(this).prop("checked") ? "Y" : "N";
-				});
-			}
 			question_weight = $("#txt_mc_weight").val();
 			break;
 		case ESSAY_QUESTION_TYPE:
@@ -563,6 +589,19 @@ function number_questions() {
 	});
 }
 
+// Display the multiple choice answer letters
+function number_answers() {
+	var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	
+	$('.mc_answer').each(function(index){
+		$(this).find('.letter_label').html(alphabet[index] + ') ');
+		$(this).find('.letter_label').prop('for', 'txt_mc_answer_' + index);
+		$(this).find('.answer_text').prop('id', 'txt_mc_answer_' + index);
+		$(this).find('input[type="radio"]').prop('id', 'rb_is_answer_' + index);
+		$(this).find('.radio_label').prop('for', 'rb_is_answer_' + index);
+	});
+}
+
 // Swap the given question with the question above it.
 function raise_question(question) {
 	var prev_question = $(question).prev();
@@ -648,8 +687,8 @@ function clear_error_messages() {
 function clear_question_fields() {
 	$("#txt_mcq_entry").val('');
 	$(".mc_answer").each(function(){
-		$(this).val('');
-		$(this).attr("placeholder", "");
+		$(this).find('.answer_text').val('');
+		$(this).find('.answer_text').attr("placeholder", "");
 	});
 	
 	$("#txt_tfq_entry").val('');
@@ -679,8 +718,7 @@ function update_time_info() {
 	}
 
 	if (date_due < date_active) {
-		validated = false;
-		alert('no');
+		// Should we do something here???????????????????????????????????????????????????????
 	}
 	
 	if (validated) {
@@ -728,7 +766,7 @@ $(document).ready(function(){
 		autoOpen: false,
 		modal: true,
 		width: 500,
-		maxHeight: 650,
+		maxHeight: 675,
 		show: {
 			effect: "drop",
 			duration: 500
@@ -742,10 +780,11 @@ $(document).ready(function(){
 			clear_error_messages();
 		}
 	};
-	
+
+	// close dialog boxes when clicking outside of them.
 	$("body").on("click",".ui-widget-overlay",function() {
-     $(".ui-dialog-titlebar-close").click();
-   });
+		$(".ui-dialog-titlebar-close").click();
+    });
 
    	$('#saveTest').click(function() {
 		window.location = "./";
@@ -763,7 +802,7 @@ $(document).ready(function(){
 	// Prevent negatives, decimals, and the enter key from being input in number boxes.
 	$('input[type="number"]').keydown(function(event){
 		if(event.keyCode == 109 || event.keyCode == 189       // Negative keycode
-           || event.keyCode == 190 || event.keyCode == 110  // Decimal keycode
+           || event.keyCode == 190 || event.keyCode == 110    // Decimal keycode
            || event.keyCode == 13 )
 			event.preventDefault();
 	});
@@ -876,6 +915,14 @@ $(document).ready(function(){
 	});	
 	$( "#btn_open_MCDialog" ).click(function() {
 		$("#dlg_mc").data("question-id", 0);
+		
+		$('#area_mc_answers').html('');
+		
+		add_mc_answer('', true);
+		add_mc_answer('', false);
+		add_mc_answer('', false);
+		add_mc_answer('', false);
+		
 		$(".mc_answer").each(function(){
 			$(this).data("answer-id", 0);
 		});

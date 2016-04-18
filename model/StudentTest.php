@@ -353,16 +353,17 @@ class StudentTest{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
-		$statement = $this->db->prepare("SELECT SUM(section_points_received), SUM(section_points_total)
+		$statement = $this->db->prepare("SELECT SUM(section_points_received), SUM(section_points_total), section_points_total
 										 FROM student_matching_section_points
 										 WHERE student_id = ? AND matching_section_id = ?") or die($db->error);
 		$statement->bind_param("ii", $this->student_id, $matching_section_id);
 		$statement->execute();
 		$statement->store_result();
-		$statement->bind_result($section_points_received, $section_points_total);
+		$statement->bind_result($section_points_received, $section_points_total, $section_points_per);
 		$statement->fetch();
 		echo "\r\n<li data-section_id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
 		echo "<div><span>". $matching_section_description ."</span> <span style='float:right' data-points-received='". $section_points_received ."'> ". $section_points_received ." / ". $section_points_total ." pts </span></div>";
+		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div>";
 		
 		$this->print_matching_answers($matching_section_id);
 		$this->print_matching_questions($matching_section_id);
@@ -401,8 +402,10 @@ class StudentTest{
 			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' data-question-id='". $matching_question_id ."' data-matching-answer-id='". $matching_answer_id ."'>". htmlspecialchars($question_text) ."</span>";
 			
 			$symbol = self::CHECK_MARK;
+			$color  = self::RIGHT_COLOR;
 			if ($answer_given == null) {
 				$symbol = self::LEFT_ARROW;
+				$color = self::UNANSWERED_COLOR;
 			}
 			else if ($answer_given == $correct_answer) {
 				$symbol = self::CHECK_MARK;
@@ -410,7 +413,7 @@ class StudentTest{
 			else {
 				echo "\r\n <span style='color:". self::WRONG_COLOR ."'>". htmlspecialchars($answer_given_content) . " ".self::X_MARK."</span> ";
 			}
-			echo "\r\n <span style='color:". self::RIGHT_COLOR ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
+			echo "\r\n <span style='color:". $color ."'>". htmlspecialchars($answer_content) . " ". $symbol."</span>";
 			echo "\r\n</li>";
 			$this->question_count++;
 		}

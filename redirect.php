@@ -16,6 +16,7 @@
 		<?php
 		if(isset($_POST['username'], $_POST['password'])){
  			require_once('model/Session.php');
+			ini_set('session.gc_probability', 0);
 			session_start();
 			$session = new Session($_POST['username'], $_POST['password']);
 								

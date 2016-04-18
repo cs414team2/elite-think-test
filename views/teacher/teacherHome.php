@@ -69,9 +69,9 @@ if (isset($_SESSION['credentials'])) {
 										<th>Stats</th>
 									</tr>
 								</thead>
-								<tbody id="tbl_active_tests">
+								<tbody id="tbl_graded_tests">
 									<tr>
-										<td>
+										<td colspan="5">
 											Loading Tests...
 										</td>
 									</tr>
@@ -94,9 +94,9 @@ if (isset($_SESSION['credentials'])) {
 										<th>Stats</th>
 									</tr>
 								</thead>
-								<tbody id="tbl_active_tests">
+								<tbody id="tbl_ungraded_tests">
 									<tr>
-										<td>
+										<td colspan="5">
 											Loading Tests...
 										</td>
 									</tr>
@@ -120,7 +120,7 @@ if (isset($_SESSION['credentials'])) {
 								</thead>
 								<tbody id="tbl_inactive_tests">
 									<tr>
-										<td>
+										<td colspan="5">
 											Loading Tests...
 										</td>
 									</tr>
@@ -147,12 +147,11 @@ if (isset($_SESSION['credentials'])) {
 			<!-- Test Statistics div -->
 			<div id="dlg_test_stats" class="dialog_box" title="Test Statistics" style="text-align: center; background-image: url(images/texture.png);">	
 				<div id="area_stats">
-				<div id="pie_letter_frequency" class="chart1" ></div>	
-				<div id="bar_missed_questions" class="chart2"></div>
-				<br /><br />
-				<div>
+					<div id="pie_letter_frequency" class="chart1" ></div>	
+					<div id="bar_missed_questions" class="chart2"></div>
+					<br /><br />
 				<span style="font-size:70px" id="h_highest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="font-size:70px" id="h_lowest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="font-size:70px" id="h_avg"></span><br /></div>
-				
+				<div>
 				<div id="area_stats_loader" class="loader" style="display: none;">Loading...</div>
 			</div>
 
