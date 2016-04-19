@@ -80,7 +80,7 @@
 					echo "\r\n<tr " . "id='" . $test_id . "' class='clickable_row'>";
 					echo "<td class='editable_test'>Test " . $test_number . "</td>";
 					echo "<td class='editable_test'>" . $class_name . "</td>";
-					echo "<td class='editable_test'>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					echo ($date_due ? "<td class='editable_test'>" . date('n/j/y', strtotime($date_due)) . "</td>" : "<td class='editable_test'> N/A </td>");
 					echo "</tr>";
 				}
 			}
@@ -101,11 +101,11 @@
 			if($is_graded)
 				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
 			                               FROM teacher_active_tests_and_stats
-			                               WHERE teacher_id = ?") or die($db->error);
+			                               WHERE teacher_id = ? AND total_tests = count_tests_graded(test_id)") or die($db->error);
 			else
 				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
 			                               FROM teacher_active_tests_and_stats
-			                               WHERE teacher_id = ?") or die($db->error);
+			                               WHERE teacher_id = ? AND total_tests != count_tests_graded(test_id)") or die($db->error);
 			
 			// Set bind parameters and execute query
 			$statement->bind_param("i", $user_id);
@@ -133,9 +133,7 @@
 			}
 			else{
 				echo "<tr>";
-				echo "<td> N/A </td>";
-				echo "<td> N/A </td>";
-				echo "<td> N/A </td>";
+				echo "<td colspan='5'> No Graded Tests </td>";
 				echo "</tr>";
 			}
 		}

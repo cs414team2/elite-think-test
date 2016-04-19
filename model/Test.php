@@ -316,8 +316,19 @@ class Test{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
+		$statement = $this->db->prepare("SELECT sum(mq.question_weight), round((sum(mq.question_weight) / count(mq.matching_question_id)), 1)
+		                                 FROM   matching_section ms JOIN matching_question mq 
+										 ON     ms.matching_section_id = mq.matching_section_id 
+										 WHERE  mq.matching_section_id = ?") or die($db->error);
+		$statement->bind_param("i", $matching_section_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($section_points_total, $section_points_per);
+		$statement->fetch();
+		
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
-		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span></div>";
+		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span> <span style='float:right'> ". $section_points_total ." Point(s) Total </span></div>";;
+		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div></br>";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
 				  \r\n<img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
