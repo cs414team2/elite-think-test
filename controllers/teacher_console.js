@@ -138,9 +138,9 @@ function load_test_statistics(test_id) {
 				2]);
 			bar_chart.draw(bar_view, bar_options);
 			
-			$('#h_highest').html($(statistics).find('#highest_grade').html());
-			$('#h_lowest').html($(statistics).find('#lowest_grade').html());
-			$('#h_avg').html($(statistics).find('#average_grade').html());
+			$('#h_highest').html($(statistics).find('#highest_grade').html()+"%");
+			$('#h_lowest').html($(statistics).find('#lowest_grade').html()+"%");
+			$('#h_avg').html($(statistics).find('#average_grade').html()+"%");
 			
 			$('#area_stats_loader').hide();
 			$('#area_stats').show();

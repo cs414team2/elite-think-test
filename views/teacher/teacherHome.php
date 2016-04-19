@@ -19,9 +19,9 @@ if (isset($_SESSION['credentials'])) {
 					
 				<!-- Content -->
 				<section style="text-align:center">
-					<a class="show_hide" rel="#slidingDiv_1" id="view_teacher_classes_tab">View Classes</a>
-					<a class="show_hide" rel="#slidingDiv_2" id="view_teacher_tests_tab">View Tests</a>
-					<a class="show_hide" rel="#slidingDiv_3" id="view_create_test_tab">Create Test</a><br />
+					<button class="show_hide" rel="#slidingDiv_1" id="view_teacher_classes_tab">View Classes</button>
+					<button class="show_hide" rel="#slidingDiv_2" id="view_teacher_tests_tab">View Tests</button>
+					<button class="show_hide" rel="#slidingDiv_3" id="view_create_test_tab">Create Test</button><br />
 				</section>
 				
 				<div id="slidingDiv_1" class="toggleDiv" style="display:none"> 
@@ -149,9 +149,28 @@ if (isset($_SESSION['credentials'])) {
 				<div id="area_stats">
 					<div id="pie_letter_frequency" class="chart1" ></div>	
 					<div id="bar_missed_questions" class="chart2"></div>
-					<br /><br />
-				<span style="font-size:70px" id="h_highest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="font-size:70px" id="h_lowest" ></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style="font-size:70px" id="h_avg"></span><br /></div>
-				<div>
+					<br />
+					<div style="width: 100%;">
+						<span class="statsLarge" id="h_highest" >
+						</span>
+						<span class="statsLarge" id="h_lowest" >
+						</span>
+						<span class="statsLarge" id="h_avg">
+						</span>
+					</div>
+					<div style="width : 100%;">
+						<span class="statsSmall">
+							Highest
+						</span>
+						<span class="statsSmall">
+							Lowest
+						</span>
+						<span class="statsSmall">
+							Average
+						</span>
+						<br />
+					</div>
+				</div>
 				<div id="area_stats_loader" class="loader" style="display: none;">Loading...</div>
 			</div>
 
