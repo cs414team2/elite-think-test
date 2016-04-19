@@ -29,9 +29,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_active().'"));
 					}
 					else{
-						// Defaults to be active the next day
-						$( "#activeDatepicker" ).datepicker("setDate", new Date().getDay+1);
+						$("#activeDatepicker").datepicker("setDate", null);
 					}
+					
+					
 				});
 			</script>
 			
@@ -141,6 +142,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_1" type="text" name="txt_mc_answer_1" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
 						<label for="rb_is_answer_a" class="questionLabel radio_label">Answer</label>
+						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 					
 					<div class="mc_answer">
@@ -149,6 +151,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_2" type="text" name="txt_mc_answer_2" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
 						<label for="rb_is_answer_b" class="questionLabel radio_label">Answer</label>
+						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 					
 					<div class="mc_answer">
@@ -157,6 +160,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_3" type="text" name="txt_mc_answer_3" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
 						<label for="rb_is_answer_c" class="questionLabel radio_label">Answer</label>
+						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 					
 					<div class="mc_answer">
@@ -165,6 +169,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_4" type="text" name="txt_mc_answer_4" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
 						<label for="rb_is_answer_d" class="questionLabel radio_label">Answer</label>
+						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 				</div>
 				
@@ -181,6 +186,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				<br />
 				<p id="err_empty_mc" style="display: none; color: red;">
 					Please fill in all fields...
+				</p>
+				<p id="err_unanswered_mc" style="display: none; color: red;">
+					The answer cannot be deleted. Please change the answer first...
 				</p>
 				<input id="btn_add_mc" type="button" class="button special smallButton" value="Submit" />
 				<input type="reset" value="Reset" class="alt button special reset smallButton"/>

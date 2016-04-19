@@ -100,6 +100,7 @@ function load_test_statistics(test_id) {
 	var pie_chart = new google.visualization.PieChart(document.getElementById("pie_letter_frequency"));
 	var pie_options = {
 	  title: "Letter Grade Averages",
+	  fontSize: 18,
 	  width: 500,
 	  height: 400,
      'chartArea': {'width': '100%', 'height': '70%'},
