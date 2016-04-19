@@ -23,7 +23,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 					  echo '</select>
 							<br />
 							</section>
-						<img src="images/edit_user.png" class="clickable_img" title="Edit This Teacher" id="btn_open_edit_teacher_dialog" style="display:inline-block; float: right;">
+						<img src="images/edit_user.png" class="clickable_img clickable_img_square" title="Edit This Teacher" id="btn_open_edit_teacher_dialog" style="display:inline-block; float: right;">
 						<hr />
 						<div id="area_teacher_info">
 						<table class="alt" id="content">

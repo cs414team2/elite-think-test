@@ -221,7 +221,7 @@ $(document).ready(function() {
 	$( "#dlg_missed_questions" ).dialog({
      autoOpen: false,
 	  modal: true,
-	  width: 800,
+	  width: 630,
 	  height: 600,
       show: {
         effect: "highlight",

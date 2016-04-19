@@ -156,8 +156,8 @@ if (isset($_SESSION['credentials'])) {
 			</div>
 			<div id="dlg_missed_questions" class="dialog_box" title="Missed Questions" style="text-align: center; background-image: url(images/texture.png);">	
 				<div id="area_missed">
-					<div id="bar_missed_questions2" class="chart2"></div>
-				<div>
+					<div id="bar_missed_questions2" class="chart3"></div>
+				</div>
 				<div id="area_missed_loader" class="loader" style="display: none;">Loading...</div>
 			</div>
 
