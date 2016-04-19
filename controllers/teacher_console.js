@@ -38,7 +38,7 @@ function load_tests_and_classes() {
 		});
 	});
 	$("#tbl_graded_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_graded=" + true, function(){
-		$( ".btn_open_stats_dialog" ).click(function() {
+		$("#tbl_graded_tests").find( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
 			$('#area_stats').hide();
 			$('#area_stats_loader').show();
@@ -52,12 +52,12 @@ function load_tests_and_classes() {
 			window.location = "./?action=teacher_grade_test&test_id=" + $(this).parent().attr('id');
 		});
 		
-		$( ".btn_open_stats_dialog" ).click(function() {
+		$("#tbl_ungraded_tests").find( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
-			$('#area_stats').hide();
-			$('#area_stats_loader').show();
-			google.charts.setOnLoadCallback(function() { load_test_statistics(test_id);});
-			$( "#dlg_test_stats" ).dialog( "open" );
+			$('#area_missed').hide();
+			$('#area_missed_loader').show();
+			google.charts.setOnLoadCallback(function() { load_missed_questions(test_id);});
+			$( "#dlg_missed_questions" ).dialog( "open" );
 		});
 	});
 	$("#tbl_inactive_tests").load("ajax/get_drafts.php?user_id=" + user_id, function(){
@@ -145,7 +145,49 @@ function load_test_statistics(test_id) {
 			$('#area_stats_loader').hide();
 			$('#area_stats').show();
 		}
-	});	  
+	});
+}
+
+function load_missed_questions(test_id) {
+	var bar_chart = new google.visualization.ColumnChart(document.getElementById("bar_missed_questions2"));
+	var bar_data;
+	var bar_options = {
+		title: "Top Missed Questions",
+		width: 600,
+		height: 400,
+		backgroundColor: "transparent",
+		bar: {groupWidth: "95%"},
+		legend: { position: "none" },
+	};
+	var bar_view;
+	var question_stats = [["Question", "Missed", { role: "style" } ]];
+		
+	$.ajax({
+		url: 'ajax/get_test_statistics.php',
+		data : { test_id : test_id},
+		success : function(data) {
+			var statistics = document.createElement('div');
+			statistics.innerHTML = data;
+			
+			$(statistics).find('.missed_question_count').each(function(index){
+				question_stats.push(["#" + $(this).attr('id'), parseInt($(this).text(), 10), color_iterator.next()]);
+			});
+			if ($(statistics).find('.missed_question_count').length == 0)
+				question_stats.push(['', 0, color_iterator.next()]);
+			bar_data = google.visualization.arrayToDataTable(question_stats);
+			bar_view = new google.visualization.DataView(bar_data);
+			bar_view.setColumns([0, 1,
+				{ calc: "stringify",
+					sourceColumn: 1,
+					type: "string",
+					role: "annotation" },
+				2]);
+			bar_chart.draw(bar_view, bar_options);
+			
+			$('#area_missed_loader').hide();
+			$('#area_missed').show();
+		}
+	});
 }
 
 //******************************************************************
@@ -159,7 +201,7 @@ $(document).ready(function() {
 		create_test();
 	})
 	
-	// Open a dialog box if a user clicks the open button.
+	// Test statistics dialog settings.
 	$( "#dlg_test_stats" ).dialog({
       autoOpen: false,
 	  modal: true,
@@ -174,8 +216,24 @@ $(document).ready(function() {
 		duration: 500
       }
     });
+	 
+	// Missed Questions dialog settings.
+	$( "#dlg_missed_questions" ).dialog({
+     autoOpen: false,
+	  modal: true,
+	  width: 800,
+	  height: 600,
+      show: {
+        effect: "highlight",
+			duration: 500
+      },
+      hide: {
+        effect: "puff",
+			duration: 500
+      }
+    });
 	
-	// Open a dialog box if a user clicks the open button.
+	// Class statistics dialog settings.
 	$( "#dlg_class_stats" ).dialog({
       autoOpen: false,
 	  modal: true,
