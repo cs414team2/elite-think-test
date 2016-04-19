@@ -180,6 +180,9 @@ function add_mc_answer(answer_text, is_answer) {
 	  + "\r\n	</div>"
 	);
 	
+	$(".answer_text").keypress(function(){
+		$("#err_unanswered_mc").hide();
+	});
 	number_answers();
 }
 
@@ -249,6 +252,10 @@ function open_question_editor(question) {
 				  + "\r\n	</div>"
 				);
 			}
+			
+			$(".answer_text").keypress(function(){
+				$("#err_unanswered_mc").hide();
+			});
 			number_answers();
 			
 			/* $(".mc_answer").each(function(index){
@@ -891,6 +898,9 @@ $(document).ready(function(){
 	});
 	$("#txt_mcq_entry").keypress(function(){
 		$("#err_empty_mc").hide();
+		$("#err_unanswered_mc").hide();
+	});
+	$(".answer_text").keypress(function(){
 		$("#err_unanswered_mc").hide();
 	});
 	$("#txt_eq_entry").keypress(function(){

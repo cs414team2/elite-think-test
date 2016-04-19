@@ -133,10 +133,12 @@ function load_student() {
 
 function set_class_links() {
 	$('#tbl_classes').find('tr').each(function(){
-		$(this).click(function(){
-			window.location = './?action=admin_edit_class&id=' + $(this).attr('id');
-		});
-		$(this).addClass('clickable_row');
+		if(!($(this).hasClass('no_classes'))) {
+			$(this).click(function() {
+					window.location = './?action=admin_edit_class&id=' + $(this).attr('id');
+			});
+			$(this).addClass('clickable_row');
+		}
 	});
 }
 

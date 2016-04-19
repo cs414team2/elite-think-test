@@ -62,6 +62,8 @@
 				$_REQUEST['questions'][$question_number]['id'] = $question_info['question_id'];
 			}
 			
+			$elite_connection->query('CALL order_all_question_numbers()');
+			
 			$elite_connection->commit();
 			
 			$test->set_user_type(Test::TEACHER);
