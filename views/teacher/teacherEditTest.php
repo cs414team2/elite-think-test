@@ -174,7 +174,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</div>
 				
 				<label style="float:left;">
-					<img src="images/add-icon.png" alt="(+)" class="clickable_img" style="width: 32px; padding-top: 5px;" onclick="add_mc_answer(\'\', false)" />
+					<img src="images/add-icon.png" alt="(+)" class="clickable_img" style="width: 48px; padding-top: 5px;" onclick="add_mc_answer(\'\', false)" />
 					Add Answer
 				</label>
 				<br />

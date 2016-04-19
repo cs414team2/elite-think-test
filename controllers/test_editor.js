@@ -64,6 +64,7 @@ function add_question(question_type, question_text) {
 	if(validated){
 	$.ajax({
 			url: 'ajax/add_question.php',
+			type: 'POST',
 			data: { 
 				test_id: test_id,
 				question_type: question_type,

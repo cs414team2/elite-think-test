@@ -797,6 +797,7 @@ span#countdown {
 		box-shadow: 1px 1px 1px grey;
 		background-color: white;
 		padding: 3px;
+		width: 84px;
 	}
 	
 	.clickable_img_circular {
@@ -1674,6 +1675,10 @@ span#countdown {
  /* Dialog boxes */
 .dialog_box {
 	z-index: 10001;
+}
+
+.mc_answer {
+	margin-top: 3px;
 }
 
 .matching_questions{
