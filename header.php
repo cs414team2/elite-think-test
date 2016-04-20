@@ -70,7 +70,7 @@
 							// Displays the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
 							{
-								echo '<li><a href="./?action=logout">Logout<img src="images/logout.png" alt="logout" style="height: 20px; width: 25px; margin-top: 10px;"></a></li>';
+								echo '<li><a href="./?action=logout">Logout <img src="images/logout.png" alt="logout" style="height: 20px; width: 25px; margin-top: 10px; margin-bottom: -3px;"></a></li>';
 							}
 
 						?>

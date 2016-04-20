@@ -142,7 +142,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_1" type="text" name="txt_mc_answer_1" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_a" name="rb_is_answer" checked>
 						<label for="rb_is_answer_a" class="questionLabel radio_label">Answer</label>
-						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
+						<img src="images/delete.png" class="clickable_img clickable_img_circular" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 					
 					<div class="mc_answer">
@@ -151,7 +151,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_2" type="text" name="txt_mc_answer_2" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_b" name="rb_is_answer" >
 						<label for="rb_is_answer_b" class="questionLabel radio_label">Answer</label>
-						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
+						<img src="images/delete.png" class="clickable_img clickable_img_circular" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 					
 					<div class="mc_answer">
@@ -160,7 +160,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_3" type="text" name="txt_mc_answer_3" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_c" name="rb_is_answer" >
 						<label for="rb_is_answer_c" class="questionLabel radio_label">Answer</label>
-						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
+						<img src="images/delete.png" class="clickable_img clickable_img_circular" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 					
 					<div class="mc_answer">
@@ -169,12 +169,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<input id="txt_mc_answer_4" type="text" name="txt_mc_answer_4" class="questionStyle answer_text">
 						<input type="radio" id="rb_is_answer_d" name="rb_is_answer">
 						<label for="rb_is_answer_d" class="questionLabel radio_label">Answer</label>
-						<img src="images/delete.png" class="clickable_img" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
+						<img src="images/delete.png" class="clickable_img clickable_img_circular" title="Delete Answer" style="width: 29px; height: 29x;" onclick="delete_multiple_choice_answer(this.parentElement)"/>
 					</div>
 				</div>
 				
 				<label style="float:left;">
-					<img src="images/add-icon.png" alt="(+)" class="clickable_img" style="width: 32px; padding-top: 5px;" onclick="add_mc_answer(\'\', false)" />
+					<img src="images/add-icon.png" alt="(+)" class="clickable_img" style="width: 48px; padding-top: 5px;" onclick="add_mc_answer(\'\', false)" />
 					Add Answer
 				</label>
 				<br />

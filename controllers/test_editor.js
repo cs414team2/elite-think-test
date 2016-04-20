@@ -64,6 +64,7 @@ function add_question(question_type, question_text) {
 	if(validated){
 	$.ajax({
 			url: 'ajax/add_question.php',
+			type: 'POST',
 			data: { 
 				test_id: test_id,
 				question_type: question_type,
@@ -176,7 +177,7 @@ function add_mc_answer(answer_text, is_answer) {
 	  +	(is_answer ? "checked" : "")
 	  +">"
 	  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
-	  + "<img src='images/delete.png' class='clickable_img' title='Delete Answer' style='width: 29px; height: 29x;' onclick='delete_multiple_choice_answer(this.parentElement)'/>"
+	  + "<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Answer' style='width: 29px; height: 29x;' onclick='delete_multiple_choice_answer(this.parentElement)'/>"
 	  + "\r\n	</div>"
 	);
 	
@@ -248,7 +249,7 @@ function open_question_editor(question) {
 				  +	(answers[i].is_correct == "Y" ? "checked" : "")
 				  +">"
 				  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
-				  + "<img src='images/delete.png' class='clickable_img' title='Delete Answer' style='width: 29px; height: 29x;' onclick='delete_multiple_choice_answer(this.parentElement)'/>"
+				  + "<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Answer' style='width: 29px; height: 29x;' onclick='delete_multiple_choice_answer(this.parentElement)'/>"
 				  + "\r\n	</div>"
 				);
 			}
@@ -346,6 +347,7 @@ function edit_question(question_id, question_type) {
 		
 		$.ajax({
 			url: 'ajax/edit_question.php',
+			type: 'POST',
 			data: {
 				question_id: question_id,
 				question_type: question_type,
@@ -741,8 +743,15 @@ function update_time_info() {
 		$("#txt_time_limit").val($("#txt_time_limit").attr('name'));
 	}
 
-	if (date_due < date_active) {
-		// Should we do something here???????????????????????????????????????????????????????
+	if (date_active != null) {
+		if (date_due.getDate() == date_active.getDate()) {
+			date_due.setDate(date_active.getDate() + 1);
+			$("#datepicker").datepicker( "setDate", date_due );
+		}
+		else if (date_due < date_active) {
+			date_due.setDate(date_active.getDate() + 1);
+			$("#datepicker").datepicker( "setDate", date_due );
+		}
 	}
 	
 	if (validated) {
@@ -751,7 +760,7 @@ function update_time_info() {
 			data : {
 				test_id : test_id,
 				date_due : date_due.getTime() / 1000,
-				date_active : date_active.getTime() / 1000,
+				date_active : (date_active != null ? date_active.getTime() / 1000 : null),
 				time_limit : time_limit
 			}
 		});
