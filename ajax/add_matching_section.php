@@ -62,6 +62,13 @@
 				$_REQUEST['questions'][$question_number]['id'] = $question_info['question_id'];
 			}
 			
+			$order_statement = $elite_connection->prepare('CALL reorder_questions(?)');
+			$order_statement->bind_param('i', $test_id);
+			$order_statement->execute();
+			$order_statement = $elite_connection->prepare('CALL reorder_matching_questions(?)');
+			$order_statement->bind_param('i', $test_id);
+			$order_statement->execute();
+			
 			$elite_connection->commit();
 			
 			$test->set_user_type(Test::TEACHER);

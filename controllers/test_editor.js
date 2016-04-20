@@ -64,6 +64,7 @@ function add_question(question_type, question_text) {
 	if(validated){
 	$.ajax({
 			url: 'ajax/add_question.php',
+			type: 'POST',
 			data: { 
 				test_id: test_id,
 				question_type: question_type,
@@ -176,9 +177,13 @@ function add_mc_answer(answer_text, is_answer) {
 	  +	(is_answer ? "checked" : "")
 	  +">"
 	  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
+	  + "<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Answer' style='width: 29px; height: 29x;' onclick='delete_multiple_choice_answer(this.parentElement)'/>"
 	  + "\r\n	</div>"
 	);
 	
+	$(".answer_text").keypress(function(){
+		$("#err_unanswered_mc").hide();
+	});
 	number_answers();
 }
 
@@ -244,9 +249,14 @@ function open_question_editor(question) {
 				  +	(answers[i].is_correct == "Y" ? "checked" : "")
 				  +">"
 				  + "\r\n		<label for='rb_is_answer_' class='questionLabel radio_label'>Answer</label>"
+				  + "<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Answer' style='width: 29px; height: 29x;' onclick='delete_multiple_choice_answer(this.parentElement)'/>"
 				  + "\r\n	</div>"
 				);
 			}
+			
+			$(".answer_text").keypress(function(){
+				$("#err_unanswered_mc").hide();
+			});
 			number_answers();
 			
 			/* $(".mc_answer").each(function(index){
@@ -305,9 +315,9 @@ function edit_question(question_id, question_type) {
 					$(this).find('.answer_text').attr('placeholder', 'Answer cannot be left blank.');
 				}
 				else {
-					answers[index] = { answer_id : $(this).data("answer-id"),
-					                   answer_text: answer,
-									   is_correct : $(this).find("[name='rb_is_answer']").prop("checked") ? "Y" : "N"};
+					answers[index] = { answer_id : null,
+					                 answer_text : answer,
+									      is_correct : $(this).find("[name='rb_is_answer']").prop("checked") ? "Y" : "N"};
 				}
 			});
 			question_weight = $("#txt_mc_weight").val();
@@ -344,7 +354,7 @@ function edit_question(question_id, question_type) {
 				question_weight: question_weight,
 				answers: answers
 			},
-			success : function(){
+			success : function(edited_answers){
 				$("#" + question_id).find(".question_text").html(html_special_chars(question_text));
 				$("#" + question_id).find(".question_weight").html(question_weight);
 				if (question_type == TRUE_FALSE_QUESTION_TYPE){
@@ -371,6 +381,20 @@ function edit_question(question_id, question_type) {
 						$("#" + question_id).find(".true_answer").html("True &#10006;");
 					}
 				}
+				else if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE){
+					$("#" + question_id).find("ol").html(edited_answers);
+					/* if (answers[index].is_correct == "Y") {
+						$(this).data("is-correct", "Y");
+						$(this).parent().css('color', '#47CC7A');
+						$(this).parent().find('.symbol').html('&nbsp;&#10004;');
+					}
+					else {
+						$(this).data("is-correct", "N");
+						$(this).parent().css('color', '#CC1C11');
+						$(this).parent().find('.symbol').html('&nbsp;&#10006;');
+					} */
+				
+				}
 				else {
 					$("#" + question_id).find(".answer").each(function(index){
 						if (answers[index].answer_text == "")
@@ -378,18 +402,7 @@ function edit_question(question_id, question_type) {
 						
 						$(this).html(html_special_chars(answers[index].answer_text));
 						
-						if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE) {
-							if (answers[index].is_correct == "Y") {
-								$(this).data("is-correct", "Y");
-								$(this).parent().css('color', '#47CC7A');
-								$(this).parent().find('.symbol').html('&nbsp;&#10004;');
-							}
-							else {
-								$(this).data("is-correct", "N");
-								$(this).parent().css('color', '#CC1C11');
-								$(this).parent().find('.symbol').html('&nbsp;&#10006;');
-							}
-						}
+						
 					});
 				}
 				$("#" + question_id).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
@@ -561,6 +574,17 @@ function delete_question(question) {
 	});
 }
 
+function delete_multiple_choice_answer(answer) {
+	if($(answer).find('input[type="radio"]').prop('checked')) {
+		$('#err_unanswered_mc').show();
+	}
+	else {
+		$(answer).remove();
+		number_answers();
+		$("#err_unanswered_mc").hide();
+	}
+}
+
 function delete_matching_section(section) {
 	var section_id = section.getAttribute('data-section-id');
 	var section_area = section.parentElement;
@@ -677,6 +701,7 @@ function lower_section(section){
 function clear_error_messages() {
 	$("#err_empty_tf").hide();
 	$("#err_empty_mc").hide();
+	$("#err_unanswered_mc").hide();
 	$("#err_empty_eq").hide();
 	$("#err_empty_match").hide();
 	$("#err_empty_match_question").hide();
@@ -717,8 +742,15 @@ function update_time_info() {
 		$("#txt_time_limit").val($("#txt_time_limit").attr('name'));
 	}
 
-	if (date_due < date_active) {
-		// Should we do something here???????????????????????????????????????????????????????
+	if (date_active != null) {
+		if (date_due.getDate() == date_active.getDate()) {
+			date_due.setDate(date_active.getDate() + 1);
+			$("#datepicker").datepicker( "setDate", date_due );
+		}
+		else if (date_due < date_active) {
+			date_due.setDate(date_active.getDate() + 1);
+			$("#datepicker").datepicker( "setDate", date_due );
+		}
 	}
 	
 	if (validated) {
@@ -727,7 +759,7 @@ function update_time_info() {
 			data : {
 				test_id : test_id,
 				date_due : date_due.getTime() / 1000,
-				date_active : date_active.getTime() / 1000,
+				date_active : (date_active != null ? date_active.getTime() / 1000 : null),
 				time_limit : time_limit
 			}
 		});
@@ -874,6 +906,10 @@ $(document).ready(function(){
 	});
 	$("#txt_mcq_entry").keypress(function(){
 		$("#err_empty_mc").hide();
+		$("#err_unanswered_mc").hide();
+	});
+	$(".answer_text").keypress(function(){
+		$("#err_unanswered_mc").hide();
 	});
 	$("#txt_eq_entry").keypress(function(){
 		$("#err_empty_eq").hide();

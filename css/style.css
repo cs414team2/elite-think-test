@@ -788,22 +788,25 @@ span#countdown {
 	}
 	
 	.clickable_img {
-	    /* border: 1px solid grey; 
-		border-radius: 7px;
-		box-shadow: 1px 1px 1px black;
-		background-color: white;
-		padding: 3px; */
 		cursor: pointer; 
 	}
 	
-	.clickable_img_circular {
-	    border: 1px solid grey; 
-		border-radius: 18px;
-		box-shadow: 1px 1px 1px black;
+	.clickable_img_square {
+		border: 1px solid grey; 
+		border-radius: 7px;
+		box-shadow: 1px 1px 1px grey;
 		background-color: white;
-		padding: 2px;
-		cursor: pointer;
+		padding: 3px;
+		width: 84px;
 	}
+	
+	.clickable_img_circular {
+		border-radius: 18px;
+		box-shadow: 1px 1px 1px grey;
+		background-color: white;
+		padding: 1px;
+	}
+	
 	.clickable_img:hover{
 		background-color: none;
 	}
@@ -1672,6 +1675,10 @@ span#countdown {
  /* Dialog boxes */
 .dialog_box {
 	z-index: 10001;
+}
+
+.mc_answer {
+	margin-top: 3px;
 }
 
 .matching_questions{

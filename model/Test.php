@@ -37,10 +37,10 @@ class Test{
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text question_style'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >". $question_weight ."</span> Point(s)</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-			echo "\r\n      <img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
-			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
-			echo "\r\n	    <img src='images/edit.png' class='clickable_img' title='Edit Question' href='#' style='width: 29px; height: 29px;' onclick='open_question_editor(this.parentElement.parentElement)'>";
-			echo "\r\n	    <img src='images/delete.png' class='clickable_img' title='Delete Question' style='width: 29px; height: 29x;' onclick='delete_question(this.parentElement.parentElement)' href='#'>";
+			echo "\r\n      <img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
+			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
+			echo "\r\n	    <img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' href='#' style='width: 31px; height: 31px;' onclick='open_question_editor(this.parentElement.parentElement)'>";
+			echo "\r\n	    <img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31x;' onclick='delete_question(this.parentElement.parentElement)' href='#'>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
@@ -316,14 +316,25 @@ class Test{
 	}
 	
 	public function print_section($matching_section_id, $matching_section_description){
+		$statement = $this->db->prepare("SELECT sum(mq.question_weight), round((sum(mq.question_weight) / count(mq.matching_question_id)), 1)
+		                                 FROM   matching_section ms JOIN matching_question mq 
+										 ON     ms.matching_section_id = mq.matching_section_id 
+										 WHERE  mq.matching_section_id = ?") or die($db->error);
+		$statement->bind_param("i", $matching_section_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($section_points_total, $section_points_per);
+		$statement->fetch();
+		
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
-		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span></div>";
+		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span> <span style='float:right'> ". $section_points_total ." Point(s) Total </span></div>";;
+		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div></br>";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  \r\n<img src='images/arrowup.png' class='clickable_img' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
-				  \r\n<img src='images/arrowDown.png' class='clickable_img' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
-				  \r\n<img src='images/edit.png' class='clickable_img' title='Edit Question' style='width: 29px; height: 29px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
-				  \r\n<img src='images/delete.png' class='clickable_img' title='Delete Question' style='width: 29px; height: 29px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
+				  \r\n<img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
+				  \r\n<img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
+				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  \r\n<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
 			  \r\n</div>";
 		}
 		$this->print_matching_answers($matching_section_id);
