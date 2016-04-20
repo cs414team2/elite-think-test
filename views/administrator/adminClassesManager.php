@@ -14,7 +14,7 @@ if (isset($_SESSION['credentials'])) {
 					<!-- Content -->
 					<section id="content" >
 						<h4 style="display:inline-block;">Select a Class to Add Students</h4>
-						<img src="images/add_class.jpg" class="clickable_img clickable_img_square" title="Add a Course" id="btn_open_courseDialog" style="display:inline-block; float: right;">
+						<img src="images/add_class.png" class="clickable_img clickable_img_square" title="Add a Course" id="btn_open_courseDialog" style="display:inline-block; float: right;">
 						<br /><br /><br />
 						<div class="table-wrapper">
 							<table class="sortable">

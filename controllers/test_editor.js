@@ -347,6 +347,7 @@ function edit_question(question_id, question_type) {
 		
 		$.ajax({
 			url: 'ajax/edit_question.php',
+			type: 'POST',
 			data: {
 				question_id: question_id,
 				question_type: question_type,

@@ -1677,10 +1677,6 @@ span#countdown {
 	z-index: 10001;
 }
 
-.mc_answer {
-	margin-top: 3px;
-}
-
 .matching_questions{
 	max-width: 60%;
 	list-style-type: none;
