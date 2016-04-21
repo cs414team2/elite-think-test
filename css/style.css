@@ -1,5 +1,5 @@
 @import url(font-awesome.min.css);
-@import url("http://fonts.googleapis.com/css?family=Lato:300,700");
+/* @import url("http://fonts.googleapis.com/css?family=Lato:300,700"); */
 
 /*
 	Dark Blue:         2B9DB2
@@ -37,7 +37,7 @@
 
 	body, input, select, textarea {
 		color: #646464;
-		font-family: "Lato", Helvetica, sans-serif;
+		font-family: Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 600;
 		line-height: 1.75em;
@@ -830,7 +830,7 @@ span#countdown {
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(144, 144, 144, 0.075);
+				background-color: rgba(100, 100, 100, 0.3);
 			}
 			table tbody tr:hover {
 				/*background-color: rgba(99, 201, 160, 0.25); Full table hover*/
@@ -1677,12 +1677,8 @@ span#countdown {
 	z-index: 10001;
 }
 
-.mc_answer {
-	margin-top: 3px;
-}
-
 .matching_questions{
-	max-width: 60%;
+	max-width: 50%;
 	list-style-type: none;
 	margin-left: 0px;
 	margin-bottom: 1px;
@@ -1690,7 +1686,7 @@ span#countdown {
 	padding-left:0;
 }
 .matching_answers{
-	min-width: 40%;
+	min-width: 50%;
 	list-style-type:lower-alpha;
 	margin-left: 20px;
 	margin-bottom: 1px; 
@@ -1745,18 +1741,39 @@ span#countdown {
 	background-color: #646464;
 	width: 45%;
 }
-#view_graded_tests_button:focus,
-#view_ungraded_tests_button:focus,
-#view_drafts_tests_button:focus,
-#view_classes_tab:focus,
+
+#view_classes_tab:focus, /* Student 3 Main Tabs */
 #take_test_tab:focus, 
-#view_tests_tab:focus, 
-#view_ungraded_tests_tab:focus,
-#view_graded_tests_tab:focus,
-#view_teacher_classes_tab:focus,
+#view_tests_tab:focus {
+	background-color: #0AF;
+}
+
+#view_ungraded_tests_tab:focus,  /* Student 2 Sub Tabs */
+#view_graded_tests_tab:focus {
+	background-color: #0AF;
+}
+
+#view_teacher_classes_tab:focus, /* Teacher 3 Main Tabs */
 #view_teacher_tests_tab:focus,
 #view_create_test_tab:focus {
 	background-color: #0AF;
+}
+
+#view_graded_tests_button:focus, /* Teacher 3 Sub Tabs */
+#view_ungraded_tests_button:focus,
+#view_drafts_tests_button:focus{
+	background-color: #0AF;
+}
+
+.statsLarge{
+	width: 30%;
+	font-size: 50px;
+	display: inline-block;
+}
+.statsSmall{
+	width: 30%;
+	font-size: 30px;
+	display: inline-block;
 }
 
 

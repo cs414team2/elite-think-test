@@ -251,9 +251,9 @@ class Test{
 		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
 	}
 	
-	public function get_completed_tests(){
+	public function print_finished_students(){
 		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
-									     FROM completed_tests 
+									     FROM completed_tests
 									     WHERE test_id = ?") or die($db->error);
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
@@ -268,7 +268,7 @@ class Test{
 			}
 		}
 		else
-			echo "<div> No Completed Tests </div>";
+			echo "<div> No Completed and Ungraded Tests </div>";
 	}
 	
 	public function get_time_limit() {
