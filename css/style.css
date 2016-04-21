@@ -1,5 +1,5 @@
 @import url(font-awesome.min.css);
-@import url("http://fonts.googleapis.com/css?family=Lato:300,700");
+/* @import url("http://fonts.googleapis.com/css?family=Lato:300,700"); */
 
 /*
 	Dark Blue:         2B9DB2
@@ -37,7 +37,7 @@
 
 	body, input, select, textarea {
 		color: #646464;
-		font-family: "Lato", Helvetica, sans-serif;
+		font-family: Helvetica, sans-serif;
 		font-size: 15pt;
 		font-weight: 600;
 		line-height: 1.75em;

@@ -15,7 +15,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<section style="text-align:center">
 						<h2>Select a Test to Grade </h2>
 							<section id="studentTest" style="max-height:375px; padding:1em; min-height:300px; margin-left:2em; margin-right:2em; overflow-y:auto; background-color:lightgray; ">';
-								$test->get_completed_tests();
+								$test->print_finished_students();
 					echo	'</section>
 					</section>
 					<button class="alt fit button special" style="width: 85%; margin:.5em;" id="btn_finalize_grade">Finalize Grade</button>

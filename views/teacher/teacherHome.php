@@ -62,8 +62,8 @@ if (isset($_SESSION['credentials'])) {
 							<caption><i>Select to View Graded Tests</i></caption>
 								<thead>
 									<tr class="clickable_row">
-										<th>Test</th>
 										<th>Class</th>
+										<th>Test</th>
 										<th>Due Date</th>
 										<th>Complete</th>
 										<th>Stats</th>
@@ -87,8 +87,8 @@ if (isset($_SESSION['credentials'])) {
 							<caption><i>Select to Grade Submitted Tests</i></caption>
 								<thead>
 									<tr class="clickable_row">
-										<th>Test</th>
 										<th>Class</th>
+										<th>Test</th>
 										<th>Due Date</th>
 										<th>Complete</th>
 										<th>Stats</th>
@@ -113,8 +113,8 @@ if (isset($_SESSION['credentials'])) {
 							<caption><i>Select to Edit Saved Drafts</i></caption>
 								<thead>
 									<tr class="clickable_row">
-										<th>Test</th>
 										<th>Class</th>
+										<th>Test</th>
 										<th>Active Date</th>
 									</tr>
 								</thead>
