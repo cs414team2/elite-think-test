@@ -299,7 +299,7 @@ class Test{
 		
 		if($statement->num_rows > 0){
 			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
-			echo "\r\n  <h4> Matching Sections </h4>";
+			echo "\r\n  <h4> Matching Sections <br /> Answers may be used once, more than once, or not at all.</h4>";
 			echo "\r\n  <ul class='section_list'>";
 			while($statement->fetch()){
 				$this->print_section($matching_section_id, $matching_section_description);

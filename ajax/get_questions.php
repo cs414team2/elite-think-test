@@ -32,7 +32,7 @@
 		// Print the questions and answers.
 		if($question_statement->num_rows > 0){
 			echo "\r\n<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."'>";
-			echo "\r\n  <h4> T/F Questions </h4>";
+			echo "\r\n  <h4> True or False Questions </h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
@@ -73,7 +73,7 @@
 		
 		if($question_statement->num_rows > 0){
 			echo "\r\n<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."'>";
-			echo "\r\n  <h4> Multiple Choice Questions </h4>";
+			echo "\r\n  <h4> Multiple Choice Questions</h4>";
 			echo "\r\n  <ul class='question_list'>";
 			while($question_statement->fetch()){
 				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
