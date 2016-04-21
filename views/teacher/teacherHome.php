@@ -59,7 +59,6 @@ if (isset($_SESSION['credentials'])) {
 						<section style="text-align:center;">
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
-							<caption><i>Select to View Graded Tests</i></caption>
 								<thead>
 									<tr class="clickable_row">
 										<th>Class</th>

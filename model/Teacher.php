@@ -17,7 +17,8 @@
 										   FROM   enrollment
 										   WHERE  enrollment.class_id = class.class_id)
 			                           FROM   class 
-									   WHERE  teacher_id = ? AND is_active='Y'") or die($db->error);
+									   WHERE  teacher_id = ? AND is_active='Y'
+									   ORDER BY class_number") or die($db->error);
 			$statement->bind_param("i", $teacher_id);
 			$statement->execute();
 			$statement->store_result();

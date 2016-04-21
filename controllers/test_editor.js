@@ -172,7 +172,7 @@ function add_mc_answer(answer_text, is_answer) {
 	  "\r\n <div class='mc_answer'>"
 	  + "\r\n		<br />"
 	  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
-	  + "\r\n		<input id='txt_mc_answer_' type='text' name='txt_mc_answer_' class='questionStyle answer_text'>"
+	  + "\r\n		<input id='txt_mc_answer_' type='text' name='txt_mc_answer_' class='questionStyle answer_text' maxlength='500'>"
 	  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
 	  +	(is_answer ? "checked" : "")
 	  +">"
@@ -244,7 +244,7 @@ function open_question_editor(question) {
 					"\r\n <div class='mc_answer' data-answer-id='" + answers[i].id + "'>"
 				  + "\r\n		<br />"
 				  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
-				  + "\r\n		<input id='txt_mc_answer_' type='text' value='" + answers[i].content + "' name='txt_mc_answer_' class='questionStyle answer_text'>"
+				  + "\r\n		<input id='txt_mc_answer_' type='text' value='" + answers[i].content + "' name='txt_mc_answer_' maxlength='500' class='questionStyle answer_text'>"
 				  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
 				  +	(answers[i].is_correct == "Y" ? "checked" : "")
 				  +">"
@@ -259,12 +259,6 @@ function open_question_editor(question) {
 			});
 			number_answers();
 			
-			/* $(".mc_answer").each(function(index){
-				$(this).data("answer-id", answers[index].id)
-				$(this).find('.answer_text').val(html_special_chars_decode(answers[index].content));
-				if (answers[index].is_correct == "Y")
-					$(this).find('[name="rb_is_answer"]').prop( "checked", true );
-			}); */
 			$("#txt_mc_weight").val(question_weight);
 		
 			$("#btn_add_mc").unbind("click");
@@ -384,17 +378,6 @@ function edit_question(question_id, question_type) {
 				}
 				else if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE){
 					$("#" + question_id).find("ol").html(edited_answers);
-					/* if (answers[index].is_correct == "Y") {
-						$(this).data("is-correct", "Y");
-						$(this).parent().css('color', '#47CC7A');
-						$(this).parent().find('.symbol').html('&nbsp;&#10004;');
-					}
-					else {
-						$(this).data("is-correct", "N");
-						$(this).parent().css('color', '#CC1C11');
-						$(this).parent().find('.symbol').html('&nbsp;&#10006;');
-					} */
-				
 				}
 				else {
 					$("#" + question_id).find(".answer").each(function(index){
