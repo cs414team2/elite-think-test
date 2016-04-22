@@ -37,10 +37,11 @@ class Test{
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text question_style'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >". $question_weight ."</span> Point(s)</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-			echo "\r\n      <img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
-			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' href='#' style='width: 31px; height: 31px;' onclick='open_question_editor(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31x;' onclick='delete_question(this.parentElement.parentElement)' href='#'>";
+			echo "\r\n<br />";
+			echo "\r\n      <img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
+			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
@@ -150,6 +151,7 @@ class Test{
 				break;
 			case self::ESSAY_QUESTION_TYPE:
 				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>". htmlspecialchars(($answer_content == null ? "(no description)" : $answer_content))."</div>";
+				echo "\r\n<br />";
 				break;
 		}
 	}
@@ -358,10 +360,11 @@ class Test{
 		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div></br>";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  \r\n<img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
-				  \r\n<img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
 				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
 				  \r\n<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
+				  \r\n<br />
+				  \r\n<img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
+				  \r\n<img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
 			  \r\n</div>";
 		}
 		$this->print_matching_answers($matching_section_id);
