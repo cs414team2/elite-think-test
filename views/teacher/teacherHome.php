@@ -90,8 +90,8 @@ if (isset($_SESSION['credentials'])) {
 										<th>Class</th>
 										<th>Test</th>
 										<th>Due Date</th>
-										<th>Complete</th>
 										<th>Ungraded</th>
+										<th>Complete</th>
 										<th>Stats</th>
 									</tr>
 								</thead>

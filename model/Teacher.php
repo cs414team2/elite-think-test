@@ -106,10 +106,10 @@
 			                               WHERE teacher_id = ? AND total_tests = count_tests_graded(test_id)
 										   ORDER BY class_name, test_number") or die($db->error);
 			else
-				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests, count_tests_graded(test_id)
+				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests, count_tests_graded(test_id) as graded
 			                               FROM teacher_active_tests_and_stats
 			                               WHERE teacher_id = ? AND total_tests != count_tests_graded(test_id)
-										   ORDER BY class_name, test_number") or die($db->error);
+										   ORDER BY (completed - graded) desc, class_name, test_number") or die($db->error);
 			
 			// Set bind parameters and execute query
 			$statement->bind_param("i", $user_id);
@@ -127,8 +127,9 @@
 					echo "<td class='". $col_class ."'>" . $class_name . "</td>";
 					echo "<td class='". $col_class ."'>Test " . $test_number . "</td>";
 					echo "<td class='". $col_class ."'>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					if ($is_graded == false)
+						echo "<td class='". $col_class ."'>". ($completed - $tests_graded) ."</td>";
 					echo "<td class='". $col_class ."'>". $completed ." / ". $total_tests ."</td>";
-					echo "<td class='". $col_class ."'>". ($completed - $tests_graded) ."</td>";
 					echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog clickable_img_circular' style='cursor: help;'></td>";
 					echo "</tr>\r\n";
 				}
