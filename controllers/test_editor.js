@@ -796,6 +796,9 @@ $(document).ready(function(){
 			clear_error_messages();
 		}
 	};
+	
+	load_questions();
+	fill_matching_answer_ddls();
 
 	// close dialog boxes when clicking outside of them.
 	$("body").on("click",".ui-widget-overlay",function() {
@@ -811,9 +814,6 @@ $(document).ready(function(){
 		update_time_info();
 		window.location = "./";
 	});
-	
-	load_questions();
-	fill_matching_answer_ddls();
 	
 	// Prevent negatives, decimals, and the enter key from being input in number boxes.
 	$('input[type="number"]').keydown(function(event){

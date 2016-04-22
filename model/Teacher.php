@@ -122,16 +122,13 @@
 
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' ";
-					 if ($is_graded == false)
-						 echo "class='clickable_row'";
-					echo ">";
+					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
 					$col_class = ($is_graded ? "graded_test" : "gradeable_test");
 					echo "<td class='". $col_class ."'>" . $class_name . "</td>";
 					echo "<td class='". $col_class ."'>Test " . $test_number . "</td>";
 					echo "<td class='". $col_class ."'>" . date('n/j/y', strtotime($date_due)) . "</td>";
 					echo "<td class='". $col_class ."'>". $completed ." / ". $total_tests ."</td>";
-					echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog' style='cursor: help;'></td>";
+					echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog clickable_img_circular' style='cursor: help;'></td>";
 					echo "</tr>\r\n";
 				}
 			}

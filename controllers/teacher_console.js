@@ -38,6 +38,11 @@ function load_tests_and_classes() {
 		});
 	});
 	$("#tbl_graded_tests").load("ajax/get_tests_for_teacher.php?user_id=" + user_id + "&show_graded=" + true, function(){
+		$('.graded_test').click(function(event){
+			event.preventDefault();
+			window.location = "./?action=teacher_view_test&test_id=" + $(this).parent().attr('id');
+		});
+		
 		$("#tbl_graded_tests").find( ".btn_open_stats_dialog" ).click(function() {
 			var test_id = $(this).parent().parent().attr('id');
 			$('#area_stats').hide();
@@ -161,6 +166,10 @@ function load_missed_questions(test_id) {
 	};
 	var bar_view;
 	var question_stats = [["Question", "Missed", { role: "style" } ]];
+	
+	$('#btn_grade_test').click(function() {
+			window.location = "./?action=teacher_grade_test&test_id=" + test_id;
+	});
 		
 	$.ajax({
 		url: 'ajax/get_test_statistics.php',

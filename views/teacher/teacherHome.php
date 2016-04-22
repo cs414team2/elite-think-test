@@ -59,6 +59,7 @@ if (isset($_SESSION['credentials'])) {
 						<section style="text-align:center;">
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
+							<caption><i>Select to view test results</i></caption>
 								<thead>
 									<tr class="clickable_row">
 										<th>Class</th>
@@ -177,6 +178,7 @@ if (isset($_SESSION['credentials'])) {
 					<div id="bar_missed_questions2" class="chart3"></div>
 				</div>
 				<div id="area_missed_loader" class="loader" style="display: none;">Loading...</div>
+				<button id="btn_grade_test" class="clickable_img">Grade this test</button>
 			</div>
 
 			<!-- Class Statistics div -->

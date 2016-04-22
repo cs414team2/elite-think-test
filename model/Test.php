@@ -252,9 +252,34 @@ class Test{
 	}
 	
 	public function print_finished_students(){
+
 		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
-									     FROM completed_tests
-									     WHERE test_id = ?") or die($db->error);
+										   FROM completed_tests
+										  WHERE test_id = ?") or die($db->error);
+											  
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($student_test_id, $student_id, $student_fname, $student_lname);
+		
+		if($statement->num_rows > 0){
+			while($statement->fetch()){
+				echo'<div class="area_finished_students">
+						'. $student_lname .', '. $student_fname .'<button id="'. $student_test_id .'" class="alt button special view_test_button" data-student-id="'.$student_id.'" data-student-name="'.$student_fname.'">View</button>
+					 </div>';
+			}
+		}
+		else {
+			echo "<div>No students have completed the test.</div>";
+		}
+			
+	}
+	public function print_finished_ungraded_students(){
+		
+		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
+										   FROM completed_ungraded_tests
+										  WHERE test_id = ?") or die($db->error);
+											  
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -267,8 +292,10 @@ class Test{
 					 </div>';
 			}
 		}
-		else
-			echo "<div> No Completed and Ungraded Tests </div>";
+		else {
+			echo "<div> No completed tests are waiting to be graded.</div>";
+		}
+			
 	}
 	
 	public function get_time_limit() {
