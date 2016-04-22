@@ -62,12 +62,12 @@
 				$_REQUEST['questions'][$question_number]['id'] = $question_info['question_id'];
 			}
 			
-			$order_statement = $elite_connection->prepare('CALL reorder_questions(?)');
-			$order_statement->bind_param('i', $test_id);
-			$order_statement->execute();
-			$order_statement = $elite_connection->prepare('CALL reorder_matching_questions(?)');
-			$order_statement->bind_param('i', $test_id);
-			$order_statement->execute();
+			$order_statement = $elite_connection->prepare('CALL reorder_questions(?)') or die($elite_connection->error);
+			$order_statement->bind_param('i', $test_id) or die($order_statement->error);
+			$order_statement->execute() or die($order_statement->error);
+			$order_statement = $elite_connection->prepare('CALL reorder_matching_questions(?)') or die($elite_connection->error);
+			$order_statement->bind_param('i', $test_id) or die($order_statement->error);
+			$order_statement->execute() or die($order_statement->error);
 			
 			$elite_connection->commit();
 			
