@@ -72,7 +72,7 @@
 											   Major: Computer Information Systems<br />
 											   Year: Senior <br />
 											   Age: 27 <br />
-											   Fun Fact:    <br />
+											   Fun Fact: Prefers to be outdoors.<br />
 									</td>
 									<td>
 									

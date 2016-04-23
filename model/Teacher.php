@@ -136,7 +136,7 @@
 			}
 			else{
 				echo "<tr>";
-				echo "<td colspan='5'> No Graded Tests </td>";
+				echo "<td colspan='6'> No Graded Tests </td>";
 				echo "</tr>";
 			}
 		}
