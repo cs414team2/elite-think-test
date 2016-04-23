@@ -215,7 +215,7 @@ $(document).ready(function() {
       autoOpen: false,
 	  modal: true,
 	  width: 1250,
-	  height: 600,
+	  height: 625,
       show: {
         effect: "highlight",
 		duration: 500

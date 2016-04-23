@@ -136,7 +136,7 @@
 			}
 			else{
 				echo "<tr>";
-				echo "<td colspan='6'> No Graded Tests </td>";
+				echo ($is_graded ? "<td colspan='5'> No Graded Tests </td>" : "<td colspan='6'> No Ungraded Tests </td>" );
 				echo "</tr>";
 			}
 		}

@@ -151,6 +151,7 @@ if (isset($_SESSION['credentials'])) {
 					<div id="pie_letter_frequency" class="chart1" ></div>	
 					<div id="bar_missed_questions" class="chart2"></div>
 					<br />
+					<h4 style="color: #222222;" class="statsSmall">Grade Stats</h4>
 					<div style="width: 100%;">
 						<span class="statsLarge" id="h_highest" >
 						</span>
