@@ -82,10 +82,24 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						<button id="btn_open_EssayDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Essay</button>
 						<button id="btn_open_MatchDialog" class="show_hide button small fit smallButton" rel="#slidingQ_3" >Matching</button>	
 						<br />
-						<img src="images/saveImage.png" width="85em" height="85em" id="saveTest"  class="clickable_img clickable_img_square" title="Save As Draft" style="background-color: rgba(0,0,0,0);"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<img src="images/post_test.png" width="85em" height="85em" id="postTest"  class="clickable_img clickable_img_square" title="Post This Test" style="padding-left: 10px; padding-right: 10px; background-color: rgba(0,0,0,0);"/><br />
-						<h1> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp Save and Close&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post Test&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
+						<div style="display:inline-block;">
+							<img src="images/saveImage.png" id="btn_save_draft"  class="clickable_img clickable_img_square sidebar_icons" title="Save As Draft" style=""/>
+							<h1  style="margin-top: 8px;">Save &amp; Close</h1>
+						</div>
+						<div style="display:inline-block; margin-left: 8px;">
+							<img src="images/post_test.png" id="btn_post_test"  class="clickable_img clickable_img_square sidebar_icons" title="Post This Test" style="padding-left: 10px; padding-right: 10px;"/>
+							<h1 style="margin-top: 8px;">Post Test</h1>
+						</div>
+						<div style="display:inline-block; margin-left: 8px;">
+							<img src="images/delete.png" id="btn_delete_test" class="clickable_img clickable_img_square sidebar_icons" title="Delete this Draft"/>
+							<h1 style="margin-top: 8px;">Delete Draft</h1>
+						</div>
 						
+						<!--
+						<img src="images/saveImage.png" width="85em" height="85em" id="btn_save_draft"  class="clickable_img clickable_img_square" title="Save As Draft" style="background-color: rgba(0,0,0,0);"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+						<img src="images/post_test.png" width="85em" height="85em" id="btn_post_test"  class="clickable_img clickable_img_square" title="Post This Test" style="padding-left: 10px; padding-right: 10px; background-color: rgba(0,0,0,0);"/><br />
+						<h1> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp Save and Close&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post Test&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
+						-->
 					</section>
 				</div>
 				
@@ -127,6 +141,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<li><input id="btn_add_tf" type="button" class="button special smallButton" value="Submit" /></li>
 					<li><input type="reset" value="Reset" class="alt button special smallButton" /></li>
 				</ul>
+				<p id="msg_adding_tf" class="adding_message" style="display: none;">
+					Adding...
+				</p>
 			</form>
 		</div>
 		
@@ -192,6 +209,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</p>
 				<input id="btn_add_mc" type="button" class="button special smallButton" value="Submit" />
 				<input type="reset" value="Reset" class="alt button special reset smallButton"/>
+				<p id="msg_adding_mc" class="adding_message" style="display: none;">
+					Adding...
+				</p>
 			</form>
 		</div>
 		
@@ -213,6 +233,9 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 					<li><input id="btn_add_essay" type="button" value="Submit" class="button special smallButton"/></li>
 					<li><input type="reset" value="Reset" class="alt button special smallButton"/></li>
 				</ul>
+				<p id="msg_adding_essay" class="adding_message loader" style="display: none;">
+					Adding...
+				</p>
 			</form>
 		</div>
 		
@@ -270,7 +293,21 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 				</p>
 				<input id="btn_add_match_section" type="button" class="button special smallButton" value="Submit" tabindex="23"/>
 				<input type="reset" value="Reset" class="alt button special smallButton" tabindex="24"/>
+				<p id="msg_adding_match" class="adding_message" style="display: none;">
+					Adding...
+				</p>
 			</form>
+		</div>
+		
+		<div id="dlg_confirm_post" style="display: none;">
+			A test cannot be edited after it is active.
+			<br/>
+			Are you sure?
+		</div>
+		<div id="dlg_confirm_delete" style="display: none;">
+			All progress will be lost.
+			<br/>
+			Are you sure?
 		</div>
 	
 		';

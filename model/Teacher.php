@@ -122,7 +122,7 @@
 
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' class='clickable_row'>";
+					echo "<tr " . "id='" . $test_id . "' class='clickable_row' data-completed='". $completed ."'>";
 					$col_class = ($is_graded ? "graded_test" : "gradeable_test");
 					echo "<td class='". $col_class ."'>" . $class_name . "</td>";
 					echo "<td class='". $col_class ."'>Test " . $test_number . "</td>";

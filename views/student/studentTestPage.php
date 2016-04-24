@@ -62,6 +62,10 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 			
 			<div id="pledgeDialog" class="dialog_box" title="Pledge" style="background-color:white;">
 				<p>I have completed this test without any outside help or online assistance. I understand that disciplinary actions may occur if I communicate answers to others.</p>
+				<input id="txt_pledge_signature" type="text" placeholder="Sign Here" />
+				<p id="err_empty_signature" style="display: none; color: red;">
+					Please enter your signature.
+				</p>
 			</div>
 			';
 	}

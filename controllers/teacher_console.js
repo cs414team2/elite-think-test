@@ -98,6 +98,12 @@ function load_test_statistics(test_id) {
 		backgroundColor: "transparent",
 		bar: {groupWidth: "95%"},
 		legend: { position: "none" },
+		hAxis: {
+          title: 'Question Number'
+        },
+        vAxis: {
+          title: 'Times Missed'
+        }
 	};
 	var bar_view;
 	var grade_data;
@@ -163,6 +169,12 @@ function load_missed_questions(test_id) {
 		backgroundColor: "transparent",
 		bar: {groupWidth: "95%"},
 		legend: { position: "none" },
+		hAxis: {
+          title: 'Question Number'
+        },
+        vAxis: {
+          title: 'Times Missed'
+        }
 	};
 	var bar_view;
 	var question_stats = [["Question", "Missed", { role: "style" } ]];
@@ -171,32 +183,50 @@ function load_missed_questions(test_id) {
 			window.location = "./?action=teacher_grade_test&test_id=" + test_id;
 	});
 		
-	$.ajax({
-		url: 'ajax/get_test_statistics.php',
-		data : { test_id : test_id},
-		success : function(data) {
-			var statistics = document.createElement('div');
-			statistics.innerHTML = data;
-			
-			$(statistics).find('.missed_question_count').each(function(index){
-				question_stats.push(["#" + $(this).attr('id'), parseInt($(this).text(), 10), color_iterator.next()]);
-			});
-			if ($(statistics).find('.missed_question_count').length == 0)
-				question_stats.push(['', 0, color_iterator.next()]);
-			bar_data = google.visualization.arrayToDataTable(question_stats);
-			bar_view = new google.visualization.DataView(bar_data);
-			bar_view.setColumns([0, 1,
-				{ calc: "stringify",
-					sourceColumn: 1,
-					type: "string",
-					role: "annotation" },
-				2]);
-			bar_chart.draw(bar_view, bar_options);
-			
-			$('#area_missed_loader').hide();
-			$('#area_missed').show();
-		}
-	});
+		
+	if ($('#' + test_id).data('completed') > 0) {
+		$.ajax({
+			url: 'ajax/get_test_statistics.php',
+			data : { test_id : test_id},
+			success : function(data) {
+				var statistics = document.createElement('div');
+				statistics.innerHTML = data;
+				
+				$(statistics).find('.missed_question_count').each(function(index){
+					question_stats.push(["#" + $(this).attr('id'), parseInt($(this).text(), 10), color_iterator.next()]);
+				});
+				if ($(statistics).find('.missed_question_count').length == 0)
+					question_stats.push(['', 0, color_iterator.next()]);
+				bar_data = google.visualization.arrayToDataTable(question_stats);
+				bar_view = new google.visualization.DataView(bar_data);
+				bar_view.setColumns([0, 1,
+					{ calc: "stringify",
+						sourceColumn: 1,
+						type: "string",
+						role: "annotation" },
+					2]);
+				bar_chart.draw(bar_view, bar_options);
+				
+				$('#area_missed_loader').hide();
+				$('#area_missed').show();
+			}
+		});
+	}
+	else {
+		question_stats.push(['', 0, color_iterator.next()]);
+		bar_data = google.visualization.arrayToDataTable(question_stats);
+		bar_view = new google.visualization.DataView(bar_data);
+		bar_view.setColumns([0, 1,
+			{ calc: "stringify",
+				sourceColumn: 1,
+				type: "string",
+				role: "annotation" },
+			2]);
+		bar_chart.draw(bar_view, bar_options);
+		
+		$('#area_missed_loader').hide();
+		$('#area_missed').show();
+	}
 }
 
 //******************************************************************

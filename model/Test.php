@@ -356,8 +356,8 @@ class Test{
 		$statement->fetch();
 		
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
-		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span> <span style='float:right'> ". $section_points_total ." Point(s) Total </span></div>";;
-		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div></br>";
+		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span> <span style='float:right'> ". $section_points_total ." Point(s) Total </span></div>";
+		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div><br />";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
 				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
@@ -390,13 +390,17 @@ class Test{
 		$question_statement->store_result();
 		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
 		
-		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
+		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."' >";
+		
 		while($question_statement->fetch()){
 			$matching_answer_tag = ($this->user_type == self::TEACHER ? "data-matching-answer-id='". $matching_answer_id ."'" : "");
-			echo "\r\n <li style='width: 300px; margin-bottom: 7px;' class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' ". $matching_answer_tag ." data-weight='".$question_weight."'>";
-			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
+			echo "\r\n <li class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' ". $matching_answer_tag ." data-weight='".$question_weight."'>";
+			if ($this->question_count > 0) {
+				echo "\r\n<hr style='margin-top: 8px !important; margin-bottom: 3px !important;' />";
+			}
+			echo "\r\n   <span class='question_number' > </span> <span class='question_text' >". htmlspecialchars($question_text) ."</span>";
 			if($this->user_type == self::STUDENT){
-				echo "\r\n   <select class='matching_input_box' style='display: inline-block; float: right; width: 120px;'>";
+				echo "\r\n  <br /> <select class='matching_input_box' style='display: inline-block; width: 120px;'>";
 				echo "\r\n       <option value='null'></option>";
 				for($count = 0; $count < $this->answer_count; $count++){
 					echo "\r\n <option value=". $this->matching_answers_list[$count]["id"] .">". $this->alphabet[$count] . ") " . $this->matching_answers_list[$count]["text"] . "</option>";
@@ -420,7 +424,7 @@ class Test{
 		$answer_statement->store_result();
 		$answer_statement->bind_result($matching_answer_id, $answer_content);
 		
-		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
+		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."' >";
 		while($answer_statement->fetch()){
 			$this->matching_answers_list[$this->answer_count]["id"]   = $matching_answer_id;
 			$this->matching_answers_list[$this->answer_count]["text"] = htmlspecialchars($answer_content);

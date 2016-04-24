@@ -546,6 +546,15 @@ span#countdown {
 		.icon > .label {
 			display: none;
 		}
+		
+	.sidebar_icons {
+		width: 85px;
+		height: 85px;
+		background-color: rgba(0,0,0,0) !important;
+		display: block;
+		max-width: 85px;
+		margin: 0 auto;
+	}
 
 /* Image */
 
@@ -1693,7 +1702,7 @@ span#countdown {
 }
 
 .matching_questions{
-	max-width: 50%;
+	max-width: 49%;
 	list-style-type: none;
 	margin-left: 0px;
 	margin-bottom: 1px;
@@ -1701,7 +1710,8 @@ span#countdown {
 	padding-left:0;
 }
 .matching_answers{
-	min-width: 50%;
+	max-width: 49%;
+	min-width: 45%;
 	list-style-type:lower-alpha;
 	margin-left: 20px;
 	margin-bottom: 1px; 
@@ -1715,6 +1725,10 @@ span#countdown {
 	margin:0 !important;
 	padding:0 !important;
 	display: inline !important;
+}
+
+.txt_match_answer {
+	margin-left: 3px !important;
 }
 
 .single_question_box{
