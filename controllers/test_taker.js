@@ -268,15 +268,27 @@ $(document).ready(function(){
 		$( "#pledgeDialog" ).dialog( "open" );
 	});
 	
+	$('#txt_pledge_signature').keypress(function(){
+		$('#err_empty_signature').hide();
+	});
+	
 	$( "#pledgeDialog" ).dialog({
 		autoOpen: false,
 		modal: true,
 		width: 500,
 		buttons: {
 			"Sign Pledge": function() {
-				disable_test();
-				submit_pledge();
-				$( this ).dialog( "close" );
+				
+				var signature = $('#txt_pledge_signature').val();
+				
+				if (jQuery.trim(signature).length > 0) {
+					//disable_test();
+					//submit_pledge();
+					$( this ).dialog( "close" );
+				}
+				else {
+					$('#err_empty_signature').show();
+				}
 			},
 			Cancel: function() {
 			  $( this ).dialog( "close" );
@@ -289,6 +301,9 @@ $(document).ready(function(){
 		hide: {
 			effect: "size",
 			duration: 500
+		},
+		close: function(){
+			$('#err_empty_signature').hide();
 		}
 	});
 	

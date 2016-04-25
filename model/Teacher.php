@@ -106,10 +106,10 @@
 			                               WHERE teacher_id = ? AND total_tests = count_tests_graded(test_id)
 										   ORDER BY class_name, test_number") or die($db->error);
 			else
-				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests 
+				$statement = $db->prepare("SELECT test_id, test_number, date_due, class_name, completed, total_tests, count_tests_graded(test_id) as graded
 			                               FROM teacher_active_tests_and_stats
 			                               WHERE teacher_id = ? AND total_tests != count_tests_graded(test_id)
-										   ORDER BY class_name, test_number") or die($db->error);
+										   ORDER BY (completed - graded) desc, class_name, test_number") or die($db->error);
 			
 			// Set bind parameters and execute query
 			$statement->bind_param("i", $user_id);
@@ -118,26 +118,25 @@
 			if($is_graded)
 				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests);
 			else
-				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests);
+				$statement->bind_result($test_id, $test_number, $date_due, $class_name, $completed, $total_tests, $tests_graded);
 
 			if($statement->num_rows > 0){
 				while($statement->fetch()){
-					echo "<tr " . "id='" . $test_id . "' ";
-					 if ($is_graded == false)
-						 echo "class='clickable_row'";
-					echo ">";
+					echo "<tr " . "id='" . $test_id . "' class='clickable_row' data-completed='". $completed ."'>";
 					$col_class = ($is_graded ? "graded_test" : "gradeable_test");
 					echo "<td class='". $col_class ."'>" . $class_name . "</td>";
 					echo "<td class='". $col_class ."'>Test " . $test_number . "</td>";
 					echo "<td class='". $col_class ."'>" . date('n/j/y', strtotime($date_due)) . "</td>";
+					if ($is_graded == false)
+						echo "<td class='". $col_class ."'>". ($completed - $tests_graded) ."</td>";
 					echo "<td class='". $col_class ."'>". $completed ." / ". $total_tests ."</td>";
-					echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog' style='cursor: help;'></td>";
+					echo "<td><img src='images/arrow.png' class='btn_open_stats_dialog clickable_img_circular' style='cursor: help;'></td>";
 					echo "</tr>\r\n";
 				}
 			}
 			else{
 				echo "<tr>";
-				echo "<td colspan='5'> No Graded Tests </td>";
+				echo ($is_graded ? "<td colspan='5'> No Graded Tests </td>" : "<td colspan='6'> No Ungraded Tests </td>" );
 				echo "</tr>";
 			}
 		}

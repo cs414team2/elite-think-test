@@ -95,6 +95,7 @@
 				while($answer_statement->fetch())
 					$test->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 				echo "</ol>";
+				echo "\r\n<br />";
 				echo "\r\n</li>";
 			}
 		}

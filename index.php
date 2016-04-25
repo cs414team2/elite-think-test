@@ -87,6 +87,9 @@
 					case "teacher_grade_test":
 						require_once('views/teacher/teacherGradeTest.php');
 						break;
+					case "teacher_view_test":
+						require_once('views/teacher/teacherViewTest.php');
+						break;
 						
 					case "student_class_console":
 						require_once('views/student/studentClassConsole.php');
