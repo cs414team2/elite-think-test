@@ -313,6 +313,24 @@ class Test{
 		return $time_limit;
 	}
 	
+	public function is_active() {
+		$statement = $this->db->prepare('SELECT date_active
+		                                   FROM test
+										  WHERE test_id = ?');
+		
+		$statement->bind_param('i', $this->test_id);
+		$statement->bind_result($date_active);
+		$statement->execute();
+		$statement->fetch();
+		
+		if ($date_active == null)
+			$is_active = false;
+		else
+		    $is_active = (time() - strtotime($date_active)) >= 0 ? true : false;
+		
+		return $is_active;
+	}
+	
 /*********************************************************************************************/
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
@@ -360,7 +378,7 @@ class Test{
 		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div><br />";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
-				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#' onclick='open_matching_section_editor(this.parentElement.parentElement)'>
 				  \r\n<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
 				  \r\n<br />
 				  \r\n<img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
@@ -379,16 +397,31 @@ class Test{
 		echo "</li>";
 	}
 
-	public function print_matching_questions($matching_section_id){
+	private function print_matching_questions($matching_section_id){
 		$this->question_count = 0;
-		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
+		if ($this->user_type == self::TEACHER) {
+			$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
 												  FROM matching_question 
 												  WHERE matching_section_id = ?
 												  ORDER BY question_number") or die($db->error);
-		$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
+		}
+		else {
+			$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, sa.answer_given
+													    FROM matching_question mq
+                                                        join student_answer sa on sa.question_id = mq.matching_question_id
+													   WHERE mq.matching_section_id = ?
+                                                         AND question_type = 'MATCH'
+													   ORDER BY mq.question_number") or die($db->error);
+			$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $answer_given);
+			
+		}
+		
+		
 		$question_statement->execute();
 		$question_statement->store_result();
-		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
 		
 		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."' >";
 		
@@ -403,7 +436,10 @@ class Test{
 				echo "\r\n  <br /> <select class='matching_input_box' style='display: inline-block; width: 120px;'>";
 				echo "\r\n       <option value='null'></option>";
 				for($count = 0; $count < $this->answer_count; $count++){
-					echo "\r\n <option value=". $this->matching_answers_list[$count]["id"] .">". $this->alphabet[$count] . ") " . $this->matching_answers_list[$count]["text"] . "</option>";
+					echo "\r\n <option value='". $this->matching_answers_list[$count]["id"]."'";
+					if ($answer_given == $this->matching_answers_list[$count]["id"])
+						echo "selected";
+					echo ">". $this->alphabet[$count] . ") " . $this->matching_answers_list[$count]["text"] . "</option>";
 				}
 				echo "\r\n   </select>";
 			}
@@ -413,7 +449,7 @@ class Test{
 		echo "\r\n </ol>";
 	}
 	
-	public function print_matching_answers($matching_section_id){
+	private function print_matching_answers($matching_section_id){
 		$this->matching_answers_list = array();
 		$this->answer_count = 0;
 		$answer_statement = $this->db->prepare("SELECT matching_answer_id, answer_content
