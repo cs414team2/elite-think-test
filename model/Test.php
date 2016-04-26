@@ -408,17 +408,14 @@ class Test{
 			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
 		}
 		else {
-			$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, sa.answer_given
+			$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, get_student_answer(mq.matching_question_id) as answer_given
 													    FROM matching_question mq
-                                                        join student_answer sa on sa.question_id = mq.matching_question_id
 													   WHERE mq.matching_section_id = ?
-                                                         AND question_type = 'MATCH'
 													   ORDER BY mq.question_number") or die($db->error);
 			$question_statement->bind_param("i", $matching_section_id);
 			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $answer_given);
 			
 		}
-		
 		
 		$question_statement->execute();
 		$question_statement->store_result();
@@ -443,13 +440,12 @@ class Test{
 				}
 				echo "\r\n   </select>";
 			}
-			/**************************************************** We could show the answer to a matching question for teachers without hitting edit.
 			else {
 				for($count = 0; $count < $this->answer_count; $count++){
 					if ($matching_answer_id == $this->matching_answers_list[$count]["id"])
-						echo "\r\n <br />". $this->matching_answers_list[$count]["text"];
+						echo "\r\n <br /><span style='margin-left: 27px; color:#47CC7A;'>". $this->matching_answers_list[$count]["text"] . "</span>";
 				}
-			} */
+			} 
 			echo "\r\n </li>";
 			$this->question_count++;
 		}

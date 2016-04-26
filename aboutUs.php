@@ -67,7 +67,7 @@
 									</td>		   
 									<td>
 										<h3>Daniel Swan</h3>
-										<h5>Assistant Project Manager</h5>
+										<h5>Architect</h5>
 											   Home Town: Washburn, MO <br />
 											   Major: Computer Information Systems<br />
 											   Year: Senior <br />
