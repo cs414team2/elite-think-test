@@ -63,7 +63,7 @@
 											   Major: Computer Information Systems<br />
 											   Year: Senior <br />
 											   Age: 22      <br />
-											   Fun Fact:    <br />
+											   Fun Fact:    Sold &#36;50,000 worth of kitchen supplies.<br />
 									</td>		   
 									<td>
 										<h3>Daniel Swan</h3>
