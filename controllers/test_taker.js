@@ -13,7 +13,7 @@ var test_clock;
 var seconds_left;
 
 //*********************************************************
-//*                     Functions              				 *
+//*                     Functions              			  *
 //*********************************************************
 
 // Check to see if a student has or has not started taking a test, or has finished taking a test.
@@ -42,6 +42,7 @@ function check_status() {
 				case TEST_TIMED_OUT:
 					load_questions();
 					disable_test();
+					$("#test_content").show();
 					break;
 			}
 		}
@@ -282,8 +283,8 @@ $(document).ready(function(){
 				var signature = $('#txt_pledge_signature').val();
 				
 				if (jQuery.trim(signature).length > 0) {
-					//disable_test();
-					//submit_pledge();
+					disable_test();
+					submit_pledge();
 					$( this ).dialog( "close" );
 				}
 				else {
