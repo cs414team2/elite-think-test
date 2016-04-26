@@ -35,7 +35,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td> No Classes </td> </tr>";
+				echo "<tr '> <td colspan='4'> No Classes </td> </tr>";
 			}
 		}
 		

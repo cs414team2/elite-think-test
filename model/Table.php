@@ -27,7 +27,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td colspan='4' style='text-align: center;' >There was not a " . $this->table_name . " found.</td></tr>";
+				echo "<tr> <td colspan='5' style='text-align: center;' >No Data </td></tr>";
 			}
 		}
 	}

@@ -26,6 +26,37 @@
 /*********************************************************************************************/
 /*                                     TRUE/FALSE SECTION                                    */
 /*********************************************************************************************/
+<<<<<<< HEAD
+		// Get the true false questions.
+		$question_statement->execute();
+		$question_statement->store_result();
+		$question_statement->bind_result($question_id, $question_text, $question_weight );
+		
+		// Print the questions and answers.
+		if($question_statement->num_rows > 0){
+			echo "\r\n<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> True or False Questions </h4>";
+			echo "\r\n  <ul class='question_list'>";
+			while($question_statement->fetch()){
+				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
+				
+				// Load all possible answers
+				$answer_statement->bind_param("i", $question_id);
+				$answer_statement->execute();
+				$answer_statement->store_result();
+				$answer_statement->bind_result($answer_id, $answer_content, $is_correct);
+				
+				// Load student answers to questions
+				$student_answer_statement->bind_param("iii", $user_id, $test_id, $question_id);
+				$student_answer_statement->execute();
+				$student_answer_statement->store_result();
+				$student_answer_statement->bind_result($answer_given);
+				$student_answer_statement->fetch();
+				
+				while($answer_statement->fetch())
+					$test->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
+				echo "\r\n</li>";
+=======
 			// Get the true false questions.
 			$question_statement->execute();
 			$question_statement->store_result();
@@ -56,6 +87,7 @@
 						$test->print_answer($is_correct, $answer_content, $question_type, $user_type, $question_id, $answer_id, $answer_given);
 					echo "\r\n</li>";
 				}
+>>>>>>> test/master
 			}
 			else{
 				echo "\r\n<div class='my-form-builder' id='".Test::TRUE_FALSE_QUESTION_TYPE."' style='display:none;'>";
@@ -67,6 +99,20 @@
 /*********************************************************************************************/
 /*                                MULTIPLE CHOICE SECTION                                    */
 /*********************************************************************************************/
+<<<<<<< HEAD
+		// Get the multiple choice questions.
+		$question_type = Test::MULTIPLE_CHOICE_QUESTION_TYPE;
+		$question_statement->execute();
+		$question_statement->store_result();
+		$question_statement->bind_result($question_id, $question_text, $question_weight );
+		
+		if($question_statement->num_rows > 0){
+			echo "\r\n<div class='my-form-builder' id='".Test::MULTIPLE_CHOICE_QUESTION_TYPE."'>";
+			echo "\r\n  <h4> Multiple Choice Questions</h4>";
+			echo "\r\n  <ul class='question_list'>";
+			while($question_statement->fetch()){
+				$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
+=======
 			// Get the multiple choice questions.
 			$question_type = Test::MULTIPLE_CHOICE_QUESTION_TYPE;
 			$question_statement->execute();
@@ -79,6 +125,7 @@
 				echo "\r\n  <ul class='question_list'>";
 				while($question_statement->fetch()){
 					$test->print_question($question_id, $question_text, $user_type, $question_type, $question_weight );
+>>>>>>> test/master
 
 					// Load all answer options
 					$answer_statement->bind_param("i", $question_id);

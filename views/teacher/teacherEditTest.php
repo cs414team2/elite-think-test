@@ -26,7 +26,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 						onSelect: update_time_info
 					});
 					if(dateIsSet == true){
-						$( "#activeDatepicker" ).datepicker("setDate",new Date("'.$test->get_date_active().'"));
+						$( "#activeDatepicker" ).datepicker("setDate",new Date(null));
 					}
 					else{
 						$("#activeDatepicker").datepicker("setDate", null);
