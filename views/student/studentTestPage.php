@@ -17,6 +17,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 					<div id="sidebar" class="sidebar" style="text-align:center">
 						
 						<section style="text-align:center">
+
 							<img id="testpageIconImage" src="images/eliteicon.png" width="100" height="110" alt="elite logo"/>
 							<br /><br />
 							<h2>Time Limit on test: </h2>
@@ -33,12 +34,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])){
 							<br /><br /><br />
 							
 								
-								
+							<div style="color:white;">	
 								<progress id="test_progress" max="100" value="0" style="color:white;"></progress>
 								&nbsp&nbsp&nbsp<span id="percentage"></span>%<br />
 								<span id="questionAnswered"></span>/<span id="total"></span>
 								<br /><br />
-								
+							</div>	
 								<button id="btn_complete" class="show_hide button small fit" disabled>Complete Test</button>		
 						</section>	
 					</div>
