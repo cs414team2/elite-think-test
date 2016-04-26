@@ -89,6 +89,9 @@ function add_question(question_type, question_text) {
 			}
 		});
 	}
+	else {
+		$('.adding_message').hide();
+	}
 
 }
 
@@ -171,6 +174,9 @@ function add_matching_section() {
 				$('.adding_message').hide();
 			}
 		});
+	}
+	else {
+		$('.adding_message').hide();
 	}
 }
 

@@ -86,20 +86,14 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 							<img src="images/saveImage.png" id="btn_save_draft"  class="clickable_img clickable_img_square sidebar_icons" title="Save As Draft" style=""/>
 							<h1  style="margin-top: 8px;">Save &amp; Close</h1>
 						</div>
-						<div style="display:inline-block; margin-left: 8px;">
+						<div style="display:inline-block; margin-left: 16px;">
 							<img src="images/post_test.png" id="btn_post_test"  class="clickable_img clickable_img_square sidebar_icons" title="Post This Test" style="padding-left: 10px; padding-right: 10px;"/>
 							<h1 style="margin-top: 8px;">Post Test</h1>
 						</div>
-						<div style="display:inline-block; margin-left: 8px;">
+						<div style="display:inline-block; margin-left: 16px;">
 							<img src="images/delete.png" id="btn_delete_test" class="clickable_img clickable_img_square sidebar_icons" title="Delete this Draft"/>
 							<h1 style="margin-top: 8px;">Delete Draft</h1>
 						</div>
-						
-						<!--
-						<img src="images/saveImage.png" width="85em" height="85em" id="btn_save_draft"  class="clickable_img clickable_img_square" title="Save As Draft" style="background-color: rgba(0,0,0,0);"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<img src="images/post_test.png" width="85em" height="85em" id="btn_post_test"  class="clickable_img clickable_img_square" title="Post This Test" style="padding-left: 10px; padding-right: 10px; background-color: rgba(0,0,0,0);"/><br />
-						<h1> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp Save and Close&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp&nbsp&nbsp  Post Test&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h1>
-						-->
 					</section>
 				</div>
 				

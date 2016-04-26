@@ -443,6 +443,13 @@ class Test{
 				}
 				echo "\r\n   </select>";
 			}
+			/**************************************************** We could show the answer to a matching question for teachers without hitting edit.
+			else {
+				for($count = 0; $count < $this->answer_count; $count++){
+					if ($matching_answer_id == $this->matching_answers_list[$count]["id"])
+						echo "\r\n <br />". $this->matching_answers_list[$count]["text"];
+				}
+			} */
 			echo "\r\n </li>";
 			$this->question_count++;
 		}

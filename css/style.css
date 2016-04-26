@@ -548,11 +548,11 @@ span#countdown {
 		}
 		
 	.sidebar_icons {
-		width: 85px;
-		height: 85px;
+		width: 65px;
+		height: 65px;
 		background-color: rgba(0,0,0,0) !important;
 		display: block;
-		max-width: 85px;
+		max-width: 65px;
 		margin: 0 auto;
 	}
 
@@ -1703,6 +1703,7 @@ span#countdown {
 
 .matching_questions{
 	max-width: 49%;
+	min-width: 25%;
 	list-style-type: none;
 	margin-left: 0px;
 	margin-bottom: 1px;
