@@ -33,7 +33,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td colspan='3'> No Classes </td> </tr>";
+				echo "<tr> <td colspan='3' style='text-align:center;'> No Classes </td> </tr>";
 			}
 		}
 		
