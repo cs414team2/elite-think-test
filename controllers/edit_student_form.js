@@ -144,7 +144,7 @@ function set_class_links() {
 
 function check_unenrolled_classes() {
 	if ($('#ddl_select_class').children().length == 0) {
-		$('#area_enroll_class').hide();
+		$('#area_enroller').hide();
 	}
 }
 

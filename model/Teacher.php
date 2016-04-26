@@ -58,9 +58,6 @@
 					echo "</option>";
 				}
 			}
-			else{
-				echo "<option>" . $teacher_id. " </option>";
-			}
 		}
 		
 		// Prints out unfinished tests for a teacher in an HTML table format

@@ -57,7 +57,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['id'])) {
 						  echo '</tbody>
 							</table>
 							
-							<section style="display: inline; max-width: 50%; float:right">
+							<section id="area_enroller" style="display: inline; max-width: 50%; float:right">
 								<select name="class" id="ddl_select_class">';
 									$student->print_classes_dropdown($_REQUEST["id"]);
 						  echo	'</select>
