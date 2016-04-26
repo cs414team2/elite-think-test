@@ -38,29 +38,27 @@
 		$statement->bind_result($times_missed, $question_number);
 		$statement->execute();
 		$statement->store_result();
-		
-		if ($statement->num_rows > 0) {
-			while ($min_question > 0) {
+
+		while ($min_question > 0) {
+			
+			while ($min_percent > 0)  {
 				
-				while ($min_percent > 0)  {
-					
-					$statement->execute();
-					$statement->store_result();
-					
-					if ($statement->num_rows >= $min_question) {
-						while($statement->fetch()) {
-							echo '<span id="'.$question_number.'" class="missed_question_count">'.$times_missed.'</span>';
-						}
-						$min_percent = 0;
-						$min_question = 0;
+				$statement->execute();
+				$statement->store_result();
+				
+				if ($statement->num_rows >= $min_question) {
+					while($statement->fetch()) {
+						echo '<span id="'.$question_number.'" class="missed_question_count">'.$times_missed.'</span>';
 					}
-					else {
-						$min_percent = $min_percent - PERCENTAGE_DECREMENT;
-					}
+					$min_percent = 0;
+					$min_question = 0;
 				}
-				$min_question--;
-				$min_percent = MAX_PERCENTAGE_MISSED;
+				else {
+					$min_percent = $min_percent - PERCENTAGE_DECREMENT;
+				}
 			}
+			$min_question--;
+			$min_percent = MAX_PERCENTAGE_MISSED;
 		}
 		
 		echo '</div>';
