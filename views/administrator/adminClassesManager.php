@@ -56,7 +56,7 @@ if (isset($_SESSION['credentials'])) {
 						<div class="row uniform">
 							<div class="12u">
 								<div class="select-wrapper">
-									<select name="ddl_teachers" id="ddl_teachers">
+									<select name="ddl_teachers" id="ddl_teachers" style="width: 100%;">
 										<option selected="selected" value="null">- Select a Teacher -</option>';
 										$admin = new Admin();
 										$admin->get_teachers();

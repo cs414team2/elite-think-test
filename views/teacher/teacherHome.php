@@ -135,7 +135,7 @@ if (isset($_SESSION['credentials'])) {
 				<div id="slidingDiv_3" class="toggleDiv" style="display:none;">
 					<br />
 					<h4 style="text-align: center;">Please Select the Class...</h4>
-					<select name="Class" id="ddl_classes" style="text-align: center;">
+					<select name="Class" id="ddl_classes" style="text-align: center; width:100%;">
 						<option selected="selected" value="null">- Classes -</option>
 					</select>
 					<br />
