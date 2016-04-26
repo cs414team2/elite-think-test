@@ -145,7 +145,7 @@
 			}
 			
 			if($tests_available == 0)
-				echo "<tr> <td colspan='6' style='text-align:center;'> No Tests Available </td> </tr>";
+				echo "<tr> <td colspan='7' style='text-align:center;'> No Tests Available </td> </tr>";
 		}
 
 		// Print all of the graded tests for a student.
