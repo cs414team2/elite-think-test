@@ -1,7 +1,7 @@
 <?php
 	const MAX_PERCENTAGE_MISSED = .40; // The percent of students to miss a question for the question to be listed
 	const MIN_QUESTION_RESULTS  = 5;   // The minimum number of missed questions needed to list before decrementing the percent of students.
-	const PERCENTAGE_DECREMENT  = .05; // How far to decrement the percentage missed
+	const PERCENTAGE_DECREMENT  = .10; // How far to decrement the percentage missed
 
 	// This AJAX block takes in a test id and returns the statistics for that test.
 	$grade_alphabet   = range('A', 'D');
@@ -36,7 +36,9 @@
 												  ORDER BY times_missed, question_number');
 		$statement->bind_param('id', $_REQUEST['test_id'], $min_percent);
 		$statement->bind_result($times_missed, $question_number);
-		
+		$statement->execute();
+		$statement->store_result();
+
 		while ($min_question > 0) {
 			
 			while ($min_percent > 0)  {
@@ -70,9 +72,9 @@
 		$statement->bind_result($max_grade, $min_grade, $avg_grade);
 		$statement->execute();
 		$statement->fetch();
-		echo '<div id="highest_grade">' . number_format($max_grade, 1) .'</div>';
-		echo '<div id="lowest_grade">'  . number_format($min_grade, 1) .'</div>';
-		echo '<div id="average_grade">' . number_format($avg_grade, 1) .'</div>';
+		echo '<div id="highest_grade">' . number_format($max_grade) .'</div>';
+		echo '<div id="lowest_grade">'  . number_format($min_grade) .'</div>';
+		echo '<div id="average_grade">' . number_format($avg_grade) .'</div>';
 		
 	}
 

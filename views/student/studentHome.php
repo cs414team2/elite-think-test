@@ -90,9 +90,9 @@ if (isset($_SESSION['credentials'])) {
 								<caption><i>Tests pending Teacher response</i></caption>
 									<thead>
 										<tr class="clickable_row">
-											<th>Test</th>
 											<th>Class #</th>
 											<th>Class</th>
+											<th>Test</th>
 										</tr>
 									</thead>
 									<tbody id="tbl_ungraded_tests">
@@ -112,9 +112,9 @@ if (isset($_SESSION['credentials'])) {
 								<caption><i>Click a Test to view the missed questions</i></caption>
 									<thead>
 										<tr class="clickable_row">
-											<th>Test</th>
 											<th>Class #</th>
 											<th>Class</th>
+											<th>Test</th>
 											<th>Grade</th>  
 										</tr>
 									</thead>

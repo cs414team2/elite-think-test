@@ -8,12 +8,12 @@ if (isset($_SESSION['credentials'], $_REQUEST['test_id'])) {
 		$student_test = new StudentTest($_REQUEST['test_id'], $_SESSION['credentials']->get_user_id());
 		
 		echo '
-			<script src="controllers/test_viewer.js"></script>
+			<script src="controllers/student_test_viewer.js"></script>
 			<script>
 				var test_id = '. $_REQUEST['test_id'] . ';
 			</script>
 			<div class="testContainer">
-				<div id="sidebar" style="text-align:center; margin-top:3em;">
+				<div id="sidebar" class="sidebar" style="text-align:center; margin-top:3em;">
 					<section style="text-align:center">
 						<h2>Your Grade</h2>
 						<h2 style="font-size: 72pt;">'.$student_test->get_letter_grade().'</h2>

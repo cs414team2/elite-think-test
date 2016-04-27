@@ -13,7 +13,7 @@ var test_clock;
 var seconds_left;
 
 //*********************************************************
-//*                     Functions              				 *
+//*                     Functions              			  *
 //*********************************************************
 
 // Check to see if a student has or has not started taking a test, or has finished taking a test.
@@ -42,6 +42,7 @@ function check_status() {
 				case TEST_TIMED_OUT:
 					load_questions();
 					disable_test();
+					$("#test_content").show();
 					break;
 			}
 		}
@@ -268,15 +269,27 @@ $(document).ready(function(){
 		$( "#pledgeDialog" ).dialog( "open" );
 	});
 	
+	$('#txt_pledge_signature').keypress(function(){
+		$('#err_empty_signature').hide();
+	});
+	
 	$( "#pledgeDialog" ).dialog({
 		autoOpen: false,
 		modal: true,
 		width: 500,
 		buttons: {
 			"Sign Pledge": function() {
-				disable_test();
-				submit_pledge();
-				$( this ).dialog( "close" );
+				
+				var signature = $('#txt_pledge_signature').val();
+				
+				if (jQuery.trim(signature).length > 0) {
+					disable_test();
+					submit_pledge();
+					$( this ).dialog( "close" );
+				}
+				else {
+					$('#err_empty_signature').show();
+				}
 			},
 			Cancel: function() {
 			  $( this ).dialog( "close" );
@@ -289,6 +302,9 @@ $(document).ready(function(){
 		hide: {
 			effect: "size",
 			duration: 500
+		},
+		close: function(){
+			$('#err_empty_signature').hide();
 		}
 	});
 	

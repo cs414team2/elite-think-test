@@ -17,7 +17,7 @@ if (isset($_SESSION['credentials'], $_REQUEST["id"])) {
 					<!-- Content -->
 					<section>
 						<section style="display: inline-block;">
-							<select name="teacher" id="ddl_switch_teacher" style="display: inline-block;">';
+							<select name="teacher" id="ddl_switch_teacher" style="display: inline-block; width: 100%;">';
 								$admin = new Admin();
 								$admin->get_teachers_ddl_for_teacher($_REQUEST["id"]);
 					  echo '</select>

@@ -47,58 +47,60 @@
 							   the student and the teacher in mind.</p>
 					</section>
 					
-							<section id="content">
-							<img src="images/andrewWhiting.jpg" class="circular" alt="Andrew"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<img src="images/danielSwan.jpg" alt="Daniel" class="circular" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<img src="images/jeremeScheffel.jpg" alt="Jereme" class="circular"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<img src="images/jesseDavis.jpg" alt="Jesse" class="circular"/>
-
-							<div>
+					<section id="content">
+						<div>
 							<table style="text-align:center">
 								<tr>
-									<td>
-										<h3>Andrew Whiting</h3>
-										<h5>Project Manager</h5>
-											 Home Town: Fayetteville, NC <br />
-											   Major: Computer Information Systems<br />
-											   Year: Senior <br />
-											   Age: 22      <br />
-											   Fun Fact:    <br />
-									</td>		   
-									<td>
-										<h3>Daniel Swan</h3>
-										<h5>Assistant Project Manager</h5>
-											   Home Town: Washburn, MO <br />
-											   Major: Computer Information Systems<br />
-											   Year: Senior <br />
-											   Age: 27 <br />
-											   Fun Fact:    <br />
-									</td>
-									<td>
-									
-										<h3>Jereme Scheffel</h3>
-										<h5>Secretary</h5>
-											   Home Town: Cincinatti, OH <br />
-											   Major: Computer Information Systems<br />
-											   Year: Senior <br />
-											   Age: 22      <br />
-											   Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a><br />
-									</td>
-									<td>
-									
-										<h3>Jesse Davis</h3>
-										<h5>Scheduler</h5>
-											   Home Town: San Francisco, CA <br />
-											   Major: Computer Information Systems<br />
-											   Year: Senior <br />
-											   Age: 21      <br />
-											   Fun Fact:    Has been hit by a car-twice.<br />
-									</td>
+									<td><img src="images/andrewWhiting.jpg" class="circular" alt="Andrew"/></td>
+									<td><img src="images/danielSwan.jpg" alt="Daniel" class="circular" /></td>
+									<td><img src="images/jeremeScheffel.jpg" alt="Jereme" class="circular"/></td>
+									<td><img src="images/jesseDavis.jpg" alt="Jesse" class="circular"/></td>
+								</tr>
+								<tr>
+									<td><h3>Andrew Whiting</h3></td>
+									<td><h3>Daniel Swan</h3></td>
+									<td><h3>Jereme Scheffel</h3></td>
+									<td><h3>Jesse Davis</h3></td>
+								</tr>
+								<tr>
+									<td><h5>Project Manager /<br> Database Administrator</h5></td>
+									<td><h5>Assistant Project Manager /<br> Architect</h5></td>
+									<td><h5>Design Specialist</h5></td>
+									<td><h5>Front End Developer</h5></td>
+								</tr>
+								<tr>
+									<td> Home Town: Fayetteville, NC </td>
+									<td> Home Town: Washburn, MO </td>
+									<td> Home Town: Cincinatti, OH </td>
+									<td> Home Town: San Francisco, CA </td>
+								</tr>
+								<tr>
+									<td> Major: Computer Information Systems</td>
+									<td> Major: Computer Information Systems</td>
+									<td> Major: Computer Information Systems</td>
+									<td> Major: Computer Information Systems</td>
+								</tr>
+								<tr>
+									<td> Year: Senior </td>
+									<td> Year: Senior </td>
+									<td> Year: Senior </td>
+									<td> Year: Senior </td>
+								</tr>
+								<tr>
+									<td> Age: 22  </td>
+									<td> Age: 27  </td>
+									<td> Age: 22  </td>
+									<td> Age: 21  </td>
+								</tr>
+								<tr>
+									<td> Fun Fact: Sold &#36;50,000 worth<br> of kitchen supplies.</td>
+									<td> Fun Fact: Prefers to be outdoors.</td>
+									<td> Fun Fact: <a href="css/ie/aboutMe.html">Find out here</a></td>
+									<td> Fun Fact: Has been hit by a car-twice.</td>
 								</tr>	
 							</table>	
-							</div>
-								
-				</div>
-			</section>
+						</div>
+					</section>
+			</div>
 	</body>
 </html>

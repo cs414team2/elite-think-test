@@ -33,7 +33,7 @@
 				}
 			}
 			else{
-				echo "<tr> <td colspan='3'> No Classes </td> </tr>";
+				echo "<tr> <td colspan='3' style='text-align:center;'> No Classes Available</td> </tr>";
 			}
 		}
 		
@@ -145,7 +145,7 @@
 			}
 			
 			if($tests_available == 0)
-				echo "<tr> <td colspan='6' style='text-align:center;'> No Tests Available </td> </tr>";
+				echo "<tr> <td colspan='7' style='text-align:center;'> No Tests Available </td> </tr>";
 		}
 
 		// Print all of the graded tests for a student.
@@ -156,7 +156,8 @@
 														    JOIN test t ON t.test_id   = st.test_id
 														    JOIN class c ON c.class_id = t.class_id
 														   WHERE st.student_id = ?
-														     AND st.grade IS NOT NULL') or die($elite_connection->error);
+														     AND st.grade IS NOT NULL
+														   ORDER BY c.class_number, t.test_number') or die($elite_connection->error);
 			$test_statement->bind_param('i', $student_id) or die($test_statement->error);
 			$test_statement->bind_result($test_id, $test_num, $class_num, $class_name, $grade) or die($test_statement->error);
 			$test_statement->execute() or die($test_statement->error);
@@ -165,9 +166,9 @@
 			if($test_statement->num_rows > 0){
 				while($test_statement->fetch()){
 					echo "\r\n<tr class='clickable_row graded_test' data-test-id='".$test_id."'>";
-					echo "\r\n<td>Test ".$test_num."</td>";
 					echo "\r\n<td>".$class_num."</td>";
 					echo "\r\n<td>".$class_name."</td>";
+					echo "\r\n<td>Test ".$test_num."</td>";
 					echo "\r\n<td>".$grade."%</td>";
 					echo "\r\n</tr>";
 				}
@@ -185,7 +186,8 @@
 														    JOIN class c ON c.class_id = t.class_id
 														   WHERE st.student_id = ?
 														     AND st.grade IS NULL
-															 AND st.pledge_signed = "Y"') or die($elite_connection->error);
+															 AND st.pledge_signed = "Y"
+														   ORDER BY c.class_number, t.test_number') or die($elite_connection->error);
 			$test_statement->bind_param('i', $student_id) or die($test_statement->error);
 			$test_statement->bind_result($test_id, $test_num, $class_num, $class_name, $grade) or die($test_statement->error);
 			$test_statement->execute() or die($test_statement->error);
@@ -194,9 +196,9 @@
 			if($test_statement->num_rows > 0){
 				while($test_statement->fetch()){
 					echo "\r\n<tr data-test-id='".$test_id."'>";
-					echo "\r\n<td>Test ".$test_num."</td>";
 					echo "\r\n<td>".$class_num."</td>";
 					echo "\r\n<td>".$class_name."</td>";
+					echo "\r\n<td>Test ".$test_num."</td>";
 					echo "\r\n</tr>";
 				}
 			}

@@ -17,7 +17,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['id'])) {
 					<!-- Content -->
 					<section>
 						<section style="display: inline-block;">
-							<select name="student" id="ddl_switch_student" style="display: inline-block;">';
+							<select name="student" id="ddl_switch_student" style="display: inline-block; width: 100%;">';
 								$admin = new Admin();
 								$admin->get_students_ddl($_REQUEST["id"]);
 
@@ -57,7 +57,7 @@ if (isset($_SESSION['credentials'], $_REQUEST['id'])) {
 						  echo '</tbody>
 							</table>
 							
-							<section style="display: inline; max-width: 50%; float:right">
+							<section id="area_enroller" style="display: inline; max-width: 50%; float:right">
 								<select name="class" id="ddl_select_class">';
 									$student->print_classes_dropdown($_REQUEST["id"]);
 						  echo	'</select>

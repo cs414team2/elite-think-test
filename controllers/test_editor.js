@@ -50,16 +50,21 @@ function add_question(question_type, question_text) {
 					answers[index] = {answer_text: answer, is_correct : $(this).find('[name="rb_is_answer"]').prop('checked') ? 'Y' : 'N'};
 				}
 			});
+			$('#msg_adding_mc').show();
 		}
 	}
 	else if (question_type == TRUE_FALSE_QUESTION_TYPE) {
 		answers = [{answer_text: $("#rb_answer_true").prop( "checked" ) ? "T" : "F",
                      is_correct: "Y" }];
+		$('#msg_adding_tf').show();
 	}
 	else if (question_type == ESSAY_QUESTION_TYPE) {
 		answers = [{answer_text : $("#txt_essay_answer").val(),
-		            is_correct : "Y"}]
+		            is_correct : "Y"}];
+		$('#msg_adding_essay').show();
 	}
+	
+	clear_question_fields();
 	
 	if(validated){
 	$.ajax({
@@ -76,12 +81,16 @@ function add_question(question_type, question_text) {
 				$("#" + question_type).find("ul").append(question);
 				$("#" + question_type).show();
 				number_questions();
-				clear_question_fields();
+				
+				$('.adding_message').hide();
 			},
 			error: function(error) {
 				alert('Question was not added!');
 			}
 		});
+	}
+	else {
+		$('.adding_message').hide();
 	}
 
 }
@@ -128,6 +137,7 @@ function add_matching_section() {
 		validated = false;
 		$('#err_empty_match_answer').show();
 	}
+	$('#msg_adding_match').show();
 	
 	if (validated) {
 		for (i in question) {
@@ -161,8 +171,12 @@ function add_matching_section() {
 				$('#' + MATCHING_QUESTION_TYPE).show();
 				number_questions();
 				clear_question_fields();
+				$('.adding_message').hide();
 			}
 		});
+	}
+	else {
+		$('.adding_message').hide();
 	}
 }
 
@@ -172,7 +186,7 @@ function add_mc_answer(answer_text, is_answer) {
 	  "\r\n <div class='mc_answer'>"
 	  + "\r\n		<br />"
 	  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
-	  + "\r\n		<input id='txt_mc_answer_' type='text' name='txt_mc_answer_' class='questionStyle answer_text'>"
+	  + "\r\n		<input id='txt_mc_answer_' type='text' name='txt_mc_answer_' class='questionStyle answer_text' maxlength='500'>"
 	  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
 	  +	(is_answer ? "checked" : "")
 	  +">"
@@ -244,7 +258,7 @@ function open_question_editor(question) {
 					"\r\n <div class='mc_answer' data-answer-id='" + answers[i].id + "'>"
 				  + "\r\n		<br />"
 				  + "\r\n		<label for='txt_mc_answer_' class='questionLabel letter_label'></label>"
-				  + "\r\n		<input id='txt_mc_answer_' type='text' value='" + answers[i].content + "' name='txt_mc_answer_' class='questionStyle answer_text'>"
+				  + "\r\n		<input id='txt_mc_answer_' type='text' value='" + answers[i].content + "' name='txt_mc_answer_' maxlength='500' class='questionStyle answer_text'>"
 				  + "\r\n		<input type='radio' id='rb_is_answer_' name='rb_is_answer'"
 				  +	(answers[i].is_correct == "Y" ? "checked" : "")
 				  +">"
@@ -259,12 +273,6 @@ function open_question_editor(question) {
 			});
 			number_answers();
 			
-			/* $(".mc_answer").each(function(index){
-				$(this).data("answer-id", answers[index].id)
-				$(this).find('.answer_text').val(html_special_chars_decode(answers[index].content));
-				if (answers[index].is_correct == "Y")
-					$(this).find('[name="rb_is_answer"]').prop( "checked", true );
-			}); */
 			$("#txt_mc_weight").val(question_weight);
 		
 			$("#btn_add_mc").unbind("click");
@@ -384,17 +392,6 @@ function edit_question(question_id, question_type) {
 				}
 				else if (question_type == MULTIPLE_CHOICE_QUESTION_TYPE){
 					$("#" + question_id).find("ol").html(edited_answers);
-					/* if (answers[index].is_correct == "Y") {
-						$(this).data("is-correct", "Y");
-						$(this).parent().css('color', '#47CC7A');
-						$(this).parent().find('.symbol').html('&nbsp;&#10004;');
-					}
-					else {
-						$(this).data("is-correct", "N");
-						$(this).parent().css('color', '#CC1C11');
-						$(this).parent().find('.symbol').html('&nbsp;&#10006;');
-					} */
-				
 				}
 				else {
 					$("#" + question_id).find(".answer").each(function(index){
@@ -486,7 +483,7 @@ function edit_matching_section(){
 		if (jQuery.trim(question_text).length > 0) {
 			question[question_count++] = { text : question_text,
 			                             answer : $(this).find('.ddl_matched_answer').val(), 
-												  id     : null};
+										 id     : null};
 		}
 	});
 	
@@ -495,8 +492,8 @@ function edit_matching_section(){
 		
 		if (jQuery.trim(answer_text).length > 0) {
 			answer[answer_count++] = { text : answer_text,
-											  index : index,
-											  id    : null };
+									  index : index,
+									  id    : null };
 		}
 	});
 	
@@ -600,6 +597,15 @@ function delete_matching_section(section) {
 				$('#MATCH').hide();
 		}
 	});
+}
+
+// Delete the current test draft.
+function delete_draft() {
+	$.ajax({
+		url: "ajax/delete_test.php",
+		data : {test_id : test_id}
+	});
+	window.location = "./";
 }
 
 // Display the question numbers.
@@ -708,6 +714,7 @@ function clear_error_messages() {
 	$("#err_empty_match_question").hide();
 	$("#err_unlinked_match_question").hide();
 	$("#err_empty_match_answer").hide();
+	$('.adding_message').hide();
 }
 
 function clear_question_fields() {
@@ -729,6 +736,7 @@ function clear_question_fields() {
 	$(".ddl_matched_answer").val(0);
 	
 	$(".weight_entry").val(DEFAULT_QUESTION_WEIGHT);
+	$('.adding_message').hide();
 }
 
 // Change the time limit for a test.
@@ -813,24 +821,14 @@ $(document).ready(function(){
 			clear_error_messages();
 		}
 	};
+	
+	load_questions();
+	fill_matching_answer_ddls();
 
 	// close dialog boxes when clicking outside of them.
 	$("body").on("click",".ui-widget-overlay",function() {
 		$(".ui-dialog-titlebar-close").click();
     });
-
-   	$('#saveTest').click(function() {
-		window.location = "./";
-	});
-	
-	$('#postTest').click(function() {
-		$( "#activeDatepicker" ).datepicker("setDate", new Date());
-		update_time_info();
-		window.location = "./";
-	});
-	
-	load_questions();
-	fill_matching_answer_ddls();
 	
 	// Prevent negatives, decimals, and the enter key from being input in number boxes.
 	$('input[type="number"]').keydown(function(event){
@@ -895,10 +893,60 @@ $(document).ready(function(){
 		insert_matching_answer();
 	});
 	
-	// Set the active date on a test to today.
-	$('#btn_activate').click(function(){
-		$( "#activeDatepicker" ).datepicker("setDate", new Date());
-		update_time_info();
+   	$('#btn_save_draft').click(function() {
+		window.location = "./";
+	});
+	
+	$('#btn_post_test').click(function() {
+		$('#dlg_confirm_post').dialog({
+			modal: true,
+			width: 500,
+			maxHeight: 400,
+			title: "Make this test active",
+			show: {
+				effect: "size",
+				duration: 500
+			},
+			hide: {
+				effect: "size",
+				duration: 500
+			},
+			buttons: {
+				"Yes": function() {
+					$( "#activeDatepicker" ).datepicker("setDate", new Date());
+					update_time_info();
+					window.location = "./";
+				},
+				Cancel: function() {
+				  $( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+	
+	$('#btn_delete_test').click(function(){
+		$('#dlg_confirm_delete').dialog({
+			modal: true,
+			width: 500,
+			maxHeight: 400,
+			title: "Delete This Draft",
+			show: {
+				effect: "size",
+				duration: 500
+			},
+			hide: {
+				effect: "size",
+				duration: 500
+			},
+			buttons: {
+				"Yes": function() {
+					delete_draft();
+				},
+				Cancel: function() {
+				  $( this ).dialog( "close" );
+				}
+			}
+		});
 	});
 
 	// Remove the error message for a field as a user types in it

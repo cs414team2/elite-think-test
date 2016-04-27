@@ -37,10 +37,11 @@ class Test{
 			echo "\r\n   <div><span class='question_number'></span> &nbsp;<span class='question_text question_style'>" . htmlspecialchars($question_text) ."</span> <span style='float: right;'>&nbsp;<span class='question_weight' >". $question_weight ."</span> Point(s)</span></div>";
 
 			echo "\r\n    <div class='rightAlignInDiv'  style='display: inline-block; max-width: 50%;'>";
-			echo "\r\n      <img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
-			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' href='#' style='width: 31px; height: 31px;' onclick='open_question_editor(this.parentElement.parentElement)'>";
 			echo "\r\n	    <img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31x;' onclick='delete_question(this.parentElement.parentElement)' href='#'>";
+			echo "\r\n<br />";
+			echo "\r\n      <img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_question(this.parentElement.parentElement)'>";
+			echo "\r\n      <img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_question(this.parentElement.parentElement)'>";
 			echo "\r\n    </div>";
 		}
 		else if($access_level == self::STUDENT){
@@ -150,6 +151,7 @@ class Test{
 				break;
 			case self::ESSAY_QUESTION_TYPE:
 				echo "\r\n<div style='color:#47CC7A; padding-left: 20px; font-family: Segoe UI Light;' class='answer' data-answer-id='".$answer_id."' data-is-correct='Y'>". htmlspecialchars(($answer_content == null ? "(no description)" : $answer_content))."</div>";
+				echo "\r\n<br />";
 				break;
 		}
 	}
@@ -251,10 +253,35 @@ class Test{
 		return ($date_is_set >= self::DATE_IS_SET ? 'true' : 'false');
 	}
 	
-	public function get_completed_tests(){
+	public function print_finished_students(){
+
 		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
-									     FROM completed_tests 
-									     WHERE test_id = ?") or die($db->error);
+										   FROM completed_tests
+										  WHERE test_id = ?") or die($db->error);
+											  
+		$statement->bind_param("i", $this->test_id);
+		$statement->execute();
+		$statement->store_result();
+		$statement->bind_result($student_test_id, $student_id, $student_fname, $student_lname);
+		
+		if($statement->num_rows > 0){
+			while($statement->fetch()){
+				echo'<div class="area_finished_students">
+						'. $student_lname .', '. $student_fname .'<button id="'. $student_test_id .'" class="alt button special view_test_button" data-student-id="'.$student_id.'" data-student-name="'.$student_fname.'">View</button>
+					 </div>';
+			}
+		}
+		else {
+			echo "<div>No students have completed the test.</div>";
+		}
+			
+	}
+	public function print_finished_ungraded_students(){
+		
+		$statement = $this->db->prepare("SELECT student_test_id, student_id, student_fname, student_lname
+										   FROM completed_ungraded_tests
+										  WHERE test_id = ?") or die($db->error);
+											  
 		$statement->bind_param("i", $this->test_id);
 		$statement->execute();
 		$statement->store_result();
@@ -267,8 +294,10 @@ class Test{
 					 </div>';
 			}
 		}
-		else
-			echo "<div> No Completed Tests </div>";
+		else {
+			echo "<div> No completed tests are waiting to be graded.</div>";
+		}
+			
 	}
 	
 	public function get_time_limit() {
@@ -282,6 +311,24 @@ class Test{
 		$statement->fetch();
 		
 		return $time_limit;
+	}
+	
+	public function is_active() {
+		$statement = $this->db->prepare('SELECT date_active
+		                                   FROM test
+										  WHERE test_id = ?');
+		
+		$statement->bind_param('i', $this->test_id);
+		$statement->bind_result($date_active);
+		$statement->execute();
+		$statement->fetch();
+		
+		if ($date_active == null)
+			$is_active = false;
+		else
+		    $is_active = (time() - strtotime($date_active)) >= 0 ? true : false;
+		
+		return $is_active;
 	}
 	
 /*********************************************************************************************/
@@ -299,7 +346,7 @@ class Test{
 		
 		if($statement->num_rows > 0){
 			echo "<div class='my-form-builder' id='".Test::MATCHING_QUESTION_TYPE."'>";
-			echo "\r\n  <h4> Matching Sections </h4>";
+			echo "\r\n  <h4> Matching Sections <br /> Answers may be used once, more than once, or not at all.</h4>";
 			echo "\r\n  <ul class='section_list'>";
 			while($statement->fetch()){
 				$this->print_section($matching_section_id, $matching_section_description);
@@ -327,14 +374,15 @@ class Test{
 		$statement->fetch();
 		
 		echo "\r\n<li data-section-id='". $matching_section_id ."' class='' data-question-type='". self::MATCHING_QUESTION_TYPE ."'><hr />";
-		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span> <span style='float:right'> ". $section_points_total ." Point(s) Total </span></div>";;
-		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div></br>";
+		echo "\r\n<div><span class='section_desc question_style'>". htmlspecialchars($matching_section_description) ."</span> <span style='float:right'> ". $section_points_total ." Point(s) Total </span></div>";
+		echo "<div><span style='float:right'> (". $section_points_per ." pts each) </span></div><br />";
 		if($this->user_type == self::TEACHER) {
 			echo "\r\n<div class='rightAlignInDiv' style='display: inline-block; max-width: 50%;'>
+				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#' onclick='open_matching_section_editor(this.parentElement.parentElement)'>
+				  \r\n<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
+				  \r\n<br />
 				  \r\n<img src='images/arrowup.png' class='clickable_img clickable_img_circular' title='Move Up' onclick='raise_section(this.parentElement.parentElement)'>
 				  \r\n<img src='images/arrowDown.png' class='clickable_img clickable_img_circular' title='Move Down' onclick='lower_section(this.parentElement.parentElement)'>
-				  \r\n<img src='images/edit.png' class='clickable_img clickable_img_circular' title='Edit Question' style='width: 31px; height: 31px;' href='#'onclick='open_matching_section_editor(this.parentElement.parentElement)'>
-				  \r\n<img src='images/delete.png' class='clickable_img clickable_img_circular' title='Delete Question' style='width: 31px; height: 31px;' onclick='delete_matching_section(this.parentElement.parentElement)' href='#'>
 			  \r\n</div>";
 		}
 		$this->print_matching_answers($matching_section_id);
@@ -349,37 +397,62 @@ class Test{
 		echo "</li>";
 	}
 
-	public function print_matching_questions($matching_section_id){
+	private function print_matching_questions($matching_section_id){
 		$this->question_count = 0;
-		$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
+		if ($this->user_type == self::TEACHER) {
+			$question_statement = $this->db->prepare("SELECT matching_question_id, question_text, question_weight, matching_answer_id
 												  FROM matching_question 
 												  WHERE matching_section_id = ?
 												  ORDER BY question_number") or die($db->error);
-		$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
+		}
+		else {
+			$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, get_student_answer(mq.matching_question_id) as answer_given
+													    FROM matching_question mq
+													   WHERE mq.matching_section_id = ?
+													   ORDER BY mq.question_number") or die($db->error);
+			$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $answer_given);
+			
+		}
+		
 		$question_statement->execute();
 		$question_statement->store_result();
-		$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
 		
-		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."'>";
+		echo "\r\n <ol class='matching_questions' data-section-id='". $matching_section_id ."' >";
+		
 		while($question_statement->fetch()){
 			$matching_answer_tag = ($this->user_type == self::TEACHER ? "data-matching-answer-id='". $matching_answer_id ."'" : "");
-			echo "\r\n <li style='width: 300px; margin-bottom: 7px;' class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' ". $matching_answer_tag ." data-weight='".$question_weight."'>";
-			echo "\r\n   <span class='question_number'> </span> <span class='question_text' style='display: inline-block;' >". htmlspecialchars($question_text) ."</span>";
+			echo "\r\n <li class='question_item question_list' data-question-type='". self::MATCHING_QUESTION_TYPE . "' data-question-id='". $matching_question_id ."' ". $matching_answer_tag ." data-weight='".$question_weight."'>";
+			if ($this->question_count > 0) {
+				echo "\r\n<hr style='margin-top: 8px !important; margin-bottom: 3px !important;' />";
+			}
+			echo "\r\n   <span class='question_number' > </span> <span class='question_text' >". htmlspecialchars($question_text) ."</span>";
 			if($this->user_type == self::STUDENT){
-				echo "\r\n   <select class='matching_input_box' style='display: inline-block; float: right; width: 120px;'>";
+				echo "\r\n  <br /> <select class='matching_input_box' style='display: inline-block; width: 120px;'>";
 				echo "\r\n       <option value='null'></option>";
 				for($count = 0; $count < $this->answer_count; $count++){
-					echo "\r\n <option value=". $this->matching_answers_list[$count]["id"] .">". $this->alphabet[$count] . ") " . $this->matching_answers_list[$count]["text"] . "</option>";
+					echo "\r\n <option value='". $this->matching_answers_list[$count]["id"]."'";
+					if ($answer_given == $this->matching_answers_list[$count]["id"])
+						echo "selected";
+					echo ">". $this->alphabet[$count] . ") " . $this->matching_answers_list[$count]["text"] . "</option>";
 				}
 				echo "\r\n   </select>";
 			}
+			else {
+				for($count = 0; $count < $this->answer_count; $count++){
+					if ($matching_answer_id == $this->matching_answers_list[$count]["id"])
+						echo "\r\n <br /><span style='margin-left: 27px; color:#47CC7A;'>". $this->matching_answers_list[$count]["text"] . "</span>";
+				}
+			} 
 			echo "\r\n </li>";
 			$this->question_count++;
 		}
 		echo "\r\n </ol>";
 	}
 	
-	public function print_matching_answers($matching_section_id){
+	private function print_matching_answers($matching_section_id){
 		$this->matching_answers_list = array();
 		$this->answer_count = 0;
 		$answer_statement = $this->db->prepare("SELECT matching_answer_id, answer_content
@@ -390,7 +463,7 @@ class Test{
 		$answer_statement->store_result();
 		$answer_statement->bind_result($matching_answer_id, $answer_content);
 		
-		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."'>";
+		echo "\r\n <ol class='matching_answers' data-section-id='". $matching_section_id ."' >";
 		while($answer_statement->fetch()){
 			$this->matching_answers_list[$this->answer_count]["id"]   = $matching_answer_id;
 			$this->matching_answers_list[$this->answer_count]["text"] = htmlspecialchars($answer_content);

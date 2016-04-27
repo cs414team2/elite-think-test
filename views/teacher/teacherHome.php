@@ -59,11 +59,11 @@ if (isset($_SESSION['credentials'])) {
 						<section style="text-align:center;">
 							<table class="alt sortable">
 							<caption style="font-weight: bold; text-decoration: underline;">Graded Tests</caption>
-							<caption><i>Select to View Graded Tests</i></caption>
+							<caption><i>Select to view test results</i></caption>
 								<thead>
 									<tr class="clickable_row">
-										<th>Test</th>
 										<th>Class</th>
+										<th>Test</th>
 										<th>Due Date</th>
 										<th>Complete</th>
 										<th>Stats</th>
@@ -87,9 +87,10 @@ if (isset($_SESSION['credentials'])) {
 							<caption><i>Select to Grade Submitted Tests</i></caption>
 								<thead>
 									<tr class="clickable_row">
-										<th>Test</th>
 										<th>Class</th>
+										<th>Test</th>
 										<th>Due Date</th>
+										<th>Ungraded</th>
 										<th>Complete</th>
 										<th>Stats</th>
 									</tr>
@@ -113,8 +114,8 @@ if (isset($_SESSION['credentials'])) {
 							<caption><i>Select to Edit Saved Drafts</i></caption>
 								<thead>
 									<tr class="clickable_row">
-										<th>Test</th>
 										<th>Class</th>
+										<th>Test</th>
 										<th>Active Date</th>
 									</tr>
 								</thead>
@@ -134,7 +135,7 @@ if (isset($_SESSION['credentials'])) {
 				<div id="slidingDiv_3" class="toggleDiv" style="display:none;">
 					<br />
 					<h4 style="text-align: center;">Please Select the Class...</h4>
-					<select name="Class" id="ddl_classes" style="text-align: center;">
+					<select name="Class" id="ddl_classes" style="text-align: center; width:100%;">
 						<option selected="selected" value="null">- Classes -</option>
 					</select>
 					<br />
@@ -150,6 +151,7 @@ if (isset($_SESSION['credentials'])) {
 					<div id="pie_letter_frequency" class="chart1" ></div>	
 					<div id="bar_missed_questions" class="chart2"></div>
 					<br />
+					<h4 style="color: #222222;" class="statsSmall">Grade Stats</h4>
 					<div style="width: 100%;">
 						<span class="statsLarge" id="h_highest" >
 						</span>
@@ -178,6 +180,7 @@ if (isset($_SESSION['credentials'])) {
 					<div id="bar_missed_questions2" class="chart3"></div>
 				</div>
 				<div id="area_missed_loader" class="loader" style="display: none;">Loading...</div>
+				<button id="btn_grade_test" class="clickable_img">Grade this test</button>
 			</div>
 
 			<!-- Class Statistics div -->
