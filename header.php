@@ -66,6 +66,7 @@
 								}
 							}
 							echo '<li><a href="aboutUs.php">About Elite</a></li>';
+							echo '<li><a href="images/EliteThink.pdf" target="_blank" style="font-size: 16pt;">&#128214;</a></li>';
 
 							// Displays the Logout option in the header if logged in
 							if (isset($_SESSION["credentials"]))
