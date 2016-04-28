@@ -155,7 +155,7 @@
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
 			$question_type = Test::MATCHING_QUESTION_TYPE;
-			$test->print_matching_sections($user_type);
+			$test->print_matching_sections($user_type, $user_id);
 		}
 	}
 			
