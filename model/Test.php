@@ -19,6 +19,7 @@ class Test{
 	private $answer_count;
 	private $question_count;
 	private $user_type;
+	private $user_id;
 	private $matching_answers_list;
 	
 	public function __construct($test_id){
@@ -334,8 +335,10 @@ class Test{
 /*********************************************************************************************/
 /*                                      MATCHING SECTION                                     */
 /*********************************************************************************************/
-	public function print_matching_sections($u_type){
+	public function print_matching_sections($u_type, $u_id){
 		$this->user_type = $u_type;
+		$this->user_id = $u_id;
+		
 		$statement = $this->db->prepare("SELECT matching_section_id, matching_section_description
 									     FROM matching_section 
 									     WHERE test_id = ? ORDER BY section_number") or die($db->error);
@@ -408,11 +411,11 @@ class Test{
 			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $matching_answer_id);
 		}
 		else {
-			$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, get_student_answer(mq.matching_question_id) as answer_given
+			$question_statement = $this->db->prepare("SELECT mq.matching_question_id, mq.question_text, mq.question_weight, get_student_answer(mq.matching_question_id, ?) as answer_given
 													    FROM matching_question mq
 													   WHERE mq.matching_section_id = ?
 													   ORDER BY mq.question_number") or die($db->error);
-			$question_statement->bind_param("i", $matching_section_id);
+			$question_statement->bind_param("ii", $this->user_id, $matching_section_id);
 			$question_statement->bind_result($matching_question_id, $question_text, $question_weight, $answer_given);
 			
 		}
