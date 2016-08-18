@@ -36,14 +36,18 @@
 				$name_statement->execute() or die($name_statement->error);
 				$name_statement->bind_result($first_name) or die($name_statement->error);
 				$name_statement->fetch() or die($name_statement->error);
+				
 				$this->first_name = $first_name;
 				$name_statement->close();
+				
 				$name_statement = $db->prepare("SELECT get_lname(?)") or die($db->error); 
 				$name_statement->bind_param("i", $this->user_id) or die($name_statement->error); 
 				$name_statement->execute() or die($name_statement->error);
 				$name_statement->bind_result($last_name) or die($name_statement->error);
 				$name_statement->fetch() or die($name_statement->error);
+				
 				$this->last_name = $last_name;
+				$name_statement->close();
 			}
 		}
 		
