@@ -64,6 +64,7 @@
 			return $this->last_name;
 		}
 		
+		// Test push
 		public function is_authenticated() {
 			return $this->access_level > self::UNAUTHENTICATED;
 		}
