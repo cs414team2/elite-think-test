@@ -65,17 +65,17 @@
 		}
 		
 		public function is_authenticated() {
-			return $this->access_level > self::UNAUTHENTICATED ? true : false;
+			return $this->access_level > self::UNAUTHENTICATED;
 		}
 		
 		public function is_admin() {
-			return $this->access_level == self::ADMINISTRATOR ? true : false;
+			return $this->access_level == self::ADMINISTRATOR;
 		}
 		public function is_teacher() {
-			return $this->access_level == self::TEACHER ? true : false;
+			return $this->access_level == self::TEACHER;
 		}
 		public function is_student() {
-			return $this->access_level == self::STUDENT ? true : false;
+			return $this->access_level == self::STUDENT;
 		}
 		
 		public function prepare_connection(){
